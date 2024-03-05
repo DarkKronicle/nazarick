@@ -7,6 +7,9 @@
   ...
 }:
 with lib.nazarick; {
+  home.packages = with pkgs; [
+    neofetch
+  ];
   nazarick = {
     tools = {
       git = {
@@ -14,6 +17,12 @@ with lib.nazarick; {
         userEmail = "darkkronicle@gmail.com";
         userName = "DarkKronicle";
       };  
+    };
+
+    apps = {
+      firefox = {
+        enable = true;
+      };
     };
   };
 }
