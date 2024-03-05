@@ -36,6 +36,13 @@ with lib.internal;
     git
     gcc
     firefox
+    vesktop
+    kitty
+    nazarick.operator-caska
+  ];
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
   ];
 
   # nazarick = {

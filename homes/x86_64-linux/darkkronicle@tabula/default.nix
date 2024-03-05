@@ -23,6 +23,9 @@ with lib.nazarick; {
       firefox = {
         enable = true;
       };
+      kitty = {
+        enable = true;
+      };
     };
   };
 }
