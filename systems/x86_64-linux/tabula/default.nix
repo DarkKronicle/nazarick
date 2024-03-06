@@ -1,8 +1,5 @@
 { pkgs, lib, nixos-hardware, config, input, ... }:
-
-with lib;
-with lib.internal;
-{
+with lib; with lib.internal; {
   imports = [ ./hardware.nix ];
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
@@ -28,8 +25,10 @@ with lib.internal;
     "/home".options = [ "compress=zstd" "noatime" ];
     "/nix".options = [ "compress=zstd" "noatime" ];
     "/boot".options = [ "umask=0077" ];
+    "/swap".options = [ "noatime" ];
   };
 
+  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   # GPU
   hardware.opengl = {
@@ -68,8 +67,9 @@ with lib.internal;
     firefox
     vesktop
     kitty
+    gnumake
     nazarick.operator-caska
-    lshw
+    fzf
   ];
 
   fonts.packages = with pkgs; [
@@ -79,6 +79,14 @@ with lib.internal;
   nazarick = {
     apps = {
       steam = {
+        enable = true;
+      };
+      wine = {
+        enable = true;
+      };
+    };
+    tools = {
+      kanata = {
         enable = true;
       };
     };

@@ -26,6 +26,7 @@ in
 
           settings = {
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+            "widget.use-xdg-desktop-portal.file-picker" = 1;
           };
         };
       };

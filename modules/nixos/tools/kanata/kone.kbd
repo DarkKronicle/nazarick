@@ -1,0 +1,104 @@
+#|
+(defcfg
+    ;; linux-dev /dev/input/by-id/usb-ROCCAT_ROCCAT_Kone_XP_Air_Dongle_AB859AAB61551999-event-mouse
+    linux-dev /dev/input/by-id/usb-ROCCAT_ROCCAT_Kone_XP_Air_Dongle_AB859AAB61551999-if01-event-kbd:/dev/input/by-id/usb-ROCCAT_ROCCAT_Kone_XP_Air_Dongle_AB859AAB61551999-event-mouse
+    linux-continue-if-no-devs-found yes
+    process-unmapped-keys yes
+    danger-enable-cmd yes
+)
+|#
+
+#|
+  _ _
+  _ _    _ _ _  _
+  _ _
+  _ _
+  _
+|#
+
+(defsrc
+  mrgt mlft
+  8 9     4 mmid 5  kp1
+  0 1
+  2 3
+
+  kp0
+)
+
+(defchords grid 50
+    (a b c d) a
+    (a b    ) met
+    (a      ) mmid
+    (  b    ) @deskleft
+    (    c  ) @pp
+    (      d) @deskright
+)
+
+(defalias 
+    deskleft C-lft
+    deskright C-rght
+    pp (cmd playerctl play-pause)
+    ch1 (chord grid a)
+    ch2 (chord grid b)
+    ch3 (chord grid c)
+    ch4 (chord grid d)
+)
+
+(deflayer base
+  mrgt  mlft
+  @volmvt voldwn    XX @lmd 1 2
+  @ch3      @ch4
+  @ch1      @ch2
+  (tap-hold-release 200 200 mmid met)
+)
+
+(deflayer anki
+  mrgt  mlft
+  @volmvt voldwn    XX @lmd kp5  kp1
+  1 2
+  spc 4
+  C-z
+)
+
+
+(deflayer gaming
+  mrgt mlft
+  8 9     kp4 @lmd kp5 _
+  0 1
+  2 3
+
+  mmid
+)
+
+(defalias
+  base (layer-switch base)
+  gmg (layer-switch gaming)
+  ank (layer-switch anki)
+  lay (layer-toggle layers)
+
+  lmd (tap-hold-release 200 200 mmid @lay)
+
+  mvmt (layer-while-held movement)
+  lft (multi (release-key met) left)
+  rght (multi (release-key met) rght)
+
+  volmvt (tap-hold-release 200 200 volu @mvmt)
+)
+
+(deflayer layers
+  _ _
+  _ _    _ _ _  _
+  lrld @ank
+  @base @gmg
+
+  _
+)
+
+(deflayer movement
+  lsft _
+  _ _    _ _ _  _
+  up down
+  lft rght
+
+  lsft
+)
