@@ -1,4 +1,4 @@
-{ pkgs, lib, nixos-hardware, ... }:
+{ pkgs, lib, nixos-hardware, config, ... }:
 
 with lib;
 with lib.internal;
@@ -30,6 +30,35 @@ with lib.internal;
     "/boot".options = [ "umask=0077" ];
   };
 
+
+  # GPU
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
+
+  services.xserver.videoDrivers = ["nvidia"];
+
+  hardware.nvidia = { 
+    modesetting.enable = true;
+
+    powerManagement.finegrained = false;
+    powerManagement.enable = false;
+
+    open = false;
+    nvidiaSettings = true;
+
+    package = config.boot.kernelPackages.nvidiaPackages.production;
+
+    prime = {
+      sync.enable = true;
+
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -40,6 +69,7 @@ with lib.internal;
     vesktop
     kitty
     nazarick.operator-caska
+    lshw
   ];
 
   fonts.packages = with pkgs; [
