@@ -20,6 +20,13 @@ in
           id = 0;
           name = "main";
           isDefault = true;
+          userChrome = ''
+            @import "${pkgs.nazarick.firefox-cascade}/chrome/userChrome.css";
+          '';
+
+          settings = {
+            "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
+          };
         };
       };
     };

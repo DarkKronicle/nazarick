@@ -19,6 +19,7 @@ in
       enable = true;
       inherit (cfg) userName userEmail;
       extraConfig = {
+        credential.helper = "oauth";
         init = { defaultBranch = "main"; };
       };
     };
