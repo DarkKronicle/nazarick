@@ -1,4 +1,4 @@
-{ pkgs, lib, nixos-hardware, config, ... }:
+{ pkgs, lib, nixos-hardware, config, input, ... }:
 
 with lib;
 with lib.internal;
@@ -76,9 +76,13 @@ with lib.internal;
     (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
   ];
 
-  # nazarick = {
-
-  # };
+  nazarick = {
+    apps = {
+      steam = {
+        enable = true;
+      };
+    };
+  };
 
   system.stateVersion = "23.11"; # Did you read the comment?
 
