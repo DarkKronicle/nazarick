@@ -70,6 +70,16 @@ with lib; with lib.internal; {
     gnumake
     nazarick.operator-caska
     fzf
+    unzip
+    nazarick.mint
+    (fenix.complete.withComponents [
+     "cargo"
+     "clippy"
+     "rust-src"
+     "rustc"
+     "rustfmt"
+    ])
+      rust-analyzer-nightly
   ];
 
   fonts.packages = with pkgs; [
