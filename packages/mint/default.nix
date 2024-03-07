@@ -1,14 +1,18 @@
-{ pkgs, lib, rustPlatform, fenix, fetchFromGitHub, ... }:
+{ pkgs, lib, rustPlatform, inputs, fetchFromGitHub, ... }:
 
 let 
-  toolchain = with fenix.packages.${system};
+  toolchain = with inputs.fenix.packages.x86_64-linux;
     combine [
       minimal.rustc
       minimal.cargo
       targets.x86_64-pc-windows-gnu.latest.rust-std
+      targets.x86_64-pc-windows-gnu.latest.rust-std
     ];
 in
-rustPlatform.buildRustPackage rec {
+(pkgs.makeRustPlatform {
+  cargo = toolchain; 
+  rustc = toolchain; 
+}).buildRustPackage rec {
   pname = "mint";
   version = "master";
   src = fetchFromGitHub {
@@ -33,9 +37,9 @@ rustPlatform.buildRustPackage rec {
     };
   };
 
-  # CARGO_BUILD_TARGET="x86_64-unknown-linux-gnu";
+  CARGO_BUILD_TARGET="x86_64-unknown-linux-gnu";
 
-  # cargoBuildFlags = [ "--target=x86_64-unknown-linux-gnu" ];
+  cargoBuildFlags = [ "--target=x86_64-unknown-linux-gnu" ];
 
   postPatch = ''
     cp ${./Cargo.lock} Cargo.lock
@@ -47,5 +51,35 @@ rustPlatform.buildRustPackage rec {
     license = licenses.mit;
     homepage = "https://github.com/trumank/mint";
   };
+
+  buildInputs = with pkgs; [
+    glib
+    glibc
+    atk
+    gtk3
+    zstd
+  ];
+
+
+  nativeBuildInputs = with pkgs.buildPackages; [
+    pkg-config
+    glib
+    glibc
+    atk
+    gtk3
+    zstd
+  ];
+
+  depsBuildBuild = [
+    pkgs.pkgsCross.mingwW64.stdenv.cc
+    pkgs.pkgsCross.mingwW64.windows.pthreads
+    pkgs.pkgsCross.mingwW64.zstd
+    # pkgs.pkgsCross.mingwW64.router
+  ];
+
+  CARGO_TARGET_X86_64_PC_WINDOWS_GNU_RUSTFLAGS =
+    "-L native=${pkgs.pkgsCross.mingwW64.windows.pthreads}/lib";
+
+  # CARGO_BUILD_TARGET = "x86_64-pc-windows-gnu";
 }
 

@@ -47,6 +47,9 @@
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
+        permittedUnsecurePackages = [
+          "router-1.19.0"
+        ];
       };
 
       overlays = with inputs; [

@@ -71,7 +71,7 @@ with lib; with lib.internal; {
     nazarick.operator-caska
     fzf
     unzip
-    nazarick.mint
+    # nazarick.mint - I give up, this isn't working
     (fenix.complete.withComponents [
      "cargo"
      "clippy"
