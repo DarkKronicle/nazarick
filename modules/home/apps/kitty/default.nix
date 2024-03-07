@@ -14,6 +14,7 @@ in
   config = mkIf cfg.enable {
 
     programs.kitty = {
+      package = pkgs.kitty;
       enable = true;
       theme = "Catppuccin-Mocha";
       settings = {

@@ -35,8 +35,8 @@
 )
 
 (defalias 
-    deskleft C-lft
-    deskright C-rght
+    deskleft M-C-lft
+    deskright M-C-rght
     pp (cmd playerctl play-pause)
     ch1 (chord grid a)
     ch2 (chord grid b)
