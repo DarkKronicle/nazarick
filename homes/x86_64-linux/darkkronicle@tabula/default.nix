@@ -29,6 +29,12 @@ with lib.nazarick; {
       kitty = {
         enable = true;
       };
+      yazi = {
+        enable = true;
+      };
+      mpv = {
+        enable = true;
+      };
     };
   };
 }

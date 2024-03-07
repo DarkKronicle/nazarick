@@ -35,6 +35,11 @@ with lib; with lib.internal; {
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      vulkan-loader
+        vulkan-validation-layers
+        vulkan-extension-layer
+    ];
   };
 
   services.xserver.videoDrivers = ["nvidia"];
@@ -48,7 +53,7 @@ with lib; with lib.internal; {
     open = false;
     nvidiaSettings = true;
 
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     prime = {
       sync.enable = true;
