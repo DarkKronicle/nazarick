@@ -17,6 +17,9 @@ with lib.nazarick; {
         userEmail = "darkkronicle@gmail.com";
         userName = "DarkKronicle";
       };  
+      nushell = {
+        enable = true;
+      };
     };
 
     apps = {

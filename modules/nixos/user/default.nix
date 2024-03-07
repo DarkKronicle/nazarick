@@ -23,6 +23,7 @@ in {
 
       home = "/home/${cfg.name}";
       group = "users";
+      shell = pkgs.nushell;
     } // cfg.extraOptions;
   };
 }
