@@ -1,6 +1,14 @@
-{ pkgs, lib, rustPlatform, fetchFromGitHub, ... }:
+{ pkgs, lib, rustPlatform, fenix, fetchFromGitHub, ... }:
 
-rustPlatform.buildRustPackage {
+let 
+  toolchain = with fenix.packages.${system};
+    combine [
+      minimal.rustc
+      minimal.cargo
+      targets.x86_64-pc-windows-gnu.latest.rust-std
+    ];
+in
+rustPlatform.buildRustPackage rec {
   pname = "mint";
   version = "master";
   src = fetchFromGitHub {
@@ -10,10 +18,10 @@ rustPlatform.buildRustPackage {
     hash = "sha256-yhlCoA3e5oTJ56aXeGYBt4PL0STM/GwZoHUAlc0Skd8=";
   };
 
-  cargoHash = "";
+  cargoSha256 = lib.fakeSha256;
 
   cargoLock = {
-    lockFile = ./Cargo.lock;
+    lockFileContents = builtins.readFile ./Cargo.lock;
 
     outputHashes = {
       "egui_animation-0.1.0" = "sha256-d4TsVU0uvuNhmooVppd1r08xgJjSnVqTv2H0rLG8sCU=";
@@ -25,9 +33,19 @@ rustPlatform.buildRustPackage {
     };
   };
 
+  # CARGO_BUILD_TARGET="x86_64-unknown-linux-gnu";
+
+  # cargoBuildFlags = [ "--target=x86_64-unknown-linux-gnu" ];
+
+  postPatch = ''
+    cp ${./Cargo.lock} Cargo.lock
+  '';
+
   meta = with lib; {
     description = "Deep Rock Galactic mod patcher";
     maintainers = [];
+    license = licenses.mit;
+    homepage = "https://github.com/trumank/mint";
   };
 }
 
