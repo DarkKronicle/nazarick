@@ -97,6 +97,7 @@ with lib; with lib.internal; {
     matlab
     playerctl
     nheko
+    nazarick.ltspice
     (pkgs.mumble.override { pulseSupport = true; })
     # nazarick.mint - I give up, this isn't working
     (fenix.complete.withComponents [
@@ -111,6 +112,10 @@ with lib; with lib.internal; {
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+      noto-fonts
+      noto-fonts-cjk
+      noto-fonts-emoji
+      noto-fonts-cjk-sans
   ];
 
   nazarick = {
