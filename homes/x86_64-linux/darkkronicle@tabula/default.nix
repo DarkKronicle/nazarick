@@ -23,6 +23,9 @@ with lib.nazarick; {
       playerctl = {
         enable = true;
       };
+      easyeffects = {
+        enable = true;
+      };
     };
 
     apps = {

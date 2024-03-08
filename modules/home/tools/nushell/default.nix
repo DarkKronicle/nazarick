@@ -13,11 +13,20 @@ in
 
   config = mkIf cfg.enable {
     home.file.".config/starship.toml".source = ./starship/starship.toml;
+
+    home.file.".config/nushell" = {
+      source = ./config;
+      recursive = true;
+    };
+
+    services.pueue.enable = true;
     programs = {
       nushell = {
         enable = true;
         # The overlay is applied here
         package = pkgs.nushell;
+        configFile.text = builtins.readFile ./config.nu;
+        envFile.text = builtins.readFile ./env.nu;
       };
 
       starship = {
