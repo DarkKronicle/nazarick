@@ -1,6 +1,20 @@
-{ pkgs, lib, nixos-hardware, config, input, ... }:
+{ pkgs, lib, nixos-hardware, config, inputs, ... }:
 with lib; with lib.internal; {
-  imports = [ ./hardware.nix ];
+  imports = [ 
+    ./hardware.nix 
+    # inputs.sops-nix.nixosModules.sops
+  ];
+
+  sops.defaultSopsFile = ./secrets/secrets.yaml;
+  sops.defaultSopsFormat = "yaml";
+  sops.age.keyFile = "/home/darkkronicle/.config/sops/age/keys.txt";
+
+  sops.secrets."spotifyd/username" = {
+    owner = "darkkronicle";
+  };
+  sops.secrets."spotifyd/password" = {
+    owner = "darkkronicle";
+  };
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -77,6 +91,8 @@ with lib; with lib.internal; {
     fzf
     unzip
     ripgrep
+    matlab
+    (pkgs.mumble.override { pulseSupport = true; })
     # nazarick.mint - I give up, this isn't working
     (fenix.complete.withComponents [
      "cargo"
@@ -98,6 +114,9 @@ with lib; with lib.internal; {
         enable = true;
       };
       wine = {
+        enable = true;
+      };
+      spotifyd = {
         enable = true;
       };
     };

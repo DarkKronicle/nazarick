@@ -30,6 +30,14 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    nix-matlab = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "gitlab:doronbehar/nix-matlab";
+    };
+
+    sops-nix.url = "github:Mic92/sops-nix";
+
   };
 
   outputs = inputs: let
@@ -57,10 +65,12 @@
       overlays = with inputs; [
         snowfall-flake.overlays.default
         fenix.overlays.default
+        nix-matlab.overlay
       ];
 
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager
+        sops-nix.nixosModules.sops
       ];
 
       deploy = lib.mkDeploy { inherit (inputs) self; };
