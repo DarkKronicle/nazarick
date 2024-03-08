@@ -110,6 +110,7 @@ with lib; with lib.internal; {
     nheko
     nazarick.ltspice
     fd
+    prismlauncher
     (pkgs.mumble.override { pulseSupport = true; })
     # nazarick.mint - I give up, this isn't working
     (fenix.complete.withComponents [
