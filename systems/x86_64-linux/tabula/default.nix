@@ -111,6 +111,8 @@ with lib; with lib.internal; {
     nazarick.ltspice
     fd
     prismlauncher
+    nazarick.anki
+    wl-clipboard
     (pkgs.mumble.override { pulseSupport = true; })
     # nazarick.mint - I give up, this isn't working
     (fenix.complete.withComponents [
