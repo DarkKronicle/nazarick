@@ -109,6 +109,7 @@ with lib; with lib.internal; {
     playerctl
     nheko
     nazarick.ltspice
+    fd
     (pkgs.mumble.override { pulseSupport = true; })
     # nazarick.mint - I give up, this isn't working
     (fenix.complete.withComponents [

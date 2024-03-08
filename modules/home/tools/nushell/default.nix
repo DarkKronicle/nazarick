@@ -43,6 +43,15 @@ in
           style = "compact";
         };
       };
+
+      zoxide = {
+        enable = true;
+        enableNushellIntegration = true;
+      };
+
+      eza = {
+        enable = true;
+      };
     };
   };
 }
