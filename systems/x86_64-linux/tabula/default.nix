@@ -36,7 +36,10 @@ with lib; with lib.internal; {
   
   fileSystems = {
     "/".options = [ "compress=zstd" "noatime" ];
-    "/home".options = [ "compress=zstd" "noatime" ];
+    "/home" = {
+      options = [ "compress=zstd" "noatime" ];
+      neededForBoot = true; # Get keys from here
+    };
     "/nix".options = [ "compress=zstd" "noatime" ];
     "/boot".options = [ "umask=0077" ];
     "/swap".options = [ "noatime" ];
@@ -92,6 +95,8 @@ with lib; with lib.internal; {
     unzip
     ripgrep
     matlab
+    playerctl
+    nheko
     (pkgs.mumble.override { pulseSupport = true; })
     # nazarick.mint - I give up, this isn't working
     (fenix.complete.withComponents [

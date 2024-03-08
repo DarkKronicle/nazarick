@@ -20,6 +20,9 @@ with lib.nazarick; {
       nushell = {
         enable = true;
       };
+      playerctl = {
+        enable = true;
+      };
     };
 
     apps = {

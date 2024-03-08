@@ -44,11 +44,15 @@ in
       # };
     # };
 
+    systemd.services.spotifyd-restart = {
+      enable = true;
+      wantedBy = [ "sleep.target" ];
+      description = "Restart spotifyd after suspend";
+      script = "systemctl --machine darkkronicle@.host --user restart spotifyd";
+    };
+
     systemd.user.services.spotifyd = {
-      wantedBy = [ "multi-user.target" ];
-      wants = [ "network-online.target" ];
-      after = [ "network-online.target" "sound.target" ];
-      environment.SHELL = "/bin/sh";
+      wantedBy = [ "default.target" ];
       description = "spotify daemon";
  
       serviceConfig = {
