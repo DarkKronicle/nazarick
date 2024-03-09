@@ -38,6 +38,7 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
+    nur.url = "github:nix-community/NUR";
   };
 
   outputs = inputs: let
@@ -66,11 +67,13 @@
         snowfall-flake.overlays.default
         fenix.overlays.default
         nix-matlab.overlay
+        nur.overlay
       ];
 
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager
         sops-nix.nixosModules.sops
+        nur.nixosModules.nur
       ];
 
       deploy = lib.mkDeploy { inherit (inputs) self; };

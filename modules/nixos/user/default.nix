@@ -13,7 +13,8 @@ in {
     name = mkOpt str "darkkronicle" "The (lowercase) name for the user.";
     fullName = mkOpt str "DarkKronicle" "The name for the user.";
     initialPassword = mkOpt str "password" "Initial password for the user.";
-    extraGroups = mkOpt (listOf str) [ "wheel" ] "Groups for the user to be assigned.";
+# TODO: nordvpn should be done in nordvpn
+    extraGroups = mkOpt (listOf str) [ "wheel" "nordvpn" ] "Groups for the user to be assigned.";
     extraOptions = mkOpt attrs {} (mdDoc "Extra options for users.users.");
   };
   config = {
