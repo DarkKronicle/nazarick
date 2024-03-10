@@ -5,6 +5,19 @@ with lib; with lib.internal; {
     # inputs.sops-nix.nixosModules.sops
   ];
 
+  fileSystems = {
+    "/".options = [ "compress=zstd" "noatime" ];
+    "/home" = {
+      options = [ "compress=zstd" "noatime" ];
+      neededForBoot = true; # Get keys from here
+    };
+    "/nix".options = [ "compress=zstd" "noatime" ];
+    "/boot".options = [ "umask=0077" ];
+    "/swap".options = [ "noatime" ];
+  };
+
+  swapDevices = [ { device = "/swap/swapfile"; } ];
+
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/darkkronicle/.config/sops/age/keys.txt";
@@ -23,10 +36,32 @@ with lib; with lib.internal; {
   ];
 
   boot.loader.systemd-boot = {
-    enable = true;
-    consoleMode = "max";
+    enable = false;
+    # consoleMode = "max";
   };
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+    timeout = 5;
+    grub = {
+      enable = true;
+      # useOSProber = true;
+      efiSupport = true;
+      device = "nodev";
+      # efiInstallAsRemovable = true;
+      # extraEntriesBeforeNixOS = true;
+      extraEntries = ''
+        menuentry "Reboot" {
+          reboot
+        }
+        menuentry "Poweroff" {
+          halt
+        }
+      '';
+    };
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot";
+    };
+  };
 
   # https://github.com/kessejones/dotfiles-nixos/blob/543756de674b4ad7e27f02991d171eb8d0956c10/hosts/desktop/modules/networking.nix
   networking = {
@@ -153,19 +188,6 @@ with lib; with lib.internal; {
     pulse.enable = true;
     #jack.enable = true;
   };
-  
-  fileSystems = {
-    "/".options = [ "compress=zstd" "noatime" ];
-    "/home" = {
-      options = [ "compress=zstd" "noatime" ];
-      neededForBoot = true; # Get keys from here
-    };
-    "/nix".options = [ "compress=zstd" "noatime" ];
-    "/boot".options = [ "umask=0077" ];
-    "/swap".options = [ "noatime" ];
-  };
-
-  swapDevices = [ { device = "/swap/swapfile"; } ];
 
   # GPU
   hardware.opengl = {
