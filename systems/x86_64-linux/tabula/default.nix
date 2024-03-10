@@ -18,7 +18,14 @@ with lib; with lib.internal; {
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  boot.loader.systemd-boot.enable = true;
+  boot.kernelParams = [
+    "nowatchdog"
+  ];
+
+  boot.loader.systemd-boot = {
+    enable = true;
+    consoleMode = "max";
+  };
   boot.loader.efi.canTouchEfiVariables = true;
 
   # https://github.com/kessejones/dotfiles-nixos/blob/543756de674b4ad7e27f02991d171eb8d0956c10/hosts/desktop/modules/networking.nix
@@ -121,26 +128,22 @@ with lib; with lib.internal; {
     };
   };
 
-  services.pipewire.wireplumber.configPackages = [
-    (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
-     bluez_monitor.properties = {
-       ["bluez5.enable-sbc-xq"] = true,
-       ["bluez5.enable-msbc"] = true,
-       ["bluez5.enable-hw-volume"] = true,
-       ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]",
-       ["bluez5.roles"] = "[ a2dp_sink ]",
-       ["bluez5.hfphsp-backend"] = "none",
-     }
-     bluez_monitor.rules = {
-       {
-         apply_properties = {
-           ["bluez5.auto-connect"] = "[ a2dp_sink ]",
-           ["bluez5.hw-volume"] = "[ a2dp_sink ]",
-         },
-       },
-     }
-     '')
-  ];
+  # services.pipewire.wireplumber.configPackages = [
+    # (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
+     # bluez_monitor.properties = {
+       # ["bluez5.roles"] = "[ a2dp_sink ]",
+       # # ["bluez5.hfphsp-backend"] = "none",
+     # }
+     # bluez_monitor.rules = {
+       # {
+         # apply_properties = {
+           # ["bluez5.auto-connect"] = "[ a2dp_sink ]",
+           # ["bluez5.hw-volume"] = "[ a2dp_sink ]",
+         # },
+       # },
+     # }
+     # '')
+  # ];
 
   security.rtkit.enable = true;
   services.pipewire = {
@@ -267,5 +270,17 @@ with lib; with lib.internal; {
   };
 
   system.stateVersion = "23.11"; # Did you read the comment?
+  services.power-profiles-daemon.enable = false;
+  services.thermald.enable = true;
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_BOOST_ON_AC = 1;
+      CPU_BOOST_ON_BAT = 0;
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    };
+  };
 
 }
