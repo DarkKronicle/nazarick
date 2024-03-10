@@ -111,6 +111,37 @@ with lib; with lib.internal; {
 
   programs.dconf.enable = true;
 
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+      };
+    };
+  };
+
+  services.pipewire.wireplumber.configPackages = [
+    (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
+     bluez_monitor.properties = {
+       ["bluez5.enable-sbc-xq"] = true,
+       ["bluez5.enable-msbc"] = true,
+       ["bluez5.enable-hw-volume"] = true,
+       ["bluez5.headset-roles"] = "[ hsp_hs hsp_ag hfp_hf hfp_ag ]",
+       ["bluez5.roles"] = "[ a2dp_sink ]",
+       ["bluez5.hfphsp-backend"] = "none",
+     }
+     bluez_monitor.rules = {
+       {
+         apply_properties = {
+           ["bluez5.auto-connect"] = "[ a2dp_sink ]",
+           ["bluez5.hw-volume"] = "[ a2dp_sink ]",
+         },
+       },
+     }
+     '')
+  ];
+
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -191,6 +222,8 @@ with lib; with lib.internal; {
     nazarick.anki
     wl-clipboard
     nix-output-monitor
+    libreoffice-qt
+    hunspell # spell check for libreoffice
     (pkgs.mumble.override { pulseSupport = true; })
     # nazarick.mint - I give up, this isn't working
     (fenix.complete.withComponents [
