@@ -65,7 +65,7 @@
 
       overlays = with inputs; [
         snowfall-flake.overlays.default
-        fenix.overlays.default
+        (_: super: let pkgs = fenix.inputs.nixpkgs.legacyPackages.${super.system}; in fenix.overlays.default pkgs pkgs)
         nix-matlab.overlay
         nur.overlay
       ];

@@ -14,6 +14,7 @@ in
   config = mkIf cfg.enable {
     programs.firefox = {
       enable = true;
+      package = pkgs.firefox;
 
       profiles = {
         main = {

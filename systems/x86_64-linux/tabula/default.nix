@@ -2,21 +2,47 @@
 with lib; with lib.internal; {
   imports = [ 
     ./hardware.nix 
-    # inputs.sops-nix.nixosModules.sops
+    ./system.nix
   ];
 
-  fileSystems = {
-    "/".options = [ "compress=zstd" "noatime" ];
-    "/home" = {
-      options = [ "compress=zstd" "noatime" ];
-      neededForBoot = true; # Get keys from here
-    };
-    "/nix".options = [ "compress=zstd" "noatime" ];
-    "/boot".options = [ "umask=0077" ];
-    "/swap".options = [ "noatime" ];
-  };
+  networking.hostName = "tabula";
 
-  swapDevices = [ { device = "/swap/swapfile"; } ];
+  nazarick = {
+    system = {
+      boot = {
+        grub = true;
+      };
+      printing = {
+        enable = true;
+      };
+      bluetooth = {
+        enable = true;
+      };
+      audio = {
+        enable = true;
+        pipewire = true;
+      };
+    };
+    apps = {
+      steam = {
+        enable = true;
+      };
+      wine = {
+        enable = true;
+      };
+      spotifyd = {
+        enable = true;
+      };
+    };
+    tools = {
+      kanata = {
+        enable = true;
+      };
+      nordvpn = {
+        enable = true;
+      };
+    };
+  };
 
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
@@ -29,165 +55,90 @@ with lib; with lib.internal; {
     owner = "darkkronicle";
   };
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
-  boot.kernelParams = [
-    "nowatchdog"
-  ];
-
-  boot.loader.systemd-boot = {
-    enable = false;
-    # consoleMode = "max";
-  };
-  boot.loader = {
-    timeout = 5;
-    grub = {
-      enable = true;
-      # useOSProber = true;
-      efiSupport = true;
-      device = "nodev";
-      # efiInstallAsRemovable = true;
-      # extraEntriesBeforeNixOS = true;
-      extraEntries = ''
-        menuentry "Reboot" {
-          reboot
-        }
-        menuentry "Poweroff" {
-          halt
-        }
-      '';
-    };
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot";
-    };
-  };
-
   # https://github.com/kessejones/dotfiles-nixos/blob/543756de674b4ad7e27f02991d171eb8d0956c10/hosts/desktop/modules/networking.nix
   networking = {
-    hostName = "tabula"; # Define your hostname.
-    networkmanager.enable = true;  # Easiest to use and most distros use this by default.
-
-    firewall = let
-      tcpPorts = [22 24800 25565];
-      wifiInterface = "wlp0s20f3";
-      etherInterface = "eno1";
-      networks = [
-        "172.18.0.1/24"
-        "192.168.0.1/24"
-        "10.0.0.1/24"
-      ];
-    in {
-      enable = false;
-      interfaces.${wifiInterface} = {
-        allowedTCPPorts = tcpPorts;
-        allowedUDPPorts = [
-          10001
-          10002
-          10011
-          10012
-        ];
-      };
-      interfaces.${etherInterface}.allowedTCPPorts = tcpPorts;
-
-      extraCommands = let
-        mkLocalRule = network: ''
-          iptables -A nixos-vpn-killswitch -d ${network} -j ACCEPT
-        '';
-
-        localRules = builtins.concatStringsSep "\n" (builtins.map (
-            n: (mkLocalRule n)
-          )
-          networks);
-
-        killSwitchRule = ''
-          # Flush old firewall rules
-          iptables -D OUTPUT -j nixos-vpn-killswitch 2> /dev/null || true
-          iptables -F "nixos-vpn-killswitch" 2> /dev/null || true
-          iptables -X "nixos-vpn-killswitch" 2> /dev/null || true
-
-          # Create chain
-          iptables -N nixos-vpn-killswitch
-
-          # Allow traffic on localhost
-          iptables -A nixos-vpn-killswitch -o lo -j ACCEPT
-
-          # Allow lan traffic
-          ${localRules}
-
-          # Allow connecition to vpn server
-          iptables -A nixos-vpn-killswitch -p udp -m udp --dport 1194 -j ACCEPT
-          iptables -A nixos-vpn-killswitch -p udp -m udp --dport 51820 -j ACCEPT
-
-          # Allow connections tunneled over VPN
-          iptables -A nixos-vpn-killswitch -o tun0 -j ACCEPT
-          iptables -A nixos-vpn-killswitch -o wg0 -j ACCEPT
-
-          # Disallow outgoing traffic by default
-          iptables -A nixos-vpn-killswitch -j DROP
-
-          # Enable killswitch
-          iptables -A OUTPUT -j nixos-vpn-killswitch
-        '';
-      in ''
-        # Enable killswitch by default
-        ${killSwitchRule}
-      '';
-
-      extraStopCommands = ''
-        iptables -D OUTPUT -j nixos-vpn-killswitch
-      '';
-    };
-
+    networkmanager.enable = true;
   };
-  time.timeZone = "America/Denver";
+
+    # firewall = let
+      # tcpPorts = [22 24800 25565];
+      # wifiInterface = "wlp0s20f3";
+      # etherInterface = "eno1";
+      # networks = [
+        # "172.18.0.1/24"
+        # "192.168.0.1/24"
+        # "10.0.0.1/24"
+      # ];
+    # in {
+      # enable = true;
+      # interfaces.${wifiInterface} = {
+        # allowedTCPPorts = tcpPorts;
+        # allowedUDPPorts = [
+          # 10001
+          # 10002
+          # 10011
+          # 10012
+        # ];
+      # };
+      # interfaces.${etherInterface}.allowedTCPPorts = tcpPorts;
+# 
+      # extraCommands = let
+        # mkLocalRule = network: ''
+          # iptables -A nixos-vpn-killswitch -d ${network} -j ACCEPT
+        # '';
+# 
+        # localRules = builtins.concatStringsSep "\n" (builtins.map (
+            # n: (mkLocalRule n)
+          # )
+          # networks);
+# 
+        # killSwitchRule = ''
+          # # Flush old firewall rules
+          # iptables -D OUTPUT -j nixos-vpn-killswitch 2> /dev/null || true
+          # iptables -F "nixos-vpn-killswitch" 2> /dev/null || true
+          # iptables -X "nixos-vpn-killswitch" 2> /dev/null || true
+# 
+          # # Create chain
+          # iptables -N nixos-vpn-killswitch
+# 
+          # # Allow traffic on localhost
+          # iptables -A nixos-vpn-killswitch -o lo -j ACCEPT
+# 
+          # # Allow lan traffic
+          # ${localRules}
+# 
+          # # Allow connecition to vpn server
+          # iptables -A nixos-vpn-killswitch -p udp -m udp --dport 1194 -j ACCEPT
+          # iptables -A nixos-vpn-killswitch -p udp -m udp --dport 51820 -j ACCEPT
+# 
+          # # Allow connections tunneled over VPN
+          # iptables -A nixos-vpn-killswitch -o tun0 -j ACCEPT
+          # iptables -A nixos-vpn-killswitch -o wg0 -j ACCEPT
+# 
+          # # Disallow outgoing traffic by default
+          # iptables -A nixos-vpn-killswitch -j DROP
+# 
+          # # Enable killswitch
+          # iptables -A OUTPUT -j nixos-vpn-killswitch
+        # '';
+      # in ''
+        # # Enable killswitch by default
+        # ${killSwitchRule}
+      # '';
+# 
+      # extraStopCommands = ''
+        # iptables -D OUTPUT -j nixos-vpn-killswitch
+      # '';
+    # };
+
+  # };
 
   services.xserver.enable = true;
-  services.printing.enable = true;
 
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma6.enable = true;
 
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
-
   programs.dconf.enable = true;
-
-  hardware.bluetooth = {
-    enable = true;
-    powerOnBoot = true;
-    settings = {
-      General = {
-        Enable = "Source,Sink,Media,Socket";
-      };
-    };
-  };
-
-  # services.pipewire.wireplumber.configPackages = [
-    # (pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
-     # bluez_monitor.properties = {
-       # ["bluez5.roles"] = "[ a2dp_sink ]",
-       # # ["bluez5.hfphsp-backend"] = "none",
-     # }
-     # bluez_monitor.rules = {
-       # {
-         # apply_properties = {
-           # ["bluez5.auto-connect"] = "[ a2dp_sink ]",
-           # ["bluez5.hw-volume"] = "[ a2dp_sink ]",
-         # },
-       # },
-     # }
-     # '')
-  # ];
-
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    #jack.enable = true;
-  };
 
   # GPU
   hardware.opengl = {
@@ -245,6 +196,7 @@ with lib; with lib.internal; {
     fd
     prismlauncher
     nazarick.anki
+    systemd
     wl-clipboard
     nix-output-monitor
     libreoffice-qt
@@ -269,27 +221,6 @@ with lib; with lib.internal; {
       noto-fonts-cjk-sans
   ];
 
-  nazarick = {
-    apps = {
-      steam = {
-        enable = true;
-      };
-      wine = {
-        enable = true;
-      };
-      spotifyd = {
-        enable = true;
-      };
-    };
-    tools = {
-      kanata = {
-        enable = true;
-      };
-      nordvpn = {
-        enable = true;
-      };
-    };
-  };
 
   system.stateVersion = "23.11"; # Did you read the comment?
   services.power-profiles-daemon.enable = false;
@@ -302,6 +233,22 @@ with lib; with lib.internal; {
       CPU_BOOST_ON_BAT = 0;
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    };
+  };
+
+  nix = {
+    settings = {
+      experimental-features = [ "nix-command" "flakes" ];
+      warn-dirty = false;
+      auto-optimise-store = true;
+      substituters = [
+        "https://cache.nixos.org"
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      ];
     };
   };
 

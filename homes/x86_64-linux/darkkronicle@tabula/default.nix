@@ -41,6 +41,9 @@ with lib.nazarick; {
       mpv = {
         enable = true;
       };
+      defaults = {
+        enable = true;
+      };
     };
   };
 }
