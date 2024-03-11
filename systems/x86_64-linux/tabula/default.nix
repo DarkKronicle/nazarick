@@ -196,7 +196,7 @@ with lib; with lib.internal; {
     fd
     prismlauncher
     nazarick.anki
-    systemd
+    qalculate-qt
     wl-clipboard
     nix-output-monitor
     libreoffice-qt
@@ -243,11 +243,11 @@ with lib; with lib.internal; {
       auto-optimise-store = true;
       substituters = [
         "https://cache.nixos.org"
-        "https://nix-community.cachix.org"
+        # "https://nix-community.cachix.org"
       ];
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+#        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       ];
     };
   };
