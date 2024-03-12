@@ -7,6 +7,7 @@ let
   toml = pkgs.formats.toml {};
 
   cfg = config.nazarick.apps.spotifyd;
+  username = config.nazarick.user.name;
 
   spotifydConf = toml.generate "spotifyd.toml" {
     global = {
@@ -27,28 +28,18 @@ in
   };
 
   config = mkIf cfg.enable {
-# 
-    # services.spotifyd = {
-      # enable = true;
-      # settings = {
-        # global = {
-          # username_cmd = "cat ${config.sops.secrets."spotifyd/username".path}";
-          # password_cmd = "cat ${config.sops.secrets."spotifyd/password".path}";
-          # use_mpris = true;
-          # dbus_type = "session";
-          # initial_volume = "80";
-          # volume_controller = "softvol";
-          # backend = "pulseaudio";
-          # device = "tabula-spotifyd";
-        # };
-      # };
-    # };
+    sops.secrets."spotifyd/username" = {
+      owner = username;
+    };
+    sops.secrets."spotifyd/password" = {
+      owner = username;
+    };
 
     systemd.services.spotifyd-restart = {
       enable = true;
       wantedBy = [ "sleep.target" ];
       description = "Restart spotifyd after suspend";
-      script = "systemctl --machine darkkronicle@.host --user restart spotifyd";
+      script = "systemctl --machine ${username}@.host --user restart spotifyd";
     };
 
     systemd.user.services.spotifyd = {

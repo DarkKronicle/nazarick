@@ -9,13 +9,24 @@ with lib; with lib.internal; {
 
   nazarick = {
     system = {
+      nix = {
+        enable = true;
+      };
       boot = {
         grub = true;
+      };
+      nvidia = {
+        enable = true;
+        nvidiaBusId = "PCI:1:0:0";
+        intelBusId = "PCI:0:2:0";
       };
       printing = {
         enable = true;
       };
       bluetooth = {
+        enable = true;
+      };
+      power = {
         enable = true;
       };
       audio = {
@@ -47,13 +58,6 @@ with lib; with lib.internal; {
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
   sops.age.keyFile = "/home/darkkronicle/.config/sops/age/keys.txt";
-
-  sops.secrets."spotifyd/username" = {
-    owner = "darkkronicle";
-  };
-  sops.secrets."spotifyd/password" = {
-    owner = "darkkronicle";
-  };
 
   # https://github.com/kessejones/dotfiles-nixos/blob/543756de674b4ad7e27f02991d171eb8d0956c10/hosts/desktop/modules/networking.nix
   networking = {
@@ -138,41 +142,6 @@ with lib; with lib.internal; {
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma6.enable = true;
 
-  programs.dconf.enable = true;
-
-  # GPU
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      vulkan-loader
-        vulkan-validation-layers
-        vulkan-extension-layer
-    ];
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
-
-  hardware.nvidia = { 
-    modesetting.enable = true;
-
-    powerManagement.finegrained = false;
-    powerManagement.enable = false;
-
-    open = false;
-    nvidiaSettings = true;
-
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-
-    prime = {
-      sync.enable = true;
-
-      nvidiaBusId = "PCI:1:0:0";
-      intelBusId = "PCI:0:2:0";
-    };
-  };
-
   environment.systemPackages = with pkgs; [
     neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
     wget
@@ -221,35 +190,6 @@ with lib; with lib.internal; {
       noto-fonts-cjk-sans
   ];
 
-
   system.stateVersion = "23.11"; # Did you read the comment?
-  services.power-profiles-daemon.enable = false;
-  services.thermald.enable = true;
-
-  services.tlp = {
-    enable = true;
-    settings = {
-      CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 0;
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-    };
-  };
-
-  nix = {
-    settings = {
-      experimental-features = [ "nix-command" "flakes" ];
-      warn-dirty = false;
-      auto-optimise-store = true;
-      substituters = [
-        "https://cache.nixos.org"
-        # "https://nix-community.cachix.org"
-      ];
-      trusted-public-keys = [
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-#        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      ];
-    };
-  };
 
 }
