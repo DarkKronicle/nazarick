@@ -1,5 +1,5 @@
 { pkgs, nur, lib, nixos-hardware, config, inputs, ... }:
-with lib; with lib.internal; {
+with lib; with lib.nazarick; {
   imports = [ 
     ./hardware.nix 
     ./system.nix
@@ -8,10 +8,10 @@ with lib; with lib.internal; {
   networking.hostName = "tabula";
 
   nazarick = {
+    suites = {
+      desktop = enabled;
+    };
     system = {
-      nix = {
-        enable = true;
-      };
       boot = {
         grub = true;
       };
@@ -19,19 +19,6 @@ with lib; with lib.internal; {
         enable = true;
         nvidiaBusId = "PCI:1:0:0";
         intelBusId = "PCI:0:2:0";
-      };
-      printing = {
-        enable = true;
-      };
-      bluetooth = {
-        enable = true;
-      };
-      power = {
-        enable = true;
-      };
-      audio = {
-        enable = true;
-        pipewire = true;
       };
     };
     apps = {
@@ -47,6 +34,9 @@ with lib; with lib.internal; {
     };
     tools = {
       kanata = {
+        enable = true;
+      };
+      cli = {
         enable = true;
       };
       nordvpn = {
@@ -143,7 +133,7 @@ with lib; with lib.internal; {
   services.xserver.desktopManager.plasma6.enable = true;
 
   environment.systemPackages = with pkgs; [
-    neovim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+    neovim
     wget
     git
     git-credential-oauth
@@ -152,17 +142,13 @@ with lib; with lib.internal; {
     brave
     qbittorrent
     vesktop
-    kitty
     gnumake
     nazarick.operator-caska
-    fzf
-    unzip
-    ripgrep
     matlab
     playerctl
     nheko
     nazarick.ltspice
-    fd
+    rnote
     prismlauncher
     nazarick.anki
     qalculate-qt

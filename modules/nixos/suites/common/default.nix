@@ -13,8 +13,12 @@ in {
     enable = mkBoolOpt false "Enable common configuration.";
   };
   config = mkIf cfg.enable {
-    environment.systemPackages = [
-      neovim
-    ];
+    nazarick = {
+      system = {
+        nix = {
+          enable = true;
+        };
+      };
+    };
   };
 }
