@@ -19,8 +19,15 @@ in
       enable = true;
       inherit (cfg) userName userEmail;
       extraConfig = {
-        credential.helper = "oauth";
+        credential.helper = [
+          "cache --timeout 60000"
+          "oauth"
+        ];
         init = { defaultBranch = "main"; };
+      };
+      signing = {
+        key = "D07B541F73FBBA18D11B2F63D7592266239CD59C";
+        signByDefault = true;
       };
     };
   };

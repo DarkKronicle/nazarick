@@ -52,6 +52,34 @@ in
       eza = {
         enable = true;
       };
+
+      bat = {
+        enable = true;
+        config = {
+          theme = "catppuccin_mocha";
+        };
+        themes = {
+          catppuccin_mocha = {
+            src = pkgs.fetchurl {
+              url = "https://raw.githubusercontent.com/catppuccin/bat/2bafe4454d8db28491e9087ff3a1382c336e7d27/themes/Catppuccin%20Mocha.tmTheme";
+              sha256 = "sha256-F4jRaI6KKFvj9GQTjwQFpROJXEVWs47HsTbDVy8px0Q=";
+            };
+          };
+        };
+      };
+
+      tealdeer = {
+        enable = true;
+        settings = {
+          display = {
+            compact = true;
+          };
+          updates = {
+            auto_update = true;
+            auto_update_interval_hours = 1440;
+          };
+        };
+      };
     };
   };
 }
