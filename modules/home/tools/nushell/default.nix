@@ -19,6 +19,13 @@ in
       recursive = true;
     };
 
+    services.gpg-agent = {
+      enable = true;
+      enableNushellIntegration = true;
+      enableSshSupport = true;
+      pinentryFlavor = "curses";
+    };
+
     services.pueue.enable = true;
     programs = {
       nushell = {
