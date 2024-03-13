@@ -6,6 +6,11 @@ with lib; rec {
 
   mkBoolOpt = mkOpt types.bool;
 
+  mkIfElse = p: yes: no: mkMerge [
+    (mkIf p yes)
+      (mkIf (!p) no)
+  ];
+
   enabled = {
     enable = true;
   };
