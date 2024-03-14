@@ -55,6 +55,7 @@ in
           inline_height = 15;
           style = "compact";
         };
+        flags = [ "--disable-up-arrow" ];
       };
 
       zoxide = {

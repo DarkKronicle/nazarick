@@ -32,6 +32,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Generate System Images
+    nixos-generators.url = "github:nix-community/nixos-generators";
+    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
+
     nix-matlab = {
       inputs.nixpkgs.follows = "nixpkgs";
       url = "gitlab:doronbehar/nix-matlab";

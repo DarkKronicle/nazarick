@@ -9,7 +9,7 @@
   config = {
     specialisation = {
       powersave.configuration = {
-        # services.xserver.desktopManager.plasma6.enable = lib.mkForce false;
+        # services.desktopManager.plasma6.enable = lib.mkForce false;
         # services.xserver.desktopManager.lxqt.enable = true;
         home-manager.users.darkkronicle.nazarick = {
           apps = {

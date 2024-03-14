@@ -140,7 +140,7 @@ with lib.nazarick;
   services.xserver.enable = true;
 
   services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma6.enable = true;
+  services.desktopManager.plasma6.enable = true;
 
   environment.systemPackages = with pkgs; [
     neovim
@@ -167,6 +167,8 @@ with lib.nazarick;
     nix-output-monitor
     libreoffice-qt
     hunspell # spell check for libreoffice
+    texlive.combined.scheme-medium
+    pdfarranger
     (pkgs.mumble.override { pulseSupport = true; })
     # nazarick.mint - I give up, this isn't working
     (fenix.complete.withComponents [
