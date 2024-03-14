@@ -2,6 +2,4 @@
 
 final: prev:
 
-{
-  nordvpn = prev.nur.repos.LuisChDev.nordvpn;
-}
+{ nordvpn = prev.nur.repos.LuisChDev.nordvpn; }

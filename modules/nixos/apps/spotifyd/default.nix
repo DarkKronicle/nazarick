@@ -1,10 +1,16 @@
-{ lib, config, pkgs, inputs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   inherit (lib) types mkEnableOption mkIf;
   inherit (lib.nazarick) mkOpt enabled;
 
-  toml = pkgs.formats.toml {};
+  toml = pkgs.formats.toml { };
 
   cfg = config.nazarick.apps.spotifyd;
   username = config.nazarick.user.name;
@@ -45,7 +51,7 @@ in
     systemd.user.services.spotifyd = {
       wantedBy = [ "default.target" ];
       description = "spotify daemon";
- 
+
       serviceConfig = {
         ExecStart = "${pkgs.spotifyd}/bin/spotifyd --no-daemon --config-path ${spotifydConf}";
         Environment = [

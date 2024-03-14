@@ -1,9 +1,9 @@
 {
   options,
-    config,
-    lib,
-    pkgs,
-    ...
+  config,
+  lib,
+  pkgs,
+  ...
 }:
 {
   config = {
@@ -13,7 +13,9 @@
         # services.xserver.desktopManager.lxqt.enable = true;
         home-manager.users.darkkronicle.nazarick = {
           apps = {
-            mpv = { enable = lib.mkForce false; };
+            mpv = {
+              enable = lib.mkForce false;
+            };
           };
         };
         nazarick = {

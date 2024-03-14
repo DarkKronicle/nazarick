@@ -1,4 +1,5 @@
 def main [message?: string, --test, --no-build, --update] {
+    nixfmt flake.nix homes/ lib/ modules/ overlays/ packages/ systems/
     git add .
     if ($update) {
         nix flake update

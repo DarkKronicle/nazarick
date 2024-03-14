@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.nazarick; let
+with lib.nazarick;
+let
   cfg = config.nazarick.suites.common;
-in {
+in
+{
   options.nazarick.suites.common = with types; {
     enable = mkBoolOpt false "Enable common configuration.";
   };

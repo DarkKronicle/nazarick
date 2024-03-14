@@ -1,17 +1,35 @@
 # Based on code from: https://raw.githubusercontent.com/lucasew/nixcfg/fd523e15ccd7ec2fd86a3c9bc4611b78f4e51608/packages/wrapWine.nix
-{ stdenv, makeBinPath, writeShellScript, winetricks, cabextract, gnused, fuse-overlayfs }:
-{ wine
-, wineArch ? "win32"
-, winAppRun
-, winAppInstall ? ""
-, name ? "${attrs.pname}-${attrs.version}"
-, ... } @ attrs:
+{
+  stdenv,
+  makeBinPath,
+  writeShellScript,
+  winetricks,
+  cabextract,
+  gnused,
+  fuse-overlayfs,
+}:
+{
+  wine,
+  wineArch ? "win32",
+  winAppRun,
+  winAppInstall ? "",
+  name ? "${attrs.pname}-${attrs.version}",
+  ...
+}@attrs:
 let
   libwindowsapp = ./libwindowsapp.bash;
 
   launcher = writeShellScript "wine-launcher" ''
     source ${libwindowsapp}
-    PATH="$PATH:${makeBinPath [ wine winetricks cabextract gnused fuse-overlayfs ]}"
+    PATH="$PATH:${
+      makeBinPath [
+        wine
+        winetricks
+        cabextract
+        gnused
+        fuse-overlayfs
+      ]
+    }"
     MY_PATH="@MY_PATH@"
     ARGS="$@"
     WIN_LAYER_HASH=$(printf "%s %s %s" $(wine --version) ${wineArch} $WA_API | sha256sum | sed -r 's/(.{64}).*/\1/')
@@ -76,12 +94,16 @@ let
     echo "App exited.";
     wa_remove_bottle $bottle
   '';
-in stdenv.mkDerivation (attrs // {
+in
+stdenv.mkDerivation (
+  attrs
+  // {
 
-  preInstall = ''
-    mkdir -p $out/bin
+    preInstall = ''
+      mkdir -p $out/bin
 
-    cp ${launcher} $out/bin/.launcher
-    substituteInPlace $out/bin/.launcher --subst-var-by MY_PATH $out/bin/.launcher
-  '';
-})
+      cp ${launcher} $out/bin/.launcher
+      substituteInPlace $out/bin/.launcher --subst-var-by MY_PATH $out/bin/.launcher
+    '';
+  }
+)

@@ -1,4 +1,10 @@
-{ lib, config, pkgs, inputs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   inherit (lib) types mkEnableOption mkIf;
@@ -16,17 +22,16 @@ in
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
-        "default-web-browser"           = [ "firefox.desktop" ];
-        "text/html"                     = [ "firefox.desktop" ];
-        "x-scheme-handler/http"         = [ "firefox.desktop" ];
-        "x-scheme-handler/https"        = [ "firefox.desktop" ];
-        "x-scheme-handler/about"        = [ "firefox.desktop" ];
-        "x-scheme-handler/unknown"      = [ "firefox.desktop" ];
-        "x-scheme-handler/mw-matlab"    = [ "mw-matlab.desktop" ];
-        "x-scheme-handler/mw-simulink"  = [ "mw-simulink.desktop" ];
+        "default-web-browser" = [ "firefox.desktop" ];
+        "text/html" = [ "firefox.desktop" ];
+        "x-scheme-handler/http" = [ "firefox.desktop" ];
+        "x-scheme-handler/https" = [ "firefox.desktop" ];
+        "x-scheme-handler/about" = [ "firefox.desktop" ];
+        "x-scheme-handler/unknown" = [ "firefox.desktop" ];
+        "x-scheme-handler/mw-matlab" = [ "mw-matlab.desktop" ];
+        "x-scheme-handler/mw-simulink" = [ "mw-simulink.desktop" ];
         "x-scheme-handler/mw-matlabconnector" = [ "mw-matlabconnector.desktop" ];
       };
     };
-
   };
 }

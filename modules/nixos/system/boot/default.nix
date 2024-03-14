@@ -6,16 +6,18 @@
   ...
 }:
 with lib;
-with lib.nazarick; let
+with lib.nazarick;
+let
   cfg = config.nazarick.system.boot;
-in {
+in
+{
   options.nazarick.system.boot = with types; {
     grub = mkBoolOpt false "Enable grub bootloader.";
   };
   config = mkIf cfg.grub {
     boot.loader.systemd-boot = {
       enable = false;
-    # consoleMode = "max";
+      # consoleMode = "max";
     };
     boot.loader = {
       timeout = 5;
@@ -27,12 +29,12 @@ in {
         # efiInstallAsRemovable = true;
         # extraEntriesBeforeNixOS = true;
         extraEntries = ''
-          menuentry "Reboot" {
-            reboot
+            menuentry "Reboot" {
+              reboot
+            }
+          menuentry "Poweroff" {
+            halt
           }
-        menuentry "Poweroff" {
-          halt
-        }
         '';
       };
       efi = {

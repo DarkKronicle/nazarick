@@ -1,4 +1,9 @@
-{ lib, config, pkgs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) types mkEnableOption mkIf;
@@ -23,7 +28,9 @@ in
           "cache --timeout 60000"
           "oauth"
         ];
-        init = { defaultBranch = "main"; };
+        init = {
+          defaultBranch = "main";
+        };
       };
       signing = {
         key = "D07B541F73FBBA18D11B2F63D7592266239CD59C";

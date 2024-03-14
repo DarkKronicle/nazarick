@@ -1,4 +1,10 @@
-{ options, config, lib, pkgs, ... }:
+{
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.nazarick;
@@ -10,10 +16,5 @@ in
     enable = mkBoolOpt false "Enable wine";
   };
 
-  config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
-      wineWowPackages.stable
-    ];
-  };
-
+  config = mkIf cfg.enable { environment.systemPackages = with pkgs; [ wineWowPackages.stable ]; };
 }

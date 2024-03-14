@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.nazarick; let
+with lib.nazarick;
+let
   cfg = config.nazarick.tools.kanata;
-in {
+in
+{
   options.nazarick.tools.kanata = with types; {
     enable = mkBoolOpt false "Enable kanta configuration.";
   };

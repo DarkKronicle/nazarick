@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.nazarick; let
+with lib.nazarick;
+let
   cfg = config.nazarick.system.power;
-in {
+in
+{
   options.nazarick.system.power = with types; {
     enable = mkBoolOpt false "Enable power configuration.";
   };

@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.nazarick; let
+with lib.nazarick;
+let
   cfg = config.nazarick.tools.cli;
-in {
+in
+{
   # TODO: Move this to a suite
   options.nazarick.tools.cli = with types; {
     enable = mkBoolOpt false "Enable base cli tools. There's also homemanager config with nushell";

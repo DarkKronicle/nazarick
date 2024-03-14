@@ -6,16 +6,21 @@
   ...
 }:
 with lib;
-with lib.nazarick; let
+with lib.nazarick;
+let
   cfg = config.nazarick.system.nix;
-in {
+in
+{
   options.nazarick.system.nix = with types; {
     enable = mkBoolOpt false "Enable nix configuration.";
   };
   config = mkIf cfg.enable {
     nix = {
       settings = {
-        experimental-features = [ "nix-command" "flakes" ];
+        experimental-features = [
+          "nix-command"
+          "flakes"
+        ];
         warn-dirty = false;
         auto-optimise-store = true;
         substituters = [

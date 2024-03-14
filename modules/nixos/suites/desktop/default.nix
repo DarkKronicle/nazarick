@@ -6,9 +6,11 @@
   ...
 }:
 with lib;
-with lib.nazarick; let
+with lib.nazarick;
+let
   cfg = config.nazarick.suites.desktop;
-in {
+in
+{
   options.nazarick.suites.desktop = with types; {
     enable = mkBoolOpt false "Enable necessary desktop configuration.";
   };

@@ -1,4 +1,10 @@
-{ lib, config, pkgs, inputs, ... }:
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 let
   inherit (lib) types mkEnableOption mkIf;
@@ -16,6 +22,5 @@ in
     programs.mpv = {
       enable = true;
     };
-
   };
 }

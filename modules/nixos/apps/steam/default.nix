@@ -1,4 +1,10 @@
-{ options, config, lib, pkgs, ... }:
+{
+  options,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 with lib;
 with lib.nazarick;
@@ -10,8 +16,5 @@ in
     enable = mkBoolOpt false "Enable Steam";
   };
 
-  config = mkIf cfg.enable {
-    programs.steam.enable = true;
-  };
-
+  config = mkIf cfg.enable { programs.steam.enable = true; };
 }

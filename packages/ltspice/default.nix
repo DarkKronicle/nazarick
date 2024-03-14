@@ -1,13 +1,33 @@
-{ pkgs, lib, inputs, fetchurl, copyDesktopItems, makeDesktopItem, wine, stdenv, writeShellScript, winetricks, gnused, fuse-overlayfs, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  fetchurl,
+  copyDesktopItems,
+  makeDesktopItem,
+  wine,
+  stdenv,
+  writeShellScript,
+  winetricks,
+  gnused,
+  fuse-overlayfs,
+  ...
+}:
 
 let
-  mkWindowsApp = lib.nazarick.mkwindowsapp { 
-    inherit stdenv gnused fuse-overlayfs writeShellScript winetricks;
+  mkWindowsApp = lib.nazarick.mkwindowsapp {
+    inherit
+      stdenv
+      gnused
+      fuse-overlayfs
+      writeShellScript
+      winetricks
+      ;
     makeBinPath = pkgs.lib.makeBinPath;
     cabextract = pkgs.cabextract;
   };
-
-in mkWindowsApp rec {
+in
+mkWindowsApp rec {
   inherit wine;
   name = "ltspice";
   src = fetchurl {
@@ -17,18 +37,17 @@ in mkWindowsApp rec {
 
   wineArch = "win64";
 
-
   nativeBuildInputs = [ copyDesktopItems ];
   dontUnpack = true;
 
   winAppInstall = ''
     echo ${src}
     wine start /unix ${src} /S
-    '';
+  '';
 
   winAppRun = ''
     wine start /unix "$WINEPREFIX/drive_c/Program Files/LTSpice/LTspice.exe" "$ARGS"
-    '';
+  '';
 
   installPhase = ''
     runHook preInstall
@@ -36,7 +55,7 @@ in mkWindowsApp rec {
     ln -s $out/bin/.launcher $out/bin/ltspice
 
     runHook postInstall
-    '';
+  '';
 
   desktopItems = makeDesktopItem {
     name = "LTSpice";
@@ -47,7 +66,9 @@ in mkWindowsApp rec {
 
   meta = with lib; {
     description = "Circuit simulator";
-    platforms = [ "x86_64-linux" "i386-linux" ];
+    platforms = [
+      "x86_64-linux"
+      "i386-linux"
+    ];
   };
 }
-

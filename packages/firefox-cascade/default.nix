@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 
-pkgs.fetchFromGitHub{
+pkgs.fetchFromGitHub {
   name = "firefox-cascade";
   owner = "DarkKronicle";
   repo = "cascade";

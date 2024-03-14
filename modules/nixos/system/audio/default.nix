@@ -6,9 +6,10 @@
   ...
 }:
 with lib;
-with lib.nazarick; let
+with lib.nazarick;
+let
   cfg = config.nazarick.system.audio;
-in 
+in
 {
   options.nazarick.system.audio = with types; {
     enable = mkBoolOpt false "Enable audio support.";
@@ -25,5 +26,4 @@ in
       #jack.enable = true;
     };
   };
-
 }
