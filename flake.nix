@@ -22,7 +22,7 @@
     # home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    
+
     plasma-manager.url = "github:pjones/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
@@ -42,7 +42,9 @@
     nur.url = "github:nix-community/NUR";
   };
 
-  outputs = inputs: let
+  outputs =
+    inputs:
+    let
       lib = inputs.snowfall-lib.mkLib {
         inherit inputs;
         src = ./.;
@@ -53,20 +55,24 @@
           };
 
           namespace = "nazarick";
+        };
       };
-    };
     in
     lib.mkFlake {
       channels-config = {
         allowUnfree = true;
-        permittedUnsecurePackages = [
-          "router-1.19.0"
-        ];
+        permittedUnsecurePackages = [ "router-1.19.0" ];
       };
 
       overlays = with inputs; [
         snowfall-flake.overlays.default
-        (_: super: let pkgs = fenix.inputs.nixpkgs.legacyPackages.${super.system}; in fenix.overlays.default pkgs pkgs)
+        (
+          _: super:
+          let
+            pkgs = fenix.inputs.nixpkgs.legacyPackages.${super.system};
+          in
+          fenix.overlays.default pkgs pkgs
+        )
         nix-matlab.overlay
         nur.overlay
       ];
@@ -79,5 +85,4 @@
 
       deploy = lib.mkDeploy { inherit (inputs) self; };
     };
-
 }

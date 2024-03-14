@@ -20,6 +20,7 @@ in {
       ripgrep
       unzip
       gnupg
+      acpi
     ];
     services.pcscd.enable = true;
   };
