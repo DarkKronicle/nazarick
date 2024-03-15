@@ -168,6 +168,7 @@ with lib.nazarick;
     prismlauncher
     nazarick.anki
     qalculate-qt
+    libqalculate
     wl-clipboard
     nix-output-monitor
     libreoffice-qt

@@ -18,6 +18,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = [ tridactyl-native ];
+
     programs.firefox = {
       enable = true;
       package = pkgs.firefox;

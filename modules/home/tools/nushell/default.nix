@@ -29,7 +29,7 @@ in
       enable = true;
       enableNushellIntegration = true;
       enableSshSupport = true;
-      pinentryFlavor = "curses";
+      pinentryPackage = pkgs.pinentry-curses;
     };
 
     services.pueue.enable = true;
