@@ -10,18 +10,47 @@ with lib;
 with lib.nazarick;
 let
   cfg = config.nazarick.tools.nordvpn;
-  nur-no-pkgs = import inputs.nur { nurpkgs = import inputs.nixpkgs { system = "x86_64-linux"; }; };
 in
 {
+  # NordVPN works with this, but when trying to enable meshnet, the error 
+  # 'setting mesh: opening hosts file: open /etc/hosts: read-only file system'
+  # appears. 
   options.nazarick.tools.nordvpn = with types; {
     enable = mkBoolOpt false "Enable nordvpn.";
   };
-  imports = [ nur-no-pkgs.repos.LuisChDev.modules.nordvpn ];
   config = mkIf cfg.enable {
-    # environment.systemPackages = with pkgs; [
-    # nur.repos.LuisChDev.nordvpn
-    # ];
-
-    services.nordvpn.enable = true;
+    users.groups.nordvpn = { };
+    environment.systemPackages = with pkgs; [ nazarick.nordvpn ];
+    systemd = {
+      services.nordvpn = {
+        description = "NordVPN daemon.";
+        serviceConfig = {
+          ExecStart = "${pkgs.nazarick.nordvpn}/bin/nordvpnd";
+          ExecStartPre = ''
+            ${pkgs.bash}/bin/bash -c '\
+              mkdir -m 700 -p /var/lib/nordvpn; \
+              if [ -z "$(ls -A /var/lib/nordvpn)" ]; then \
+                cp -r ${pkgs.nazarick.nordvpn}/var/lib/nordvpn/* /var/lib/nordvpn; \
+              fi'
+          '';
+          NonBlocking = true;
+          KillMode = "process";
+          Restart = "on-failure";
+          RestartSec = 5;
+          RuntimeDirectory = "nordvpn";
+          RuntimeDirectoryMode = "0750";
+          Group = "nordvpn";
+        };
+        wantedBy = [ "multi-user.target" ];
+        after = [ "network-online.target" ];
+        wants = [ "network-online.target" ];
+      };
+    };
+    networking.firewall = {
+      enable = true;
+      checkReversePath = false;
+      allowedTCPPorts = [ 443 ];
+      allowedUDPPorts = [ 1194 ];
+    };
   };
 }

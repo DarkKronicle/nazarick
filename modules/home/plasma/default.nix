@@ -21,6 +21,11 @@ in
 
     programs.plasma = {
       enable = true;
+
+      workspace = {
+        clickItemTo = "select";
+      };
+
       configFile = {
         "kwinrc"."Windows"."RollOverDesktops" = true;
 

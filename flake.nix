@@ -39,8 +39,6 @@
 
     sops-nix.url = "github:Mic92/sops-nix";
 
-    nur.url = "github:nix-community/NUR";
-
     plasma-manager.url = "github:pjones/plasma-manager";
     plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
     plasma-manager.inputs.home-manager.follows = "home-manager";
@@ -81,13 +79,11 @@
           fenix.overlays.default pkgs pkgs
         )
         nix-matlab.overlay
-        nur.overlay
       ];
 
       systems.modules.nixos = with inputs; [
         home-manager.nixosModules.home-manager
         sops-nix.nixosModules.sops
-        nur.nixosModules.nur
       ];
 
       # homes.modules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
