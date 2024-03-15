@@ -12,13 +12,13 @@ let
   cfg = config.nazarick.tools.nordvpn;
 in
 {
-  # NordVPN works with this, but when trying to enable meshnet, the error 
-  # 'setting mesh: opening hosts file: open /etc/hosts: read-only file system'
-  # appears. 
   options.nazarick.tools.nordvpn = with types; {
     enable = mkBoolOpt false "Enable nordvpn.";
   };
   config = mkIf cfg.enable {
+    # This makes hosts readable, but it will be reset each time restarted. Works well enough for meshnet tho :)
+    environment.etc.hosts.mode = "0644";
+
     users.groups.nordvpn = { };
     environment.systemPackages = with pkgs; [ nazarick.nordvpn ];
     systemd = {
