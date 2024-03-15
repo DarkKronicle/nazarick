@@ -58,6 +58,8 @@ in
         flags = [ "--disable-up-arrow" ];
       };
 
+      nix-index.enable = true;
+
       zoxide = {
         enable = true;
         enableNushellIntegration = true;

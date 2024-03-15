@@ -15,7 +15,10 @@ with lib.nazarick;
     ./system.nix
   ];
 
-  home-manager.sharedModules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
+  home-manager.sharedModules = with inputs; [
+    plasma-manager.homeManagerModules.plasma-manager
+    inputs.nix-index-database.hmModules.nix-index
+  ];
 
   networking.hostName = "tabula";
 

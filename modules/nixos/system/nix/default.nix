@@ -15,7 +15,20 @@ in
     enable = mkBoolOpt false "Enable nix configuration.";
   };
   config = mkIf cfg.enable {
+    # https://fosstodon.org/@lhf/110661879816118061
+    system.activationScripts.diff = {
+      supportsDryActivation = true;
+      text = ''
+        ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff \
+        /run/current-system "$systemConfig"
+      '';
+    };
     nix = {
+      gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 30d";
+      };
       settings = {
         experimental-features = [
           "nix-command"
