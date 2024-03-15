@@ -23,10 +23,6 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    plasma-manager.url = "github:pjones/plasma-manager";
-    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
-    plasma-manager.inputs.home-manager.follows = "home-manager";
-
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -44,6 +40,10 @@
     sops-nix.url = "github:Mic92/sops-nix";
 
     nur.url = "github:nix-community/NUR";
+
+    plasma-manager.url = "github:pjones/plasma-manager";
+    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
+    plasma-manager.inputs.home-manager.follows = "home-manager";
   };
 
   outputs =
@@ -86,6 +86,8 @@
         sops-nix.nixosModules.sops
         nur.nixosModules.nur
       ];
+
+      # homes.modules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
 
       deploy = lib.mkDeploy { inherit (inputs) self; };
     };

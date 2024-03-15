@@ -10,6 +10,9 @@ with lib.nazarick;
 {
   home.packages = with pkgs; [ neofetch ];
   nazarick = {
+    plasma = {
+      enable = true;
+    };
     tools = {
       git = {
         enable = true;
