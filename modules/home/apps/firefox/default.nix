@@ -18,11 +18,14 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ tridactyl-native ];
+
+    home.file.".config/tridactyl/tridactylrc".source = ./tridactylrc;
 
     programs.firefox = {
       enable = true;
       package = pkgs.firefox;
+
+      nativeMessagingHosts = with pkgs; [ tridactyl-native ];
 
       profiles = {
         main = {

@@ -1,0 +1,45 @@
+" vim: filetype=vim
+
+sanitize tridactyllocal tridactylsync
+
+set newtab about:blank
+set modeindicator false
+colors midnight
+set smoothscroll true
+set allowautofocus true
+set completions.Tab.statusstylepretty true
+
+bind --mode=browser <A-a> escapehatch
+set escapehatchsidebarhack false
+
+bind J tabnext
+bind K tabprev
+
+bind j scrollline 7
+bind k scrollline -7
+
+
+bindurl wikiwand.com yy composite js document.location.href.replace("wikiwand.com/en","wikipedia.org/wiki") | clipboard yank
+
+unbind --mode=ex <C-a>
+unbind --mode=ex <C-c>
+bind s fillcmdline tabopen search
+bind S fillcmdline open search
+
+
+unbind <C-f>
+bind / fillcmdline find
+bind ? fillcmdline find -?
+
+bind n findnext 1
+bind N findnext -1
+
+bind gh followpage prev
+bind gl followpage next w
+
+autocmd DocStart mail.google.com mode ignore
+autocmd DocStart monkeytype.com mode ignore
+
+
+set searchurls.np https://search.nixos.org/packages?channel=unstable&query=%s
+set searchurls.no https://search.nixos.org/options?channel=unstable&query=%s
