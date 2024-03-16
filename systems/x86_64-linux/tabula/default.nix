@@ -83,6 +83,8 @@ with lib.nazarick;
   services.xserver.displayManager.sddm.enable = true;
   services.desktopManager.plasma6.enable = true;
 
+  programs.java.enable = true;
+
   environment.systemPackages = with pkgs; [
     neovim
     wget
@@ -95,6 +97,7 @@ with lib.nazarick;
     vesktop
     gnumake
     nazarick.operator-caska
+    nazarick.kamite
     matlab
     playerctl
     nheko
@@ -112,7 +115,7 @@ with lib.nazarick;
     texlive.combined.scheme-medium
     pdfarranger
     (pkgs.mumble.override { pulseSupport = true; })
-    # nazarick.mint - I give up, this isn't working
+    # nazarick.mint # - I give up, this isn't working
     (fenix.complete.withComponents [
       "cargo"
       "clippy"
