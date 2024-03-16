@@ -5,12 +5,21 @@
   pkgs,
   ...
 }:
+with lib;
+with lib.nazarick;
+let
+  cfg = config.nazarick.specialisation.powersave;
+in
 {
-  config = {
+  options.nazarick.specialisation.powersave = with types; {
+    enable = mkBoolOpt false "Enable powersave specialisation.";
+  };
+  config = mkIf cfg.enable {
     specialisation = {
       powersave.configuration = {
         # services.desktopManager.plasma6.enable = lib.mkForce false;
         # services.xserver.desktopManager.lxqt.enable = true;
+        # TODO: Use $user here
         home-manager.users.darkkronicle.nazarick = {
           apps = {
             mpv = {

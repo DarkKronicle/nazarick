@@ -16,12 +16,15 @@ with lib.nazarick;
 
   home-manager.sharedModules = with inputs; [
     plasma-manager.homeManagerModules.plasma-manager
-    inputs.nix-index-database.hmModules.nix-index
+    nix-index-database.hmModules.nix-index
   ];
 
   networking.hostName = "tabula";
 
   nazarick = {
+    user = {
+      enable = true;
+    };
     suites = {
       desktop = enabled;
     };
@@ -54,6 +57,11 @@ with lib.nazarick;
         enable = true;
       };
       nordvpn = {
+        enable = true;
+      };
+    };
+    specialisation = {
+      powersave = {
         enable = true;
       };
     };

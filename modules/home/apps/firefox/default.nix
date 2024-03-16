@@ -6,6 +6,8 @@
   ...
 }:
 
+with lib;
+with lib.nazarick;
 let
   inherit (lib) types mkEnableOption mkIf;
   inherit (lib.nazarick) mkOpt enabled;
@@ -15,6 +17,7 @@ in
 {
   options.nazarick.apps.firefox = {
     enable = mkEnableOption "Firefox";
+    userCss = mkBoolOpt true "Use custom UserCSS";
   };
 
   config = mkIf cfg.enable {
@@ -32,7 +35,7 @@ in
           id = 0;
           name = "main";
           isDefault = true;
-          userChrome = ''
+          userChrome = mkIf cfg.userCss ''
             @import "${pkgs.nazarick.firefox-cascade}/chrome/userChrome.css";
           '';
 

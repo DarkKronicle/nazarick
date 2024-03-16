@@ -1,7 +1,13 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
     neovim
+    nazarick.operator-caska
     borgbackup
     ntfs3g
     gparted
@@ -12,7 +18,10 @@
     rsync
     firefox
     yazi
+    font-manager
   ];
+
+  home-manager.sharedModules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
 
   # `install-iso` adds wireless support that
   # is incompatible with networkmanager.
@@ -36,13 +45,33 @@
     };
   };
 
+  users.users.nixos = {
+    isNormalUser = true;
+
+    home = "/home/nixos";
+    group = "users";
+    extraGroups = [ "wheel" ];
+    password = lib.mkForce "";
+  };
+
   nazarick = {
     suites = {
       common = {
         enable = true;
       };
     };
+    user = {
+      enable = false;
+    };
   };
+
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+    noto-fonts
+    noto-fonts-cjk
+    noto-fonts-emoji
+    noto-fonts-cjk-sans
+  ];
 
   powerManagement.enable = true;
   hardware.pulseaudio.enable = true;

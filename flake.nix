@@ -45,6 +45,8 @@
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    #neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
   outputs =
@@ -79,6 +81,7 @@
           fenix.overlays.default pkgs pkgs
         )
         nix-matlab.overlay
+        # inputs.neovim-nightly-overlay.overlay
       ];
 
       systems.modules.nixos = with inputs; [

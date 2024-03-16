@@ -12,21 +12,9 @@ with lib.nazarick;
   nazarick = {
     plasma = {
       enable = true;
-      noBorders = true;
     };
     tools = {
-      git = {
-        enable = true;
-        userEmail = "darkkronicle@gmail.com";
-        userName = "DarkKronicle";
-      };
       nushell = {
-        enable = true;
-      };
-      playerctl = {
-        enable = true;
-      };
-      easyeffects = {
         enable = true;
       };
     };
@@ -34,14 +22,12 @@ with lib.nazarick;
     apps = {
       firefox = {
         enable = true;
+        userCss = false;
       };
       kitty = {
         enable = true;
       };
       yazi = {
-        enable = true;
-      };
-      mpv = {
         enable = true;
       };
       defaults = {
