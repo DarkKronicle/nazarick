@@ -1,0 +1,6 @@
+*/.venv
+*/target
+*/build
+*/dist
+*/result
+*/discord/Cache

@@ -14,9 +14,7 @@ def update_file [backup_path: path] {
     date now | save -f $backup_path
 }
 
-def check_ready [] {
-    # FIX: This will still return true if it's like 'MyLue' or something jank
-    wifi = 'CHANGEME'
+def check_ready [wifi: string] {
     if not (($wifi + ' ') in (nmcli connection show --active)) {
         return false
     }
@@ -28,12 +26,12 @@ def check_ready [] {
 
 # Actually backing up
 
-def "backup-borg" [prefix: string, ...paths: path] {
+def "backup-borg" [exclude: path, prefix: string, ...paths: path] {
     let backup_name = ('::' + $prefix + '-{now:%Y-%m-%d_%H:%M}')
     let args = [
         # '-p',
         '--exclude-from',
-        '/home/darkkronicle/.config/borg/exclude.txt',
+        $exclude,
         '--compression',
         'zstd,10',
         $backup_name,
@@ -43,11 +41,9 @@ def "backup-borg" [prefix: string, ...paths: path] {
 }
 
 
-def "backup-borg-default" [] {
-    $env.BORG_REPO = $SOPS_REPO
-    $env.BORG_PASSPHRASE = (open '/root/borg_password.txt' --raw | str trim)
-
-    echo $env.BORG_REPO
+def "backup-borg-default" [repo: string, password: string, exclude: path] {
+    $env.BORG_REPO = $repo
+    $env.BORG_PASSPHRASE = $password
 
     let home_dir = "/home/darkkronicle"
     let home_dirs = [
@@ -55,7 +51,7 @@ def "backup-borg-default" [] {
         ($home_dir + /programming),
         ($home_dir + /.factorio),
         ($home_dir + /.ssh),
-        ($home_dir + /.keys),
+        # ($home_dir + /.keys),
         ($home_dir + /.gnupg),
         ($home_dir + /.local/share/Anki2),
         ($home_dir + /.local/share/atuin),
@@ -64,12 +60,12 @@ def "backup-borg-default" [] {
         # ($home_dir + /.local/share/pueue),
         # ($home_dir + /.local/share/task),
         ($home_dir + /.local/share/PrismLauncher/instances),
-        ($home_dir + /.gitconfig),
+        # ($home_dir + /.gitconfig),
         ($home_dir + /Documents),
         ($home_dir + /.wifi),
         # ($home_dir + /.backup),
         # ($home_dir + /syncthing),
-        '/root/borg',
+        # '/root/borg',
     ]
     # TODO: Pero removed
     let pero = '/run/media/darkkronicle/peroroncino'
@@ -78,7 +74,7 @@ def "backup-borg-default" [] {
         ($pero + '/images'),
         ($pero + '/wallpapers'),
     ]
-    backup-borg 'all' ...$home_dirs
+    backup-borg $exclude 'all' ...$home_dirs
 }
 
 def cpu-snapshot [] {
@@ -96,17 +92,17 @@ def cpu-usage [] {
     ($total / $amount)
 }
 
-def main [--force] {
-    let backup_path = '/root/borg/last_backup.txt'
+def main [repo: string, password: string, wifi: string, --force, exclude: path] {
+    let backup_path = '/home/darkkronicle/.borg/last_backup.txt'
 
     while not $force {
         if (backuped_today $backup_path) {
             echo '[BACKUP] Backed up today: skipping'
             return
         }
-        if not (check_ready) {
+        if not (check_ready $wifi) {
             echo "[BACKUP] Invalid connection: skipping"
-                return
+            return
         }
         let cpu = (cpu-usage)
         if $cpu > 30 {
@@ -118,7 +114,6 @@ def main [--force] {
         }
     }
     echo "[BACKUP] initiating backup"
-    backup-borg-default
+    backup-borg-default $repo $password $exclude
     update_file $backup_path
-
 }

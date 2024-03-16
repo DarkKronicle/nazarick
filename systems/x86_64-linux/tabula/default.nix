@@ -59,6 +59,9 @@ with lib.nazarick;
       nordvpn = {
         enable = true;
       };
+      borg = {
+        enable = true;
+      };
     };
     specialisation = {
       powersave = {

@@ -17,5 +17,38 @@ in
     enable = mkEnableOption "Borg";
   };
 
-  config = mkIf cfg.enable { };
+  config = mkIf cfg.enable {
+    sops.secrets."borg/repository" = {
+      owner = "darkkronicle";
+    };
+    sops.secrets."borg/wifi" = {
+      owner = "darkkronicle";
+    };
+    sops.secrets."borg/password" = {
+      owner = "darkkronicle";
+    };
+    environment.systemPackages = with pkgs; [ borgbackup ];
+
+    systemd.timers."borger" = {
+      wantedBy = [ "timers.target" ];
+      timerConfig = {
+        OnCalendar = "hourly";
+        Persistent = false;
+      };
+    };
+
+    systemd.services."borger" = {
+      path = [
+        pkgs.borgbackup
+        pkgs.nushell
+      ];
+      script = "${./backup.nu} $(cat ${config.sops.secrets."borg/repository".path}) $(cat ${
+        config.sops.secrets."borg/password".path
+      }) $(cat ${config.sops.secrets."borg/wifi".path}) ${./exclude.txt}";
+      serviceConfig = {
+        Type = "oneshot";
+        User = "darkkronicle";
+      };
+    };
+  };
 }

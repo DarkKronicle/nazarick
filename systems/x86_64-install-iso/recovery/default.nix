@@ -51,7 +51,11 @@
     home = "/home/nixos";
     group = "users";
     extraGroups = [ "wheel" ];
-    password = lib.mkForce "";
+    password = "";
+    hashedPassword = null;
+    hashedPasswordFile = null;
+    initialPassword = null;
+    initialHashedPassword = null;
   };
 
   nazarick = {
