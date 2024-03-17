@@ -407,8 +407,8 @@ source ~/.config/nushell/scripts/fuzzy.nu
 source ~/.config/nushell/scripts/dolphin.nu
 
 
-alias v = steam-run nvim
-alias neovim = steam-run nvim
+alias v = nvim
+alias neovim = nvim
 
 def --env fuck [] {
     let cmd = (history | last 1 | get 0 | get command)

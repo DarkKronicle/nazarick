@@ -47,6 +47,9 @@ with lib.nazarick;
       defaults = {
         enable = true;
       };
+      neovim = {
+        enable = true;
+      };
     };
   };
 }

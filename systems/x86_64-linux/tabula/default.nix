@@ -19,6 +19,8 @@ with lib.nazarick;
     nix-index-database.hmModules.nix-index
   ];
 
+  boot.kernelPackages = pkgs.linuxPackages_zen;
+
   networking.hostName = "tabula";
 
   nazarick = {
@@ -86,7 +88,6 @@ with lib.nazarick;
   programs.java.enable = true;
 
   environment.systemPackages = with pkgs; [
-    neovim
     wget
     git
     git-credential-oauth

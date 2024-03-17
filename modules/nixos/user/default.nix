@@ -25,7 +25,6 @@ in
     extraOptions = mkOpt attrs { } (mdDoc "Extra options for users.users.");
   };
   config = mkIf cfg.enable {
-    environment.variables.EDITOR = "steam-run nvim";
     users.users.${cfg.name} = {
       isNormalUser = true;
       inherit (cfg) name initialPassword extraGroups;
