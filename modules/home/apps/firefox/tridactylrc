@@ -43,3 +43,4 @@ autocmd DocStart monkeytype.com mode ignore
 
 set searchurls.np https://search.nixos.org/packages?channel=unstable&query=%s
 set searchurls.no https://search.nixos.org/options?channel=unstable&query=%s
+set searchurls.nh https://home-manager-options.extranix.com/?query=%s

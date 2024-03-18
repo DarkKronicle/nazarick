@@ -187,6 +187,7 @@ in
 
     programs.neovim = {
       enable = true;
+      # package = pkgs.neovim-nightly;
 
       # plugins = plugins ++ packagedPlugins;
       plugins = with pkgs.vimPlugins; [ codeium-nvim ];
