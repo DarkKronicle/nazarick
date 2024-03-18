@@ -1,11 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  osConfig ? { },
-  format ? "unknown",
-  ...
-}:
+{ lib, pkgs, ... }:
 with lib.nazarick;
 {
   home.packages = with pkgs; [ neofetch ];
@@ -27,6 +20,9 @@ with lib.nazarick;
         enable = true;
       };
       easyeffects = {
+        enable = true;
+      };
+      kdeconnect = {
         enable = true;
       };
     };

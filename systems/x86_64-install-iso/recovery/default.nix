@@ -70,11 +70,12 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+    inter
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
     noto-fonts-cjk-sans
+    (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
   ];
 
   powerManagement.enable = true;

@@ -46,11 +46,5 @@ in
         wants = [ "network-online.target" ];
       };
     };
-    networking.firewall = {
-      enable = true;
-      checkReversePath = false;
-      allowedTCPPorts = [ 443 ];
-      allowedUDPPorts = [ 1194 ];
-    };
   };
 }

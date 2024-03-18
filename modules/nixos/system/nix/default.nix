@@ -15,6 +15,12 @@ in
     enable = mkBoolOpt false "Enable nix configuration.";
   };
   config = mkIf cfg.enable {
+
+    environment.systemPackages = with pkgs; [
+      nixfmt-rfc-style
+      nix-output-monitor
+    ];
+
     # https://fosstodon.org/@lhf/110661879816118061
     system.activationScripts.diff = {
       supportsDryActivation = true;

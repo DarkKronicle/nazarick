@@ -17,13 +17,12 @@
 let
   pname = "anki-bin";
   # Update hashes for both Linux and Darwin!
-  version = "24.04beta1";
+  version = "24.04rc1";
 
   sources = {
     linux = fetchurl {
       url = "https://github.com/ankitects/anki/releases/download/${version}/anki-24.04-linux-qt6.tar.zst";
-      # sha256 = "sha256-bFtAUqSoFS8CWESiepWXywndkijATbWp6CJdqlQecuk="; 23.12.1
-      sha256 = "sha256-4hh9YE0sM1L4M1Sq8KjJlpZvAlRnxkgYuRbsle7OmqY=";
+      sha256 = "sha256-yx/3P6WTgncQ3s5YNgqpnK2thkNDU07vIkfgDnz1mCM=";
     };
   };
 

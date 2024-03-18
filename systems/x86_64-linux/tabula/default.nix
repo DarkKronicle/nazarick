@@ -1,8 +1,6 @@
 {
   pkgs,
   lib,
-  nixos-hardware,
-  config,
   inputs,
   ...
 }:
@@ -29,6 +27,7 @@ with lib.nazarick;
     };
     suites = {
       desktop = enabled;
+      document = enabled;
     };
     system = {
       boot = {
@@ -38,6 +37,11 @@ with lib.nazarick;
         enable = true;
         nvidiaBusId = "PCI:1:0:0";
         intelBusId = "PCI:0:2:0";
+      };
+      network = {
+        enable = true;
+        kdeconnect = true;
+        nordvpn = true;
       };
     };
     apps = {
@@ -104,17 +108,16 @@ with lib.nazarick;
     nheko
     nazarick.ltspice
     rnote
-    nixfmt-rfc-style
     prismlauncher
+
     nazarick.anki
+
     qalculate-qt
     libqalculate
+
     wl-clipboard
-    nix-output-monitor
-    libreoffice-qt
-    hunspell # spell check for libreoffice
-    texlive.combined.scheme-medium
-    pdfarranger
+
+    (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
     (pkgs.mumble.override { pulseSupport = true; })
     # nazarick.mint # - I give up, this isn't working
     (fenix.complete.withComponents [
@@ -129,6 +132,7 @@ with lib.nazarick;
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+    inter
     noto-fonts
     noto-fonts-cjk
     noto-fonts-emoji
