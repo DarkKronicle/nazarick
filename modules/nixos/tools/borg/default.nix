@@ -41,6 +41,8 @@ in
       path = [
         pkgs.borgbackup
         pkgs.nushell
+        pkgs.networkmanager # check wifi
+        pkgs.nazarick.nordvpn # check wifi pt2
       ];
       script = "${./backup.nu} $(cat ${config.sops.secrets."borg/repository".path}) $(cat ${
         config.sops.secrets."borg/password".path

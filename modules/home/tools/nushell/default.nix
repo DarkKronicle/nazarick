@@ -11,6 +11,13 @@ let
   inherit (lib.nazarick) mkOpt enabled;
 
   cfg = config.nazarick.tools.nushell;
+
+  catppuccin-btop = pkgs.fetchFromGitHub {
+    owner = "catppuccin";
+    repo = "btop";
+    rev = "c6469190f2ecf25f017d6120bf4e050e6b1d17af";
+    sha256 = "sha256-jodJl4f2T9ViNqsY9fk8IV62CrpC5hy7WK3aRpu70Cs=";
+  };
 in
 {
   options.nazarick.tools.nushell = {
@@ -30,6 +37,11 @@ in
       enableNushellIntegration = true;
       enableSshSupport = true;
       pinentryPackage = pkgs.pinentry-curses;
+    };
+
+    home.file.".config/btop/themes" = {
+      source = "${catppuccin-btop}/themes";
+      recursive = true;
     };
 
     services.pueue.enable = true;
@@ -94,6 +106,27 @@ in
             auto_update = true;
             auto_update_interval_hours = 1440;
           };
+        };
+      };
+
+      btop = {
+        enable = true;
+        package = (
+          pkgs.btop.overrideAttrs (oldAttrs: {
+            nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.addOpenGLRunpath ];
+            postFixup = ''
+              addOpenGLRunpath $out/bin/btop
+            '';
+          })
+        );
+        settings = {
+          color_theme = "catppuccin_mocha";
+          theme_background = false;
+          vim_keys = true;
+          # cpu_single_graph = true;
+          temp_scale = "fahrenheit";
+          swap_disk = false;
+          disks_filter = "exclude=/home /nix"; # /home, /nix, / are only subvolumes
         };
       };
     };
