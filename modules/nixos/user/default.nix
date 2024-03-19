@@ -25,6 +25,9 @@ in
     extraOptions = mkOpt attrs { } (mdDoc "Extra options for users.users.");
   };
   config = mkIf cfg.enable {
+    environment.sessionVariables = {
+      EDITOR = "nvim";
+    };
     users.users.${cfg.name} = {
       isNormalUser = true;
       inherit (cfg) name initialPassword extraGroups;

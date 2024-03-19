@@ -423,3 +423,11 @@ alias x = eza --icons -l -b -h --no-user --no-permissions --group-directories-fi
 alias xm = eza --icons -l -b -h --no-user --no-permissions --group-directories-first --sort modified --reverse
 
 alias icat = kitten icat
+
+def --env borger [code: closure] {
+    do --capture-errors {
+        $env.BORG_REPO = (cat /run/secrets/borg/repository)
+        $env.BORG_PASSPHRASE = (cat /run/secrets/borg/password); 
+        do --capture-errors $command
+    }
+}

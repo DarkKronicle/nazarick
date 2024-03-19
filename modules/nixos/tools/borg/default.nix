@@ -43,6 +43,8 @@ in
         pkgs.nushell
         pkgs.networkmanager # check wifi
         pkgs.nazarick.nordvpn # check wifi pt2
+        pkgs.procps
+        pkgs.ripgrep
       ];
       script = "${./backup.nu} $(cat ${config.sops.secrets."borg/repository".path}) $(cat ${
         config.sops.secrets."borg/password".path

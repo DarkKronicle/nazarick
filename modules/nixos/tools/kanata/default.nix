@@ -28,6 +28,7 @@ in
           extraDefCfg = ''
             process-unmapped-keys yes
             danger-enable-cmd yes
+            log-layer-changes no
           '';
         };
         kone = {
@@ -41,6 +42,7 @@ in
             danger-enable-cmd yes
             sequence-timeout 1000
             sequence-input-mode hidden-delay-type
+            log-layer-changes no
           '';
         };
       };
