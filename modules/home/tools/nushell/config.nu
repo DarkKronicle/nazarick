@@ -427,7 +427,7 @@ alias icat = kitten icat
 def --env borger [command: closure] {
     do --capture-errors {
         $env.BORG_REPO = (cat /run/secrets/borg/repository)
-        $env.BORG_PASSPHRASE = (cat /run/secrets/borg/password) 
+        $env.BORG_PASSPHRASE = (cat /run/secrets/borg/password)
         do --capture-errors $command
     }
 }
