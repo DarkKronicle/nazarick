@@ -140,6 +140,7 @@ with lib.nazarick;
   ];
 
   powerManagement.enable = true;
+  powerManagement.powertop.enable = true;
   services.system76-scheduler.settings.cfsProfiles.enable = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?
