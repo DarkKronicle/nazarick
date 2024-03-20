@@ -34,7 +34,10 @@ with lib.internal;
 
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
-  boot.kernelParams = [ "nowatchdog" ];
+  boot.kernelParams = [
+    "nowatchdog"
+    "nvme.noacpi=1"
+  ];
 
   time.timeZone = "America/Denver";
 }

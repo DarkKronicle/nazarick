@@ -30,7 +30,11 @@
     options = [ "subvol=@" ];
   };
 
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/4057d790-368f-4201-8760-3f954cd47fa9";
+  boot.initrd.luks.devices."cryptroot" = {
+    device = "/dev/disk/by-uuid/4057d790-368f-4201-8760-3f954cd47fa9";
+    allowDiscards = true;
+    bypassWorkqueues = true;
+  };
 
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";

@@ -75,6 +75,11 @@ with lib.nazarick;
       };
     };
   };
+  hardware.opengl.extraPackages = with pkgs; [
+    intel-vaapi-driver
+    libvdpau-va-gl
+    intel-media-driver
+  ];
 
   sops.defaultSopsFile = ./secrets/secrets.yaml;
   sops.defaultSopsFormat = "yaml";
@@ -140,7 +145,7 @@ with lib.nazarick;
   ];
 
   powerManagement.enable = true;
-  powerManagement.powertop.enable = true;
+  # powerManagement.powertop.enable = true; # maybe enable this with some more tweaking...
   services.system76-scheduler.settings.cfsProfiles.enable = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?
