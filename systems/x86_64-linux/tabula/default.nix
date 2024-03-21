@@ -120,6 +120,7 @@ with lib.nazarick;
 
     qalculate-qt
     libqalculate
+    gparted
 
     wl-clipboard
 

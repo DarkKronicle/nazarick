@@ -31,6 +31,17 @@ in
         "x-scheme-handler/mw-matlab" = [ "mw-matlab.desktop" ];
         "x-scheme-handler/mw-simulink" = [ "mw-simulink.desktop" ];
         "x-scheme-handler/mw-matlabconnector" = [ "mw-matlabconnector.desktop" ];
+        "application/pdf" = [ "okular.desktop" ];
+        "video/*" = [ "mpv.desktop" ];
+        "audio/*" = [ "mpv.desktop" ];
+        "application/zip" = [ "ark.desktop" ];
+        "application/gzip" = [ "ark.desktop" ];
+        "application/x-tar" = [ "ark.desktop" ];
+        "application/x-bzip" = [ "ark.desktop" ];
+        "application/x-bzip2" = [ "ark.desktop" ];
+        "application/x-7z-compressed" = [ "ark.desktop" ];
+        "application/x-rar" = [ "ark.desktop" ];
+        "application/xz" = [ "ark.desktop" ];
       };
     };
   };
