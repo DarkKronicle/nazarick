@@ -24,9 +24,10 @@ in
       enableNushellIntegration = true;
       settings = {
         log = {
-          enabled = false;
+          enabled = true;
         };
         manager = {
+          linemode = "size";
           show_hidden = true;
           sort_by = "natural";
           sort_dir_first = true;

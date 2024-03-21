@@ -154,4 +154,6 @@ with lib.nazarick;
   services.system76-scheduler.settings.cfsProfiles.enable = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?
+
+  environment.shells = with pkgs; [ nushell ];
 }
