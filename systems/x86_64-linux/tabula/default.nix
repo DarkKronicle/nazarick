@@ -95,6 +95,7 @@ with lib.nazarick;
   services.desktopManager.plasma6.enable = true;
 
   programs.java.enable = true;
+  programs.dconf.enable = true;
 
   environment.systemPackages = with pkgs; [
     wget
@@ -133,6 +134,9 @@ with lib.nazarick;
       "rustfmt"
     ])
     rust-analyzer-nightly
+
+    filezilla
+    (kdePackages.callPackage ./lightly-qt6.nix { })
   ];
 
   fonts.packages = with pkgs; [

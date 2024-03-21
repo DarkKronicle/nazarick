@@ -1,7 +1,12 @@
-{ lib, pkgs, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 with lib.nazarick;
 {
-  home.packages = with pkgs; [ neofetch ];
+
   nazarick = {
     plasma = {
       enable = true;
