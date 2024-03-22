@@ -22,13 +22,13 @@ with lib.nazarick;
   networking.hostName = "tabula";
 
   nazarick = {
-    appearance = {
-      fonts = {
-        enable = true;
-      };
-    };
     user = {
       enable = true;
+    };
+    appearance = {
+      plasma = {
+        enable = true;
+      };
     };
     suites = {
       desktop = enabled;
@@ -112,7 +112,6 @@ with lib.nazarick;
     qbittorrent
     vesktop
     gnumake
-    nazarick.operator-caska
     nazarick.kamite
     matlab
     playerctl
@@ -126,13 +125,8 @@ with lib.nazarick;
     qalculate-qt
     libqalculate
     gparted
-    fluent-icon-theme
 
     wl-clipboard
-    (catppuccin-kde.override {
-      flavour = [ "mocha" ];
-      accents = [ "mauve" ];
-    })
 
     (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
     (pkgs.mumble.override { pulseSupport = true; })
@@ -147,11 +141,9 @@ with lib.nazarick;
     rust-analyzer-nightly
 
     filezilla
-    (kdePackages.callPackage ./lightly-qt6.nix { })
   ];
 
   powerManagement.enable = true;
-  # powerManagement.powertop.enable = true; # maybe enable this with some more tweaking...
   services.system76-scheduler.settings.cfsProfiles.enable = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?

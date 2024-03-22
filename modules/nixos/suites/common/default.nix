@@ -16,6 +16,11 @@ in
   };
   config = mkIf cfg.enable {
     nazarick = {
+      appearance = {
+        fonts = {
+          enable = true;
+        };
+      };
       system = {
         nix = {
           enable = true;

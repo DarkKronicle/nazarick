@@ -19,6 +19,8 @@
     firefox
     yazi
     font-manager
+    libqalculate
+    qalculate-qt
   ];
 
   home-manager.sharedModules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
@@ -45,17 +47,16 @@
     };
   };
 
+  # Password is already set to none
   users.users.nixos = {
     isNormalUser = true;
-
     home = "/home/nixos";
     group = "users";
-    extraGroups = [ "wheel" ];
-    password = "";
-    hashedPassword = null;
-    hashedPasswordFile = null;
-    initialPassword = null;
-    initialHashedPassword = null;
+    password = lib.mkForce "";
+    hashedPassword = lib.mkForce null;
+    hashedPasswordFile = lib.mkForce null;
+    initialPassword = lib.mkForce null;
+    initialHashedPassword = lib.mkForce null;
   };
 
   nazarick = {
@@ -66,6 +67,11 @@
     };
     user = {
       enable = false;
+    };
+    appearance = {
+      plasma = {
+        enable = true;
+      };
     };
   };
 
@@ -82,8 +88,6 @@
   hardware.pulseaudio.enable = true;
 
   documentation.doc.enable = lib.mkOverride 500 true;
-
-  fonts.fontconfig.enable = lib.mkOverride 500 false;
 
   system.activationScripts.installerDesktop =
     let

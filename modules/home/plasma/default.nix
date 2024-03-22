@@ -27,6 +27,7 @@ in
 
       workspace = {
         clickItemTo = "select";
+        theme = "lightly-plasma-git";
         iconTheme = "Fluent-dark";
         colorScheme = "CatppuccinMochaMauve";
         cursorTheme = "Catppuccin-Mocha-Mauve";

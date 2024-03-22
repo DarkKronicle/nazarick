@@ -16,6 +16,7 @@ in
   };
 
   config = mkIf cfg.enable {
+    environment.systemPackages = with pkgs; [ nazarick.operator-caska ];
     fonts = {
       packages = with pkgs; [
         (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
@@ -28,6 +29,7 @@ in
         roboto
       ];
       fontconfig = {
+        enable = true;
         defaultFonts = {
           monospace = [
             "CaskaydiaCove Nerd Font"
