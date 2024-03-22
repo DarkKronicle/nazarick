@@ -20,8 +20,9 @@ in
       # consoleMode = "max";
     };
     boot.loader = {
-      timeout = 5;
+      timeout = 0;
       grub = {
+        timeoutStyle = "countdown";
         enable = true;
         # useOSProber = true;
         efiSupport = true;

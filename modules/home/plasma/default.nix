@@ -27,6 +27,7 @@ in
 
       workspace = {
         clickItemTo = "select";
+        iconTheme = "Fluent-dark";
       };
 
       configFile = mkMerge [

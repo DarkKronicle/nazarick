@@ -121,8 +121,19 @@ with lib.nazarick;
     qalculate-qt
     libqalculate
     gparted
+    fluent-icon-theme
 
     wl-clipboard
+
+    # (catppuccin.override {
+    # accent = "mauve";
+    # variant = "mocha";
+    # themeList = [  
+    # "grub"
+    # "lazygit"
+    # "bat"
+    # ];
+    # })
 
     (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
     (pkgs.mumble.override { pulseSupport = true; })
