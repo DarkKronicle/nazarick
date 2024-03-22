@@ -3,6 +3,7 @@
   config,
   lib,
   pkgs,
+  inputs,
   ...
 }:
 with lib;
@@ -29,7 +30,21 @@ in
         /run/current-system "$systemConfig"
       '';
     };
+
+    # https://github.com/sioodmy/dotfiles/blob/dc9fce23ee4a58b6485f7572b850a7b2dcaf9bb7/system/core/nix.nix#L62-L68
+    # Faster rebuilding
+    documentation = {
+      enable = true;
+      doc.enable = false;
+      man.enable = true;
+      dev.enable = false;
+    };
+
     nix = {
+
+      # https://github.com/sioodmy/dotfiles/blob/dc9fce23ee4a58b6485f7572b850a7b2dcaf9bb7/system/core/nix.nix#L83
+      registry = lib.mapAttrs (_: v: { flake = v; }) inputs;
+
       gc = {
         automatic = true;
         dates = "weekly";
@@ -40,6 +55,7 @@ in
           "nix-command"
           "flakes"
         ];
+        builders-use-substitutes = true;
         warn-dirty = false;
         auto-optimise-store = true;
         substituters = [

@@ -22,6 +22,11 @@ with lib.nazarick;
   networking.hostName = "tabula";
 
   nazarick = {
+    appearance = {
+      fonts = {
+        enable = true;
+      };
+    };
     user = {
       enable = true;
     };
@@ -143,15 +148,6 @@ with lib.nazarick;
 
     filezilla
     (kdePackages.callPackage ./lightly-qt6.nix { })
-  ];
-
-  fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
-    inter
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    noto-fonts-cjk-sans
   ];
 
   powerManagement.enable = true;
