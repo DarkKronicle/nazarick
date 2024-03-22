@@ -28,6 +28,8 @@ in
       workspace = {
         clickItemTo = "select";
         iconTheme = "Fluent-dark";
+        colorScheme = "CatppuccinMochaMauve";
+        cursorTheme = "Catppuccin-Mocha-Mauve";
       };
 
       configFile = mkMerge [

@@ -124,16 +124,10 @@ with lib.nazarick;
     fluent-icon-theme
 
     wl-clipboard
-
-    # (catppuccin.override {
-    # accent = "mauve";
-    # variant = "mocha";
-    # themeList = [  
-    # "grub"
-    # "lazygit"
-    # "bat"
-    # ];
-    # })
+    (catppuccin-kde.override {
+      flavour = [ "mocha" ];
+      accents = [ "mauve" ];
+    })
 
     (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
     (pkgs.mumble.override { pulseSupport = true; })

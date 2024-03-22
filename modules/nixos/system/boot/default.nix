@@ -24,6 +24,7 @@ in
       grub = {
         timeoutStyle = "countdown";
         enable = true;
+        splashImage = null;
         # useOSProber = true;
         efiSupport = true;
         device = "nodev";
