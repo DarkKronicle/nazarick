@@ -23,6 +23,15 @@ in
       enable = true;
       enableNushellIntegration = true;
       settings = {
+        opener = {
+          open = [
+            {
+              run = ''${./open.nu} "$@"'';
+              desc = "Open";
+              for = "linux";
+            }
+          ];
+        };
         log = {
           enabled = true;
         };
