@@ -53,6 +53,9 @@
       flake = false;
     };
 
+    impermanence.url = "github:nix-community/impermanence";
+    persist-retro.url = "github:Geometer1729/persist-retro";
+
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
@@ -92,6 +95,8 @@
       ];
 
       systems.modules.nixos = with inputs; [
+        impermanence.nixosModules.impermanence
+        persist-retro.nixosModules.persist-retro
         home-manager.nixosModules.home-manager
         sops-nix.nixosModules.sops
       ];

@@ -7,19 +7,19 @@
 with lib;
 with lib.nazarick;
 {
-  imports = [
-    ./hardware.nix
-    ./system.nix
-  ];
+  imports = [ ./hardware.nix ];
 
   home-manager.sharedModules = with inputs; [
     plasma-manager.homeManagerModules.plasma-manager
+    impermanence.nixosModules.home-manager.impermanence
+    persist-retro.nixosModules.home-manager.persist-retro
     nix-index-database.hmModules.nix-index
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
   networking.hostName = "tabula";
+  time.timeZone = "America/Denver";
 
   nazarick = {
     user = {
@@ -33,6 +33,7 @@ with lib.nazarick;
     suites = {
       desktop = enabled;
       document = enabled;
+      impermanence = enabled;
     };
     system = {
       boot = {
@@ -91,7 +92,7 @@ with lib.nazarick;
   sops = {
     defaultSopsFile = "${builtins.toString inputs.mysecrets}/secrets.yaml";
     age = {
-      keyFile = "/var/lib/sops-nix/keys.txt";
+      keyFile = "/persist/var/lib/sops-nix/keys.txt";
     };
   };
 
