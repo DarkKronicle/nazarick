@@ -178,10 +178,10 @@
     "mysecrets": {
       "flake": false,
       "locked": {
-        "lastModified": 1711163391,
-        "narHash": "sha256-+ulaxLD62ykbWIq+tJOe/XOSzwHQldd0OG9XRc5FJf0=",
+        "lastModified": 1711207398,
+        "narHash": "sha256-pYUIZWCemNPcE0Lu3vMWuoLHldVQbV4zRtompsu+LrQ=",
         "ref": "main",
-        "rev": "62a88973202adceff78b1ab93505f1378ff37a14",
+        "rev": "1f52eefab179f4ea42673e9742c053b0ac31daa0",
         "shallow": true,
         "type": "git",
         "url": "ssh://git@gitlab.com/DarkKronicle/nix-sops.git"
@@ -221,11 +221,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710946911,
-        "narHash": "sha256-qV20Q7Ejpec200oBwUAgVYQjKt5BLPMLCm5EaRX3qgQ=",
+        "lastModified": 1711206119,
+        "narHash": "sha256-CrFfwkwtLM5ASfDR2pdZjVfEMIcNaMQVIjoDaI1ZPEY=",
         "owner": "doronbehar",
         "repo": "nix-matlab",
-        "rev": "034a198d09ed872331c910c6acdca1577ff30ba7",
+        "rev": "ad0bf07c4e4a43edd50253b9e9e6dfc4712ba73a",
         "type": "gitlab"
       },
       "original": {
@@ -344,11 +344,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1709982472,
-        "narHash": "sha256-cMPHIV7yWbve+nwiQDhVt7BBkxrGTLzSTAslv7u6HZo=",
+        "lastModified": 1711199893,
+        "narHash": "sha256-RljgO8GIO0ZOabOamLN7lBSRc5gBhv13PSpy5iG9sfU=",
         "owner": "pjones",
         "repo": "plasma-manager",
-        "rev": "26acf8f5880ae7d6e5de4ca953c8ad161b7903eb",
+        "rev": "dda62b19015736d59069e7cbeda86ea7f320fc1a",
         "type": "github"
       },
       "original": {

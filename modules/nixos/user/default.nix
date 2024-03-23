@@ -1,5 +1,4 @@
 {
-  options,
   config,
   lib,
   pkgs,
@@ -16,7 +15,6 @@ in
     enable = mkEnableOption "Default User";
     name = mkOpt str "darkkronicle" "The (lowercase) name for the user.";
     fullName = mkOpt str "DarkKronicle" "The name for the user.";
-    initialPassword = mkOpt str "password" "Initial password for the user.";
     # TODO: nordvpn should be done in nordvpn
     extraGroups = mkOpt (listOf str) [
       "wheel"
@@ -28,13 +26,16 @@ in
     environment.sessionVariables = {
       EDITOR = "nvim";
     };
+    users.mutableUsers = false;
+    sops.secrets."user/darkkronicle/password".neededForUsers = true;
     users.users.${cfg.name} = {
       isNormalUser = true;
-      inherit (cfg) name initialPassword extraGroups;
+      inherit (cfg) name extraGroups;
 
       home = "/home/${cfg.name}";
       group = "users";
       shell = pkgs.nushell;
+      hashedPasswordFile = config.sops.secrets."user/darkkronicle/password".path;
     } // cfg.extraOptions;
   };
 }

@@ -15,3 +15,4 @@ I have looked at a *ton* of Nix configs for inspiration and implementations. Her
 - [erosanix](https://github.com/emmanuelrosa/erosanix/blob/622114db93eacaff38c4b999b6f674c4134d1277/pkgs/mkwindowsapp/default.nix) - Packaging wine apps within Nix.
 - [sioodmy](https://github.com/sioodmy/dotfiles)
 - [EmergentMind](https://github.com/EmergentMind/nix-config) - Good YouTube videos. Based my sops on theirs.
+- [IogaMaster](https://github.com/IogaMaster/dotfiles)
