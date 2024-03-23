@@ -21,6 +21,11 @@ in
           enable = true;
         };
       };
+      tools = {
+        sudo = {
+          enable = true;
+        };
+      };
       system = {
         nix = {
           enable = true;

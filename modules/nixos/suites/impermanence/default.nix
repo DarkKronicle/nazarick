@@ -17,6 +17,7 @@ in
   config = mkIf cfg.enable {
     impermanence.enable = true;
     environment.persist = {
+      hideMounts = true;
       files = [
         "/etc/machine-id"
         "/etc/adjtime"

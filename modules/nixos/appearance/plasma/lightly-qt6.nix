@@ -7,9 +7,11 @@
   plasma-workspace,
   qtbase,
   fetchurl,
+  lib,
 }:
 
-mkKdeDerivation rec {
+mkKdeDerivation {
+  meta.license = lib.licenses.gpl3;
   pname = "lightly-qt6";
   version = "0.4.1";
 
