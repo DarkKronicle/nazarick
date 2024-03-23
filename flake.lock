@@ -161,11 +161,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1710974515,
-        "narHash": "sha256-jZpdsypecYTOO9l12Vy77otGmh9uz8tGzcguifA30Vs=",
+        "lastModified": 1711133180,
+        "narHash": "sha256-WJOahf+6115+GMl3wUfURu8fszuNeJLv9qAWFQl3Vmo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "1c2acec99933f9835cc7ad47e35303de92d923a4",
+        "rev": "1c2c5e4cabba4c43504ef0f8cc3f3dfa284e2dbb",
         "type": "github"
       },
       "original": {
@@ -173,6 +173,24 @@
         "ref": "master",
         "repo": "home-manager",
         "type": "github"
+      }
+    },
+    "mysecrets": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1711163391,
+        "narHash": "sha256-+ulaxLD62ykbWIq+tJOe/XOSzwHQldd0OG9XRc5FJf0=",
+        "ref": "main",
+        "rev": "62a88973202adceff78b1ab93505f1378ff37a14",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@gitlab.com/DarkKronicle/nix-sops.git"
+      },
+      "original": {
+        "ref": "main",
+        "shallow": true,
+        "type": "git",
+        "url": "ssh://git@gitlab.com/DarkKronicle/nix-sops.git"
       }
     },
     "nix-index-database": {
@@ -270,11 +288,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1710951922,
-        "narHash": "sha256-FOOBJ3DQenLpTNdxMHR2CpGZmYuctb92gF0lpiirZ30=",
+        "lastModified": 1711124224,
+        "narHash": "sha256-l0zlN/3CiodvWDtfBOVxeTwYSRz93muVbXWSpaMjXxM=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "f091af045dff8347d66d186a62d42aceff159456",
+        "rev": "56528ee42526794d413d6f244648aaee4a7b56c0",
         "type": "github"
       },
       "original": {
@@ -343,6 +361,7 @@
       "inputs": {
         "fenix": "fenix",
         "home-manager": "home-manager",
+        "mysecrets": "mysecrets",
         "nix-index-database": "nix-index-database",
         "nix-matlab": "nix-matlab",
         "nixos-generators": "nixos-generators",

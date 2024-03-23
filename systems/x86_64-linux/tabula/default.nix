@@ -86,9 +86,14 @@ with lib.nazarick;
     intel-media-driver
   ];
 
-  sops.defaultSopsFile = ./secrets/secrets.yaml;
-  sops.defaultSopsFormat = "yaml";
-  sops.age.keyFile = "/home/darkkronicle/.config/sops/age/keys.txt";
+  # sops.defaultSopsFormat = "yaml";
+  # sops.age.keyFile = "/home/darkkronicle/.config/sops/age/keys.txt";
+  sops = {
+    defaultSopsFile = "${builtins.toString inputs.mysecrets}/secrets.yaml";
+    age = {
+      keyFile = "/var/lib/sops-nix/keys.txt";
+    };
+  };
 
   networking = {
     networkmanager.enable = true;
@@ -141,12 +146,14 @@ with lib.nazarick;
     rust-analyzer-nightly
 
     filezilla
+    sops
+    ssh-to-age
   ];
 
   powerManagement.enable = true;
   services.system76-scheduler.settings.cfsProfiles.enable = true;
 
-  system.stateVersion = "23.11"; # Did you read the comment?
-
   environment.shells = with pkgs; [ nushell ];
+
+  system.stateVersion = "23.11"; # Did you read the comment?
 }

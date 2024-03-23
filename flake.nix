@@ -46,6 +46,11 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
+    mysecrets = {
+      url = "git+ssh://git@gitlab.com/DarkKronicle/nix-sops.git?ref=main&shallow=1";
+      flake = false;
+    };
+
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 

@@ -7,6 +7,20 @@
 with lib.nazarick;
 {
 
+  programs.ssh = {
+    enable = true;
+    matchBlocks = {
+      "gitlab.com" = {
+        host = "gitlab.com";
+        hostname = "gitlab.com";
+        identityFile = [ "/home/darkkronicle/.ssh/id_tabula" ];
+        extraOptions = {
+          PreferredAuthentications = "publickey";
+        };
+      };
+    };
+  };
+
   nazarick = {
     plasma = {
       enable = true;
