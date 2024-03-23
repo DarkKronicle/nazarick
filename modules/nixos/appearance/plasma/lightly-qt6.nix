@@ -1,3 +1,4 @@
+# https://github.com/boehs/Lightly/issues/13#issuecomment-2008120172
 {
   fetchFromGitHub,
   mkKdeDerivation,
