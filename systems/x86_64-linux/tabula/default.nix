@@ -92,7 +92,7 @@ with lib.nazarick;
   sops = {
     defaultSopsFile = "${builtins.toString inputs.mysecrets}/secrets.yaml";
     age = {
-      keyFile = "/persist/var/lib/sops-nix/keys.txt";
+      keyFile = "/persist/system/var/lib/sops-nix/keys.txt";
     };
   };
 

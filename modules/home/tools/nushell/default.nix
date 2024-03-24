@@ -126,7 +126,7 @@ in
           # cpu_single_graph = true;
           temp_scale = "fahrenheit";
           swap_disk = false;
-          disks_filter = "exclude=/home /nix"; # /home, /nix, / are only subvolumes
+          disks_filter = "/ /boot"; # /home, /nix, / are only subvolumes
         };
       };
     };

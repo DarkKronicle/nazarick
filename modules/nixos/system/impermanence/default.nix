@@ -63,6 +63,6 @@ in
       ''
     );
 
-    environment.persistence."/persist" = mkAliasDefinitions options.environment.persist;
+    environment.persistence."/persist/system" = mkAliasDefinitions options.environment.persist;
   };
 }

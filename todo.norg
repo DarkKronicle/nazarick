@@ -9,25 +9,9 @@ version: 1.1.1
 @end
 
 The time for impermanence is here, making a note of things I need to keep track of
-- ~/.config/nordvpn
-- ~/.config/nvim
-- ~/.config/borg
-- ~/.config/drg-mod-integration
-- ~/.config/filezilla
-- ~/.config/kdeconnect
 - ~/.config/kdedefaults
-- ~/.config/matlab
-- ~/.config/mpv
-- ~/.config/qalculate
 - ~/.config/unity3d - wtf
 - ~/.config/vesktop
-- ~/.config/Mumble
-- ~/.config/nheko
-- ~/.config/nixpkgs
-- ~/.applications/matlab
-- ~/.config/easyeffects
-- ~/.mozilla
-- ~/.local/share/atuin
 - ~/.config/kdeglobals
 - ~/.config/kwinoutputconfig.json
 - ~/.config/kwinrc
