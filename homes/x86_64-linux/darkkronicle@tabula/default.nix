@@ -32,7 +32,13 @@ with lib.nazarick;
         userEmail = "darkkronicle@gmail.com";
         userName = "DarkKronicle";
       };
+      jujutsu = {
+        enable = true;
+      };
       nushell = {
+        enable = true;
+      };
+      ov = {
         enable = true;
       };
       playerctl = {

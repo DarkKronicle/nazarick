@@ -56,6 +56,5 @@ $env.FZF_CTRL_T_COMMAND= $env.FZF_DEFAULT_COMMAND
 $env.FZF_ALT_C_COMMAND = ("fd -t d . " + $env.HOME)
 
 $env.GPG_TTY = (tty)
-$env.MANPAGER = "sh -c 'col -bx | bat -l man -p'"
 $env.MANROFFOPT = "-c"
 

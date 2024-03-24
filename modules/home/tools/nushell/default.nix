@@ -24,6 +24,10 @@ in
     enable = mkEnableOption "Nushell";
   };
 
+  options.nazarick.home = with lib.types; {
+    environmentVariables = lib.nazarick.mkOpt (attrsOf str) { } "Environment variables";
+  };
+
   config = mkIf cfg.enable {
     home.file.".config/starship.toml".source = ./starship/starship.toml;
 
@@ -52,6 +56,7 @@ in
         package = pkgs.nushell;
         configFile.text = builtins.readFile ./config.nu;
         envFile.text = builtins.readFile ./env.nu;
+        environmentVariables = config.nazarick.home.environmentVariables;
       };
 
       starship = {
@@ -85,6 +90,7 @@ in
         enable = true;
         config = {
           theme = "catppuccin_mocha";
+          pager = "ov -F -H3";
         };
         themes = {
           catppuccin_mocha = {
