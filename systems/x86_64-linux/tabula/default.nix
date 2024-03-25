@@ -12,7 +12,6 @@ with lib.nazarick;
   home-manager.sharedModules = with inputs; [
     plasma-manager.homeManagerModules.plasma-manager
     impermanence.nixosModules.home-manager.impermanence
-    persist-retro.nixosModules.home-manager.persist-retro
     nix-index-database.hmModules.nix-index
   ];
 
@@ -155,6 +154,8 @@ with lib.nazarick;
   services.system76-scheduler.settings.cfsProfiles.enable = true;
 
   environment.shells = with pkgs; [ nushell ];
+
+  programs.fuse.userAllowOther = true;
 
   system.stateVersion = "23.11"; # Did you read the comment?
 }

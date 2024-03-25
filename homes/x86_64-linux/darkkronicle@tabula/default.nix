@@ -2,10 +2,12 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 with lib.nazarick;
 {
+  imports = [ inputs.persist-retro.nixosModules.home-manager.persist-retro ];
 
   programs.ssh = {
     enable = true;
@@ -26,6 +28,13 @@ with lib.nazarick;
       enable = true;
       noBorders = true;
     };
+
+    home.suites = {
+      impermanence = {
+        enable = true;
+      };
+    };
+
     tools = {
       git = {
         enable = true;

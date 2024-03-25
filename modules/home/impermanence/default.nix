@@ -8,11 +8,11 @@
 with lib;
 with lib.nazarick;
 let
-  username = config.nazarick.user.name;
+  username = "darkkronicle";
   cfg = config.nazarick.impermanence;
 in
 {
-  options.nazarick.impermanence = {
+  options.nazarick.impermanence = with types; {
     enable = mkEnableOption "Impermanence";
     persist = mkOpt attrs { } "Files and directories to persist in the home";
     transientPersist =
@@ -21,7 +21,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.persistence."/persist/keep/home/${username}" = mkAliasDefinitions config.nazarick.persist;
-    home.persistence."/persist/transient/home/${username}" = mkAliasDefinitions config.nazarick.transientPersist;
+    nazarick.impermanence.persist.allowOther = mkDefault true;
+    nazarick.impermanence.transientPersist.allowOther = mkDefault true;
+    home.persistence."/persist/keep/home/${username}" = cfg.persist;
+    home.persistence."/persist/transient/home/${username}" = cfg.transientPersist;
   };
 }
