@@ -38,7 +38,7 @@ with lib.nazarick;
       nushell = {
         enable = true;
       };
-      ov = {
+      pager = {
         enable = true;
       };
       playerctl = {

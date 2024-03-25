@@ -52,8 +52,6 @@ in
     programs = {
       nushell = {
         enable = true;
-        # The overlay is applied here
-        package = pkgs.nushell;
         configFile.text = builtins.readFile ./config.nu;
         envFile.text = builtins.readFile ./env.nu;
         environmentVariables = config.nazarick.home.environmentVariables;
@@ -84,22 +82,6 @@ in
 
       eza = {
         enable = true;
-      };
-
-      bat = {
-        enable = true;
-        config = {
-          theme = "catppuccin_mocha";
-          pager = "ov -F -H3";
-        };
-        themes = {
-          catppuccin_mocha = {
-            src = pkgs.fetchurl {
-              url = "https://raw.githubusercontent.com/catppuccin/bat/2bafe4454d8db28491e9087ff3a1382c336e7d27/themes/Catppuccin%20Mocha.tmTheme";
-              sha256 = "sha256-F4jRaI6KKFvj9GQTjwQFpROJXEVWs47HsTbDVy8px0Q=";
-            };
-          };
-        };
       };
 
       tealdeer = {
