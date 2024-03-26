@@ -52,6 +52,7 @@
       "compress=zstd"
       "noatime"
     ];
+    neededForBoot = true;
   };
 
   fileSystems."/nix" = {

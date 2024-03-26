@@ -31,7 +31,7 @@ with lib.nazarick;
 
     home.suites = {
       impermanence = {
-        enable = true;
+        enable = false;
       };
     };
 

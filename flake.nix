@@ -96,7 +96,7 @@
 
       systems.modules.nixos = with inputs; [
         impermanence.nixosModules.impermanence
-        persist-retro.nixosModules.persist-retro
+        # persist-retro.nixosModules.persist-retro
         home-manager.nixosModules.home-manager
         sops-nix.nixosModules.sops
       ];

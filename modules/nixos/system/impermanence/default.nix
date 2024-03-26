@@ -17,6 +17,8 @@ in
 
   options.environment = with types; {
     persist = mkOpt attrs { } "Files and directories to persist in the home";
+    keepPersist = mkOpt attrs { } "Files and directories to persist in the home";
+    transientPersist = mkOpt attrs { } "Files and directories to persist in the home";
   };
 
   config = mkIf cfg.enable {
@@ -35,11 +37,11 @@ in
         fi
 
         # Check home
-        # if [[ -e /btrfs_tmp/@home ]]; then
-            # mkdir -p /btrfs_tmp/old_homes
-            # timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/@home)" "+%Y-%m-%-d_%H:%M:%S")
-            # mv /btrfs_tmp/@home "/btrfs_tmp/old_homes/$timestamp"
-        # fi
+        if [[ -e /btrfs_tmp/@home ]]; then
+            mkdir -p /btrfs_tmp/old_homes
+            timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/@home)" "+%Y-%m-%-d_%H:%M:%S")
+            mv /btrfs_tmp/@home "/btrfs_tmp/old_homes/$timestamp"
+        fi
 
         # delete_subvolume_recursively() {
             # IFS=$'\n'
@@ -58,11 +60,13 @@ in
         # done
 
         btrfs subvolume create /btrfs_tmp/@
-        # btrfs subvolume create /btrfs_tmp/@home
+        btrfs subvolume create /btrfs_tmp/@home
         umount /btrfs_tmp
       ''
     );
 
     environment.persistence."/persist/system" = mkAliasDefinitions options.environment.persist;
+    environment.persistence."/persist/keep" = mkAliasDefinitions options.environment.keepPersist;
+    environment.persistence."/persist/transient" = mkAliasDefinitions options.environment.transientPersist;
   };
 }
