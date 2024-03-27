@@ -37,6 +37,7 @@ in
         "/var/lib/nordvpn"
         "/etc/NetworkManager"
         "/root" # SSH keys + borg stuff, may not be needed anymore
+        "/tmp" # Auto deletes regardless
       ];
     };
 
@@ -135,9 +136,9 @@ in
         ".config/user-dirs.locale"
 
         ".local/share/krunnerstaterc"
-        ".local/share/user-places.xbel"
-        ".local/share/user-places.xbel.bak"
-        ".local/share/user-places.xbel.tbcache"
+        # ".local/share/user-places.xbel"
+        # ".local/share/user-places.xbel.bak"
+        # ".local/share/user-places.xbel.tbcache"
 
         ".cache/plasma_theme_lightly-plasma-git.kcache"
         ".cache/plasma_theme_internal-system-colors.kcache"
@@ -220,7 +221,7 @@ in
         ".cache/systemsettings" # doubt
         ".cache/tealdeer"
         ".cache/zoxide"
-        # ".cache/thumbnails" # should probably tmp this as well
+        ".cache/thumbnails"
       ];
     };
   };

@@ -29,6 +29,7 @@ in
               run = ''${./open.nu} "$@"'';
               desc = "Open";
               for = "linux";
+              block = false;
             }
           ];
         };

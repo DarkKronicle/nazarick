@@ -29,6 +29,24 @@ in
   };
 
   config = mkIf cfg.enable {
+
+    systemd.user.services = {
+      nushell-history = {
+        Unit = {
+          Description = "Make atuin history nushell history";
+        };
+
+        Service = {
+          Type = "oneshot";
+          ExecStart = ''${pkgs.nushell} -c "${pkgs.atuin} history list --cmd-only | split row '\n' | uniq | save -f /home/darkkronicle/.config/nushell/history.txt"'';
+        };
+
+        Install = {
+          WantedBy = [ "default.target" ];
+        };
+      };
+    };
+
     home.file.".config/starship.toml".source = ./starship/starship.toml;
 
     home.file.".config/nushell" = {
