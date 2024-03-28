@@ -73,6 +73,9 @@ with lib.nazarick;
       borg = {
         enable = true;
       };
+      cleanup = {
+        enable = true;
+      };
     };
     specialisation = {
       powersave = {
@@ -130,6 +133,7 @@ with lib.nazarick;
     qalculate-qt
     libqalculate
     gparted
+    ntfs3g
 
     wl-clipboard
 
@@ -148,6 +152,7 @@ with lib.nazarick;
     filezilla
     sops
     ssh-to-age
+    gtrash
   ];
 
   powerManagement.enable = true;

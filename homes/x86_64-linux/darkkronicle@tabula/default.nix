@@ -29,12 +29,6 @@ with lib.nazarick;
       noBorders = true;
     };
 
-    home.suites = {
-      impermanence = {
-        enable = false;
-      };
-    };
-
     tools = {
       git = {
         enable = true;

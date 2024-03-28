@@ -37,15 +37,5 @@ in
       shell = pkgs.nushell;
       hashedPasswordFile = config.sops.secrets."user/darkkronicle/password".path;
     } // cfg.extraOptions;
-    systemd.user.tmpfiles.users.${cfg.name}.rules = [
-      "d /home/${cfg.name}/Downloads - - - 14d"
-      "d /home/${cfg.name}/.vim - - - 14d"
-
-      "d /home/${cfg.name}/.cache/thumbnails/large - - - 7d"
-      "d /home/${cfg.name}/.cache/thumbnails/normal - - - 7d"
-      "d /home/${cfg.name}/.cache/thumbnails/x-large - - - 7d"
-      "d /home/${cfg.name}/.cache/thumbnails/xx-large - - - 7d"
-      # "q /home/${cfg.name}/.local/share/Trash - - - 14d" # look at this, there probably is metadata standards
-    ];
   };
 }
