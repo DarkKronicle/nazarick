@@ -35,39 +35,39 @@ in
 
       configFile = mkMerge [
         {
-          "kwinrc"."Windows"."RollOverDesktops" = true;
+          "kwinrc"."Windows"."RollOverDesktops".value = true;
 
-          "kwinrc"."Effect-wobblywindows"."Drag" = 85;
-          "kwinrc"."Effect-wobblywindows"."Stiffness" = 10;
-          "kwinrc"."Effect-wobblywindows"."WobblynessLevel" = 1;
-          "kwinrc"."Plugins"."cubeEnabled" = true;
-          "kwinrc"."Plugins"."shakecursorEnabled" = true;
-          "kwinrc"."Plugins"."slideEnabled" = false;
-          "kwinrc"."Plugins"."wobblywindowsEnabled" = true;
+          "kwinrc"."Effect-wobblywindows"."Drag".value = 85;
+          "kwinrc"."Effect-wobblywindows"."Stiffness".value = 10;
+          "kwinrc"."Effect-wobblywindows"."WobblynessLeve".value = 1;
+          "kwinrc"."Plugins"."cubeEnable".value = true;
+          "kwinrc"."Plugins"."shakecursorEnable".value = true;
+          "kwinrc"."Plugins"."slideEnable".value = false;
+          "kwinrc"."Plugins"."wobblywindowsEnable".value = true;
 
-          "kdeglobals"."WM"."activeBlend" = "205,214,244";
-          "kdeglobals"."WM"."activeForeground" = "205,214,244";
-          "kdeglobals"."WM"."inactiveBackground" = "17,17,27";
-          "kdeglobals"."WM"."inactiveBlend" = "166,173,200";
-          "kdeglobals"."WM"."inactiveForeground" = "166,173,200";
+          "kdeglobals"."WM"."activeBlend".value = "205,214,244";
+          "kdeglobals"."WM"."activeForeground".value = "205,214,244";
+          "kdeglobals"."WM"."inactiveBackground".value = "17,17,27";
+          "kdeglobals"."WM"."inactiveBlend".value = "166,173,200";
+          "kdeglobals"."WM"."inactiveForeground".value = "166,173,200";
         }
         (mkIf cfg.noBorders {
 
-          "kwinrulesrc"."General"."count" = 1;
-          "kwinrulesrc"."1"."Description" = "Remove Bars";
-          "kwinrulesrc"."1"."noborder" = true;
-          "kwinrulesrc"."1"."noborderrule" = 2;
-          "kwinrulesrc"."1"."types" = 289;
-          "kwinrulesrc"."1"."wmclass" = ".*";
-          "kwinrulesrc"."1"."wmclasscomplete" = true;
-          "kwinrulesrc"."1"."wmclassmatch" = 3;
-          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."Description" = "Remove Bars";
-          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."noborder" = true;
-          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."noborderrule" = 2;
-          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."types" = 289;
-          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."wmclass" = ".*";
-          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."wmclasscomplete" = true;
-          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."wmclassmatch" = 3;
+          "kwinrulesrc"."General"."coun".value = 1;
+          "kwinrulesrc"."1"."Descriptio".value = "Remove Bars";
+          "kwinrulesrc"."1"."noborde".value = true;
+          "kwinrulesrc"."1"."noborderrul".value = 2;
+          "kwinrulesrc"."1"."type".value = 289;
+          "kwinrulesrc"."1"."wmclas".value = ".*";
+          "kwinrulesrc"."1"."wmclasscomplet".value = true;
+          "kwinrulesrc"."1"."wmclassmatc".value = 3;
+          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."Descriptio".value = "Remove Bars";
+          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."noborde".value = true;
+          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."noborderrul".value = 2;
+          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."type".value = 289;
+          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."wmclas".value = ".*";
+          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."wmclasscomplet".value = true;
+          "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."wmclassmatc".value = 3;
         })
       ];
 
