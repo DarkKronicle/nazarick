@@ -7,6 +7,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    waveforms.url = "github:liff/waveforms-flake";
 
     snowfall-lib = {
       url = "github:snowfallorg/lib";
@@ -99,6 +100,7 @@
         # persist-retro.nixosModules.persist-retro
         home-manager.nixosModules.home-manager
         sops-nix.nixosModules.sops
+        inputs.waveforms.nixosModule
       ];
 
       # homes.modules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];

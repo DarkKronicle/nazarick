@@ -29,7 +29,7 @@ def check_ready [wifi: string] {
 def "backup-borg" [exclude: path, prefix: string, ...paths: path] {
     let backup_name = ('::' + $prefix + '-{now:%Y-%m-%d_%H:%M}')
     let args = [
-        # '-p',
+        '-p',
         '--exclude-from',
         $exclude,
         '--compression',
@@ -46,26 +46,8 @@ def "backup-borg-default" [repo: string, password: string, exclude: path] {
     $env.BORG_PASSPHRASE = $password
 
     let home_dir = "/home/darkkronicle"
-    let home_dirs = [
-        ($home_dir + /.config),
-        ($home_dir + /programming),
-        ($home_dir + /.factorio),
-        ($home_dir + /.ssh),
-        # ($home_dir + /.keys),
-        ($home_dir + /.gnupg),
-        ($home_dir + /.local/share/Anki2),
-        ($home_dir + /.local/share/atuin),
-        # ($home_dir + /.local/share/fonts),
-        # ($home_dir + /.local/share/kwalletd),
-        # ($home_dir + /.local/share/pueue),
-        # ($home_dir + /.local/share/task),
-        ($home_dir + /.local/share/PrismLauncher/instances),
-        # ($home_dir + /.gitconfig),
-        ($home_dir + /Documents),
-        ($home_dir + /.wifi),
-        # ($home_dir + /.backup),
-        # ($home_dir + /syncthing),
-        # '/root/borg',
+    let persist = [
+      "/persist/keep"
     ]
     # TODO: Pero removed
     let pero = '/run/media/darkkronicle/peroroncino'
@@ -74,7 +56,7 @@ def "backup-borg-default" [repo: string, password: string, exclude: path] {
         ($pero + '/images'),
         ($pero + '/wallpapers'),
     ]
-    backup-borg $exclude 'all' ...$home_dirs
+    backup-borg $exclude 'all' ...$persist
 }
 
 def cpu-snapshot [] {

@@ -19,6 +19,7 @@ in
     extraGroups = mkOpt (listOf str) [
       "wheel"
       "nordvpn"
+      "plugdev"
     ] "Groups for the user to be assigned.";
     extraOptions = mkOpt attrs { } (mdDoc "Extra options for users.users.");
   };

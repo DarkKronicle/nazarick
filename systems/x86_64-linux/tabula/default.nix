@@ -136,6 +136,7 @@ with lib.nazarick;
     ntfs3g
 
     wl-clipboard
+    waveforms
 
     (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
     (pkgs.mumble.override { pulseSupport = true; })
