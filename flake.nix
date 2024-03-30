@@ -57,6 +57,8 @@
     impermanence.url = "github:nix-community/impermanence";
     persist-retro.url = "github:Geometer1729/persist-retro";
 
+    faerber.url = "github:nekowinston/faerber";
+
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 

@@ -110,51 +110,54 @@ with lib.nazarick;
   programs.java.enable = true;
   programs.dconf.enable = true;
 
-  environment.systemPackages = with pkgs; [
-    wget
-    git
-    git-credential-oauth
-    gcc
-    firefox
-    brave
-    qbittorrent
-    vesktop
-    gnumake
-    nazarick.kamite
-    matlab
-    playerctl
-    nheko
-    nazarick.ltspice
-    rnote
-    prismlauncher
+  environment.systemPackages =
+    with pkgs;
+    [
+      wget
+      git
+      git-credential-oauth
+      gcc
+      firefox
+      brave
+      qbittorrent
+      vesktop
+      gnumake
+      nazarick.kamite
+      matlab
+      playerctl
+      nheko
+      nazarick.ltspice
+      rnote
+      prismlauncher
 
-    nazarick.anki
+      nazarick.anki
 
-    qalculate-qt
-    libqalculate
-    gparted
-    ntfs3g
+      qalculate-qt
+      libqalculate
+      gparted
+      ntfs3g
 
-    wl-clipboard
-    waveforms
+      wl-clipboard
+      waveforms
 
-    (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
-    (pkgs.mumble.override { pulseSupport = true; })
-    # nazarick.mint # - I give up, this isn't working
-    (fenix.complete.withComponents [
-      "cargo"
-      "clippy"
-      "rust-src"
-      "rustc"
-      "rustfmt"
-    ])
-    rust-analyzer-nightly
+      (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
+      (pkgs.mumble.override { pulseSupport = true; })
+      # nazarick.mint # - I give up, this isn't working
+      (fenix.complete.withComponents [
+        "cargo"
+        "clippy"
+        "rust-src"
+        "rustc"
+        "rustfmt"
+      ])
+      rust-analyzer-nightly
 
-    filezilla
-    sops
-    ssh-to-age
-    gtrash
-  ];
+      filezilla
+      sops
+      ssh-to-age
+      gtrash
+    ]
+    ++ [ inputs.faerber.packages.x86_64-linux.faerber ];
 
   powerManagement.enable = true;
   services.system76-scheduler.settings.cfsProfiles.enable = true;
