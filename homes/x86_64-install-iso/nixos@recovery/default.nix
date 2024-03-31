@@ -15,7 +15,7 @@ with lib.nazarick;
     };
     tools = {
       nushell = {
-        enable = true;
+        enable = false;
       };
     };
 

@@ -44,6 +44,12 @@
     bypassWorkqueues = true;
   };
 
+  boot.initrd.luks.devices."cryptaelius" = {
+    device = "/dev/disk/by-uuid/fe579785-2d41-40ca-a855-816052ab0dc5";
+    allowDiscards = true;
+    bypassWorkqueues = true;
+  };
+
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";
     fsType = "btrfs";
@@ -91,7 +97,19 @@
     ];
   };
 
+  fileSystems."/mnt/aelius" = {
+    device = "/dev/disk/by-uuid/1940c7ad-ea0f-43ac-8e7d-26b6b302d0bb";
+    fsType = "btrfs";
+    options = [
+      "subvol=@"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
   swapDevices = [ { device = "/swap/swapfile"; } ];
+
+  # Extra devices
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's

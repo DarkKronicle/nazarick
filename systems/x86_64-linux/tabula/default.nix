@@ -156,6 +156,10 @@ with lib.nazarick;
       sops
       ssh-to-age
       gtrash
+
+      kdePackages.partitionmanager
+      dust
+      compsize
     ]
     ++ [ inputs.faerber.packages.x86_64-linux.faerber ];
 

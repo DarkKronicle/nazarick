@@ -21,6 +21,13 @@
     font-manager
     libqalculate
     qalculate-qt
+
+    sops
+    ssh-to-age
+
+    kdePackages.partitionmanager
+    dust
+    compsize
   ];
 
   home-manager.sharedModules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
@@ -52,7 +59,7 @@
     isNormalUser = true;
     home = "/home/nixos";
     group = "users";
-    password = lib.mkForce "";
+    password = lib.mkForce "password";
     hashedPassword = lib.mkForce null;
     hashedPasswordFile = lib.mkForce null;
     initialPassword = lib.mkForce null;
