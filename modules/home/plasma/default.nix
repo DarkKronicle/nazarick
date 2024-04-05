@@ -42,7 +42,7 @@ in
           "kwinrc"."Effect-wobblywindows"."WobblynessLeve".value = 1;
           "kwinrc"."Plugins"."cubeEnable".value = true;
           "kwinrc"."Plugins"."shakecursorEnable".value = true;
-          "kwinrc"."Plugins"."slideEnable".value = false;
+          "kwinrc"."Plugins"."slideEnabled".value = false;
           "kwinrc"."Plugins"."wobblywindowsEnable".value = true;
 
           "kdeglobals"."WM"."activeBlend".value = "205,214,244";

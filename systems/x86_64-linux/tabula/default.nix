@@ -94,8 +94,6 @@ with lib.nazarick;
 
   # xdg.autostart.enable = false;
 
-  systemd.user.services."app-org.fcitx.Fcitx5@autostart.service".enable = false;
-
   # sops.defaultSopsFormat = "yaml";
   # sops.age.keyFile = "/home/darkkronicle/.config/sops/age/keys.txt";
   sops = {

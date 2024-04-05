@@ -23,8 +23,9 @@ in
     systemd.user.services.easyeffects = {
       Service = {
         # This service hangs on system shutdown fairly frequently
-        TimeoutStopUSec = "10s";
-        TimeoutAbortUSec = "10s";
+        # TimeoutStopUSec = "10s";
+        # TimeoutAbortUSec = "10s";
+        TimeoutSec = "10";
       };
     };
   };

@@ -178,6 +178,9 @@ in
         ".config/kdedefaults"
         ".config/kded5"
         ".config/kded6"
+
+        ".config/fcitx5"
+
         ".mozilla"
         ".cache/mozilla"
         ".applications/matlab"

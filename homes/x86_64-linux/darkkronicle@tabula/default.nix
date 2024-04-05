@@ -53,6 +53,9 @@ with lib.nazarick;
       kdeconnect = {
         enable = true;
       };
+      fcitx = {
+        enable = true;
+      };
     };
 
     apps = {
