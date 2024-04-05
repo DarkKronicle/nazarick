@@ -9,6 +9,7 @@ with lib;
 with lib.nazarick;
 let
   cfg = config.nazarick.suites.impermanence;
+  copy_files = [ "/home/darkkronicle/.config/kwinrc" ];
 in
 {
   options.nazarick.suites.impermanence = with types; {
@@ -16,6 +17,26 @@ in
   };
   config = mkIf cfg.enable {
     impermanence.enable = true;
+
+    # https://github.com/nix-community/impermanence/pull/146
+    # systemd-journald.socket sysinit.target local-fs.target system.slice 
+    systemd.services."setup-impermanence-symlinks" = {
+      # after = lib.mkForce [ "local-fs.target" "systemd-journald.socket" "system.slice" ];
+      after = [ "local-fs.target" ];
+      unitConfig.DefaultDependencies = false;
+      before = [ "sysinit.target" ];
+      wantedBy = [ "local-fs.target" ];
+      path = [
+        pkgs.nushell
+        pkgs.util-linux
+        pkgs.btrfs-progs
+      ];
+      script = "${pkgs.nushell}/bin/nu ${./copy.nu} ${lib.concatMapStrings (x: x + " ") copy_files} ";
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+    };
 
     environment.persist = {
       hideMounts = true;
@@ -120,7 +141,7 @@ in
         ".config/kscreenlockerrc"
         ".config/ksmserverrc"
         ".config/ktimezonedrc"
-        ".config/kwinrc"
+        # ".config/kwinrc"
         ".config/kwinrulesrc"
         ".config/kwinoutputconfig.json"
         ".config/kxkbrc"

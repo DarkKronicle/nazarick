@@ -26,7 +26,7 @@ in
         manager.prepend_keymap = [
           {
             on = [
-              "<space>"
+              "<Space>"
               "y"
             ];
             run = [

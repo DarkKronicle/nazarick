@@ -38,7 +38,7 @@ in
 
         Service = {
           Type = "oneshot";
-          ExecStart = ''${pkgs.nushell}/bin/nu -c "ATUIN_SESSION='blank' ${pkgs.atuin}/bin/atuin history list --cmd-only | split row '\n' | uniq | save -f /home/darkkronicle/.config/nushell/history.txt"'';
+          ExecStart = ''${pkgs.nushell}/bin/nu -c "ATUIN_SESSION='blank' ${pkgs.atuin}/bin/atuin history list --cmd-only | split row '\n' | reverse | uniq | reverse | save -f /home/darkkronicle/.config/nushell/history.txt"'';
         };
 
         Install = {

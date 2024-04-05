@@ -30,17 +30,25 @@ in
         mount /dev/mapper/cryptroot /btrfs_tmp
 
         # Check root
-        if [[ -e /btrfs_tmp/@ ]]; then
+        if [[ -e /btrfs_tmp/last_root ]]; then
             mkdir -p /btrfs_tmp/old_roots
-            timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/@)" "+%Y-%m-%-d_%H:%M:%S")
-            mv /btrfs_tmp/@ "/btrfs_tmp/old_roots/$timestamp"
+            timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/last_root)" "+%Y-%m-%-d_%H:%M:%S")
+            mv /btrfs_tmp/last_root "/btrfs_tmp/old_roots/$timestamp"
+        fi
+
+        if [[ -e /btrfs_tmp/@ ]]; then
+            mv /btrfs_tmp/@ /btrfs_tmp/last_root
         fi
 
         # Check home
-        if [[ -e /btrfs_tmp/@home ]]; then
+        if [[ -e /btrfs_tmp/last_home ]]; then
             mkdir -p /btrfs_tmp/old_homes
-            timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/@home)" "+%Y-%m-%-d_%H:%M:%S")
-            mv /btrfs_tmp/@home "/btrfs_tmp/old_homes/$timestamp"
+            timestamp=$(date --date="@$(stat -c %Y /btrfs_tmp/last_home)" "+%Y-%m-%-d_%H:%M:%S")
+            mv /btrfs_tmp/last_home "/btrfs_tmp/old_homes/$timestamp"
+        fi
+
+        if [[ -e /btrfs_tmp/@home ]]; then
+            mv /btrfs_tmp/@home /btrfs_tmp/last_home
         fi
 
         # delete_subvolume_recursively() {

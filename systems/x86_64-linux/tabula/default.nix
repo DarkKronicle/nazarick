@@ -61,6 +61,9 @@ with lib.nazarick;
       };
     };
     tools = {
+      fcitx = {
+        enable = true;
+      };
       kanata = {
         enable = true;
       };
@@ -88,6 +91,10 @@ with lib.nazarick;
     libvdpau-va-gl
     intel-media-driver
   ];
+
+  # xdg.autostart.enable = false;
+
+  systemd.user.services."app-org.fcitx.Fcitx5@autostart.service".enable = false;
 
   # sops.defaultSopsFormat = "yaml";
   # sops.age.keyFile = "/home/darkkronicle/.config/sops/age/keys.txt";
@@ -136,6 +143,7 @@ with lib.nazarick;
       libqalculate
       gparted
       ntfs3g
+      pipes-rs
 
       wl-clipboard
       waveforms
