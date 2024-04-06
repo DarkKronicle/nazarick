@@ -39,6 +39,27 @@ in
             @import "${pkgs.nazarick.firefox-cascade}/chrome/userChrome.css";
           '';
 
+          search = {
+            force = true;
+            default = "SearXNG";
+            engines = {
+              "SearXNG" = {
+                definedAliases = [ "@sx" ];
+                urls = [
+                  {
+                    template = "https://searxng.ca/search";
+                    params = [
+                      {
+                        name = "q";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
+              };
+            };
+          };
+
           settings = {
             # https://arkenfox.github.io/gui/
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;

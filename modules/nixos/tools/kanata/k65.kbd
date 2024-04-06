@@ -49,11 +49,12 @@
 
 	zsym (tap-hold-press 1 1000 z (layer-while-held symbols))
     ;; Issues with plasma keybindings at times
-    pp (cmd playerctl play-pause)
-    next (cmd playerctl next)
-    prev (cmd playerctl previous)
-
-
+    ;; pp (cmd playerctl play-pause)
+    ;; next (cmd playerctl next)
+    ;; prev (cmd playerctl previous)
+    pp pp
+    next next
+    prev prev
 )
 
 (deffakekeys

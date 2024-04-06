@@ -23,6 +23,29 @@ with lib.nazarick;
     };
   };
 
+  xdg.desktopEntries."anki" = {
+    name = "Anki";
+    comment = "An intelligent spaced-repetition memory training program";
+    genericName = "Flashcards";
+    type = "Application";
+    mimeType = [
+      "application/x-apkg"
+      "application/x-anki"
+      "application/x-ankiaddon"
+    ];
+    icon = "anki";
+    # TODO: don't rely on $PATH. This currently errors with `nazarick` not found. Probably snowfall thing.
+    # exec = "env QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor ${pkgs.nazarick.anki}/bin/anki";
+    exec = "env QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor anki";
+    settings = {
+      SingleMainWindow = "true";
+    };
+    categories = [
+      "Education"
+      "Languages"
+    ];
+  };
+
   nazarick = {
     plasma = {
       enable = true;
