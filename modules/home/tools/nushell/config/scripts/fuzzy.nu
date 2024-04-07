@@ -1,6 +1,6 @@
 def --env ff [dir?: string] {
     let input = $in
-    let mut path = $dir;
+    let path = $dir;
     let path = if ($dir == nil or ($dir | is-empty)) {
         if ($input | is-empty) {
             ($env.PWD | path expand)
