@@ -9,7 +9,12 @@ with lib;
 with lib.nazarick;
 let
   cfg = config.nazarick.suites.impermanence;
-  copy_files = [ "/home/darkkronicle/.config/kwinrc" ];
+  copy_files = [
+    "/home/darkkronicle/.config/kwinrc"
+    "/home/darkkronicle/.config/kglobalshortcutsrc"
+    "/home/darkkronicle/.config/kconf_updaterc"
+    "/home/darkkronicle/.config/plasma-org.kde.plasma.desktop-appletsrc"
+  ];
 in
 {
   options.nazarick.suites.impermanence = with types; {
@@ -131,10 +136,10 @@ in
         ".config/katevirc"
         ".config/kcmfonts"
         ".config/kcminputrc"
-        ".config/kconf_updaterc"
+        # ".config/kconf_updaterc"
         ".config/kded5rc"
         ".config/kdeglobals"
-        ".config/kglobalshortcutsrc"
+        # ".config/kglobalshortcutsrc"
         ".config/khotkeysrc"
         ".config/kmixrc"
         ".config/konsolerc"
@@ -146,7 +151,7 @@ in
         ".config/kwinoutputconfig.json"
         ".config/kxkbrc"
         ".config/plasma-localerc"
-        ".config/plasma-org.kde.plasma.desktop-appletsrc"
+        # ".config/plasma-org.kde.plasma.desktop-appletsrc"
         ".config/plasmanotifyrc"
         ".config/plasmashellrc"
         ".config/spectaclerc"
@@ -179,6 +184,9 @@ in
         ".config/kded5"
         ".config/kded6"
 
+        ".config/qBittorrent"
+        ".local/share/qBittorrent"
+
         ".config/fcitx5"
 
         ".mozilla"
@@ -202,6 +210,7 @@ in
         ".local/share/PrismLauncher"
         ".local/share/plasma-manager"
         ".local/share/qalculate"
+        ".local/state/mpv/watch_later"
 
         ".local/share/Steam"
         ".local/share/vulkan"

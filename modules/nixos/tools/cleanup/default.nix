@@ -26,7 +26,29 @@ in
       "d /home/${user}/.cache/thumbnails/normal - - - 7d"
       "d /home/${user}/.cache/thumbnails/x-large - - - 7d"
       "d /home/${user}/.cache/thumbnails/xx-large - - - 7d"
+
+      "d /home/${user}/.local/state/mpv/watch_later - - - 7d"
     ];
+
+    # There *is* the service systemd-tmpfiles-clean, but I 
+    # can't figure out how to enable it by default. So this will
+    # have to do
+    # TODO: Add another service for boot, but I currently don't use that
+    systemd.user.timers."tmpfiles-cleanup" = {
+      wantedBy = [ "default.target" ]; # activate when stuff is ready
+      timerConfig = {
+        OnCalendar = "daily";
+        Persistent = true;
+        RandomizedDelaySec = "5m";
+      };
+    };
+
+    systemd.user.services."tmpfiles-cleanup" = {
+      script = "systemd-tmpfiles-clean --user --clean";
+      serviceConfig = {
+        Type = "oneshot";
+      };
+    };
 
     systemd.user.timers."cleanup" = {
       wantedBy = [ "default.target" ];

@@ -23,10 +23,19 @@ def update_file [ persist: path, last_home: path, file: path] {
         }
         let persist_spot = ([ $persist ( $file | str substring 1..) ] | path join)
         let last_spot = ([ $last_home $homeless_path ] | path join)
+        # If last spot exists and it has *some* data. If this has problems can probably do == 0B;
+        # The main reason for this is that they technically *do* exist if they were on a previous
+        # impermanence config. This way it now will only overwrite if it has something.
         print $"Checking ($last_spot)"
-        if ($last_spot | path exists) {
+        if (($last_spot | path exists) and ((ls -l $last_spot | get size.0) > 2B)) {
             print $"Copying from ($last_spot) -> ($persist_spot)"
-            cp -f $last_spot $persist_spot
+            # -u makes it so it takes the newer modified file
+            cp -f -u $last_spot $persist_spot
+        }
+        print $"Checking existing"
+        if ($file | path exists) {
+            print $"Attempting to update persist location ($persist_spot)"
+            cp -f -u $file $persist_spot
         }
         print $"Checking ($persist_spot)"
         if ($persist_spot | path exists) {
