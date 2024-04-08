@@ -38,14 +38,15 @@ in
 
     programs.mpv = {
       enable = true;
-      package = pkgs.wrapMpv (pkgs.mpv-unwrapped.override { ffmpeg = pkgs.ffmpeg-full; }) {
+      package = pkgs.wrapMpv pkgs.nazarick.mpv-unwrapped {
         youtubeSupport = true;
         # Useful scripts. Not my entire config, should probably do that
-        scripts = with pkgs.mpvScripts; [
-          mpris
-          autoload
-          uosc
-          thumbfast
+        scripts = with pkgs; [
+          mpvScripts.mpris
+          mpvScripts.autoload
+          mpvScripts.uosc
+          mpvScripts.thumbfast
+          nazarick.animecards
         ];
       };
       config = {
