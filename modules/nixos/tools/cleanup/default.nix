@@ -44,7 +44,7 @@ in
     };
 
     systemd.user.services."tmpfiles-cleanup" = {
-      script = "systemd-tmpfiles-clean --user --clean";
+      script = "systemd-tmpfiles --user --clean";
       serviceConfig = {
         Type = "oneshot";
       };
