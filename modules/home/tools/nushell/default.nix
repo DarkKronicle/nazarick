@@ -115,6 +115,11 @@ in
         };
       };
 
+      carapace = {
+        enable = true;
+        enableNushellIntegration = true;
+      };
+
       btop = {
         enable = true;
         package = (

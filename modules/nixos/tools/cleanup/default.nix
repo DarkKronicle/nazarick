@@ -52,7 +52,6 @@ in
 
     systemd.user.timers."cleanup" = {
       wantedBy = [ "default.target" ];
-      # TODO: Does this work with impermanence? (does persistent gets persisted)
       timerConfig = {
         OnCalendar = "daily";
         Persistent = true;

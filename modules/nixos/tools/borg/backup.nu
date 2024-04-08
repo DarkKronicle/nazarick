@@ -49,13 +49,6 @@ def "backup-borg-default" [repo: string, password: string, exclude: path] {
     let persist = [
       "/persist/keep"
     ]
-    # TODO: Pero removed
-    let pero = '/run/media/darkkronicle/peroroncino'
-    let pero_dirs = [
-        ($pero + '/documents'),
-        ($pero + '/images'),
-        ($pero + '/wallpapers'),
-    ]
     backup-borg $exclude 'all' ...$persist
 }
 

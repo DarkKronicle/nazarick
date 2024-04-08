@@ -23,7 +23,13 @@ in
       enable = true;
       package = pkgs.wrapMpv (pkgs.mpv-unwrapped.override { ffmpeg = pkgs.ffmpeg-full; }) {
         youtubeSupport = true;
-        scripts = [ pkgs.mpvScripts.mpris ];
+        # Useful scripts. Not my entire config, should probably do that
+        scripts = with pkgs.mpvScripts; [
+          mpris
+          autoload
+          uosc
+          thumbfast
+        ];
       };
     };
   };

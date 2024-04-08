@@ -13,6 +13,7 @@ let
     "/home/darkkronicle/.config/kwinrc"
     "/home/darkkronicle/.config/kglobalshortcutsrc"
     "/home/darkkronicle/.config/kconf_updaterc"
+    "/home/darkkronicle/.config/kdeglobals"
     "/home/darkkronicle/.config/plasma-org.kde.plasma.desktop-appletsrc"
   ];
 in
@@ -46,49 +47,55 @@ in
     environment.persist = {
       hideMounts = true;
       files = [
+        # REQUIRED
         "/etc/machine-id"
         "/etc/adjtime"
       ];
 
       directories = [
+        # REQUIRED
         "/var/log"
-        "/var/lib/bluetooth"
+        "/var/lib/systemd"
         "/var/lib/nixos"
+        "/var/lib/sops-nix"
+
+        # System state that isn't declarative
         "/var/lib/cups"
         "/var/cache/cups"
         "/var/lib/NetworkManager"
-        "/var/lib/sops-nix"
-        "/var/lib/systemd"
+        "/var/lib/bluetooth"
+        "/etc/NetworkManager"
+
         "/var/lib/upower"
         "/var/lib/nordvpn"
-        "/etc/NetworkManager"
         "/root" # SSH keys + borg stuff, may not be needed anymore
         "/tmp" # Auto deletes regardless
       ];
     };
 
+    # Stuff to back up
     environment.keepPersist.users.darkkronicle = {
-      files = [
-        # ".config/nushell/history.txt"
-      ];
 
       directories = [
+        # User files
+        "Documents"
+        "Pictures"
+
+        # System configuration
+        "nazarick"
+
         ".config/nvim"
+        ".local/share/atuin"
         ".local/share/Anki2"
         ".config/filezilla"
         ".config/drg_mod_integration"
         ".config/matlab"
-        ".config/mpv"
-        ".config/qalculate"
-        ".config/easyeffects"
-        ".local/share/atuin"
+        ".config/mpv" # TODO: Add more stuff to mpv
+        ".config/qalculate" # TODO: the qt file stores history, so don't delete that, but can set up setting some defaults
+        ".config/easyeffects" # TODO: There is an option to set profile. The json should be stable
         ".borg"
 
-        "nazarick"
         ".factorio"
-
-        "Documents"
-        "Pictures"
 
         # KDE stuff
         ".config/gtk-3.0"
@@ -104,9 +111,9 @@ in
         ".local/share/kwalletd"
         ".local/share/sddm"
 
-        # TODO: Can be declarative
         ".local/share/dolphin"
 
+        # Keys
         {
           directory = ".ssh";
           mode = "0700";
@@ -120,7 +127,9 @@ in
 
     environment.transientPersist.users.darkkronicle = {
       files = [
-        # KDE stuff, holy heck
+        # KDE stuff, holy heck. Some stuff that would normally go here has to go
+        # in the copy script because bind mounting files can be weird
+        # to check see if there are any OS `16 errors (Disk full?)`
         ".config/akregatorrc"
         ".config/baloofilerc"
         ".config/bluedevilglobalrc"
@@ -136,22 +145,17 @@ in
         ".config/katevirc"
         ".config/kcmfonts"
         ".config/kcminputrc"
-        # ".config/kconf_updaterc"
         ".config/kded5rc"
-        ".config/kdeglobals"
-        # ".config/kglobalshortcutsrc"
         ".config/khotkeysrc"
         ".config/kmixrc"
         ".config/konsolerc"
         ".config/kscreenlockerrc"
         ".config/ksmserverrc"
         ".config/ktimezonedrc"
-        # ".config/kwinrc"
         ".config/kwinrulesrc"
         ".config/kwinoutputconfig.json"
         ".config/kxkbrc"
         ".config/plasma-localerc"
-        # ".config/plasma-org.kde.plasma.desktop-appletsrc"
         ".config/plasmanotifyrc"
         ".config/plasmashellrc"
         ".config/spectaclerc"
@@ -172,6 +176,26 @@ in
       ];
 
       directories = [
+        # "tmp"
+        "Downloads"
+        ".local/state/mpv/watch_later"
+        ".cache/thumbnails"
+        ".vim"
+
+        # non-nix store apps
+        ".applications/matlab"
+        ".MathWorks"
+        ".matlab"
+        ".MATLABConnector"
+        ".cache/mkWindowsApp"
+
+        ".mozilla"
+        ".local/share/Steam"
+        ".local/share/vulkan"
+
+        ".local/share/Trash"
+        ".local/share/zoxide"
+
         ".config/nordvpn"
         ".config/borg"
         ".config/kdeconnect"
@@ -184,15 +208,15 @@ in
         ".config/kded5"
         ".config/kded6"
 
+        ".config/autostart" # cursed things here
+
         ".config/qBittorrent"
         ".local/share/qBittorrent"
 
         ".config/fcitx5"
 
-        ".mozilla"
         ".cache/mozilla"
-        ".applications/matlab"
-        "Downloads"
+
         ".local/share/klipper"
         ".local/share/kactivitymanagerd"
         ".local/share/applications"
@@ -210,24 +234,11 @@ in
         ".local/share/PrismLauncher"
         ".local/share/plasma-manager"
         ".local/share/qalculate"
-        ".local/state/mpv/watch_later"
-
-        ".local/share/Steam"
-        ".local/share/vulkan"
-
-        ".local/share/Trash"
-        ".local/share/zoxide"
 
         ".pki"
         ".putty"
 
-        ".MathWorks"
-        ".matlab"
-        ".MATLABConnector"
-
         ".steam"
-        # TODO: Auto delete this, trash, and downloads
-        ".vim"
 
         ".wifi"
         ".wine"
@@ -246,7 +257,6 @@ in
         ".cache/lua-language-server"
         ".cache/mesa-shader-cache"
         ".cache/mint"
-        ".cache/mkWindowsApp"
         ".cache/nix"
         ".cache/nvim"
         ".cache/pypoetry"
@@ -254,7 +264,6 @@ in
         ".cache/systemsettings" # doubt
         ".cache/tealdeer"
         ".cache/zoxide"
-        ".cache/thumbnails"
       ];
     };
   };

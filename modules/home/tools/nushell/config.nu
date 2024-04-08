@@ -405,6 +405,8 @@ $env.config = {
 
 source ~/.config/nushell/scripts/fuzzy.nu
 source ~/.config/nushell/scripts/dolphin.nu
+source ~/.config/nushell/completions/man.nu
+source ~/.config/nushell/completions/tldr.nu
 
 
 alias v = nvim
