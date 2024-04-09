@@ -35,7 +35,7 @@ pkgs.mpvScripts.buildLua {
     "--prefix"
     "PATH"
     ":"
-    "${lib.getBin pkgs.nazarick.mpv-unwrapped}/bin"
+    "${lib.getBin pkgs.mpv-unwrapped}/bin"
   ];
 
   meta = {

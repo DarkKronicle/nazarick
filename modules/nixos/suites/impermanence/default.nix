@@ -15,6 +15,8 @@ let
     "/home/darkkronicle/.config/kconf_updaterc"
     "/home/darkkronicle/.config/kdeglobals"
     "/home/darkkronicle/.config/plasma-org.kde.plasma.desktop-appletsrc"
+    "/home/darkkronicle/.config/spectaclerc"
+    "/home/darkkronicle/.config/bluedevilglobalrc"
   ];
 in
 {
@@ -90,7 +92,6 @@ in
         ".config/filezilla"
         ".config/drg_mod_integration"
         ".config/matlab"
-        ".config/mpv" # TODO: Add more stuff to mpv
         ".config/qalculate" # TODO: the qt file stores history, so don't delete that, but can set up setting some defaults
         ".config/easyeffects" # TODO: There is an option to set profile. The json should be stable
         ".borg"
@@ -132,7 +133,6 @@ in
         # to check see if there are any OS `16 errors (Disk full?)`
         ".config/akregatorrc"
         ".config/baloofilerc"
-        ".config/bluedevilglobalrc"
         ".config/dolphinrc"
         ".config/gtkrc"
         ".config/gtkrc-2.0"
@@ -158,7 +158,6 @@ in
         ".config/plasma-localerc"
         ".config/plasmanotifyrc"
         ".config/plasmashellrc"
-        ".config/spectaclerc"
         ".config/startkderc"
         ".config/systemsettingsrc"
         ".config/Trolltech.conf"

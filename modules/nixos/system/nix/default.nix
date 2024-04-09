@@ -20,6 +20,7 @@ in
     environment.systemPackages = with pkgs; [
       nixfmt-rfc-style
       nix-output-monitor
+      nurl
       (writeScriptBin "nazarick" (builtins.readFile ./build.nu))
     ];
 

@@ -37,7 +37,7 @@ in
 
     programs.mpv = {
       enable = true;
-      package = pkgs.wrapMpv pkgs.nazarick.mpv-unwrapped {
+      package = pkgs.wrapMpv pkgs.mpv-unwrapped {
         youtubeSupport = true;
         # Useful scripts. Not my entire config, should probably do that
         scripts = with pkgs; [
