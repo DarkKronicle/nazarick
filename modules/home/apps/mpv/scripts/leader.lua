@@ -102,7 +102,13 @@ mp.add_timeout(0.3, function()
         { 'G', 'add gamma -1' },
         { 's', 'add saturation 1' },
         { 'S', 'add saturation -1' },
-      } }
+      } },
+      { 'p', 'prefix', 'profiles', {
+        { 'a', 'apply-profile anime; apply-profile anime4k-a-shaders', 'Anime 4k A'},
+        { 'i', 'apply-profile interpolate; apply-profile interpolate-shaders', 'Interpolate'},
+        { 'n', 'apply-profile no-shaders', 'None'},
+        { 'g', 'apply-profile grain-shaders', 'Grain'},
+      } },
     }
   )
 end)

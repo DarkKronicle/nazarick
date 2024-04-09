@@ -50,6 +50,16 @@ in
           (pkgs.callPackage ./leader.nix { })
         ];
       };
+
+      bindings = {
+        "h" = "cycle deband";
+        "F5" = ''script-message-to skipsilence enable no-osd; apply-profile skipsilence-default; show-text "skipsilence profile: default"'';
+        "Alt+l" = "add sub-scale +0.1";
+        "Alt+h" = "add sub-scale -0.1";
+        "Alt+j" = "add sub-pos +1";
+        "Alt+k" = "add sub-pos -1";
+      };
+
       config = {
         profile = "gpu-hq";
         gpu-api = "vulkan";
@@ -141,7 +151,7 @@ in
           ];
         };
         "interpolate-shaders" = {
-          glsl-shaders-toggle = [ "${cflPrediction}/Cfl_Prediction.glsl" ];
+          glsl-shaders-toggle = [ "${cflPrediction}/CfL_Prediction.glsl" ];
         };
         "interpolate" = {
           display-fps-override = 60;
