@@ -11,7 +11,6 @@ let
   inherit (lib.nazarick) mkOpt enabled;
 
   cfg = config.nazarick.apps.mpv;
-  mkList = (sep: lib.concatMapStrings (x: x + sep));
 
   cflPrediction = pkgs.fetchFromGitHub {
     owner = "Artoriuz";
@@ -46,7 +45,9 @@ in
           mpvScripts.autoload
           mpvScripts.uosc
           mpvScripts.thumbfast
-          nazarick.animecards
+          nazarick.mpv-animecards
+          nazarick.mpv-skipsilence
+          (pkgs.callPackage ./leader.nix { })
         ];
       };
       config = {
