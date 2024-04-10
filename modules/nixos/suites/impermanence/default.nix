@@ -238,6 +238,7 @@ in
         ".putty"
 
         ".steam"
+        ".thunderbird"
 
         ".wifi"
         ".wine"

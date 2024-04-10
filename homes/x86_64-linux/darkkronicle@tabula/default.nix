@@ -68,6 +68,9 @@ with lib.nazarick;
       yazi = {
         enable = true;
       };
+      thunderbird = {
+        enable = true;
+      };
       mpv = {
         enable = true;
       };

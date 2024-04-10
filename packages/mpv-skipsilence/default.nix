@@ -22,6 +22,6 @@ pkgs.mpvScripts.buildLua {
   meta = {
     description = "Increase playback speed during silence";
     homepage = "https://codeberg.org/ferreum/mpv-skipsilence";
-    license = lib.licenses.unfree;
+    license = lib.licenses.gpl2Only;
   };
 }
