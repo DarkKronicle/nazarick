@@ -83,7 +83,15 @@ in
       shortcuts = {
         "kwin"."Overview" = "Meta+W";
         "kwin"."Window Minimize" = "Meta+M";
-        "services.org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Meta+Shift+S";
+        "services/org.kde.spectacle.desktop"."ActiveWindowScreenShot" = [ ];
+        "services/org.kde.spectacle.desktop"."FullScreenScreenShot" = [ ];
+        "services/org.kde.spectacle.desktop"."RecordRegion" = [ ];
+        "services/org.kde.spectacle.desktop"."RecordScreen" = [ ];
+        "services/org.kde.spectacle.desktop"."RecordWindow" = [ ];
+        "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Meta+Shift+S";
+        "services/org.kde.spectacle.desktop"."WindowUnderCursorScreenShot" = [ ];
+        "services/org.kde.spectacle.desktop"."_launch" = [ ];
+        "services/services.org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Meta+Shift+S";
       };
     };
   };

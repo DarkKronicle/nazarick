@@ -215,6 +215,7 @@ in
         ".config/fcitx5"
 
         ".cache/mozilla"
+        ".cache/yazi"
 
         ".local/share/klipper"
         ".local/share/kactivitymanagerd"

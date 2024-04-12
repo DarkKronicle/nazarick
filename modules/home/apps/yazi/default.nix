@@ -37,6 +37,9 @@ in
         ];
       };
       settings = {
+        preview = {
+          cache_dir = "/home/darkkronicle/.cache/yazi";
+        };
         opener = {
           open = [
             {

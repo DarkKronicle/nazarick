@@ -146,6 +146,8 @@ with lib.nazarick;
       wl-clipboard
       waveforms
       mecab
+      bandwhich
+      yt-dlp
 
       (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
       (pkgs.mumble.override { pulseSupport = true; })
