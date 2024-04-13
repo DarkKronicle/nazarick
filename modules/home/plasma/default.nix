@@ -22,8 +22,15 @@ in
 
   config = mkIf cfg.enable {
 
+    gtk = {
+      theme.package = pkgs.kdePackages.breeze-gtk;
+      enable = true;
+      theme.name = "Breeze";
+    };
+
     programs.plasma = {
       enable = true;
+      overrideConfig = true;
 
       workspace = {
         clickItemTo = "select";
@@ -33,17 +40,36 @@ in
         cursorTheme = "Catppuccin-Mocha-Mauve";
       };
 
+      # hotkeys.commands = {
+      # "screenshot" = {
+      # name = "Screenshot Region";
+      # key = "Meta+Shift+S";
+      # command = "spectacle -rg";
+      # };
+      # };
+
       kwin = {
         effects = {
           shakeCursor.enable = true;
         };
         virtualDesktops = {
-          number = 3;
+          animation = "slide";
+          rows = 2;
+          names = [
+            "Desktop 1"
+            "Desktop 2"
+            "Desktop 3"
+            "Desktop 4"
+            "Desktop 5"
+            "Desktop 6"
+          ];
         };
       };
 
       configFile = mkMerge [
         {
+          "kdeglobals"."KDE"."widgetStyle".value = "Lightly";
+
           "kwinrc"."Windows"."RollOverDesktops".value = true;
 
           "kwinrc"."Effect-wobblywindows"."Drag".value = 85;
@@ -51,7 +77,7 @@ in
           "kwinrc"."Effect-wobblywindows"."WobblynessLevel".value = 1;
           "kwinrc"."Plugins"."cubeEnable".value = true;
           "kwinrc"."Plugins"."shakecursorEnable".value = true;
-          "kwinrc"."Plugins"."slideEnabled".value = false;
+          # "kwinrc"."Plugins"."slideEnabled".value = false;
           "kwinrc"."Plugins"."wobblywindowsEnable".value = true;
 
           "kdeglobals"."WM"."activeBlend".value = "205,214,244";
@@ -59,6 +85,8 @@ in
           "kdeglobals"."WM"."inactiveBackground".value = "17,17,27";
           "kdeglobals"."WM"."inactiveBlend".value = "166,173,200";
           "kdeglobals"."WM"."inactiveForeground".value = "166,173,200";
+          # TODO: Make this use the package declaration
+          "kwinrc"."Wayland"."InputMethod[$e]".value = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
         }
         (mkIf cfg.noBorders {
 
@@ -83,15 +111,16 @@ in
       shortcuts = {
         "kwin"."Overview" = "Meta+W";
         "kwin"."Window Minimize" = "Meta+M";
-        "services/org.kde.spectacle.desktop"."ActiveWindowScreenShot" = [ ];
-        "services/org.kde.spectacle.desktop"."FullScreenScreenShot" = [ ];
-        "services/org.kde.spectacle.desktop"."RecordRegion" = [ ];
-        "services/org.kde.spectacle.desktop"."RecordScreen" = [ ];
-        "services/org.kde.spectacle.desktop"."RecordWindow" = [ ];
-        "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Meta+Shift+S";
-        "services/org.kde.spectacle.desktop"."WindowUnderCursorScreenShot" = [ ];
-        "services/org.kde.spectacle.desktop"."_launch" = [ ];
-        "services/services.org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Meta+Shift+S";
+        # This is broken
+        # "services/org.kde.spectacle.desktop"."ActiveWindowScreenShot" = [ ];
+        # "services/org.kde.spectacle.desktop"."FullScreenScreenShot" = [ ];
+        # "services/org.kde.spectacle.desktop"."RecordRegion" = [ ];
+        # "services/org.kde.spectacle.desktop"."RecordScreen" = [ ];
+        # "services/org.kde.spectacle.desktop"."RecordWindow" = [ ];
+        # "services/org.kde.spectacle.desktop"."WindowUnderCursorScreenShot" = [ ];
+        # "services/org.kde.spectacle.desktop"."_launch" = [ ];
+        # "services/org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Meta+Ctrl+S";
+        # "services/services.org.kde.spectacle.desktop"."RectangularRegionScreenShot" = "Meta+Shift+S";
       };
     };
   };
