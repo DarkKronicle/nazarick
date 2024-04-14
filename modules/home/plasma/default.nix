@@ -20,6 +20,24 @@ in
     noBorders = mkBoolOpt false "Enable borders on windows";
   };
 
+  # TODO: list of files I need to remove from persistence
+  # /home/darkkronicle/.config/baloofilerc
+  # /home/darkkronicle/.config/dolphinrc
+  # /home/darkkronicle/.config/kactivitymanagerdrc
+  # /home/darkkronicle/.config/katerc
+  # /home/darkkronicle/.config/kcminputrc
+  # /home/darkkronicle/.config/kded5rc
+  # /home/darkkronicle/.config/khotkeysrc
+  # /home/darkkronicle/.config/kmixrc
+  # /home/darkkronicle/.config/kscreenlockerrc
+  # /home/darkkronicle/.config/ksmserverrc
+  # /home/darkkronicle/.config/kwinrulesrc
+  # /home/darkkronicle/.config/kxkbrc
+  # /home/darkkronicle/.config/plasma-localerc
+  # /home/darkkronicle/.config/plasmanotifyrc
+  # /home/darkkronicle/.config/plasmashellrc
+  # /home/darkkronicle/.config/systemsettingsrc
+
   config = mkIf cfg.enable {
 
     # gtk 2 config conflicts with *something*, so move it somewhere else to forget about it
