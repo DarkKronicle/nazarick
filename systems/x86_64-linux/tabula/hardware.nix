@@ -107,6 +107,21 @@
     ];
   };
 
+  fileSystems."/mnt/fluder" = {
+    device = "/dev/disk/by-uuid/64C573804DD961FD";
+    fsType = "ntfs-3g";
+    options = [
+      "noauto"
+      "uid=1000"
+      "gid=100"
+      "rw"
+      "user"
+      "exec"
+      "umask=000"
+      "windows_names"
+    ];
+  };
+
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
   # Extra devices

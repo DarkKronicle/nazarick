@@ -150,6 +150,7 @@ with lib.nazarick;
       yt-dlp
 
       (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
+      # TODO: add my catppuccin theme or make a repo
       (pkgs.mumble.override { pulseSupport = true; })
       # nazarick.mint # - I give up, this isn't working
       (fenix.complete.withComponents [

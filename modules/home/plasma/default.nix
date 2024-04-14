@@ -22,11 +22,15 @@ in
 
   config = mkIf cfg.enable {
 
+    # gtk 2 config conflicts with *something*, so move it somewhere else to forget about it
     gtk = {
       theme.package = pkgs.kdePackages.breeze-gtk;
       enable = true;
       theme.name = "Breeze";
+      gtk2.configLocation = "${config.home.homeDirectory}/.config/gtk-trash/gtkrc";
     };
+
+    home.sessionVariables.GTK2_RC_FILES = lib.mkForce "${config.home.homeDirectory}/.gtkrc-2.0";
 
     programs.plasma = {
       enable = true;
