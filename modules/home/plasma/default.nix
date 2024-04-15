@@ -21,21 +21,6 @@ in
   };
 
   # TODO: list of files I need to remove from persistence
-  # /home/darkkronicle/.config/baloofilerc
-  # /home/darkkronicle/.config/dolphinrc
-  # /home/darkkronicle/.config/kactivitymanagerdrc
-  # /home/darkkronicle/.config/katerc
-  # /home/darkkronicle/.config/kcminputrc
-  # /home/darkkronicle/.config/kded5rc
-  # /home/darkkronicle/.config/khotkeysrc
-  # /home/darkkronicle/.config/kmixrc
-  # /home/darkkronicle/.config/kscreenlockerrc
-  # /home/darkkronicle/.config/ksmserverrc
-  # /home/darkkronicle/.config/kwinrulesrc
-  # /home/darkkronicle/.config/kxkbrc
-  # /home/darkkronicle/.config/plasma-localerc
-  # /home/darkkronicle/.config/plasmanotifyrc
-  # /home/darkkronicle/.config/plasmashellrc
   # /home/darkkronicle/.config/systemsettingsrc
 
   config = mkIf cfg.enable {
@@ -69,6 +54,59 @@ in
       # command = "spectacle -rg";
       # };
       # };
+
+      panels = [
+        {
+          location = "bottom";
+          height = 40;
+          hiding = "autohide";
+          floating = true;
+          screen = 0;
+          # TODO: This is not a panel
+          extraSettings = ''
+            let allDesktops = desktops();
+            for (var desktopIndex = 0; desktopIndex < allDesktops.length; desktopIndex++) {
+                var desktop = allDesktops[desktopIndex];
+                desktop.wallpaperPlugin = "org.kde.slideshow";
+                desktop.currentConfigGroup = Array("Wallpaper", "org.kde.slideshow", "General");
+                desktop.writeConfig("SlidePaths", "/home/darkkronicle/Pictures/wallpapers");
+                desktop.writeConfig("SlideInterval", "3600"); // Seconds
+            }
+          '';
+          widgets = [
+            {
+              name = "org.kde.plasma.kickoff";
+              config = {
+                General.icon = "nix-snowflake-white";
+              };
+            }
+            {
+              name = "org.kde.plasma.icontasks";
+              config = {
+                General = {
+                  showOnlyCurrentActivity = "false";
+                  showOnlyCurrentDesktop = "false";
+                  launchers = lib.concatStrings (
+                    lib.intersperse "," [
+                      "applications:systemsettings.desktop"
+                      "applications:org.kde.dolphin.desktop"
+                      "applications:firefox.desktop"
+                      "applications:kitty.desktop"
+                      "applications:vesktop.desktop"
+                      "applications:nheko.desktop"
+                      # TODO: Wtf
+                      # "file:///nix/store/rqkvi8w1vkvcav7xzn0594z8i4w9019f-home-manager-path/share/applications/anki.desktop"
+                      "applications:betterbird.desktop"
+                    ]
+                  );
+                };
+              };
+            }
+            { name = "org.kde.plasma.systemtray"; }
+            { name = "org.kde.plasma.digitalclock"; }
+          ];
+        }
+      ];
 
       kwin = {
         effects = {
@@ -109,6 +147,18 @@ in
           "kdeglobals"."WM"."inactiveForeground".value = "166,173,200";
           # TODO: Make this use the package declaration
           "kwinrc"."Wayland"."InputMethod[$e]".value = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
+          "dolphinrc"."DetailsMode"."PreviewSize".value = 16;
+          "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize".value = false;
+          "dolphinrc"."KFileDialog Settings"."Places Icons Static Size".value = 22;
+          "kcminputrc"."Libinput/1/1/kanata"."PointerAcceleration".value = 0.0;
+          "kcminputrc"."Libinput/1/1/kanata"."PointerAccelerationProfile".value = 1;
+          "kcminputrc"."Libinput/7805/11446/ROCCAT ROCCAT Kone XP Air Dongle"."PointerAccelerationProfile".value =
+            1;
+          "kcminputrc"."Mouse"."X11LibInputXAccelProfileFlat".value = true;
+          "kcminputrc"."Mouse"."cursorTheme".value = "Catppuccin-Mocha-Mauve-Cursors";
+          "kcminputrc"."Tmp"."update_info".value = "delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize";
+          "plasma-localerc"."Formats"."LANG".value = "en_US.UTF-8";
+          "systemsettingsrc"."KFileDialog Settings"."detailViewIconSize".value = 16;
         }
         (mkIf cfg.noBorders {
 
