@@ -102,6 +102,9 @@ in
                 };
               };
             }
+            # Classic plasma jank strikes again! If there is no valid volume widget it just won't
+            # set the volume correctly. Wonderful.
+            # { name = "org.kde.plasma.volume"; }
             { name = "org.kde.plasma.systemtray"; }
             { name = "org.kde.plasma.digitalclock"; }
           ];

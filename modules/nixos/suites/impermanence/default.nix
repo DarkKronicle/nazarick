@@ -14,11 +14,11 @@ let
     "/home/darkkronicle/.config/kglobalshortcutsrc"
     "/home/darkkronicle/.config/kconf_updaterc"
     "/home/darkkronicle/.config/kdeglobals"
-    # "/home/darkkronicle/.config/plasma-org.kde.plasma.desktop-appletsrc"
     # "/home/darkkronicle/.config/plasmashellrc"
     "/home/darkkronicle/.config/spectaclerc"
     "/home/darkkronicle/.config/bluedevilglobalrc"
   ];
+  jank_files = [ "/home/darkkronicle/.config/plasma-org.kde.plasma.desktop-appletsrc" ];
 in
 {
   options.nazarick.suites.impermanence = with types; {
@@ -29,7 +29,7 @@ in
 
     # https://github.com/nix-community/impermanence/pull/146
     # systemd-journald.socket sysinit.target local-fs.target system.slice 
-    systemd.services."setup-impermanence-symlinks" = {
+    systemd.services."setup-impermanence-copy" = {
       # after = lib.mkForce [ "local-fs.target" "systemd-journald.socket" "system.slice" ];
       after = [ "local-fs.target" ];
       unitConfig.DefaultDependencies = false;
@@ -41,6 +41,23 @@ in
         pkgs.btrfs-progs
       ];
       script = "${pkgs.nushell}/bin/nu ${./copy.nu} ${lib.concatMapStrings (x: x + " ") copy_files} ";
+      serviceConfig = {
+        Type = "oneshot";
+        User = "root";
+      };
+    };
+    systemd.services."setup-jank-fixes" = {
+      # after = lib.mkForce [ "local-fs.target" "systemd-journald.socket" "system.slice" ];
+      after = [ "local-fs.target" ];
+      unitConfig.DefaultDependencies = false;
+      before = [ "sysinit.target" ];
+      wantedBy = [ "local-fs.target" ];
+      path = [
+        pkgs.nushell
+        pkgs.util-linux
+        pkgs.btrfs-progs
+      ];
+      script = "${pkgs.nushell}/bin/nu ${./jank.nu} ${lib.concatMapStrings (x: x + " ") jank_files} ";
       serviceConfig = {
         Type = "oneshot";
         User = "root";
