@@ -54,7 +54,6 @@ in
       # command = "spectacle -rg";
       # };
       # };
-
       panels = [
         {
           location = "bottom";
@@ -105,9 +104,48 @@ in
             # Classic plasma jank strikes again! If there is no valid volume widget it just won't
             # set the volume correctly. Wonderful.
             # { name = "org.kde.plasma.volume"; }
-            { name = "org.kde.plasma.systemtray"; }
+            # { name = "org.kde.plasma.systemtray"; }
             { name = "org.kde.plasma.digitalclock"; }
           ];
+        }
+        {
+          location = "top";
+          height = 22;
+          hiding = "none";
+          floating = true;
+          screen = 0;
+          widgets = [
+            { name = "org.kde.plasma.appmenu"; }
+            { name = "org.kde.plasma.panelspacer"; }
+            { name = "org.kde.plasma.systemtray"; }
+            {
+              name = "org.kde.plasma.digitalclock";
+              config = {
+                Appearance = {
+                  showDate = "false";
+                };
+              };
+            }
+          ];
+          extraSettings = (
+            readFile (
+              pkgs.substituteAll {
+                src = ./system-tray.js;
+                iconSpacing = 1;
+                scaleIconsToFit = toString false;
+                shownItems = concatStringsSep "," [ "org.kde.plasma.volume" ];
+                hiddenItems = concatStringsSep "," [
+                  "chrome_status_icon_1"
+                  "kded6"
+                  "org.kde.plasma.clipboard"
+                  "org.kde.plasma.keyboardlayout"
+                  "Fcitx"
+                ];
+                popupHeight = "432";
+                popupWidth = "432";
+              }
+            )
+          );
         }
       ];
 

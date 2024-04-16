@@ -47,7 +47,11 @@ in
       };
     };
     systemd.services."setup-jank-fixes" = {
-      # after = lib.mkForce [ "local-fs.target" "systemd-journald.socket" "system.slice" ];
+      # after = lib.mkForce [
+      # "local-fs.target"
+      # "systemd-journald.socket"
+      # "system.slice"
+      # ];
       after = [ "local-fs.target" ];
       unitConfig.DefaultDependencies = false;
       before = [ "sysinit.target" ];
