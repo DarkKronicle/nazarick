@@ -66,9 +66,9 @@
 
 (deflayer gaming
   mrgt mlft
-  8 9     kp4 @lmd kp5 _
-  0 1
-  2 3
+  kp8 kp9     kp4 @lmd kp5 _
+  kp0 kp1
+  kp2 kp3
 
   mmid
 )

@@ -35,6 +35,8 @@ in
 
     home.sessionVariables.GTK2_RC_FILES = lib.mkForce "${config.home.homeDirectory}/.gtkrc-2.0";
 
+    home.packages = with pkgs; [ nazarick.kde-ginti ];
+
     programs.plasma = {
       enable = true;
       overrideConfig = true;
@@ -115,6 +117,7 @@ in
           floating = true;
           screen = 0;
           widgets = [
+            { name = "org.kde.plasma.ginti"; }
             { name = "org.kde.plasma.appmenu"; }
             { name = "org.kde.plasma.panelspacer"; }
             { name = "org.kde.plasma.systemtray"; }
@@ -200,6 +203,7 @@ in
           "kcminputrc"."Tmp"."update_info".value = "delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize";
           "plasma-localerc"."Formats"."LANG".value = "en_US.UTF-8";
           "systemsettingsrc"."KFileDialog Settings"."detailViewIconSize".value = 16;
+          "plasmanotifyrc"."Notifications"."PopupPosition".value = "BottomRight";
         }
         (mkIf cfg.noBorders {
 

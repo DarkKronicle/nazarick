@@ -111,7 +111,7 @@
     device = "/dev/disk/by-uuid/64C573804DD961FD";
     fsType = "ntfs-3g";
     options = [
-      "noauto"
+      # "noauto"
       "uid=1000"
       "gid=100"
       "rw"
