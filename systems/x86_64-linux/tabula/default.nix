@@ -125,6 +125,7 @@ with lib.nazarick;
       firefox
       brave
       qbittorrent
+      # https://github.com/Faupi/nixos-configs/blob/aea7c558de0e51443ea6d9bce4ba476ba638fed7/home-manager/cfgs/shared/vesktop/default.nix#L9-L18
       (vesktop.overrideAttrs (oldAttrs: {
         desktopItems = [
           (pkgs.makeDesktopItem {
