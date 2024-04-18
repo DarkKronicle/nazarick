@@ -5,6 +5,7 @@ var getSubstitute = (text) => (text.match(/^@.*@$/) ? null : text); // Keep var 
 hiddenItems = getSubstitute("@hiddenItems@");
 shownItems = getSubstitute("@shownItems@");
 extraItems = getSubstitute("@extraItems@");
+knownItems = getSubstitute("@extraItems@");
 scaleIconsToFit = getSubstitute("@scaleIconsToFit@");
 iconSpacing = getSubstitute("@iconSpacing@");
 popupWidth = getSubstitute("@popupWidth@");
@@ -25,6 +26,8 @@ panel.widgetIds.forEach((appletWidget) => {
         systray.writeConfig("shownItems", shownItems.split(","));
       if (extraItems != null)
         systray.writeConfig("extraItems", extraItems.split(","));
+      if (knownItems != null)
+        systray.writeConfig("knownItems", knownItems.split(","));
       if (scaleIconsToFit != null)
         systray.writeConfig("scaleIconsToFit", scaleIconsToFit === "true");
       if (iconSpacing != null)
