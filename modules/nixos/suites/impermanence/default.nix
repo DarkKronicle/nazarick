@@ -237,9 +237,7 @@ in
         ".local/share/nvim"
         ".local/state/nvim"
         ".local/state/wireplumber"
-        ".local/share/plasma"
         ".local/share/PrismLauncher"
-        ".local/share/plasma-manager"
         ".local/share/qalculate"
 
         ".pki"

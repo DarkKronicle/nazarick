@@ -1,4 +1,4 @@
-{
+args@{
   lib,
   config,
   pkgs,
@@ -41,6 +41,12 @@ in
       nazarick.kde-nordvpn
       nazarick.kde-application-title-bar
       nazarick.kde-citygrow
+      fluent-icon-theme
+      (kdePackages.callPackage ./lightly-qt6.nix { })
+      (catppuccin-kde.override {
+        flavour = [ "mocha" ];
+        accents = [ "mauve" ];
+      })
     ];
 
     programs.plasma = {
@@ -65,13 +71,14 @@ in
       panels = [
         {
           location = "bottom";
-          alignment = "left";
+          alignment = "center";
           height = 40;
           hiding = "autohide";
           floating = true;
           screen = 0;
           # TODO: This is not a panel
           extraSettings = ''
+            panel.lengthMode = "fit";
             let allDesktops = desktops();
             for (var desktopIndex = 0; desktopIndex < allDesktops.length; desktopIndex++) {
                 var desktop = allDesktops[desktopIndex];
@@ -114,7 +121,7 @@ in
             # set the volume correctly. Wonderful.
             # { name = "org.kde.plasma.volume"; }
             # { name = "org.kde.plasma.systemtray"; }
-            { name = "org.kde.plasma.digitalclock"; }
+            # { name = "org.kde.plasma.digitalclock"; }
           ];
         }
         {

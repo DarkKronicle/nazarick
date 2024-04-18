@@ -26,7 +26,7 @@ with lib.nazarick;
     };
     appearance = {
       plasma = {
-        enable = true;
+        enable = false;
       };
     };
     suites = {
@@ -125,7 +125,28 @@ with lib.nazarick;
       firefox
       brave
       qbittorrent
-      vesktop
+      (vesktop.overrideAttrs (oldAttrs: {
+        desktopItems = [
+          (pkgs.makeDesktopItem {
+            name = "vesktop";
+            desktopName = "Vesktop";
+            icon = "discord";
+            startupWMClass = "Vesktop";
+            exec = "vesktop %U";
+            keywords = [
+              "discord"
+              "vencord"
+              "electron"
+              "chat"
+            ];
+            categories = [
+              "Network"
+              "InstantMessaging"
+              "Chat"
+            ];
+          })
+        ];
+      }))
       gnumake
       nazarick.kamite
       matlab

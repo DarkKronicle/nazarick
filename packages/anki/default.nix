@@ -7,6 +7,8 @@
   fetchFromGitHub,
   fetchYarnDeps,
   installShellFiles,
+  makeDesktopItem,
+  copyDesktopItems,
   lame,
   mpv-unwrapped,
   ninja,
@@ -101,6 +103,7 @@ let
       nodejs-slim
       prefetch-yarn-deps
       yarn
+      copyDesktopItems
     ];
 
     configurePhase = ''
@@ -256,7 +259,7 @@ python3.pkgs.buildPythonApplication {
   '';
 
   postInstall = ''
-    install -D -t $out/share/applications qt/bundle/lin/anki.desktop
+    # install -D -t $out/share/applications qt/bundle/lin/anki.desktop
     install -D -t $doc/share/doc/anki README* LICENSE*
     install -D -t $out/share/mime/packages qt/bundle/lin/anki.xml
     install -D -t $out/share/pixmaps qt/bundle/lin/anki.{png,xpm}
@@ -269,6 +272,21 @@ python3.pkgs.buildPythonApplication {
       --prefix PATH ':' "${lame}/bin:${mpv-unwrapped}/bin"
     )
   '';
+
+  desktopItems = [
+    (makeDesktopItem {
+      name = "anki";
+      desktopName = "anki";
+      exec = "env QT_SCALE_ROUNDING_FACTOR_ROUNDING_POLICY=RoundPreferFloor anki %U";
+      icon = "anki";
+      startupWMClass = "Anki";
+      categories = [
+        "Languages"
+        "Education"
+      ];
+      genericName = "Flashcards";
+    })
+  ];
 
   passthru = {
     # cargoLock is reused in anki-sync-server
