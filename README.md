@@ -1,10 +1,23 @@
 # Nazarick, my NixOS Config
 
-Named after the Great Tomb of Nazarick from Overlord (yes I'm a weeb).
+> The world is all yours
+
+Named after the Great Tomb of Nazarick from Overlord (very good show).
 
 ## Structure
 
 This configuration uses [snowfall](https://snowfall.org/) to handle modules and various components.
+
+I've tried to keep this configuration fairly simple, but currently I haven't done a great job
+at properly modularizing various configuration sections. This will hopefully improve soon!
+
+Nix has infected my brain and I've gone a bit insane at declaratively specifying configurations.
+Most notably:
+- Plasma configuration - panels, wallpapers, lockscreen, etc.
+- mpv - plugins, keybinds, shaders, etc.
+
+For some of the more complicated modules I've written a small blog post over at my [garden](https://garden.darkkronicle.com/),
+so maybe give that a check. It also has my basic install instructions.
 
 ## Credits and Inspiration
 

@@ -1,8 +1,14 @@
+# Updated from:
+# https://github.com/NixOS/nixpkgs/blob/66adc1e47f8784803f2deb6cacd5e07264ec2d5c/pkgs/games/anki/default.nix#L279
+# this is kind of jank, so I don't know if I should try to update on nixpkgs. This works well enough for linux
+#
+# At the time of making this, running the bin was harder, so I think this works
 {
   lib,
   stdenv,
 
   buildEnv,
+  
   cargo,
   fetchFromGitHub,
   fetchYarnDeps,

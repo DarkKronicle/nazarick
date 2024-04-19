@@ -1,3 +1,4 @@
+# THIS CURRENTLY DOESN'T RUN PROPERLY WITHOUT STEAM-RUN, check out the note below
 {
   pkgs,
   fetchurl,
@@ -35,7 +36,7 @@ stdenv.mkDerivation {
   # Exception in thread "main" java.lang.NullPointerException: Cannot load from short array because "sun.awt.FontConfiguration.head" is null
   # add musl to fix this
   # https://github.com/AdoptOpenJDK/openjdk-docker/issues/75#issuecomment-442433201
-  # TODO: Since it can't be patched and is instead runtime, I don't know what to do. steam-run works for now
+  # TODO: Since it can't be patched and is instead runtime, I don't know what to do. *steam-run* works for now
 
   buildInputs = [
     libgcc

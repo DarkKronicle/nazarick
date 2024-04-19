@@ -15,6 +15,7 @@ stdenv.mkDerivation {
     sha256 = "sha256:1d2az907c3y48b0ydxhwz4isr3xn9hl5qp8ii1s76l8ld9hkpny0";
   };
 
+  # Without this plasma can't properly find the format
   patches = [ ./metadata.patch ];
 
   installPhase = ''

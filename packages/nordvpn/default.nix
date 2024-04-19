@@ -1,5 +1,5 @@
 # https://github.com/nix-community/nur-combined/blob/master/repos/LuisChDev/pkgs/nordvpn/default.nix#L88
-
+# This was just slightly updated. Works well, just make sure to set user gruops properly
 {
   autoPatchelfHook,
   buildFHSEnvChroot ? false,
