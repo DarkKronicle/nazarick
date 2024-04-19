@@ -27,6 +27,9 @@ with lib.nazarick;
     plasma = {
       enable = true;
       noBorders = true;
+      panels = {
+        enable = true;
+      };
     };
 
     tools = {

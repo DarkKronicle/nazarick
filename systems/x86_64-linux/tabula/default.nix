@@ -24,6 +24,9 @@ with lib.nazarick;
     user = {
       enable = true;
     };
+    sddm = {
+      enable = true;
+    };
     appearance = {
       plasma = {
         enable = false;
