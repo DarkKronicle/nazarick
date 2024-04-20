@@ -85,6 +85,7 @@ in
         "/var/lib/NetworkManager"
         "/var/lib/bluetooth"
         "/etc/NetworkManager"
+        "/var/lib/dnscrypt-proxy"
 
         "/var/lib/upower"
         "/var/lib/nordvpn"

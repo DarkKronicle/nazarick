@@ -114,8 +114,9 @@ in
             "browser.contentblocking.category" = "strict"; # May cause issues
             "browser.link.open_newwindow" = 3; # May cause issues
 
-            "network.trr.uri" = "https://dns.quad9.net/dns-query";
-            "network.trr.custom_uri" = "https://dns.quad9.net/dns-query";
+            # This is handled on system level now
+            # "network.trr.uri" = "https://dns.quad9.net/dns-query"; 
+            # "network.trr.custom_uri" = "https://dns.quad9.net/dns-query";
 
             # Don't touch
             "extensions.blocklist.enabled" = true;

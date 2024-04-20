@@ -200,6 +200,15 @@ in
               };
             }
             { name = "org.kde.plasma.appmenu"; }
+            { name = "org.kde.plasma.panelspacer"; }
+            {
+              name = "org.kde.plasma.digitalclock";
+              config = {
+                Appearance = {
+                  showDate = "false";
+                };
+              };
+            }
           ];
           extraSettings = (
             readFile (

@@ -286,7 +286,7 @@ python3.pkgs.buildPythonApplication {
     (makeDesktopItem {
       name = "anki";
       desktopName = "anki";
-      exec = "env QT_SCALE_ROUNDING_FACTOR_ROUNDING_POLICY=RoundPreferFloor anki %U";
+      exec = "env QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor anki %U";
       icon = "anki";
       startupWMClass = "Anki";
       categories = [
