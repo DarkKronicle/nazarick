@@ -16,6 +16,7 @@
   makeDesktopItem,
   copyDesktopItems,
   lame,
+  fixup-yarn-lock,
   mpv-unwrapped,
   ninja,
   nixosTests,
@@ -108,8 +109,8 @@ let
     nativeBuildInputs = [
       nodejs-slim
       prefetch-yarn-deps
+      fixup-yarn-lock
       yarn
-      copyDesktopItems
     ];
 
     configurePhase = ''
@@ -145,9 +146,11 @@ python3.pkgs.buildPythonApplication {
   inherit cargoDeps yarnOfflineCache;
 
   nativeBuildInputs = [
+    copyDesktopItems
     fakeGit
     offlineYarn
     prefetch-yarn-deps
+    fixup-yarn-lock
 
     cargo
     installShellFiles
