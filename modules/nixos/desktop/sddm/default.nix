@@ -6,15 +6,16 @@
 }:
 with lib;
 let
-  cfg = config.nazarick.sddm;
+  cfg = config.nazarick.desktop.sddm;
 in
 {
-  options.nazarick.sddm = {
+  options.nazarick.desktop.sddm = {
     enable = mkEnableOption "sddm theming";
   };
 
   config = mkIf cfg.enable {
     services.displayManager.sddm = {
+      enable = true;
       theme = "where_is_my_sddm_theme"; # or _qt5
     };
 

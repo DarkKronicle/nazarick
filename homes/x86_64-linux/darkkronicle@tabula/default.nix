@@ -83,9 +83,10 @@ with lib.nazarick;
       neovim = {
         enable = true;
       };
-      anki = {
-        enable = true;
-      };
+    };
+    bundles = {
+      messaging = enabled;
+      document = enabled;
     };
   };
 }

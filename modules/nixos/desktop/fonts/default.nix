@@ -8,10 +8,10 @@
 with lib;
 with lib.nazarick;
 let
-  cfg = config.nazarick.appearance.fonts;
+  cfg = config.nazarick.desktop.fonts;
 in
 {
-  options.nazarick.appearance.fonts = with types; {
+  options.nazarick.desktop.fonts = with types; {
     enable = mkBoolOpt false "Setup default fonts";
   };
 

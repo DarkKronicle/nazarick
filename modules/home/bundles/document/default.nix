@@ -8,18 +8,19 @@
 with lib;
 with lib.nazarick;
 let
-  cfg = config.nazarick.suites.document;
+  cfg = config.nazarick.bundles.document;
 in
 {
-  options.nazarick.suites.document = with types; {
+  options.nazarick.bundles.document = with types; {
     enable = mkBoolOpt false "Enable document editing packages";
   };
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [
+    home.packages = with pkgs; [
       libreoffice-qt
       hunspell # spell check for libreoffice
 
       pdfarranger
+      rnote
     ];
   };
 }

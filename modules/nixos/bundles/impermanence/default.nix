@@ -8,20 +8,16 @@
 with lib;
 with lib.nazarick;
 let
-  cfg = config.nazarick.suites.impermanence;
+  cfg = config.nazarick.bundles.impermanence;
   copy_files = [
-    # "/home/darkkronicle/.config/kwinrc"
-    "/home/darkkronicle/.config/kglobalshortcutsrc"
     "/home/darkkronicle/.config/kconf_updaterc"
-    "/home/darkkronicle/.config/kdeglobals"
-    # "/home/darkkronicle/.config/plasmashellrc"
     "/home/darkkronicle/.config/spectaclerc"
     "/home/darkkronicle/.config/bluedevilglobalrc"
   ];
   jank_files = [ "/home/darkkronicle/.config/plasma-org.kde.plasma.desktop-appletsrc" ];
 in
 {
-  options.nazarick.suites.impermanence = with types; {
+  options.nazarick.bundles.impermanence = with types; {
     enable = mkBoolOpt false "Impermanence suite";
   };
   config = mkIf cfg.enable {

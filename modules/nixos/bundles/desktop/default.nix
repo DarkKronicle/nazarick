@@ -8,15 +8,23 @@
 with lib;
 with lib.nazarick;
 let
-  cfg = config.nazarick.suites.desktop;
+  cfg = config.nazarick.bundles.desktop;
 in
 {
-  options.nazarick.suites.desktop = with types; {
+  options.nazarick.bundles.desktop = with types; {
     enable = mkBoolOpt false "Enable necessary desktop configuration.";
   };
   config = mkIf cfg.enable {
     nazarick = {
-      suites = {
+      desktop = {
+        sddm = {
+          enable = true;
+        };
+        fonts = {
+          enable = true;
+        };
+      };
+      bundles = {
         common = enabled;
       };
       system = {
@@ -26,7 +34,7 @@ in
         bluetooth = {
           enable = true;
         };
-        power = {
+        hardware = {
           enable = true;
         };
         audio = {

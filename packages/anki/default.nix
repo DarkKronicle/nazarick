@@ -8,7 +8,7 @@
   stdenv,
 
   buildEnv,
-  
+
   cargo,
   fetchFromGitHub,
   fetchYarnDeps,

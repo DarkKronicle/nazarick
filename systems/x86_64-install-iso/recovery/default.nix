@@ -67,7 +67,7 @@
   };
 
   nazarick = {
-    suites = {
+    bundles = {
       common = {
         enable = true;
       };
@@ -75,7 +75,7 @@
     user = {
       enable = false;
     };
-    appearance = {
+    desktop = {
       plasma = {
         enable = true;
       };

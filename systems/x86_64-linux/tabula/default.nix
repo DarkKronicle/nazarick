@@ -24,20 +24,20 @@ with lib.nazarick;
     user = {
       enable = true;
     };
-    sddm = {
-      enable = true;
-    };
-    appearance = {
+    desktop = {
       plasma = {
-        enable = false;
+        # Home manager stuff handles specific plasma theming
+        enable = true;
       };
     };
-    suites = {
+    bundles = {
       desktop = enabled;
-      document = enabled;
       impermanence = enabled;
     };
     system = {
+      sops = {
+        enable = true;
+      };
       boot = {
         grub = true;
       };
@@ -89,31 +89,16 @@ with lib.nazarick;
       };
     };
   };
+
   hardware.opengl.extraPackages = with pkgs; [
     intel-vaapi-driver
     libvdpau-va-gl
     intel-media-driver
   ];
 
-  # xdg.autostart.enable = false;
-
-  # sops.defaultSopsFormat = "yaml";
-  # sops.age.keyFile = "/home/darkkronicle/.config/sops/age/keys.txt";
-  sops = {
-    defaultSopsFile = "${builtins.toString inputs.mysecrets}/secrets.yaml";
-    age = {
-      keyFile = "/persist/system/var/lib/sops-nix/keys.txt";
-    };
-  };
-
   networking = {
     networkmanager.enable = true;
   };
-
-  services.xserver.enable = true;
-
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
 
   programs.java.enable = true;
   programs.dconf.enable = true;
@@ -125,32 +110,8 @@ with lib.nazarick;
       git
       git-credential-oauth
       gcc
-      firefox
       brave
       qbittorrent
-      # https://github.com/Faupi/nixos-configs/blob/aea7c558de0e51443ea6d9bce4ba476ba638fed7/home-manager/cfgs/shared/vesktop/default.nix#L9-L18
-      (vesktop.overrideAttrs (oldAttrs: {
-        desktopItems = [
-          (pkgs.makeDesktopItem {
-            name = "vesktop";
-            desktopName = "Vesktop";
-            icon = "discord";
-            startupWMClass = "Vesktop";
-            exec = "vesktop %U";
-            keywords = [
-              "discord"
-              "vencord"
-              "electron"
-              "chat"
-            ];
-            categories = [
-              "Network"
-              "InstantMessaging"
-              "Chat"
-            ];
-          })
-        ];
-      }))
       gnumake
       nazarick.kamite
       matlab
@@ -170,7 +131,7 @@ with lib.nazarick;
 
       wl-clipboard
       waveforms
-      mecab
+      mecab # TODO: Anki this up
       bandwhich
       yt-dlp
 
@@ -188,8 +149,6 @@ with lib.nazarick;
       rust-analyzer-nightly
 
       filezilla
-      sops
-      ssh-to-age
       gtrash
 
       kdePackages.partitionmanager
@@ -197,9 +156,6 @@ with lib.nazarick;
       compsize
     ]
     ++ [ inputs.faerber.packages.x86_64-linux.faerber ];
-
-  powerManagement.enable = true;
-  services.system76-scheduler.settings.cfsProfiles.enable = true;
 
   environment.shells = with pkgs; [ nushell ];
 
