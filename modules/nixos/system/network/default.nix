@@ -26,20 +26,18 @@ in
         ipv4_servers = true;
         ipv6_servers = true;
         block_ipv6 = false;
-
         doh_servers = true;
 
+        # I had some issues here, and it turns out these 2 both have to be on
+        # for quad9
+        require_nofilter = false; # quad9 has some nice security filters
         require_dnssec = true;
-        server_names = [
-          "quad9-dnscrypt-ip4-filter-pri"
-          "quad9-dnscrypt-ip6-filter-pri"
-          "doh-ip4-port443-filter-pri"
-          "doh-ip6-port443-filter-pri"
-          "doh-ip4-port5053-filter-pri"
-          "doh-ip6-port5053-filter-pri"
-        ];
+
         sources.quad9-resolvers = {
-          urls = [ "https://www.quad9.net/quad9-resolvers.md" ];
+          urls = [
+            "https://quad9.net/dnscrypt/quad9-resolvers.md"
+            "https://raw.githubusercontent.com/Quad9DNS/dnscrypt-settings/main/dnscrypt/quad9-resolvers.md"
+          ];
           minisign_key = "RWQBphd2+f6eiAqBsvDZEBXBGHQBJfeG6G+wJPPKxCZMoEQYpmoysKUN";
           cache_file = "/var/lib/dnscrypt-proxy/quad9-resolvers.md";
           prefix = "quad9-";
