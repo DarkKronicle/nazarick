@@ -23,6 +23,8 @@ in
     services.dnscrypt-proxy2 = {
       enable = true;
       settings = {
+        # TODO: Maybe setup cloaking for local servers?
+        # TODO: nordvpn requires dns server to be set to 127.0.0.1 to use dnscrypt, so maybe figure out how to do that declaritivaly?
         ipv4_servers = true;
         ipv6_servers = true;
         block_ipv6 = false;

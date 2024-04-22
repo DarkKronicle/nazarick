@@ -46,7 +46,7 @@ in
                 var desktop = allDesktops[desktopIndex];
                 desktop.wallpaperPlugin = "org.kde.slideshow";
                 desktop.currentConfigGroup = Array("Wallpaper", "org.kde.slideshow", "General");
-                desktop.writeConfig("SlidePaths", "/home/darkkronicle/Pictures/wallpapers");
+                desktop.writeConfig("SlidePaths", "${pkgs.nazarick.wallpapers}/share/wallpapers");
                 desktop.writeConfig("SlideInterval", "3600"); // Seconds
             }
           '';

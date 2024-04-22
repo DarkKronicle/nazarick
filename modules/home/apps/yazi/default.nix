@@ -110,6 +110,8 @@ in
       settings = {
         preview = {
           cache_dir = "/home/darkkronicle/.cache/yazi";
+          max_width = 1024;
+          max_height = 1920;
         };
         opener = {
           open = [
