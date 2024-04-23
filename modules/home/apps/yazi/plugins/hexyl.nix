@@ -6,29 +6,27 @@
   ...
 }:
 let
-  name = "starship.yazi";
+  name = "hexyl.yazi";
 in
 {
   name = name;
-  init_lua_text = ''require("starship"):setup()'';
 
   package = stdenv.mkDerivation {
     pname = name;
     version = "2024-04-23";
     src = fetchFromGitHub {
-      owner = "Rolv-Apneseth";
-      repo = "starship.yazi";
-      rev = "6197e4cca4caed0121654079151632f6abcdcae9";
-      hash = "sha256-oHoBq7BESjGeKsaBnDt0TXV78ggGCdYndLpcwwQ8Zts=";
+      owner = "Reledia";
+      repo = "hexyl.yazi";
+      rev = "1c6007c96af97704b4ebb877a8385fc034f8b44a";
+      hash = "sha256-/quz3xaCS0NxOdnGLz1wutbDiXp2Yr2TRAZF9XVJzdk=";
     };
-
     # Patch with the actual binary
     installPhase = ''
       runHook preInstall
 
       mkdir -p $out/share/yazi/plugins/${name}
       cp -a $src/* $out/share/yazi/plugins/${name}
-      sed -i -e 's,Command("starship"),Command("${pkgs.starship}/bin/starship"),g' $out/share/yazi/plugins/${name}/init.lua
+      sed -i -e 's,Command("hexyl"),Command("${pkgs.hexyl}/bin/hexyl"),g' $out/share/yazi/plugins/${name}/init.lua
 
       runHook postInstall
     '';

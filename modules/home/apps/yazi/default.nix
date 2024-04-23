@@ -20,7 +20,12 @@ let
   };
 
   readPlugin = file: pkgs.callPackage file { };
-  plugins = lib.forEach [ ./plugins/starship.nix ] readPlugin;
+  plugins = lib.forEach [
+    ./plugins/starship.nix
+    ./plugins/hexyl.nix
+    ./plugins/ouch.nix
+    ./plugins/exiftool.nix
+  ] readPlugin;
 in
 {
   options.nazarick.apps.yazi = {
@@ -121,6 +126,45 @@ in
           show_hidden = true;
           sort_by = "natural";
           sort_dir_first = true;
+        };
+        plugin = {
+          prepend_previewers = [
+            # Archive previewer
+            {
+              mime = "application/*zip";
+              run = "ouch";
+            }
+            {
+              mime = "application/x-tar";
+              run = "ouch";
+            }
+            {
+              mime = "application/x-bzip2";
+              run = "ouch";
+            }
+            {
+              mime = "application/x-7z-compressed";
+              run = "ouch";
+            }
+            {
+              mime = "application/x-rar";
+              run = "ouch";
+            }
+            {
+              mime = "application/x-xz";
+              run = "ouch";
+            }
+            {
+              mime = "audio/*";
+              run = "exifaudio";
+            }
+          ];
+          append_previewers = [
+            {
+              name = "*";
+              run = "hexyl";
+            }
+          ];
         };
       };
     };

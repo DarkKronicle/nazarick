@@ -6,20 +6,19 @@
   ...
 }:
 let
-  name = "starship.yazi";
+  name = "ouch.yazi";
 in
 {
   name = name;
-  init_lua_text = ''require("starship"):setup()'';
 
   package = stdenv.mkDerivation {
     pname = name;
     version = "2024-04-23";
     src = fetchFromGitHub {
-      owner = "Rolv-Apneseth";
-      repo = "starship.yazi";
-      rev = "6197e4cca4caed0121654079151632f6abcdcae9";
-      hash = "sha256-oHoBq7BESjGeKsaBnDt0TXV78ggGCdYndLpcwwQ8Zts=";
+      owner = "ndtoan96";
+      repo = "ouch.yazi";
+      rev = "694d149be5f96eaa0af68d677c17d11d2017c976";
+      hash = "sha256-J3vR9q4xHjJt56nlfd+c8FrmMVvLO78GiwSNcLkM4OU=";
     };
 
     # Patch with the actual binary
@@ -28,7 +27,7 @@ in
 
       mkdir -p $out/share/yazi/plugins/${name}
       cp -a $src/* $out/share/yazi/plugins/${name}
-      sed -i -e 's,Command("starship"),Command("${pkgs.starship}/bin/starship"),g' $out/share/yazi/plugins/${name}/init.lua
+      sed -i -e 's,Command("ouch"),Command("${pkgs.ouch}/bin/ouch"),g' $out/share/yazi/plugins/${name}/init.lua
 
       runHook postInstall
     '';
