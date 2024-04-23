@@ -18,6 +18,9 @@ let
     rev = "9cc38276a6d9010de09303c8ff170f4df717ba88";
     hash = "sha256-QpQnOmEeIdUd8OeY3u2BpnfJXz/7v0GbspV475p1gBE=";
   };
+
+  readPlugin = file: pkgs.callPackage file { };
+  plugins = lib.forEach [ ./plugins/starship.nix ] readPlugin;
 in
 {
   options.nazarick.apps.yazi = {
@@ -31,41 +34,28 @@ in
       recursive = true;
     };
 
-    # TODO: probably update to this https://github.com/Rolv-Apneseth/starship.yazi/tree/main
-    # will need to properly wrap yazi which will be somewhat annoying
-    home.file.".config/yazi/plugins/starship.yazi/init.lua".text = ''
-          local save = ya.sync(function(st, cwd, output)
-      	    if cx.active.current.cwd == Url(cwd) then
-      		    st.output = output
-      		    ya.render()
-      	    end
-          end)
-
-          return {
-      	    setup = function(st)
-      		    Header.cwd = function()
-      			    local cwd = cx.active.current.cwd
-      			    if st.cwd ~= cwd then
-      				    st.cwd = cwd
-      				    ya.manager_emit("plugin", { st._name, args = ya.quote(tostring(cwd)) })
-      			    end
-
-      			    return ui.Line.parse(st.output or "")
-      		    end
-      	    end,
-
-      	    entry = function(_, args)
-      		    local output = Command("${pkgs.starship}/bin/starship"):arg("prompt"):cwd(args[1]):env("STARSHIP_SHELL", ""):output()
-      		    if output then
-      			    save(args[1], output.stdout:gsub("^%s+", ""))
-      		    end
-      	    end,
-          }
-    '';
-
-    home.file.".config/yazi/init.lua".text = ''
-      require("starship"):setup()
-    '';
+    xdg.configFile = lib.mkMerge (
+      (lib.forEach plugins (plugin: {
+        "yazi/plugins/${plugin.name}" = {
+          enable = true;
+          recursive = true;
+          source = "${plugin.package}/share/yazi/plugins/${plugin.name}";
+        };
+      }))
+      ++ [
+        {
+          "yazi/init.lua" = {
+            enable = true;
+            # This can probably be automatically concatenated with home manager, but /shrug. Good practice for me.
+            text = lib.concatStringsSep "\n" (
+              lib.forEach (builtins.filter (plugin: builtins.hasAttr "init_lua_text" plugin) plugins) (
+                plugin: plugin.init_lua_text
+              )
+            );
+          };
+        }
+      ]
+    );
 
     programs.yazi = {
       enable = true;

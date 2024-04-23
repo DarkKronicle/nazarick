@@ -19,8 +19,6 @@ stdenv.mkDerivation {
 
   phases = [ "installPhase" ];
 
-  # TODO: Do I *have* to declare srcs?
-  srcs = lib.forEach finalWallpapers (wp: wp.src);
   dontUnpack = true;
   sourceRoot = ".";
 

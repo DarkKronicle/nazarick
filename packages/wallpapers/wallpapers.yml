@@ -42,6 +42,8 @@
     url: https://artfiles.alphacoders.com/115/115215.jpg
     sha256: 1slpxm6rssrf85chf40cq1jzjav7xif20kg2w5phy95lsh2w1w8i
     name: 9Wn7inkIGXUvVVl2NP79RwRLM.jpg
+  themes:
+  - mocha
   tags:
   - overlord
   - closeup
@@ -55,6 +57,7 @@
     name: 0qboq6mf2G1iAWoGnhw82jE5i.png
   tags:
   - overlord
+  - albedo
   - closeup
   - weaboo
   - grayscale
@@ -72,6 +75,9 @@
     url: https://images8.alphacoders.com/562/562172.jpg
     sha256: 1xqrj33yxjnpcw4421jh7v184vw5i9606ijgykpslgz4ncw2z4fy
     name: su63AfDRNu6kNO9U4wUiHlrHO.jpg
+  themes:
+  - none
+  - mocha
   tags:
   - kill_la_kill
   - landscape
@@ -90,6 +96,8 @@
     url: https://images4.alphacoders.com/690/690654.jpg
     sha256: 12asazag4hawvkw3v2ijbff4fj1c7wvcaha1xid6zafg0bxlml37
     name: lOcvhsVXjsMtX8BnYMnNGqo6b.jpg
+  themes:
+  - mocha
   tags:
   - sky
   - clouds
@@ -245,15 +253,6 @@
   - cool
   - cool_art
 - src:
-    url: https://images8.alphacoders.com/134/1345127.jpeg
-    sha256: 1misl1jybkwl0cayf4iwyyfinjq39n9xy50fy8r14j79akgf8n62
-    name: jwoX6M0W7E2IqguOAmWeEQAGk.jpeg
-  tags:
-  - frieren
-  - fern
-  - forest
-  - cool
-- src:
     url: https://images.alphacoders.com/133/1338277.png
     sha256: 1s5sg786wimbky29izjlrhpxvnkyr65zcj0qjhklplwq2ksx0fdg
     name: 1auEd4OkLaanpKAfdJGZjzV2z.png
@@ -266,6 +265,8 @@
     url: https://images6.alphacoders.com/104/1042578.png
     sha256: 0g7qm0508l9vdxgl0h9pf6sqyn3nb780az5hcf1znxfpfcx6n6lx
     name: tYTY1nIfitsLSgLfdM2GdC2eY.png
+  themes:
+  - mocha
   tags:
   - demon_slayer
   - shinobu
@@ -285,6 +286,8 @@
     url: https://images.alphacoders.com/131/1319583.png
     sha256: 1pyry9jrf84n46s7x46airj6b9fgk1k689p4xzba6yvw5bz8cmni
     name: FCzsCUd7VvRIZYxZdBOM4EOvb.png
+  themes:
+  - mocha
   tags:
   - demon_slayer
   - black
@@ -330,6 +333,8 @@
     url: https://w.wallhaven.cc/full/kx/wallhaven-kx8wx6.jpg
     sha256: 16w1kxafgk6mxy5saf8n60hg741d3v5rfd2hz0a9whyp5i77fh72
     name: VFc5ymASGUcuz2fLTJd0k6s3z.jpg
+  themes:
+  - mocha
   tags:
   - bocchi
   - dark
@@ -382,6 +387,8 @@
     url: https://w.wallhaven.cc/full/d6/wallhaven-d62erm.jpg
     sha256: 076dzdly156sa2ld75z1y41v94n97511gl8p6z97iminyr29m9my
     name: A9TlNpyiBoBIP7w29E7fatYFv.jpg
+  themes:
+  - mocha
   desc: frieren with a purple background, holding wand
   tags:
   - frieren
@@ -419,6 +426,8 @@
     sha256: 1dhp2x0w2cdw54mniwil0wmcdwf88n2kvhbanrm56yp1ksih32gw
     name: W1weNSA1h6QKYNf1EOjc2gHcC.jpg
   desc: fern and frieren around a campfire
+  themes:
+  - mocha
   tags:
   - frieren
   - fern
@@ -438,6 +447,8 @@
     sha256: 1a6nw6r0aq25b37qm98ap2yz0mrf5681frq6vhbglrmh50136yrg
     name: ZhunejZAO654BnCvWT1aN1p0M.jpg
   desc: shinobu in front of a pink background
+  themes:
+  - mocha
   tags:
   - demon_slayer
   - shinobu
@@ -455,6 +466,8 @@
     sha256: 1nff2rp1f27w6iqgppr3hn38h8sn7gvpkmw4a5nnrhqpyjc9d1di
     name: AZuoQUeXzZRr2yDwdMb2ce4nZ.jpeg
   desc: gojo in a snowy forest
+  themes:
+  - mocha
   tags:
   - jjk
   - cool
@@ -464,6 +477,8 @@
     sha256: 0f37dnp1y7slnkagvql89m4489b5hxd1ryzdy0v37ljnbv42s57a
     name: MlIWIx9XpzTovPxdYEXDy5wFF.jpg
   desc: sukuna standing over a city
+  themes:
+  - mocha
   tags:
   - jjk
   - sukuna
@@ -489,6 +504,8 @@
     sha256: 095qyqx774nndxh475i9cp0k4sl09fgwzygypgrswzdnkbh0bhk5
     name: MhVttjdedREzdeBAoCDl4nW5R.jpg
   desc: celeste main background
+  themes:
+  - mocha
   tags:
   - celeste
   - cool
@@ -497,6 +514,8 @@
     url: https://images7.alphacoders.com/653/653687.png
     sha256: 0cqkh7385hprbzwxgnclpfcvq8ysazc9rxf5xq4dg1flrrig81vr
     name: 9rn3w7jcX9Wilvn4Th3V9bzoI.png
+  themes:
+  - mocha
   tags:
   - overlord
   - shaltear
@@ -508,6 +527,8 @@
     url: https://preview.redd.it/y8ecf7lv1zn51.png?width=2048&format=png&auto=webp&s=3573b68ba76f66410caf2ea7ecc10e9150146edb
     sha256: sha256-yMRBMSXAYekTiteY82dYn1hzFmncasro/k2Oh+6Epc4=
     name: 9gHUEv7sawGyHnJIwVNsruwme.png
+  themes:
+  - mocha
   tags:
   - overlord
   - dark
