@@ -38,17 +38,8 @@ in
           hiding = "autohide";
           floating = true;
           screen = 0;
-          # TODO: This is not a panel
           extraSettings = ''
             panel.lengthMode = "fit";
-            let allDesktops = desktops();
-            for (var desktopIndex = 0; desktopIndex < allDesktops.length; desktopIndex++) {
-                var desktop = allDesktops[desktopIndex];
-                desktop.wallpaperPlugin = "org.kde.slideshow";
-                desktop.currentConfigGroup = Array("Wallpaper", "org.kde.slideshow", "General");
-                desktop.writeConfig("SlidePaths", "${pkgs.nazarick.wallpapers}/share/wallpapers");
-                desktop.writeConfig("SlideInterval", "3600"); // Seconds
-            }
           '';
           widgets = [
             {

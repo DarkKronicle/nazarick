@@ -51,6 +51,10 @@ in
         iconTheme = "Fluent-dark";
         colorScheme = "CatppuccinMochaMauve";
         cursorTheme = "Catppuccin-Mocha-Mauve";
+        wallpaperSlideShow = {
+          interval = 3600; # Seconds
+          path = [ "${pkgs.nazarick.wallpapers}/share/wallpapers" ];
+        };
       };
 
       # hotkeys.commands = {

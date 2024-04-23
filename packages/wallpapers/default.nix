@@ -7,7 +7,7 @@
   ...
 }:
 let
-  wallpapers = (lib.importJSON ./wallpapers.json);
+  wallpapers = ((lib.nazarick.importYAML pkgs) ./wallpapers.yml);
 in
 stdenv.mkDerivation {
   pname = "system-wallpapers";
