@@ -9,20 +9,31 @@
 }:
 let
   wallpapers = ((lib.nazarick.importYAML pkgs) ./wallpapers.yml);
+  wallpaperWrapper = import ./wallpaper.nix;
+  packageWallpaper = wallpaper: (pkgs.callPackage (wallpaperWrapper wallpaper) { inputs = inputs; });
+  finalWallpapers = lib.forEach wallpapers (w: packageWallpaper w);
 in
 stdenv.mkDerivation {
   pname = "system-wallpapers";
   version = "0.0.1";
 
-  srcs = lib.forEach wallpapers (data: (fetchurl data.src));
+  phases = [ "installPhase" ];
+
+  # TODO: Do I *have* to declare srcs?
+  srcs = lib.forEach finalWallpapers (wp: wp.src);
   dontUnpack = true;
   sourceRoot = ".";
 
-  buildPhase = ''
-    runHook preBuild
+  installPhase = ''
+    runHook preInstall
 
-    ${pkgs.nushell}/bin/nu ${./build_wallpapers.nu} ${inputs.faerber.packages.x86_64-linux.faerber}/bin/faerber $out ${./wallpapers.yml} $srcs
+    mkdir -p $out/share/wallpapers
+    ${lib.concatStringsSep "\n" (
+      lib.forEach finalWallpapers (wpPkg: ''
+        ln -s ${wpPkg}/share/wallpapers/* $out/share/wallpapers
+      '')
+    )}
 
-    runHook postBuild
+    runHook postInstall
   '';
 }
