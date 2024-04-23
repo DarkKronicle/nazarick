@@ -4,6 +4,7 @@
   pkgs,
   fetchurl,
   stdenv,
+  inputs,
   ...
 }:
 let
@@ -17,19 +18,11 @@ stdenv.mkDerivation {
   dontUnpack = true;
   sourceRoot = ".";
 
-  # https://discourse.nixos.org/t/cant-copy-more-that-one-file-to-out-in-pkgs-runcommand-permission-denied/11803
-  # a issue I had with cp, no-preserve is needed!
-  installPhase = ''
-    runHook preInstall
+  buildPhase = ''
+    runHook preBuild
 
-    mkdir -p $out/share/wallpapers
+    ${pkgs.nushell}/bin/nu ${./build_wallpapers.nu} ${inputs.faerber.packages.x86_64-linux.faerber}/bin/faerber $out ${./wallpapers.yml} $srcs
 
-    IFS=' '
-    for i in $srcs; do
-      local tgt="$out/share/wallpapers/$(stripHash $i)"
-      cp --reflink=always --no-preserve=mode,ownership $i $tgt
-    done
-
-    runHook postInstall
+    runHook postBuild
   '';
 }
