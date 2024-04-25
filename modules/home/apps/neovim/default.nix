@@ -174,14 +174,17 @@ in
     # I'm definitely interested in fully packaging my neovim config,
     # but for now I can meet in the middle and have my LSP stuff be defined here.
 
-    home.file.".config/nvim/lua/core/binaries.lua".text = ''
-      return {
-        lsp = {
-          lua_ls = "${pkgs.lua-language-server}/bin/lua-language-server",
-          texlab = "${pkgs.texlab}/bin/texlab",
-          svls = "${pkgs.svls}/bin/svls",
-          nil_ls = "${pkgs.nil}/bin/nil",
-        },
+    # So, luajit will cache lua files. The linked file below will never change it's 
+    # metadata (time), so luajit will never recompile it. So json it is!
+
+    home.file.".local/share/nvim/binaries_data.json".text = ''
+      {
+        "lsp": {
+          "lua_ls": "${pkgs.lua-language-server}/bin/lua-language-server",
+          "texlab": "${pkgs.texlab}/bin/texlab",
+          "svls": "${pkgs.svls}/bin/svls",
+          "nil_ls": "${pkgs.nil}/bin/nil"
+        }
       }
     '';
 

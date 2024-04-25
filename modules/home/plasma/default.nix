@@ -122,7 +122,6 @@ in
         }
         (mkIf cfg.noBorders {
 
-          "kwinrulesrc"."General"."count".value = 1;
           "kwinrulesrc"."1"."Description".value = "Remove Bars";
           "kwinrulesrc"."1"."noborder".value = true;
           "kwinrulesrc"."1"."noborderrule".value = 2;
@@ -130,6 +129,7 @@ in
           "kwinrulesrc"."1"."wmclass".value = ".*";
           "kwinrulesrc"."1"."wmclasscomplete".value = true;
           "kwinrulesrc"."1"."wmclassmatch".value = 3;
+
           "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."Description".value = "Remove Bars";
           "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."noborder".value = true;
           "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."noborderrule".value = 2;
@@ -137,6 +137,22 @@ in
           "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."wmclass".value = ".*";
           "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."wmclasscomplete".value = true;
           "kwinrulesrc"."20f017d9-9443-48f9-a7ed-939eaf41284e"."wmclassmatch".value = 3;
+
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."Description".value = "Mumble settings";
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."above".value = true;
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."aboverule".value = 3;
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."opacityactiverule".value = 2;
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."opacityinactive".value = 70;
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."opacityinactiverule".value = 2;
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."size".value = "250,435";
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."sizerule".value = 3;
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."types".value = 1;
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."wmclass".value = "mumble info.mumble.Mumble";
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."wmclasscomplete".value = true;
+          "kwinrulesrc"."9ea16ad3-5d63-4746-8e63-cd888f14951b"."wmclassmatch".value = 1;
+
+          "kwinrulesrc"."General"."count".value = 2;
+          "kwinrulesrc"."General"."rules".value = "1,9ea16ad3-5d63-4746-8e63-cd888f14951b";
         })
       ];
 
