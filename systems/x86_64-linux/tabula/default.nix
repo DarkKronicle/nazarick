@@ -134,6 +134,7 @@ with lib.nazarick;
       mecab # TODO: Anki this up
       bandwhich
       yt-dlp
+      ledger
 
       (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
       # TODO: add my catppuccin theme or make a repo
@@ -154,6 +155,16 @@ with lib.nazarick;
       kdePackages.partitionmanager
       dust
       compsize
+      (nazarick.tomato-c.override {
+        # Home manager simlinks mpv configs, so this forces a fresh config.
+        # This is mainly an issue with sounds because it pulls up a window in my config
+        mpv = wrapMpv mpv-unwrapped {
+          extraMakeWrapperArgs = [
+            "--add-flags"
+            "--config-dir=/home/darkkronicle/.config/mpv2"
+          ];
+        };
+      })
     ]
     ++ [ inputs.faerber.packages.x86_64-linux.faerber ];
 

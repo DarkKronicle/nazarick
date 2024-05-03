@@ -411,6 +411,7 @@ source ~/.config/nushell/completions/tldr.nu
 
 alias v = nvim
 alias neovim = nvim
+alias zz = systemd-inhibit sleep infinity
 
 def --env fuck [] {
     let cmd = (history | last 1 | get 0 | get command)
