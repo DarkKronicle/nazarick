@@ -121,6 +121,9 @@ with lib.nazarick;
       rnote
       prismlauncher
 
+      rust-analyzer
+      devenv
+
       nazarick.anki
 
       qalculate-qt

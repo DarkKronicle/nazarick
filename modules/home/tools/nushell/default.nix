@@ -75,6 +75,12 @@ in
         environmentVariables = config.nazarick.home.environmentVariables;
       };
 
+      direnv = {
+        enable = true;
+        enableNushellIntegration = true;
+        nix-direnv.enable = true;
+      };
+
       starship = {
         enable = true;
         enableNushellIntegration = true;
