@@ -12,10 +12,13 @@ with lib.nazarick;
   nazarick = {
     plasma = {
       enable = true;
+      panels = {
+        enable = true;
+      };
     };
     tools = {
       nushell = {
-        enable = false;
+        enable = true;
       };
     };
 

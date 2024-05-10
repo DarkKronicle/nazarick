@@ -71,6 +71,9 @@ with lib.nazarick;
       yazi = {
         enable = true;
       };
+      btop = {
+        enable = true;
+      };
       thunderbird = {
         enable = true;
       };

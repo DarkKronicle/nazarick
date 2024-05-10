@@ -116,7 +116,6 @@ with lib.nazarick;
       nazarick.kamite
       matlab
       playerctl
-      nheko
       nazarick.ltspice
       rnote
       prismlauncher

@@ -198,6 +198,7 @@ in
 
         ".local/share/Trash"
         ".local/share/zoxide"
+        ".local/share/direnv"
 
         ".config/nordvpn"
         ".config/borg"

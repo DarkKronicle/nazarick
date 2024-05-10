@@ -18,7 +18,6 @@
     rsync
     firefox
     yazi
-    font-manager
     libqalculate
     qalculate-qt
 
@@ -46,7 +45,6 @@
 
     # Automatically login as nixos.
     displayManager = {
-      sddm.enable = true;
       autoLogin = {
         enable = true;
         user = "nixos";
@@ -79,17 +77,19 @@
       plasma = {
         enable = true;
       };
+      fonts = {
+        enable = true;
+      };
+      sddm = {
+        enable = true;
+      };
+    };
+    system = {
+      network = {
+        enable = true;
+      };
     };
   };
-
-  fonts.packages = with pkgs; [
-    inter
-    noto-fonts
-    noto-fonts-cjk
-    noto-fonts-emoji
-    noto-fonts-cjk-sans
-    (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
-  ];
 
   powerManagement.enable = true;
   hardware.pulseaudio.enable = true;
@@ -108,6 +108,8 @@
     ''
       mkdir -p ${desktopDir}
       chown nixos ${homeDir} ${desktopDir}
+
+      cp -f ${./mount.sh} ${desktopDir + "mount.sh"}
 
       ln -sfT ${manualDesktopFile} ${desktopDir + "nixos-manual.desktop"}
       ln -sfT ${pkgs.gparted}/share/applications/gparted.desktop ${desktopDir + "gparted.desktop"}

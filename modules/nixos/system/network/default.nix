@@ -58,6 +58,9 @@ in
       ReadWritePaths = "/var/lib/dnscrypt-proxy";
     };
 
+    # Make sure this directory exists so the service doesn't fail on boot
+    systemd.tmpfiles.rules = [ "d /var/lib/dnscrypt-proxy 0755 root root -" ];
+
     networking.firewall = mkMerge [
       {
         enable = true;

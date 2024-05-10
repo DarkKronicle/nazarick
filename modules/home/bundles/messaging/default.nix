@@ -17,8 +17,10 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ nheko ];
 
-    nazarick.apps.vesktop = mkOverride 500 enabled;
+    nazarick.apps = {
+      vesktop = mkOverride 500 enabled;
+      nheko = mkOverride 500 enabled;
+    };
   };
 }
