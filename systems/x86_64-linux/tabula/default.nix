@@ -52,6 +52,7 @@ in
         kdeconnect = true;
         nordvpn = true;
       };
+      memory = enabled;
     };
     apps = {
       steam = {
