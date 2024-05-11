@@ -5,7 +5,9 @@
   inputs,
   ...
 }:
-with lib.nazarick;
+let
+  inherit (lib.nazarick) enabled;
+in
 {
   imports = [ inputs.persist-retro.nixosModules.home-manager.persist-retro ];
 

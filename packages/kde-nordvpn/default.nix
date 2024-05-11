@@ -29,10 +29,10 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "Simple Plasma Applet for the official NordVPN linux client";
     homepage = "https://github.com/korapp/plasma-nordvpn";
-    license = licenses.gpl3Plus;
-    platforms = platforms.linux;
+    license = lib.licenses.gpl3Plus;
+    platforms = lib.platforms.linux;
   };
 }

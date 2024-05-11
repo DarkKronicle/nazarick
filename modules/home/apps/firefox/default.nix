@@ -6,12 +6,9 @@
   ...
 }:
 
-with lib;
-with lib.nazarick;
 let
-  inherit (lib) types mkEnableOption mkIf;
-  inherit (lib.nazarick) mkOpt enabled;
-
+  inherit (lib) mkEnableOption mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
   cfg = config.nazarick.apps.firefox;
 in
 {

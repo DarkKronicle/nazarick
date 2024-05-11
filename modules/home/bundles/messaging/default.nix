@@ -6,9 +6,10 @@
   ...
 }:
 
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.nazarick) enabled;
+
   cfg = config.nazarick.bundles.messaging;
 in
 {
@@ -19,8 +20,8 @@ in
   config = mkIf cfg.enable {
 
     nazarick.apps = {
-      vesktop = mkOverride 500 enabled;
-      nheko = mkOverride 500 enabled;
+      vesktop = lib.mkOverride 500 enabled;
+      nheko = lib.mkOverride 500 enabled;
     };
   };
 }

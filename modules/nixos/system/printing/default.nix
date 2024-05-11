@@ -5,13 +5,13 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
   cfg = config.nazarick.system.printing;
 in
 {
-  options.nazarick.system.printing = with types; {
+  options.nazarick.system.printing = {
     enable = mkBoolOpt false "Enable printing support.";
   };
 

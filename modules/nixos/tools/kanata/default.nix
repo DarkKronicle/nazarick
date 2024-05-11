@@ -5,13 +5,14 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
+
   cfg = config.nazarick.tools.kanata;
 in
 {
-  options.nazarick.tools.kanata = with types; {
+  options.nazarick.tools.kanata = {
     enable = mkBoolOpt false "Enable kanta configuration.";
   };
   config = mkIf cfg.enable {

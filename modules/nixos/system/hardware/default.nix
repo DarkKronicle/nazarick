@@ -5,13 +5,14 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf mkOverride;
+  inherit (lib.nazarick) mkBoolOpt;
+
   cfg = config.nazarick.system.hardware;
 in
 {
-  options.nazarick.system.hardware = with types; {
+  options.nazarick.system.hardware = {
     enable = mkBoolOpt false "Enable misc hardware settings";
     tlp = mkBoolOpt true "Use TLP for power management instead of power-profiles-daemon";
     thermald = mkBoolOpt true "Thermald for heat management (CPU)";

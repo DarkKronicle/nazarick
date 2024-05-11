@@ -5,14 +5,15 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
+
   cfg = config.nazarick.tools.cli;
 in
 {
   # TODO: Move this to a suite
-  options.nazarick.tools.cli = with types; {
+  options.nazarick.tools.cli = {
     enable = mkBoolOpt false "Enable base cli tools. There's also homemanager config with nushell";
   };
   config = mkIf cfg.enable {

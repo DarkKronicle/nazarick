@@ -5,13 +5,13 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
   cfg = config.nazarick.bundles.document;
 in
 {
-  options.nazarick.bundles.document = with types; {
+  options.nazarick.bundles.document = {
     enable = mkBoolOpt false "Enable document editing packages";
   };
   config = mkIf cfg.enable {

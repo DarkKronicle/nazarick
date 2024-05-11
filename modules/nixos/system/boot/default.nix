@@ -5,13 +5,13 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
   cfg = config.nazarick.system.boot;
 in
 {
-  options.nazarick.system.boot = with types; {
+  options.nazarick.system.boot = {
     grub = mkBoolOpt false "Enable grub bootloader.";
   };
   config = mkIf cfg.grub {

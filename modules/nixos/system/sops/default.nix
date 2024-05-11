@@ -5,8 +5,9 @@
   inputs,
   ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption;
+
   cfg = config.nazarick.system.sops;
 in
 {

@@ -5,8 +5,8 @@
   ...
 }:
 
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.nazarick.apps.vesktop;
 in
 {

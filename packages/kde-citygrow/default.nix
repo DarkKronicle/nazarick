@@ -29,10 +29,10 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "Plasma Wallpaper Plugin (also Screen Lock) with growing city animation";
     homepage = "https://github.com/HobbyBlobby/PlasmaWallpaper_CityGrow";
-    license = licenses.mit;
-    platforms = platforms.linux;
+    license = lib.licenses.mit;
+    platforms = lib.platforms.linux;
   };
 }

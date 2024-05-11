@@ -6,13 +6,13 @@
   inputs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
   cfg = config.nazarick.tools.nordvpn;
 in
 {
-  options.nazarick.tools.nordvpn = with types; {
+  options.nazarick.tools.nordvpn = {
     enable = mkBoolOpt false "Enable nordvpn.";
   };
   config = mkIf cfg.enable {

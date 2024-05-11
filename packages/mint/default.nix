@@ -54,10 +54,10 @@ in
       cp ${./Cargo.lock} Cargo.lock
     '';
 
-    meta = with lib; {
+    meta = {
       description = "Deep Rock Galactic mod patcher";
       maintainers = [ ];
-      license = licenses.mit;
+      license = lib.licenses.mit;
       homepage = "https://github.com/trumank/mint";
     };
 

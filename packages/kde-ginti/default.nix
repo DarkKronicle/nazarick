@@ -28,10 +28,10 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = " Plasma 6 applet in order to show virtual desktops in a minimal way, Gnome style";
     homepage = "https://github.com/dhruv8sh/plasma6-desktopindicator-gnome";
-    license = licenses.gpl3Plus;
-    platforms = platforms.linux;
+    license = lib.licenses.gpl3Plus;
+    platforms = lib.platforms.linux;
   };
 }

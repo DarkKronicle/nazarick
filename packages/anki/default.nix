@@ -303,7 +303,7 @@ python3.pkgs.buildPythonApplication {
     tests.anki-sync-server = nixosTests.anki-sync-server;
   };
 
-  meta = with lib; {
+  meta = {
     description = "Spaced repetition flashcard program";
     mainProgram = "anki";
     longDescription = ''
@@ -319,9 +319,9 @@ python3.pkgs.buildPythonApplication {
       or even practicing guitar chords!
     '';
     homepage = "https://apps.ankiweb.net";
-    license = licenses.agpl3Plus;
-    platforms = platforms.mesaPlatforms;
-    maintainers = with maintainers; [
+    license = lib.licenses.agpl3Plus;
+    platforms = lib.platforms.mesaPlatforms;
+    maintainers = with lib.maintainers; [
       euank
       oxij
     ];

@@ -5,13 +5,14 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
+
   cfg = config.nazarick.system.bluetooth;
 in
 {
-  options.nazarick.system.bluetooth = with types; {
+  options.nazarick.system.bluetooth = {
     enable = mkBoolOpt false "Enable bluetooth support.";
     disable_hsp = mkBoolOpt false "Disable handsfree support";
   };

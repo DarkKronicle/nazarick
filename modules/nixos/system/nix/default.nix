@@ -6,13 +6,13 @@
   inputs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
   cfg = config.nazarick.system.nix;
 in
 {
-  options.nazarick.system.nix = with types; {
+  options.nazarick.system.nix = {
     enable = mkBoolOpt false "Enable nix configuration.";
   };
   config = mkIf cfg.enable {

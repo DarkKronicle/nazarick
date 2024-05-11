@@ -99,10 +99,10 @@ stdenv.mkDerivation {
     runHook postInstall
   '';
 
-  meta = with lib; {
+  meta = {
     description = "CLI client for NordVPN";
     homepage = "https://www.nordvpn.com";
-    license = licenses.unfree;
+    license = lib.licenses.unfree;
     platforms = [ "x86_64-linux" ];
   };
 }

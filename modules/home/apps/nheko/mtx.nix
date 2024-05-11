@@ -53,15 +53,15 @@ stdenv.mkDerivation {
     spdlog
   ];
 
-  meta = with lib; {
+  meta = {
     description = "Client API library for the Matrix protocol.";
     homepage = "https://github.com/Nheko-Reborn/mtxclient";
-    license = licenses.mit;
-    maintainers = with maintainers; [
+    license = lib.licenses.mit;
+    maintainers = with lib.maintainers; [
       fpletz
       pstn
     ];
-    platforms = platforms.all;
+    platforms = lib.platforms.all;
     # Should be fixable if a higher clang version is used, see:
     # https://github.com/NixOS/nixpkgs/pull/85922#issuecomment-619287177
     broken = stdenv.hostPlatform.isDarwin;

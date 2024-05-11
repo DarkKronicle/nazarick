@@ -8,7 +8,7 @@
 
 let
   inherit (lib) types mkEnableOption mkIf;
-  inherit (lib.nazarick) mkOpt enabled;
+  inherit (lib.nazarick) mkOpt;
 
   cfg = config.nazarick.tools.nushell;
 in
@@ -17,8 +17,8 @@ in
     enable = mkEnableOption "Nushell";
   };
 
-  options.nazarick.home = with lib.types; {
-    environmentVariables = lib.nazarick.mkOpt (attrsOf str) { } "Environment variables";
+  options.nazarick.home = {
+    environmentVariables = mkOpt (types.attrsOf types.str) { } "Environment variables";
   };
 
   config = mkIf cfg.enable {

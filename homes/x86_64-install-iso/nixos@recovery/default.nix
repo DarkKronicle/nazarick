@@ -6,7 +6,6 @@
   format ? "unknown",
   ...
 }:
-with lib.nazarick;
 {
   home.packages = with pkgs; [ neofetch ];
   nazarick = {
@@ -18,6 +17,12 @@ with lib.nazarick;
     };
     tools = {
       nushell = {
+        enable = true;
+      };
+      pager = {
+        enable = true;
+      };
+      fcitx = {
         enable = true;
       };
     };
@@ -34,6 +39,9 @@ with lib.nazarick;
         enable = true;
       };
       defaults = {
+        enable = true;
+      };
+      neovim = {
         enable = true;
       };
     };

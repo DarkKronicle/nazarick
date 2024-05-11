@@ -64,7 +64,7 @@ mkWindowsApp rec {
     categories = [ "Utility" ];
   };
 
-  meta = with lib; {
+  meta = {
     description = "Circuit simulator";
     platforms = [
       "x86_64-linux"

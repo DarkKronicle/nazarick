@@ -5,14 +5,14 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
   cfg = config.nazarick.specialisation.powersave;
   username = config.nazarick.user.name;
 in
 {
-  options.nazarick.specialisation.powersave = with types; {
+  options.nazarick.specialisation.powersave = {
     enable = mkBoolOpt false "Enable powersave specialisation.";
   };
   config = mkIf cfg.enable {

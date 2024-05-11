@@ -5,9 +5,10 @@
   ...
 }:
 
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.nazarick) mkBoolOpt;
+
   cfg = config.nazarick.plasma;
 in
 {
@@ -83,7 +84,7 @@ in
         };
       };
 
-      configFile = mkMerge [
+      configFile = lib.mkMerge [
         {
           "kdeglobals"."KDE"."widgetStyle".value = "Lightly";
 

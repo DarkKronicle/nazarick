@@ -1,12 +1,12 @@
 { config, lib, ... }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
   cfg = config.nazarick.tools.cli;
 in
 {
   # TODO: Move this to a suite
-  options.nazarick.tools.sudo = with types; {
+  options.nazarick.tools.sudo = {
     enable = mkBoolOpt false "Enable sudo configuration";
     removeFirstMessage = mkBoolOpt true "Remove first message about sudo";
   };

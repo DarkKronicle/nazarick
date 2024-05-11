@@ -4,8 +4,9 @@
   config,
   ...
 }:
-with lib;
 let
+  inherit (lib) mkIf mkEnableOption;
+
   cfg = config.nazarick.desktop.sddm;
 in
 {

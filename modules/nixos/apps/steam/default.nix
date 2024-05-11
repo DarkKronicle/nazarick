@@ -6,14 +6,14 @@
   ...
 }:
 
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
   cfg = config.nazarick.apps.steam;
   username = config.nazarick.user.name;
 in
 {
-  options.nazarick.apps.steam = with types; {
+  options.nazarick.apps.steam = {
     enable = mkBoolOpt false "Enable Steam";
   };
 

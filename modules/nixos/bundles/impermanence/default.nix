@@ -5,9 +5,10 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
+
   cfg = config.nazarick.bundles.impermanence;
   copy_files = [
     "/home/darkkronicle/.config/kconf_updaterc"
@@ -17,7 +18,7 @@ let
   jank_files = [ "/home/darkkronicle/.config/plasma-org.kde.plasma.desktop-appletsrc" ];
 in
 {
-  options.nazarick.bundles.impermanence = with types; {
+  options.nazarick.bundles.impermanence = {
     enable = mkBoolOpt false "Impermanence suite";
   };
   config = mkIf cfg.enable {

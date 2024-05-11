@@ -1,11 +1,12 @@
 { config, lib, ... }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf mkEnableOption;
+  inherit (lib.nazarick) mkBoolOpt;
+
   cfg = config.nazarick.system.network;
 in
 {
-  options.nazarick.system.network = with types; {
+  options.nazarick.system.network = {
     enable = mkBoolOpt false "Enable wifi configuration.";
     kdeconnect = mkBoolOpt false "Open KDE Connect's ports";
     nordvpn = mkBoolOpt false "Allow NordVPN's ports";
@@ -61,7 +62,7 @@ in
     # Make sure this directory exists so the service doesn't fail on boot
     systemd.tmpfiles.rules = [ "d /var/lib/dnscrypt-proxy 0755 root root -" ];
 
-    networking.firewall = mkMerge [
+    networking.firewall = lib.mkMerge [
       {
         enable = true;
         allowedTCPPortRanges = mkIf cfg.kdeconnect [

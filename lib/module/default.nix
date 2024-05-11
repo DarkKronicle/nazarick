@@ -1,18 +1,17 @@
 { lib, ... }:
-with lib;
 rec {
 
   mkOpt =
     type: default: description:
-    mkOption { inherit type default description; };
+    lib.mkOption { inherit type default description; };
 
-  mkBoolOpt = mkOpt types.bool;
+  mkBoolOpt = mkOpt lib.types.bool;
 
   mkIfElse =
     p: yes: no:
-    mkMerge [
-      (mkIf p yes)
-      (mkIf (!p) no)
+    lib.mkMerge [
+      (lib.mkIf p yes)
+      (lib.mkIf (!p) no)
     ];
 
   enabled = {

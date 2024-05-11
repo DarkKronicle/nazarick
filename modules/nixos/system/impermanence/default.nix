@@ -4,15 +4,15 @@
   lib,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf types;
+  inherit (lib.nazarick) mkBoolOpt mkOpt;
   cfg = config.impermanence;
 in
 {
-  options.impermanence = with types; {
+  options.impermanence = {
     enable = mkBoolOpt false "Enable impermanence";
-    removeTmpFilesOlderThan = mkOpt int 14 "Number of days to keep old btrfs_tmp files";
+    removeTmpFilesOlderThan = mkOpt types.int 14 "Number of days to keep old btrfs_tmp files";
   };
 
   options.environment = with types; {
@@ -73,8 +73,8 @@ in
       ''
     );
 
-    environment.persistence."/persist/system" = mkAliasDefinitions options.environment.persist;
-    environment.persistence."/persist/keep" = mkAliasDefinitions options.environment.keepPersist;
-    environment.persistence."/persist/transient" = mkAliasDefinitions options.environment.transientPersist;
+    environment.persistence."/persist/system" = lib.mkAliasDefinitions options.environment.persist;
+    environment.persistence."/persist/keep" = lib.mkAliasDefinitions options.environment.keepPersist;
+    environment.persistence."/persist/transient" = lib.mkAliasDefinitions options.environment.transientPersist;
   };
 }

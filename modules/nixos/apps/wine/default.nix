@@ -6,13 +6,14 @@
   ...
 }:
 
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
+
   cfg = config.nazarick.apps.wine;
 in
 {
-  options.nazarick.apps.wine = with types; {
+  options.nazarick.apps.wine = {
     enable = mkBoolOpt false "Enable wine";
   };
 

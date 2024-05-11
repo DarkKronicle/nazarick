@@ -5,13 +5,14 @@
   ...
 }:
 
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
+
   cfg = config.nazarick.desktop.fonts;
 in
 {
-  options.nazarick.desktop.fonts = with types; {
+  options.nazarick.desktop.fonts = {
     enable = mkBoolOpt false "Setup default fonts";
   };
 

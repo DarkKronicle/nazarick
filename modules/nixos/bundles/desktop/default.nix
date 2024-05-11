@@ -5,13 +5,13 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) enabled mkBoolOpt;
   cfg = config.nazarick.bundles.desktop;
 in
 {
-  options.nazarick.bundles.desktop = with types; {
+  options.nazarick.bundles.desktop = {
     enable = mkBoolOpt false "Enable necessary desktop configuration.";
   };
   config = mkIf cfg.enable {

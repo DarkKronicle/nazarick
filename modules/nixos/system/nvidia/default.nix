@@ -5,17 +5,18 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf types;
+  inherit (lib.nazarick) mkBoolOpt mkIfElse mkOpt;
+
   cfg = config.nazarick.system.nvidia;
 in
 {
-  options.nazarick.system.nvidia = with types; {
+  options.nazarick.system.nvidia = {
     enable = mkBoolOpt false "Enable nvidia configuration.";
     blacklist = mkBoolOpt false "Blacklist nvidia GPU";
-    nvidiaBusId = mkOpt str "" "Nvidia Bus ID";
-    intelBusId = mkOpt str "" "Intel Bus ID";
+    nvidiaBusId = mkOpt types.str "" "Nvidia Bus ID";
+    intelBusId = mkOpt types.str "" "Intel Bus ID";
   };
   config =
     mkIfElse cfg.enable

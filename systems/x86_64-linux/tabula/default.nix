@@ -4,8 +4,9 @@
   inputs,
   ...
 }:
-with lib;
-with lib.nazarick;
+let
+  inherit (lib.nazarick) enabled;
+in
 {
   imports = [ ./hardware.nix ];
 

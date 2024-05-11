@@ -5,14 +5,13 @@
   ...
 }:
 
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf mkEnableOption;
   cfg = config.nazarick.plasma.panels;
   cfgParent = config.nazarick.plasma;
 in
 {
-  options.nazarick.plasma.panels = with types; {
+  options.nazarick.plasma.panels = {
     enable = mkEnableOption {
       description = ''
         Enable Plasma panels
@@ -136,13 +135,13 @@ in
             }
           ];
           extraSettings = (
-            readFile (
+            lib.readFile (
               pkgs.substituteAll {
                 src = ./system-tray.js;
                 iconSpacing = 1;
                 scaleIconsToFit = toString false;
-                shownItems = concatStringsSep "," [ "org.kde.plasma.volume" ];
-                hiddenItems = concatStringsSep "," [
+                shownItems = lib.concatStringsSep "," [ "org.kde.plasma.volume" ];
+                hiddenItems = lib.concatStringsSep "," [
                   "chrome_status_icon_1"
                   "kded6"
                   "org.kde.plasma.clipboard"
@@ -202,13 +201,13 @@ in
             }
           ];
           extraSettings = (
-            readFile (
+            lib.readFile (
               pkgs.substituteAll {
                 src = ./system-tray.js;
                 iconSpacing = 1;
                 scaleIconsToFit = toString false;
-                shownItems = concatStringsSep "," [ "org.kde.plasma.volume" ];
-                hiddenItems = concatStringsSep "," [
+                shownItems = lib.concatStringsSep "," [ "org.kde.plasma.volume" ];
+                hiddenItems = lib.concatStringsSep "," [
                   "chrome_status_icon_1"
                   "kded6"
                   "org.kde.plasma.clipboard"
@@ -216,7 +215,7 @@ in
                   "org.kde.plasma.mediacontroller"
                   "Fcitx"
                 ];
-                knownItems = concatStringsSep "," [
+                knownItems = lib.concatStringsSep "," [
                   # Essentially disabled ones. Known but not in extra or shown
                   "com.github.korapp.nordvpn"
                 ];

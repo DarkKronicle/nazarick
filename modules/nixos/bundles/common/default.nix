@@ -5,13 +5,14 @@
   pkgs,
   ...
 }:
-with lib;
-with lib.nazarick;
 let
+  inherit (lib) mkIf;
+  inherit (lib.nazarick) mkBoolOpt;
+
   cfg = config.nazarick.bundles.common;
 in
 {
-  options.nazarick.bundles.common = with types; {
+  options.nazarick.bundles.common = {
     enable = mkBoolOpt false "Enable common configuration.";
   };
   config = mkIf cfg.enable {
