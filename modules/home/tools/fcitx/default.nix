@@ -24,8 +24,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    # TODO: Can probably make this use xdg.dataFile, but had issues with that
-    home.file.".local/share/fcitx5/themes" = {
+    xdg.dataFile."fcitx5/themes" = {
+      enable = true;
       source = "${catppuccin_theme}/src/";
       recursive = true;
     };

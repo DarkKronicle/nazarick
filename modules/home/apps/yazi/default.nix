@@ -34,11 +34,6 @@ in
 
   config = mkIf cfg.enable {
 
-    home.file.".config/yazi/flavors/catppuccin-mocha.yazi" = {
-      source = "${flavors}/catppuccin-mocha.yazi";
-      recursive = true;
-    };
-
     xdg.configFile = lib.mkMerge (
       (lib.forEach plugins (plugin: {
         "yazi/plugins/${plugin.name}" = {
@@ -57,6 +52,13 @@ in
                 plugin: plugin.init_lua_text
               )
             );
+          };
+        }
+        {
+          "yazi/flavors/catppuccin-mocha.yazi" = {
+            enable = true;
+            source = "${flavors}/catppuccin-mocha.yazi";
+            recursive = true;
           };
         }
       ]
@@ -104,7 +106,7 @@ in
       };
       settings = {
         preview = {
-          cache_dir = "/home/darkkronicle/.cache/yazi";
+          cache_dir = "${config.home.homeDirectory}/.cache/yazi";
           max_width = 1024;
           max_height = 1920;
         };

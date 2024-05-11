@@ -25,8 +25,8 @@ in
   };
 
   config = mkIf cfg.enable {
-    # TODO: xdg config file
-    home.file.".config/btop/themes" = {
+    xdg.configFile."btop/themes" = {
+      enable = true;
       source = "${catppuccin-btop}/themes";
       recursive = true;
     };

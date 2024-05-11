@@ -22,7 +22,10 @@ in
 
   config = mkIf cfg.enable {
 
-    home.file.".config/tridactyl/tridactylrc".source = ./tridactylrc;
+    xdg.configFile."tridactyl/tridactylrc" = {
+      enable = true;
+      source = ./tridactylrc;
+    };
 
     programs.firefox = {
       enable = true;

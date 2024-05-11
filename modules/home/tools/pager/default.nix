@@ -35,7 +35,8 @@ in
       };
     };
 
-    home.file.".config/ov/config.yaml" = {
+    xdg.configFile."ov/config.yaml" = {
+      enable = true;
       source = ./config.yaml;
     };
 

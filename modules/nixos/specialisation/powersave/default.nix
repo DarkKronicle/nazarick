@@ -9,6 +9,7 @@ with lib;
 with lib.nazarick;
 let
   cfg = config.nazarick.specialisation.powersave;
+  username = config.nazarick.user.name;
 in
 {
   options.nazarick.specialisation.powersave = with types; {
@@ -19,8 +20,7 @@ in
       powersave.configuration = {
         # services.desktopManager.plasma6.enable = lib.mkForce false;
         # services.xserver.desktopManager.lxqt.enable = true;
-        # TODO: Use $user here
-        home-manager.users.darkkronicle.nazarick = {
+        home-manager.users.${username}.nazarick = {
           apps = {
             mpv = {
               enable = lib.mkForce false;

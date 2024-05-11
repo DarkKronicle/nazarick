@@ -17,5 +17,5 @@ in
     enable = mkEnableOption "nheko";
   };
 
-  config = mkIf cfg.enable { home.packages = [ (pkgs.callPackage ./nheko.nix { }) ]; };
+  config = mkIf cfg.enable { home.packages = [ (pkgs.qt6.callPackage ./nheko-unwrapped.nix { }) ]; };
 }

@@ -10,6 +10,7 @@ with lib;
 with lib.nazarick;
 let
   cfg = config.nazarick.apps.steam;
+  username = config.nazarick.user.name;
 in
 {
   options.nazarick.apps.steam = with types; {
@@ -24,7 +25,7 @@ in
     environment.systemPackages = with pkgs; [ protonup ];
 
     environment.sessionVariables = {
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/darkkronicle/.steam/root/compatibilitytools.d";
+      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${username}/.steam/root/compatibilitytools.d";
     };
   };
 }

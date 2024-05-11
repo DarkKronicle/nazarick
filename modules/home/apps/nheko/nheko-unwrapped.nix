@@ -28,6 +28,7 @@
   gst_all_1,
   libnice,
   kdsingleapplication,
+  pipewire,
 }:
 
 let
@@ -44,6 +45,12 @@ stdenv.mkDerivation {
     rev = "7d9e3039fc2441fb622cad01b49f472d3289d70e";
     hash = "sha256-h4dxZydSbC9NMJIYWibmwnzlUntA9442dZ4MqbkyU7g=";
   };
+  # src = fetchFromGitHub {
+  # owner = "checkraisefold";
+  # repo = "nheko";
+  # rev = "04029227f3aa872f0f2690523acde9e74ae31a1d";
+  # hash = "sha256-NMr4N7HBBC84M6KW6Y/1cuZONJvuvL3ZY9mRjK2dAmg=";
+  # };
 
   nativeBuildInputs = [
     asciidoc
@@ -82,6 +89,7 @@ stdenv.mkDerivation {
         good_plugins
         gst-plugins-bad
         libnice
+        pipewire
       ]
     );
 
@@ -96,11 +104,7 @@ stdenv.mkDerivation {
 
   preFixup = lib.optionalString voipSupport ''
     # add gstreamer plugins path to the wrapper
-    # qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : "$GST_PLUGIN_SYSTEM_PATH_1_0")
-    qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : "${gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0")
-    qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : "${good_plugins}/lib/gstreamer-1.0")
-    qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : "${gst_all_1.gst-plugins-base}/lib/gstreamer-1.0")
-    qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : "${gst_all_1.gstreamer.out}/lib/gstreamer-1.0")
+    qtWrapperArgs+=(--prefix GST_PLUGIN_SYSTEM_PATH_1_0 : "$GST_PLUGIN_SYSTEM_PATH_1_0")
   '';
 
   meta = with lib; {

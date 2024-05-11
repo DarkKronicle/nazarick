@@ -9,7 +9,7 @@ let
   inherit (lib) types mkEnableOption mkIf;
   inherit (lib.nazarick) mkOpt enabled;
 
-  user = config.nazarick.user;
+  username = config.nazarick.user.name;
   cfg = config.nazarick.tools.borg;
 in
 {
@@ -19,13 +19,13 @@ in
 
   config = mkIf cfg.enable {
     sops.secrets."borg/repository" = {
-      owner = "darkkronicle";
+      owner = username;
     };
     sops.secrets."borg/wifi" = {
-      owner = "darkkronicle";
+      owner = username;
     };
     sops.secrets."borg/password" = {
-      owner = "darkkronicle";
+      owner = username;
     };
     environment.systemPackages = with pkgs; [ borgbackup ];
 
@@ -51,7 +51,7 @@ in
       }) $(cat ${config.sops.secrets."borg/wifi".path}) ${./exclude.txt}";
       serviceConfig = {
         Type = "oneshot";
-        User = "darkkronicle";
+        User = username;
       };
     };
   };
