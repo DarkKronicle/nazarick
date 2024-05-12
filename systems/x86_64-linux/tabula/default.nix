@@ -139,6 +139,7 @@ in
       bandwhich
       yt-dlp
       ledger
+      nh
 
       (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
       # TODO: add my catppuccin theme or make a repo

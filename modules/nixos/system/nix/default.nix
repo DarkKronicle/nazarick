@@ -21,17 +21,8 @@ in
       nixfmt-rfc-style
       nix-output-monitor
       nurl
-      (writeScriptBin "nazarick" (builtins.readFile ./build.nu))
+      nazarick.naz
     ];
-
-    # https://fosstodon.org/@lhf/110661879816118061
-    system.activationScripts.diff = {
-      supportsDryActivation = true;
-      text = ''
-        ${pkgs.nvd}/bin/nvd --nix-bin-dir=${pkgs.nix}/bin diff \
-        /run/current-system "$systemConfig"
-      '';
-    };
 
     # https://github.com/sioodmy/dotfiles/blob/dc9fce23ee4a58b6485f7572b850a7b2dcaf9bb7/system/core/nix.nix#L62-L68
     # Faster rebuilding
