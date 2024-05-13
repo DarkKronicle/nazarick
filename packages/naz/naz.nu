@@ -19,14 +19,16 @@ def format [] {
     nixfmt flake.nix homes/ lib/ modules/ overlays/ packages/ systems/
 }
 
-def "main commit" [message: string, --use-version] {
+def "main commit" [message: string, --noversion] {
     do_safely {
+        if (not $noversion)  {
+            # Set pager here to less so that there is no confusion
+            let generation = PAGER="less" (nixos-rebuild list-generations --flake . | rg "current" | split row " " | filter {|x| not ($x | is-empty)} | get 0)
+            git commit -m ("Gen " + $generation + ": " + $message)
+        } else {
+            git commit -m $message
+        }
         git push
-    }
-    if (not ($message | is-empty))  {
-      # Set pager here to less so that there is no confusion
-      let generation = PAGER="less" (nixos-rebuild list-generations --flake . | rg "current" | split row " " | filter {|x| not ($x | is-empty)} | get 0)
-      git commit -m ("Gen " + $generation + ": " + $message)
     }
 }
 

@@ -14,12 +14,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    snowfall-flake = {
-      url = "github:snowfallorg/flake";
-      # Flake requires some packages that aren't on 22.05, but are available on unstable.
-      inputs.nixpkgs.follows = "unstable";
-    };
-
     # home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -85,7 +79,6 @@
       };
 
       overlays = with inputs; [
-        snowfall-flake.overlays.default
         (
           _: super:
           let
