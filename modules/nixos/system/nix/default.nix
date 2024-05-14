@@ -52,6 +52,7 @@ in
         options = "--delete-older-than 30d";
       };
 
+      # TODO: Remove the x86 here as well
       package = inputs.lix-module.packages.x86_64-linux.default;
 
       settings = {
@@ -71,9 +72,8 @@ in
           "https://cache.nixos.org"
           "https://nix-community.cachix.org"
           "https://devenv.cachix.org"
+          "https://cache.lix.systems"
         ];
-
-        extra-substituters = [ "https://cache.lix.systems" ];
 
         trusted-public-keys = [
           "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
