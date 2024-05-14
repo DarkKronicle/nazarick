@@ -53,6 +53,16 @@
 
     faerber.url = "github:nekowinston/faerber";
 
+    lix = {
+      url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90-beta.1";
+      flake = false;
+    };
+    lix-module = {
+      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      inputs.lix.follows = "lix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
@@ -96,6 +106,7 @@
         home-manager.nixosModules.home-manager
         sops-nix.nixosModules.sops
         inputs.waveforms.nixosModule
+        inputs.lix-module.nixosModules.default
       ];
 
       # homes.modules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
