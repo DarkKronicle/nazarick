@@ -2,9 +2,18 @@
   pkgs,
   lib,
   inputs,
+  config,
   ...
 }:
+let
+  inherit (lib.nazarick) enabled;
+in
 {
+
+  imports = [
+    ./specialisation.nix
+  ];
+
   environment.systemPackages = with pkgs; [
     neovim
     nazarick.operator-caska
@@ -28,6 +37,19 @@
     dust
     compsize
   ];
+
+  isoImage.squashfsCompression = "zstd -Xcompression-level 6";
+
+  # This essentially makes it so password not required
+  # TODO: Probably not the *best* idea, but on this minimal system it should be fine 
+  security.polkit.extraConfig = lib.mkIf (config.specialisation != { }) ''
+    polkit.addRule(function(action, subject) {
+      if (subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
+
 
   home-manager.sharedModules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
 
@@ -88,6 +110,7 @@
       network = {
         enable = true;
       };
+      memory = enabled;
     };
   };
 
@@ -95,6 +118,8 @@
   hardware.pulseaudio.enable = true;
 
   documentation.doc.enable = lib.mkOverride 500 true;
+
+  environment.shells = with pkgs; [ nushell ];
 
   system.activationScripts.installerDesktop =
     let
@@ -109,7 +134,8 @@
       mkdir -p ${desktopDir}
       chown nixos ${homeDir} ${desktopDir}
 
-      cp -f ${./mount.sh} ${desktopDir + "mount.sh"}
+      cp -f ${./mount.nu} ${desktopDir + "mount.nu"}
+      chmod +x ${desktopDir + "mount.nu"}
 
       ln -sfT ${manualDesktopFile} ${desktopDir + "nixos-manual.desktop"}
       ln -sfT ${pkgs.gparted}/share/applications/gparted.desktop ${desktopDir + "gparted.desktop"}

@@ -16,6 +16,6 @@ def --env ff [dir?: string] {
 
 
 def --env fh [] {
-    commandline (atuin history list --cmd-only | fzf)
+    commandline edit (atuin history list --cmd-only | fzf)
 }
 
