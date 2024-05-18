@@ -60,6 +60,11 @@ in
         enable = true;
         configFile.text = builtins.readFile ./config.nu;
         envFile.text = builtins.readFile ./env.nu;
+        # IMPORTANT: https://github.com/nix-community/home-manager/issues/1011#issuecomment-1624977707
+        # Environment variables are a weird thing
+        # The main issue is that these variables will be set correctly on the graphical session,
+        # but when a shell is created things get jank (it sources /etc/profile) (I think)
+        # this fixes it :)
         environmentVariables = config.home.sessionVariables;
       };
 
