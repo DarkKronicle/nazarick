@@ -307,7 +307,7 @@ $env.config = {
 	# {
       # name: fuzzy_history
       # modifier: control
-      # keycode: char_r
+      # keeycode: char_r
       # mode: [emacs, vi_normal, vi_insert]
       # event: [
         # {
@@ -326,7 +326,7 @@ $env.config = {
       # ]
     # }
     {
-      name: next_page
+      namne: next_page
       modifier: control
       keycode: char_x
       mode: emacs
@@ -345,6 +345,7 @@ $env.config = {
        }
     }
     {
+            
       name: yank
       modifier: control
       keycode: char_y
@@ -402,17 +403,55 @@ $env.config = {
   ]
 }
 
+# $env.EDITOR is of unknown type (for me it will always be nvim),
+# but I'm using nixCats, so I want to be able to switch it without
+# having to do any more work here. This will just wrap the nvim command for me
+# and give me good completions
+def --env nvim [
+    -d: list<path>, # diff mode
+    -u: path, # use this config file
+    --cmd: string, # run this command before anything
+    -c: string, # run this command after first file
+    -l: string, # run lua script with args
+    -n, # no swap file
+    -R, # read only
+    --clean, # factory defaults
+    ...paths: path
+] {
+    mut args = [];
+    if ($d | is-not-empty) {
+        $args = ($args | append "-d" | append $d)
+    }
+    if ($cmd | is-not-empty) {
+        $args = ($args | append "--cmd" | append $cmd)
+    }
+    if ($c | is-not-empty) {
+        $args = ($args | append "-c" | append $c)
+    }
+    if ($l | is-not-empty) {
+        $args = ($args | append "-l" | append $c)
+    }
+    if ($R | is-not-empty) {
+        $args = ($args | append "-R")
+    }
+    if ($n | is-not-empty) {
+        $args = ($args | append "-n")
+    }
+    if ($clean | is-not-empty) {
+        $args = ($args | append "--clean")
+    }
+    $args = ($args | append $paths)
+    ^$env.EDITOR
+}
+
+alias neovim = nvim
+alias v = nvim
 
 source ~/.config/nushell/scripts/fuzzy.nu
 source ~/.config/nushell/scripts/dolphin.nu
 source ~/.config/nushell/completions/man.nu
 source ~/.config/nushell/completions/tldr.nu
 source ~/.config/nushell/completions/nvim.nu
-
-
-alias nvim = ^$env.EDITOR
-alias neovim = nvim
-alias v = nvim
 
 alias zz = systemd-inhibit sleep infinity
 

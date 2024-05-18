@@ -1,4 +1,4 @@
-export extern "nvim" [
+export extern "nvim-cats" [
     -d, # diff mode
     -u, # use this config file
     --help(-h), # show help
