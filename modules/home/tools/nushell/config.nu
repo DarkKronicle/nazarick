@@ -407,12 +407,18 @@ source ~/.config/nushell/scripts/fuzzy.nu
 source ~/.config/nushell/scripts/dolphin.nu
 source ~/.config/nushell/completions/man.nu
 source ~/.config/nushell/completions/tldr.nu
+source ~/.config/nushell/completions/nvim.nu
 
 
-alias v = ^$env.EDITOR
-alias neovim = ^$env.EDITOR
 alias nvim = ^$env.EDITOR
+alias neovim = nvim
+alias v = nvim
+
 alias zz = systemd-inhibit sleep infinity
+
+def --env launch-editor [] {
+
+}
 
 def --env fuck [] {
     let cmd = (history | last 1 | get 0 | get command)

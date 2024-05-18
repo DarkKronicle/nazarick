@@ -39,7 +39,6 @@ in
   isoImage.squashfsCompression = "zstd -Xcompression-level 6";
 
   # This essentially makes it so password not required
-  # TODO: Probably not the *best* idea, but on this minimal system it should be fine 
   security.polkit.extraConfig = lib.mkIf (config.specialisation != { }) ''
     polkit.addRule(function(action, subject) {
       if (subject.isInGroup("wheel")) {
@@ -81,6 +80,7 @@ in
     hashedPasswordFile = lib.mkForce null;
     initialPassword = lib.mkForce null;
     initialHashedPassword = lib.mkForce null;
+    shell = pkgs.nushell;
   };
 
   nazarick = {
