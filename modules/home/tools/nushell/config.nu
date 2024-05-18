@@ -307,7 +307,7 @@ $env.config = {
 	# {
       # name: fuzzy_history
       # modifier: control
-      # keeycode: char_r
+      # keycode: char_r
       # mode: [emacs, vi_normal, vi_insert]
       # event: [
         # {
@@ -326,7 +326,7 @@ $env.config = {
       # ]
     # }
     {
-      namne: next_page
+      name: next_page
       modifier: control
       keycode: char_x
       mode: emacs
@@ -407,12 +407,14 @@ $env.config = {
 # but I'm using nixCats, so I want to be able to switch it without
 # having to do any more work here. This will just wrap the nvim command for me
 # and give me good completions
+
+# Run nvim that is declared in $env.EDITOR
 def --env nvim [
     -d: list<path>, # diff mode
     -u: path, # use this config file
     --cmd: string, # run this command before anything
     -c: string, # run this command after first file
-    -l: string, # run lua script with args
+    -l: list<string>, # run lua script with args
     -n, # no swap file
     -R, # read only
     --clean, # factory defaults
@@ -429,19 +431,19 @@ def --env nvim [
         $args = ($args | append "-c" | append $c)
     }
     if ($l | is-not-empty) {
-        $args = ($args | append "-l" | append $c)
+        $args = ($args | append "-l" | append $l)
     }
-    if ($R | is-not-empty) {
+    if ($R) {
         $args = ($args | append "-R")
     }
-    if ($n | is-not-empty) {
+    if ($n) {
         $args = ($args | append "-n")
     }
-    if ($clean | is-not-empty) {
+    if ($clean) {
         $args = ($args | append "--clean")
     }
     $args = ($args | append $paths)
-    ^$env.EDITOR
+    ^$env.EDITOR ...$args
 }
 
 alias neovim = nvim
@@ -451,13 +453,8 @@ source ~/.config/nushell/scripts/fuzzy.nu
 source ~/.config/nushell/scripts/dolphin.nu
 source ~/.config/nushell/completions/man.nu
 source ~/.config/nushell/completions/tldr.nu
-source ~/.config/nushell/completions/nvim.nu
 
 alias zz = systemd-inhibit sleep infinity
-
-def --env launch-editor [] {
-
-}
 
 def --env fuck [] {
     let cmd = (history | last 1 | get 0 | get command)
