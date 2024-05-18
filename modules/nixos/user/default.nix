@@ -23,9 +23,6 @@ in
     extraOptions = mkOpt types.attrs { } (lib.mdDoc "Extra options for users.users.");
   };
   config = mkIf cfg.enable {
-    environment.sessionVariables = {
-      EDITOR = "nvim";
-    };
     users.mutableUsers = false;
     sops.secrets."user/darkkronicle/password".neededForUsers = true;
     users.users.${cfg.name} = {

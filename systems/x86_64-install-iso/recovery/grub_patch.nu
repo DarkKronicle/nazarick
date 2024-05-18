@@ -11,10 +11,19 @@
 # initrd /boot/initrd
 # }
 
+def open_safely [] {
+    let $location = $in
+    if ($location | path exists) {
+        return (open $location)
+    } else {
+        return ""
+    }
+}
+
 def make_entry [root_dir: path, image: path] {
     let init = ([$root_dir 'init'] | path join | path expand);
     let params = ([$root_dir 'kernel-params'] | path join | open | str trim);
-    mut name = ([$root_dir 'configuration-name'] | path join | open);
+    mut name = ([$root_dir 'configuration-name'] | path join | open_safely);
     if ($name | is-empty) {
         $name = ($root_dir | path basename);
         $name = $"NixOS - ($name)"
@@ -33,7 +42,7 @@ def make_entry [root_dir: path, image: path] {
 def main [grub_cfg: path, toplevel_path: path, image: path] {
     mut entries = [];
     for $specialisation_path in (glob $"($toplevel_path)/specialisation/*" | sort) {
-        $entries = (entries | append (make_entry $specialisation_path $image))
+        $entries = ($entries | append (make_entry $specialisation_path $image))
     }
     let new_entries = ($entries | str join (char newline))
     let split = "

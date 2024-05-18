@@ -1,13 +1,11 @@
 {
   lib,
   config,
-  options,
   pkgs,
   ...
 }:
 let
   inherit (lib.nazarick) enabled;
-  
 in
 {
   # https://discourse.nixos.org/t/how-do-i-add-boot-menu-entries-to-an-install-iso/39748/3
@@ -54,12 +52,12 @@ in
       );
   };
 
-  specialisation = {
-    generic.configuration = {
-      environment.systemPackages = with pkgs; [
-        (mumble.override { pulseSupport = true; })
-      ];
-      nazarick.tools.nordvpn = enabled;
+  config = {
+    specialisation = {
+      generic.configuration = {
+        environment.systemPackages = with pkgs; [ (mumble.override { pulseSupport = true; }) ];
+        nazarick.tools.nordvpn = enabled;
+      };
     };
   };
 }

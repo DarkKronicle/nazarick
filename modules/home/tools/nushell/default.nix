@@ -17,10 +17,6 @@ in
     enable = mkEnableOption "Nushell";
   };
 
-  options.nazarick.home = {
-    environmentVariables = mkOpt (types.attrsOf types.str) { } "Environment variables";
-  };
-
   config = mkIf cfg.enable {
 
     systemd.user.services = {
@@ -64,7 +60,7 @@ in
         enable = true;
         configFile.text = builtins.readFile ./config.nu;
         envFile.text = builtins.readFile ./env.nu;
-        environmentVariables = config.nazarick.home.environmentVariables;
+        environmentVariables = config.home.sessionVariables;
       };
 
       direnv = {

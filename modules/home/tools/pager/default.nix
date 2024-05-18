@@ -40,7 +40,7 @@ in
       source = ./config.yaml;
     };
 
-    nazarick.home.environmentVariables = {
+    home.sessionVariables = {
       PAGER = ''"ov"'';
       SYSTEMD_PAGERSECURE = ''"true"'';
       MANPAGER = ''"ov --section-delimiter '^[^\\s]' --section-header"'';

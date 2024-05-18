@@ -10,9 +10,7 @@ let
 in
 {
 
-  imports = [
-    ./specialisation.nix
-  ];
+  imports = [ ./specialisation.nix ];
 
   environment.systemPackages = with pkgs; [
     neovim
@@ -49,7 +47,6 @@ in
       }
     });
   '';
-
 
   home-manager.sharedModules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
 

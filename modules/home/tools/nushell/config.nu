@@ -409,8 +409,9 @@ source ~/.config/nushell/completions/man.nu
 source ~/.config/nushell/completions/tldr.nu
 
 
-alias v = nvim
-alias neovim = nvim
+alias v = ^$env.EDITOR
+alias neovim = ^$env.EDITOR
+alias nvim = ^$env.EDITOR
 alias zz = systemd-inhibit sleep infinity
 
 def --env fuck [] {
