@@ -17,7 +17,7 @@ in
       "gitlab.com" = {
         host = "gitlab.com";
         hostname = "gitlab.com";
-        identityFile = [ "/home/darkkronicle/.ssh/id_tabula" ];
+        identityFile = [ "/home/darkkronicle/.ssh/id_nazarick" ];
         extraOptions = {
           PreferredAuthentications = "publickey";
         };

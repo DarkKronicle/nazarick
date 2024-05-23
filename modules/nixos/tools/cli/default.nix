@@ -24,6 +24,9 @@ in
       unzip
       gnupg
       acpi
+      ouch
+      gfshare
+      age
     ];
     services.pcscd.enable = true;
   };

@@ -47,6 +47,8 @@ in
       recursive = true;
     };
 
+    programs.ssh.addKeysToAgent = "yes";
+
     services.gpg-agent = {
       enable = true;
       enableNushellIntegration = true;
