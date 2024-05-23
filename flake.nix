@@ -69,6 +69,11 @@
     };
 
     # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -110,8 +115,8 @@
         # persist-retro.nixosModules.persist-retro
         home-manager.nixosModules.home-manager
         sops-nix.nixosModules.sops
-        inputs.waveforms.nixosModule
-        inputs.lix-module.nixosModules.default
+        waveforms.nixosModule
+        lix-module.nixosModules.default
       ];
 
       # homes.modules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
