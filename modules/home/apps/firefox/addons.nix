@@ -13,7 +13,7 @@
     };
   };
   better-canvas = buildFirefoxXpiAddon rec {
-    pname = "adaptive-tab-bar-colour";
+    pname = "better-canvas";
     version = "5.10.9";
     addonId = "{8927f234-4dd9-48b1-bf76-44a9e153eee0}";
     url = "https://addons.mozilla.org/firefox/downloads/file/4255847/better_canvas-${version}.xpi";

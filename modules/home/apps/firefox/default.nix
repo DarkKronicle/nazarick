@@ -14,6 +14,33 @@ let
   custom-addons = pkgs.callPackage ./addons.nix {
     inherit (inputs.firefox-addons.lib.${pkgs.system}) buildFirefoxXpiAddon;
   };
+
+  extensions =
+    (with inputs.firefox-addons.packages.${pkgs.system}; [
+      bitwarden
+      darkreader
+      dearrow
+      jump-cutter
+      libredirect
+      privacy-badger
+      redirector
+      refined-github
+      sidebery
+      smart-referer
+      sponsorblock
+      stylus
+      temporary-containers
+      tridactyl # This has a beta option
+      ublock-origin
+      violentmonkey
+      yomitan
+      no-pdf-download
+    ])
+    ++ (with custom-addons; [
+      adaptive-tab-bar-colour
+      better-canvas
+      hide-youtube-shorts
+    ]);
 in
 {
   options.nazarick.apps.firefox = {
@@ -48,6 +75,24 @@ in
           SkipOnboarding = true;
           Locked = true;
         };
+
+        ExtensionSettings = lib.mkMerge [
+          {
+            "*" = {
+              "blocked_install_message" = "Extensions are handled by Nix!";
+              "installation_mode" = "blocked";
+            };
+          }
+          (builtins.listToAttrs (
+            lib.forEach extensions (ext: {
+              name = ext.addonId;
+              value = {
+                installation_mode = "force_installed";
+                install_url = "file://${ext}/share/mozilla/extensions/{ec8030f7-c20a-464f-9b0e-13a3a9e97384}/${ext.addonId}.xpi";
+              };
+            })
+          ))
+        ];
       };
 
       profiles = {
@@ -80,38 +125,14 @@ in
             };
           };
 
-          extensions =
-            (with inputs.firefox-addons.packages.${pkgs.system}; [
-              bitwarden
-              darkreader
-              dearrow
-              jump-cutter
-              libredirect
-              privacy-badger
-              redirector
-              refined-github
-              sidebery
-              smart-referer
-              sponsorblock
-              stylus
-              temporary-containers
-              tridactyl # This has a beta option
-              ublock-origin
-              violentmonkey
-              yomitan
-            ])
-            ++ (with custom-addons; [
-              adaptive-tab-bar-colour
-              better-canvas
-              hide-youtube-shorts
-            ]);
+          # extensions = extensions;
 
           settings = {
             "privacy.resistFingerprinting" = true;
-            "browser.uiCustomization.state" = ((lib.nazarick.miniJSON pkgs) ./ui_state.json);
+            "browser.uiCustomization.state" = ((lib.nazarick.miniJSON pkgs) ./ui_state.json); # This has to be mini or it won't read it
+            "extensions.autoDisableScopes" = 0;
 
             # https://arkenfox.github.io/gui/
-            "extensions.autoDisableScopes" = 0;
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             "widget.use-xdg-desktop-portal.file-picker" = 1;
             "browser.aboutConfig.showWarning" = false;
