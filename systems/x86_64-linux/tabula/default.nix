@@ -123,7 +123,7 @@ in
       prismlauncher
 
       rust-analyzer
-      # devenv
+      devenv
 
       nazarick.anki
 
