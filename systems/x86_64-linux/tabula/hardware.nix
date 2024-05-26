@@ -82,6 +82,20 @@
     neededForBoot = true;
   };
 
+  fileSystems."/mnt/tomb/tombs" = {
+    device = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";
+    fsType = "btrfs";
+    options = [
+      "subvol=@tombs"
+      "noatime"
+    ];
+  };
+
+  systemd.tmpfiles.rules = [
+    "d /mnt/tomb 0775 root users -"
+    "d /mnt/tomb/tombs 0775 root users -"
+  ];
+
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/44A6-B4F8";
     fsType = "vfat";

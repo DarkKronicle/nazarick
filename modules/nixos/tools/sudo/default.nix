@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkIf;
   inherit (lib.nazarick) mkBoolOpt;
@@ -16,6 +21,13 @@ in
       extraConfig = ''
         Defaults  lecture="never"
       '';
+      # extraRules = [{
+      #  commands = [
+      #   {
+      #    command = "${pkgs.tomb}/bin/tomb";
+      # }
+      # ];
+      #}];
     };
   };
 }

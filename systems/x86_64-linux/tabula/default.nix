@@ -140,6 +140,7 @@ in
       yt-dlp
       ledger
       nh
+      nazarick.tomb
 
       (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
       # TODO: add my catppuccin theme or make a repo
