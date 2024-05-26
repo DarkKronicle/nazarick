@@ -5,7 +5,8 @@ def --env "crypt open" [
     --key-path(-K): path, # Direct path to tomb key
     --tombs-location(-L): path = '/mnt/tomb/tombs', # The location to search for tombs and keys
     --mnt-point(-M): path # The mount point for the tomb, defaults to $TOMBS_LOCATION/../<name>
-    --no-force # Don't open if swap is on
+    --no-force, # Don't open if swap is on
+    --options(-o): list<string> = [ "rw" "nodev" "noatime" "compress=zstd:5" ] # Options to mount with
 ] {
     let key_location = if ($key | is-not-empty) {
         glob $"([$tombs_location $key] | path join)*.key" | get 0
@@ -41,9 +42,9 @@ def --env "crypt open" [
     }
     mkdir $tomb_mount
     if ($no_force) {
-        tomb open -k $key_location $tomb_location $tomb_mount
+        tomb open -k $key_location $tomb_location $tomb_mount -o ...$options
     } else {
-        tomb open -k $key_location $tomb_location $tomb_mount -f
+        tomb open -k $key_location $tomb_location $tomb_mount -f -o ...$options
     }
 }
 

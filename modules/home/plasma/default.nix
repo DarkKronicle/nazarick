@@ -113,7 +113,6 @@ in
           "kcminputrc"."Libinput/7805/11446/ROCCAT ROCCAT Kone XP Air Dongle"."PointerAccelerationProfile".value =
             1;
           "kcminputrc"."Mouse"."X11LibInputXAccelProfileFlat".value = true;
-          "kcminputrc"."Mouse"."cursorTheme".value = "Catppuccin-Mocha-Mauve-Cursors";
           "kcminputrc"."Tmp"."update_info".value = "delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize";
           "plasma-localerc"."Formats"."LANG".value = "en_US.UTF-8";
           "systemsettingsrc"."KFileDialog Settings"."detailViewIconSize".value = 16;

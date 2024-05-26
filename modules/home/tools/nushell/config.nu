@@ -453,6 +453,7 @@ source ~/.config/nushell/scripts/fuzzy.nu
 source ~/.config/nushell/scripts/dolphin.nu
 source ~/.config/nushell/completions/man.nu
 source ~/.config/nushell/completions/tldr.nu
+source ~/.config/nushell/commands/crypt.nu
 
 alias zz = systemd-inhibit sleep infinity
 
