@@ -34,6 +34,7 @@ in
     kdePackages.partitionmanager
     dust
     compsize
+    nazarick.tomb
   ];
 
   isoImage.squashfsCompression = "zstd -Xcompression-level 6";
@@ -115,6 +116,7 @@ in
   hardware.pulseaudio.enable = true;
 
   documentation.doc.enable = lib.mkOverride 500 true;
+  zramSwap.enable = true;
 
   environment.shells = with pkgs; [ nushell ];
 

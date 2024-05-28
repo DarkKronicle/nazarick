@@ -34,6 +34,7 @@ in
 
   config = mkIf cfg.enable {
 
+    # TODO: Use package override to declare yazi when it's fixed
     xdg.configFile = lib.mkMerge (
       (lib.forEach plugins (plugin: {
         "yazi/plugins/${plugin.name}" = {

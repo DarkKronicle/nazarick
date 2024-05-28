@@ -7,14 +7,52 @@
 }:
 
 let
-  inherit (lib) types mkEnableOption mkIf;
-  inherit (lib.nazarick) mkOpt;
+  inherit (lib)
+    types
+    mkEnableOption
+    mkIf
+    mkOption
+    literalExpression
+    ;
+
+  mkNuFile =
+    name: contents:
+    pkgs.writeTextFile {
+      name = name;
+      text = contents;
+      destination = "/share/nushell/${name}";
+    };
+
+  moduleType = types.submodule (
+    { config, ... }:
+    {
+      options = {
+        source = mkOption {
+          type = types.path;
+          default = null;
+          description = ''
+            Path of the nushell file to use.
+          '';
+        };
+
+        packages = lib.mkOption {
+          type = types.nullOr (types.listOf types.package);
+          default = null;
+        };
+      };
+    }
+  );
 
   cfg = config.nazarick.tools.nushell;
 in
 {
   options.nazarick.tools.nushell = {
     enable = mkEnableOption "Nushell";
+
+    module = lib.mkOption {
+      type = types.attrsOf moduleType;
+      default = null;
+    };
   };
 
   config = mkIf cfg.enable {
@@ -60,7 +98,31 @@ in
     programs = {
       nushell = {
         enable = true;
-        configFile.text = builtins.readFile ./config.nu;
+        configFile.text = lib.concatStringsSep "\n" (
+          (lib.mapAttrsToList (
+            name: value:
+            let
+              mkNuList =
+                items: "[ ${lib.concatStringsSep "," (lib.forEach items (content: "\"${content}\" "))} ]";
+              patchText =
+                source: prepend: append:
+                pkgs.substitute {
+                  src = source;
+                  substitutions = [
+                    "--replace-fail"
+                    "@NIX_PATH_PREPEND@"
+                    prepend
+                    "--replace-fail"
+                    "@NIX_PATH_APPEND@"
+                    append
+                  ];
+                };
+              file = mkNuFile name (builtins.readFile (patchText (value.source) (mkNuList value.packages) "[]"));
+            in
+            "use ${file}/share/nushell/${name}"
+          ) cfg.module)
+          ++ [ (builtins.readFile ./config.nu) ]
+        );
         envFile.text = builtins.readFile ./env.nu;
         # IMPORTANT: https://github.com/nix-community/home-manager/issues/1011#issuecomment-1624977707
         # Environment variables are a weird thing
@@ -103,6 +165,7 @@ in
         enable = true;
       };
 
+      # TODO: switch to tlrc
       tealdeer = {
         enable = true;
         settings = {

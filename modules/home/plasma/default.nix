@@ -51,7 +51,7 @@ in
         theme = "lightly-plasma-git";
         iconTheme = "Fluent-dark";
         colorScheme = "CatppuccinMochaMauve";
-        cursorTheme = "Catppuccin-Mocha-Mauve";
+        cursorTheme = "Catppuccin-Mocha-Mauve-Cursors";
         wallpaperSlideShow = {
           interval = 3600; # Seconds
           path = [ "${pkgs.nazarick.wallpapers}/share/wallpapers" ];
