@@ -68,7 +68,7 @@ in
           name = "Tofi Application Selector";
           key = "Meta+Ctrl+L";
           # This may have an error if the application start has a string with a space in it
-          command = ''nu -c "tofi-drun | kstart -- ...(\\$in | str trim | split row " ")"'';
+          command = ''nu -c "tofi-drun | kstart -- ...(\\$in | str trim | split row ' ')"'';
         };
         "symbols-tofi" = {
           name = "Tofi Symbols Selector";
@@ -137,6 +137,8 @@ in
           "plasmanotifyrc"."Notifications"."PopupPosition".value = "BottomRight";
           "kscreenlockerrc"."Greeter"."WallpaperPlugin".value = "org.kde.plasma.citygrow";
           "kcminputrc"."Keyboard"."NumLock".value = 0;
+          "klaunchrc"."BusyCursorSettings"."Bouncing".value = false;
+          "klaunchrc"."FeedbackStyle"."BusyCursor".value = false;
         }
         (mkIf cfg.noBorders {
 

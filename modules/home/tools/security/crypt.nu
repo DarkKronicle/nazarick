@@ -1,3 +1,48 @@
+def tomb-env [code: closure] {
+    with-env {
+        PATH: ($env.PATH | prepend @NIX_PATH_PREPEND@ | append @NIX_PATH_APPEND@)
+    } {
+        do $code
+    }
+}
+
+def mountpoint [] {
+    tomb-env {
+        let cmd = (which tomb | get path.0 | readlink $in)
+        let uniq_mounts = (do { 
+            sudo --preserve-env $cmd list 
+        } | complete | get stderr | split row (char newline) | each {
+                |x| $x | parse -r `^tomb\s+\.\s+\[(?P<tomb>\w+)\]` 
+            } | filter {|x| ($x | length) != 0} | each { 
+                |x| $x | get tomb.0 
+            } | uniq)
+        return ([ 'all' ] | append $uniq_mounts)
+    }
+}
+
+# Wrapper for tomb close (with autocomplete!)
+export def "close" [
+    tomb?: string@mountpoint # Tomb to close
+] {
+    tomb-env {
+        let cmd = (which tomb | get path.0 | readlink $in)
+        if ($tomb | is-empty) {
+            sudo --preserve-env $cmd close
+        } else {
+            sudo --preserve-env $cmd close $tomb
+        }
+    }
+}
+
+# Forcefully close all tombs
+# This is sudo, so it *will* succeed
+export def "slam" [] {
+    tomb-env {
+        let cmd = (which tomb | get path.0 | readlink $in)
+        sudo --preserve-env $cmd slam
+    }
+}
+
 export def "open" [
     key?: string, # The key name in $TOMBS_LOCATION
     tomb?: string, # The tomb name in $TOMBS_LOCATION
@@ -8,9 +53,7 @@ export def "open" [
     --no-force, # Don't open if swap is on
     --options(-o): list<string> = [ "rw" "nodev" "noatime" "compress=zstd:5" ] # Options to mount with
 ] {
-    with-env {
-        PATH: ($env.PATH | prepend @NIX_PATH_PREPEND@ | append @NIX_PATH_APPEND@)
-    } {
+    tomb-env {
         let key_location = if ($key | is-not-empty) {
             glob $"([$tombs_location $key] | path join)*.key" | get 0
         } else {
@@ -44,10 +87,13 @@ export def "open" [
             $mnt_point
         }
         mkdir $tomb_mount
+        # This protects files within the tomb
+        chmod 700 $tomb_mount
+        let cmd = (which tomb | get path.0 | readlink $in)
         if ($no_force) {
-            tomb open -k $key_location $tomb_location $tomb_mount -o ...$options
+            ^$cmd open -k $key_location $tomb_location $tomb_mount -o ...$options
         } else {
-            tomb open -k $key_location $tomb_location $tomb_mount -f -o ...$options
+            ^$cmd open -k $key_location $tomb_location $tomb_mount -f -o ...$options
         }
     }
 }

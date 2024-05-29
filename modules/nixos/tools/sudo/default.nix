@@ -21,13 +21,34 @@ in
       extraConfig = ''
         Defaults  lecture="never"
       '';
-      # extraRules = [{
-      #  commands = [
-      #   {
-      #    command = "${pkgs.tomb}/bin/tomb";
-      # }
-      # ];
-      #}];
+      extraRules = [
+        {
+          groups = [ "wheel" ];
+          commands = [
+            {
+              command = "${pkgs.nazarick.tomb}/bin/tomb close";
+              options = [
+                "NOPASSWD"
+                "SETENV"
+              ];
+            }
+            {
+              command = "${pkgs.nazarick.tomb}/bin/tomb slam";
+              options = [
+                "NOPASSWD"
+                "SETENV"
+              ];
+            }
+            {
+              command = "${pkgs.nazarick.tomb}/bin/tomb list";
+              options = [
+                "NOPASSWD"
+                "SETENV"
+              ];
+            }
+          ];
+        }
+      ];
     };
   };
 }
