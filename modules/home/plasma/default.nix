@@ -58,13 +58,29 @@ in
         };
       };
 
-      # hotkeys.commands = {
-      # "screenshot" = {
-      # name = "Screenshot Region";
-      # key = "Meta+Shift+S";
-      # command = "spectacle -rg";
-      # };
-      # };
+      hotkeys.commands = {
+        "screenshot" = {
+          name = "Screenshot Region";
+          key = "Meta+Shift+S";
+          command = "kstart -- spectacle -r";
+        };
+        "application-tofi" = {
+          name = "Tofi Application Selector";
+          key = "Meta+Ctrl+L";
+          # This may have an error if the application start has a string with a space in it
+          command = ''nu -c "tofi-drun | kstart -- ...(\\$in | str trim | split row " ")"'';
+        };
+        "symbols-tofi" = {
+          name = "Tofi Symbols Selector";
+          key = "Meta+Ctrl+K";
+          command = ''rofimoji --selector tofi --clipboarder wl-copy --action type copy --files kaomoji arrows math mathematical_operators emojis_smileys_emotion --prompt "> " --selector-args="--num-results=15 --result-spacing=15 --padding-left=10% --padding-top=10% --font-size=20"'';
+        };
+        "nerd-tofi" = {
+          name = "Tofi Nerd Font Selector";
+          key = "Meta+Ctrl+N";
+          command = ''rofimoji --selector tofi --clipboarder wl-copy --action type copy --files kaomoji nerd_font --prompt "> " --selector-args="--num-results=15 --result-spacing=15 --padding-left=10% --padding-top=10% --font-size=20"'';
+        };
+      };
 
       kwin = {
         effects = {
@@ -96,7 +112,9 @@ in
           "kwinrc"."Plugins"."cubeEnable".value = true;
           "kwinrc"."Plugins"."shakecursorEnable".value = true;
           "kwinrc"."Plugins"."slideEnabled".value = false;
-          "kwinrc"."Plugins"."wobblywindowsEnable".value = true;
+          "kwinrc"."Plugins"."wobblywindowsEnabled".value = true;
+          "kwinrc"."Plugins"."scaleEnabled".value = true;
+          # "kwinrc"."Plugins"."squashEnabled".value = true;
 
           "kdeglobals"."WM"."activeBlend".value = "205,214,244";
           "kdeglobals"."WM"."activeForeground".value = "205,214,244";

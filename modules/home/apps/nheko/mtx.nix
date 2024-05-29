@@ -21,8 +21,8 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "Nheko-Reborn";
     repo = "mtxclient";
-    rev = "58af2030c22e2dae7d6156c70572714c6363acee";
-    hash = "sha256-BdlXfx8f7+fTXYVh6SxTJVDmqcjbM5p3MhNVRtFT2zU=";
+    rev = "1af630765c11cc28969ff3b6f7c6ada842d48f07";
+    hash = "sha256-0e2rPW09x2YxuLu+u0CN7wqSodnu6pKwCTeppyD+Mlo=";
   };
 
   postPatch = ''

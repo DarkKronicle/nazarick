@@ -42,16 +42,9 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "Nheko-Reborn";
     repo = "nheko";
-    rev = "7d9e3039fc2441fb622cad01b49f472d3289d70e";
-    hash = "sha256-h4dxZydSbC9NMJIYWibmwnzlUntA9442dZ4MqbkyU7g=";
+    rev = "1c5f747856031c8e8df161f2d425bb6cece01bcd";
+    hash = "sha256-Mv0MjH9Y6q7ihmkt+Grl1+NL5ExlYqaCUeT0VczVjxI=";
   };
-  # src = fetchFromGitHub {
-  # owner = "checkraisefold";
-  # repo = "nheko";
-  # rev = "04029227f3aa872f0f2690523acde9e74ae31a1d";
-  # hash = "sha256-NMr4N7HBBC84M6KW6Y/1cuZONJvuvL3ZY9mRjK2dAmg=";
-  # };
-
   nativeBuildInputs = [
     asciidoc
     cmake

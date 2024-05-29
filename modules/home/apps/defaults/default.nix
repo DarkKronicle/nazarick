@@ -42,6 +42,7 @@ in
         "application/x-7z-compressed" = [ "ark.desktop" ];
         "application/x-rar" = [ "ark.desktop" ];
         "application/xz" = [ "ark.desktop" ];
+        # "application/x-desktop"
       };
     };
   };
