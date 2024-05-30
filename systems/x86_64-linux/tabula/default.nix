@@ -125,7 +125,7 @@ in
       rust-analyzer
       devenv
 
-      nazarick.anki
+      anki
 
       qalculate-qt
       libqalculate

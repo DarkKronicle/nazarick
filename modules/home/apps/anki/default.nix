@@ -29,7 +29,7 @@ in
         "application/x-ankiaddon"
       ];
       icon = "anki";
-      exec = "env QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor ${pkgs.nazarick.anki}/bin/anki";
+      exec = "env QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor ${pkgs.anki}/bin/anki";
       settings = {
         SingleMainWindow = "true";
       };

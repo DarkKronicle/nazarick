@@ -1,3 +1,5 @@
+# Cool nu script to fetch the hash if you copy the url and name line (in order)
+# wl-paste | split row (char newline) | each {|x| $x | parse -r '^\s+\w+: (?P<value>\S+)' | get value.0} | nix-prefetch-url $in.0 --name $in.1 | str trim | wl-copy
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/015/358/506/large/ming-fan-c1885856b178807fff63bf9bc77ae178.jpg
     sha256: 10mm9sdd0s8gcg0rrqmcfydqk0kwz1kkngrj1l25wkahaklha236
@@ -541,3 +543,36 @@
   - nintendo
   - weaboo
   - zelda
+# https://www.pixiv.net/en/users/12845810/artworks
+# https://cogecha.tumblr.com/
+- src:
+    url: https://raw.githubusercontent.com/ryan4yin/wallpapers/main/anime-girls_tea.jpg
+    name: anime_girls_tea.jpg
+    sha256: 1iqi6sii34xwr3a7mfqa6z5g5c9d92k7qla4jps3l51zzw9rik9g
+  tags:
+  - weaboo
+# I don't *love* twitter, but hopefully this stays up
+- src:
+    url: https://pbs.twimg.com/media/EDQ8xeBWkAAsoAh?format=jpg&name=4096x4096
+    name: pwVvtDR5nX1eyCs8dEVX.jpg
+    sha256: 0lvvwsqrn1frd39aj521sngh1l6g8lmn3nmz8p3aj31d5ywbv20r
+  tags:
+  - weaboo
+- src:
+    url: https://pbs.twimg.com/media/Dak0QNaUQAApK97?format=jpg&name=large
+    name: eoa8Qaff2vgmOL2JbxdC.jpg
+    sha256: 18yiqq6f55hfyl7vn9qzf7vmgnp0qs4lh2w4c0v2v63ilrl9m1v9
+  tags:
+  - weaboo
+- src:
+    url: https://pbs.twimg.com/media/DeHVMKIUQAASagm?format=jpg&name=large
+    name: UpuBZ606HUZJ19U08vS7.jpg
+    sha256: sha256-GXuojGqzq1pakPijOrvRdabWGBItILmGIkQUqJjErdw=
+  tags:
+  - weaboo
+- src:
+    url: https://raw.githubusercontent.com/ryan4yin/wallpapers/main/anime-girls_balloon_long-hair.jpg
+    name: anime_girls_balloon.jpg
+    sha256: 05azqn3v2rqkafxkasap9v4mjfkmdr3lmkw21s8z8ficdz1w3li2
+  tags:
+  - weaboo

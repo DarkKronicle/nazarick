@@ -36,6 +36,18 @@ in
         key = "D07B541F73FBBA18D11B2F63D7592266239CD59C";
         signByDefault = true;
       };
+
+      # A syntax-highlighting pager in Rust(2019 ~ Now)
+      delta = {
+        enable = true;
+        options = {
+          diff-so-fancy = true;
+          line-numbers = true;
+          true-color = "always";
+          # features => named groups of settings, used to keep related settings organized
+          # features = "";
+        };
+      };
     };
   };
 }

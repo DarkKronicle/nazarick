@@ -238,6 +238,9 @@ in
         ".local/state/wireplumber"
         ".local/share/PrismLauncher"
         ".local/share/qalculate"
+        # This is important so that the restoreToken gets properly persisted, sad thing is this doesn't work after a reboot, so it's 
+        # not really needed right now. https://bugs.kde.org/show_bug.cgi?id=480235
+        ".local/share/kdeconnect.daemon"
 
         ".pki"
         ".putty"

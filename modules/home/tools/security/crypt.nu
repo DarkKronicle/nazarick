@@ -43,9 +43,18 @@ export def "slam" [] {
     }
 }
 
+def discovered-tombs [] {
+    (ls /mnt/tomb/tombs/*.tomb | each {|x| $x.name | path basename })
+}
+
+def discovered-keys [] {
+    (ls /mnt/tomb/tombs/*.key | each {|x| $x.name | path basename })
+}
+
+# Open up a tomb use predefined standards
 export def "open" [
-    key?: string, # The key name in $TOMBS_LOCATION
-    tomb?: string, # The tomb name in $TOMBS_LOCATION
+    key?: string@discovered-keys, # The key name in $TOMBS_LOCATION (autocomplete uses default tomb location)
+    tomb?: string@discovered-tombs, # The tomb name in $TOMBS_LOCATION (autocomplete uses default tomb location)
     --tomb-path(-T): path, # Direct path to tomb
     --key-path(-K): path, # Direct path to tomb key
     --tombs-location(-L): path = '/mnt/tomb/tombs', # The location to search for tombs and keys

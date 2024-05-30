@@ -109,11 +109,11 @@ in
           "kwinrc"."Effect-wobblywindows"."Drag".value = 85;
           "kwinrc"."Effect-wobblywindows"."Stiffness".value = 10;
           "kwinrc"."Effect-wobblywindows"."WobblynessLevel".value = 1;
-          "kwinrc"."Plugins"."cubeEnable".value = true;
+          "kwinrc"."Plugins"."cubeEnabled".value = true;
           "kwinrc"."Plugins"."shakecursorEnable".value = true;
           "kwinrc"."Plugins"."slideEnabled".value = false;
           "kwinrc"."Plugins"."wobblywindowsEnabled".value = true;
-          "kwinrc"."Plugins"."scaleEnabled".value = true;
+          "kwinrc"."Plugins"."scaleEnabled".value = false;
           # "kwinrc"."Plugins"."squashEnabled".value = true;
 
           "kdeglobals"."WM"."activeBlend".value = "205,214,244";
