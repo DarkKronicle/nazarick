@@ -7,13 +7,21 @@ Named after the Great Tomb of Nazarick from Overlord (very good show).
 ## Structure
 
 After about 3 months of using this config I moved away from [snowfall lib](https://github.com/snowfallorg/lib) (starting commit `ec48787`)
-and moved to a fully defined structure following closely [ryan4yin](https://github.com/ryan4yin/nix-config).
+and moved to a fully defined structure following closely [ryan4yin](https://github.com/ryan4yin/nix-config)'s config. This config layout
+gives me very fine grained control over my all my systems and variables, and I was able to learn a lot just setting it up. As I add more
+systems, I can put them on specific tracks and configurations.
+
+I can highly recommend snowfall lib as you are starting out (or even if you just want to simplify). I mainly moved away so my 
+configuration didn't feel as much as a black box, and I wanted fine grained control.
 
 Nix has infected my brain and I've gone a bit insane at declaratively specifying configurations.
-Most notably:
-- Plasma configuration - panels, wallpapers, lockscreen, etc.
+
+This config features most notably:
+- Plasma configuration - panels, wallpapers (with applying effects), lockscreen, widgets, etc.
 - mpv - plugins, keybinds, shaders, etc.
 - Recovery iso has literally everything (including specialisations!)
+- Neovim config with lua [here](https://github.com/DarkKronicle/nvim-dotfiles)
+- nushell - custom completions (currently WIP)
 
 For some of the more complicated modules I've written a small blog post over at my [garden](https://garden.darkkronicle.com/),
 so maybe give that a check. It also has my basic install instructions.
