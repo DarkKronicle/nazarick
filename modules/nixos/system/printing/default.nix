@@ -1,13 +1,14 @@
 {
   options,
   config,
+  mylib,
   lib,
   pkgs,
   ...
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.nazarick) mkBoolOpt;
+  inherit (mylib) mkBoolOpt;
   cfg = config.nazarick.system.printing;
 in
 {

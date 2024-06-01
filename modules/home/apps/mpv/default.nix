@@ -1,14 +1,16 @@
 {
   lib,
+  mylib,
   config,
   pkgs,
+  mypkgs,
   inputs,
   ...
 }:
 
 let
   inherit (lib) types mkEnableOption mkIf;
-  inherit (lib.nazarick) mkOpt enabled;
+  inherit (mylib) mkOpt enabled;
 
   cfg = config.nazarick.apps.mpv;
 
@@ -40,15 +42,18 @@ in
       package = pkgs.wrapMpv pkgs.mpv-unwrapped {
         youtubeSupport = true;
         # Useful scripts. Not my entire config, should probably do that
-        scripts = with pkgs; [
-          mpvScripts.mpris
-          mpvScripts.autoload
-          mpvScripts.uosc
-          mpvScripts.thumbfast
-          nazarick.mpv-animecards
-          nazarick.mpv-skipsilence
-          (pkgs.callPackage ./leader.nix { })
-        ];
+        scripts =
+          (with pkgs; [
+            mpvScripts.mpris
+            mpvScripts.autoload
+            mpvScripts.uosc
+            mpvScripts.thumbfast
+            (pkgs.callPackage ./leader.nix { })
+          ])
+          ++ (with mypkgs; [
+            mpv-animecards
+            mpv-skipsilence
+          ]);
       };
 
       bindings = {

@@ -1,20 +1,18 @@
 {
   pkgs,
   lib,
+  mylib,
   inputs,
+  mypkgs,
   ...
 }:
 let
-  inherit (lib.nazarick) enabled;
+  inherit (mylib) enabled;
 in
 {
   imports = [ ./hardware.nix ];
 
-  home-manager.sharedModules = with inputs; [
-    plasma-manager.homeManagerModules.plasma-manager
-    impermanence.nixosModules.home-manager.impermanence
-    nix-index-database.hmModules.nix-index
-  ];
+  nixpkgs.config.allowUnfree = true;
 
   boot.kernelPackages = pkgs.linuxPackages_zen;
 
@@ -106,7 +104,21 @@ in
   programs.dconf.enable = true;
 
   environment.systemPackages =
-    with pkgs;
+    with mypkgs; [
+      kamite-bin
+      ltspice
+      tomb
+      (tomato-c.override {
+        # Home manager simlinks mpv configs, so this forces a fresh config.
+        # This is mainly an issue with sounds because it pulls up a window in my config
+        mpv = pkgs.wrapMpv pkgs.mpv-unwrapped {
+          extraMakeWrapperArgs = [
+            "--add-flags"
+            "--config-dir=/home/darkkronicle/.config/mpv2"
+          ];
+        };
+      })
+    ] ++ (with pkgs;
     [
       wget
       git
@@ -115,10 +127,8 @@ in
       brave
       qbittorrent
       gnumake
-      nazarick.kamite
       matlab
       playerctl
-      nazarick.ltspice
       rnote
       prismlauncher
 
@@ -140,7 +150,6 @@ in
       yt-dlp
       ledger
       nh
-      nazarick.tomb
 
       (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
       # TODO: add my catppuccin theme or make a repo
@@ -161,17 +170,7 @@ in
       kdePackages.partitionmanager
       dust
       compsize
-      (nazarick.tomato-c.override {
-        # Home manager simlinks mpv configs, so this forces a fresh config.
-        # This is mainly an issue with sounds because it pulls up a window in my config
-        mpv = wrapMpv mpv-unwrapped {
-          extraMakeWrapperArgs = [
-            "--add-flags"
-            "--config-dir=/home/darkkronicle/.config/mpv2"
-          ];
-        };
-      })
-    ]
+    ])
     ++ [ inputs.faerber.packages.x86_64-linux.faerber ];
 
   environment.shells = with pkgs; [ nushell ];

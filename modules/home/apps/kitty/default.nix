@@ -3,12 +3,13 @@
   config,
   pkgs,
   inputs,
+  mylib,
   ...
 }:
 
 let
   inherit (lib) types mkEnableOption mkIf;
-  inherit (lib.nazarick) mkOpt enabled;
+  inherit (mylib) mkOpt enabled;
 
   cfg = config.nazarick.apps.kitty;
 in
@@ -40,6 +41,7 @@ in
         # font_size = "11.3";
 
         background = "#16161D";
+        enable_audio_bell = false;
       };
       keybindings = {
         "alt+l" = "next_tab";

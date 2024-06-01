@@ -1,18 +1,20 @@
 {
   pkgs,
+  mypkgs,
   lib,
+  mylib,
   inputs,
   config,
   ...
 }:
 let
-  inherit (lib.nazarick) enabled;
+  inherit (mylib) enabled;
 in
 {
 
   imports = [ ./specialisation.nix ];
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = (with pkgs; [
     neovim
     nazarick.operator-caska
     borgbackup
@@ -34,8 +36,11 @@ in
     kdePackages.partitionmanager
     dust
     compsize
-    nazarick.tomb
-  ];
+    
+  ]) ++ (with mypkgs; [ 
+    operator-caska
+    tomb 
+  ]);
 
   isoImage.squashfsCompression = "zstd -Xcompression-level 6";
 

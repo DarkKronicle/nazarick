@@ -1,13 +1,14 @@
 {
   options,
   config,
+  mylib,
   lib,
   pkgs,
   ...
 }:
 let
   inherit (lib) mkIf types;
-  inherit (lib.nazarick) mkBoolOpt mkIfElse mkOpt;
+  inherit (mylib) mkBoolOpt mkIfElse mkOpt;
 
   cfg = config.nazarick.system.nvidia;
 in

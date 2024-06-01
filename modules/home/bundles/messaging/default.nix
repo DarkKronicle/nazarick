@@ -1,6 +1,7 @@
 {
   lib,
   config,
+  mylib,
   pkgs,
   inputs,
   ...
@@ -8,7 +9,7 @@
 
 let
   inherit (lib) mkIf mkEnableOption;
-  inherit (lib.nazarick) enabled;
+  inherit (mylib) enabled;
 
   cfg = config.nazarick.bundles.messaging;
 in

@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  mylib,
   inputs,
   fetchurl,
   copyDesktopItems,
@@ -15,7 +16,7 @@
 }:
 
 let
-  mkWindowsApp = lib.nazarick.mkwindowsapp {
+  mkWindowsApp = mylib.mkwindowsapp {
     inherit
       stdenv
       gnused

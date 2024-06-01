@@ -2,12 +2,13 @@
   options,
   config,
   lib,
+  mylib,
   pkgs,
   ...
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.nazarick) enabled mkBoolOpt;
+  inherit (mylib) enabled mkBoolOpt;
   cfg = config.nazarick.bundles.desktop;
 in
 {

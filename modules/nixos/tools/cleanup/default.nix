@@ -2,12 +2,13 @@
   lib,
   config,
   pkgs,
+  mylib,
   ...
 }:
 
 let
   inherit (lib) types mkEnableOption mkIf;
-  inherit (lib.nazarick) mkOpt enabled;
+  inherit (mylib) mkOpt enabled;
 
   user = config.nazarick.user.name;
   cfg = config.nazarick.tools.cleanup;

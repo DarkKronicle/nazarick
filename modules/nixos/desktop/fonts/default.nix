@@ -1,13 +1,15 @@
 {
   config,
   lib,
+  mylib,
   pkgs,
+  mypkgs,
   ...
 }:
 
 let
   inherit (lib) mkIf;
-  inherit (lib.nazarick) mkBoolOpt;
+  inherit (mylib) mkBoolOpt;
 
   cfg = config.nazarick.desktop.fonts;
 in
@@ -17,7 +19,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with pkgs; [ nazarick.operator-caska ];
+    environment.systemPackages = with mypkgs; [ operator-caska ];
     fonts = {
       packages = with pkgs; [
         (nerdfonts.override { fonts = [ "CascadiaCode" ]; })

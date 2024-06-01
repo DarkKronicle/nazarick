@@ -1,13 +1,15 @@
 {
   lib,
   config,
+  mylib,
   pkgs,
+  mypkgs,
   ...
 }:
 
 let
   inherit (lib) types mkEnableOption mkIf;
-  inherit (lib.nazarick) mkOpt enabled;
+  inherit (mylib) mkOpt enabled;
 
   user = config.nazarick.user;
   cfg = config.nazarick.tools.security;
@@ -20,7 +22,7 @@ in
   config = mkIf cfg.enable {
     nazarick.tools.nushell.module."crypt.nu" = {
       source = ./crypt.nu;
-      packages = with pkgs; [ nazarick.tomb ];
+      packages = [ mypkgs.tomb ];
     };
   };
 }

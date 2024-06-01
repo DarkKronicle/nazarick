@@ -2,13 +2,14 @@
   lib,
   config,
   pkgs,
+  mylib,
   inputs,
   ...
 }:
 
 let
   inherit (lib) types mkEnableOption mkIf;
-  inherit (lib.nazarick) mkOpt enabled;
+  inherit (mylib) mkOpt enabled;
 
   toml = pkgs.formats.toml { };
 

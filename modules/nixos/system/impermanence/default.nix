@@ -2,11 +2,12 @@
   options,
   config,
   lib,
+  mylib,
   ...
 }:
 let
   inherit (lib) mkIf types;
-  inherit (lib.nazarick) mkBoolOpt mkOpt;
+  inherit (mylib) mkBoolOpt mkOpt;
   cfg = config.impermanence;
 in
 {

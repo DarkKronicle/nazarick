@@ -7,10 +7,8 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
-    waveforms.url = "github:liff/waveforms-flake";
-
-    snowfall-lib = {
-      url = "github:snowfallorg/lib";
+    waveforms = {
+      url = "github:liff/waveforms-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -74,53 +72,12 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    haumea = {
+      url = "github:nix-community/haumea/v0.2.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs =
-    inputs:
-    let
-      lib = inputs.snowfall-lib.mkLib {
-        inherit inputs;
-        src = ./.;
-        snowfall = {
-          meta = {
-            name = "nazarick";
-            title = "The Great Tomb of Nazarick";
-          };
-
-          namespace = "nazarick";
-        };
-      };
-    in
-    lib.mkFlake {
-      channels-config = {
-        allowUnfree = true;
-        permittedUnsecurePackages = [ "router-1.19.0" ];
-      };
-
-      overlays = with inputs; [
-        (
-          _: super:
-          let
-            pkgs = fenix.inputs.nixpkgs.legacyPackages.${super.system};
-          in
-          fenix.overlays.default pkgs pkgs
-        )
-        nix-matlab.overlay
-        # inputs.neovim-nightly-overlay.overlay
-      ];
-
-      systems.modules.nixos = with inputs; [
-        impermanence.nixosModules.impermanence
-        # persist-retro.nixosModules.persist-retro
-        home-manager.nixosModules.home-manager
-        sops-nix.nixosModules.sops
-        waveforms.nixosModule
-        lix-module.nixosModules.default
-      ];
-
-      # homes.modules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
-
-      deploy = lib.mkDeploy { inherit (inputs) self; };
-    };
+  outputs = inputs: import ./outputs inputs;
 }

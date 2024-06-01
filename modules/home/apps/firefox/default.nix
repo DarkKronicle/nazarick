@@ -1,18 +1,28 @@
 {
   lib,
+  mylib,
   config,
   pkgs,
   inputs,
+  mypkgs,
   ...
 }:
 
 let
   inherit (lib) mkEnableOption mkIf;
-  inherit (lib.nazarick) mkBoolOpt;
+  inherit (mylib) mkBoolOpt;
   cfg = config.nazarick.apps.firefox;
   # https://github.com/gvolpe/nix-config/blob/6feb7e4f47e74a8e3befd2efb423d9232f522ccd/home/programs/browsers/firefox.nix
   custom-addons = pkgs.callPackage ./addons.nix {
     inherit (inputs.firefox-addons.lib.${pkgs.system}) buildFirefoxXpiAddon;
+  };
+
+  firefox-cascade = pkgs.fetchFromGitHub {
+    name = "firefox-cascade";
+    owner = "DarkKronicle";
+    repo = "cascade";
+    rev = "994edba071341b4afa9483512d320696ea10c0a6";
+    sha256 = "sha256-DX77qLtDktv077YksxnrSoqa8O0ujJF2NH36GkENaXI=";
   };
 
   extensions =
@@ -101,7 +111,7 @@ in
           name = "main";
           isDefault = true;
           userChrome = mkIf cfg.userCss ''
-            @import "${pkgs.nazarick.firefox-cascade}/chrome/userChrome.css";
+            @import "${firefox-cascade}/chrome/userChrome.css";
           '';
 
           search = {
@@ -129,7 +139,7 @@ in
 
           settings = {
             "privacy.resistFingerprinting" = true;
-            "browser.uiCustomization.state" = ((lib.nazarick.miniJSON pkgs) ./ui_state.json); # This has to be mini or it won't read it
+            "browser.uiCustomization.state" = ((mylib.miniJSON pkgs) ./ui_state.json); # This has to be mini or it won't read it
             "extensions.autoDisableScopes" = 0;
 
             # https://arkenfox.github.io/gui/

@@ -1,12 +1,13 @@
 {
   config,
   lib,
+  mylib,
   pkgs,
   ...
 }:
 let
   inherit (lib) mkIf types mkEnableOption;
-  inherit (lib.nazarick) mkOpt;
+  inherit (mylib) mkOpt;
   cfg = config.nazarick.user;
 in
 {

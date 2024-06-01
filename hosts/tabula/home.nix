@@ -1,16 +1,15 @@
 {
   lib,
   pkgs,
+  mylib,
   config,
   inputs,
   ...
 }:
 let
-  inherit (lib.nazarick) enabled;
+  inherit (mylib) enabled;
 in
 {
-  imports = [ inputs.persist-retro.nixosModules.home-manager.persist-retro ];
-
   programs.ssh = {
     enable = true;
     matchBlocks = {

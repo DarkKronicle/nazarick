@@ -1,17 +1,21 @@
 {
   lib,
   config,
+  mylib,
   pkgs,
+  mypkgs,
   ...
 }:
 
 let
   inherit (lib) mkIf mkEnableOption;
-  inherit (lib.nazarick) mkBoolOpt;
+  inherit (mylib) mkBoolOpt;
 
   cfg = config.nazarick.plasma;
 in
 {
+  imports = [ ./panels ];
+
   options.nazarick.plasma = {
     enable = mkEnableOption "plasma";
     noBorders = mkBoolOpt false "Enable borders on windows";
@@ -32,15 +36,16 @@ in
 
     home.sessionVariables.GTK2_RC_FILES = lib.mkForce "${config.home.homeDirectory}/.gtkrc-2.0";
 
-    home.packages = with pkgs; [
-      nazarick.kde-citygrow
-      fluent-icon-theme
-      (kdePackages.callPackage ./lightly-qt6.nix { })
-      (catppuccin-kde.override {
-        flavour = [ "mocha" ];
-        accents = [ "mauve" ];
-      })
-    ];
+    home.packages =
+      [ mypkgs.kde-citygrow ]
+      ++ (with pkgs; [
+        fluent-icon-theme
+        (kdePackages.callPackage ./lightly-qt6.nix { })
+        (catppuccin-kde.override {
+          flavour = [ "mocha" ];
+          accents = [ "mauve" ];
+        })
+      ]);
 
     programs.plasma = {
       enable = true;
@@ -54,7 +59,7 @@ in
         cursorTheme = "Catppuccin-Mocha-Mauve-Cursors";
         wallpaperSlideShow = {
           interval = 3600; # Seconds
-          path = [ "${pkgs.nazarick.wallpapers}/share/wallpapers" ];
+          path = [ "${mypkgs.system-wallpapers}/share/wallpapers" ];
         };
       };
 

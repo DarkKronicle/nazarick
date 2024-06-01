@@ -1,14 +1,16 @@
 {
   options,
   config,
+  mypkgs,
   lib,
   pkgs,
   inputs,
+  mylib,
   ...
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.nazarick) mkBoolOpt;
+  inherit (mylib) mkBoolOpt;
   cfg = config.nazarick.system.nix;
 in
 {
@@ -17,12 +19,13 @@ in
   };
   config = mkIf cfg.enable {
 
-    environment.systemPackages = with pkgs; [
-      nixfmt-rfc-style
-      nix-output-monitor
-      nurl
-      nazarick.naz
-    ];
+    environment.systemPackages =
+      (with pkgs; [
+        nixfmt-rfc-style
+        nix-output-monitor
+        nurl
+      ])
+      ++ [ mypkgs.naz ];
 
     # https://github.com/sioodmy/dotfiles/blob/dc9fce23ee4a58b6485f7572b850a7b2dcaf9bb7/system/core/nix.nix#L62-L68
     # Faster rebuilding

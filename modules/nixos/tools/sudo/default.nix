@@ -1,12 +1,13 @@
 {
   config,
   lib,
-  pkgs,
+  mylib,
+  mypkgs,
   ...
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.nazarick) mkBoolOpt;
+  inherit (mylib) mkBoolOpt;
   cfg = config.nazarick.tools.cli;
 in
 {
@@ -26,21 +27,21 @@ in
           groups = [ "wheel" ];
           commands = [
             {
-              command = "${pkgs.nazarick.tomb}/bin/tomb close";
+              command = "${mypkgs.tomb}/bin/tomb close";
               options = [
                 "NOPASSWD"
                 "SETENV"
               ];
             }
             {
-              command = "${pkgs.nazarick.tomb}/bin/tomb slam";
+              command = "${mypkgs.tomb}/bin/tomb slam";
               options = [
                 "NOPASSWD"
                 "SETENV"
               ];
             }
             {
-              command = "${pkgs.nazarick.tomb}/bin/tomb list";
+              command = "${mypkgs.tomb}/bin/tomb list";
               options = [
                 "NOPASSWD"
                 "SETENV"

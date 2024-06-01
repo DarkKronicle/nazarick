@@ -2,12 +2,13 @@
   options,
   config,
   lib,
+  mylib,
   pkgs,
   ...
 }:
 let
   inherit (lib) mkIf mkOverride;
-  inherit (lib.nazarick) mkBoolOpt;
+  inherit (mylib) mkBoolOpt;
 
   cfg = config.nazarick.system.hardware;
 in

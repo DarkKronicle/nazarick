@@ -3,12 +3,13 @@
   lib,
   pkgs,
   fetchurl,
+  mylib,
   stdenv,
   inputs,
   ...
 }:
 let
-  wallpapers = ((lib.nazarick.importYAML pkgs) ./wallpapers.yml);
+  wallpapers = ((mylib.importYAML pkgs) ./wallpapers.yml);
   wallpaperWrapper = import ./wallpaper.nix;
   packageWallpaper = wallpaper: (pkgs.callPackage (wallpaperWrapper wallpaper) { inputs = inputs; });
   finalWallpapers = lib.forEach wallpapers (w: packageWallpaper w);

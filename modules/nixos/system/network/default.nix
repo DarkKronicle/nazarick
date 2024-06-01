@@ -1,7 +1,12 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  mylib,
+  ...
+}:
 let
   inherit (lib) mkIf mkEnableOption;
-  inherit (lib.nazarick) mkBoolOpt;
+  inherit (mylib) mkBoolOpt;
 
   cfg = config.nazarick.system.network;
 in

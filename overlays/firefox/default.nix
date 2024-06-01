@@ -1,5 +1,5 @@
-{ channels, ... }:
+{ pkgs-unstable, ... }:
 
 final: prev:
 
-{ inherit (channels.unstable) firefox-wayland; }
+{ inherit (pkgs-unstable.unstable) firefox-wayland; }

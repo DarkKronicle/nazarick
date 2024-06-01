@@ -1,5 +1,6 @@
 {
   lib,
+  mylib,
   config,
   pkgs,
   inputs,
@@ -8,7 +9,7 @@
 
 let
   inherit (lib) types mkEnableOption mkIf;
-  inherit (lib.nazarick) mkOpt enabled;
+  inherit (mylib) mkOpt enabled;
 
   cfg = config.nazarick.apps.neovim;
 in

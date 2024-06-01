@@ -1,11 +1,12 @@
 {
   lib,
   config,
+  mylib,
   pkgs,
   ...
 }:
 let
-  inherit (lib.nazarick) enabled;
+  inherit (mylib) enabled;
 in
 {
   # https://discourse.nixos.org/t/how-do-i-add-boot-menu-entries-to-an-install-iso/39748/3

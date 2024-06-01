@@ -2,12 +2,14 @@
   lib,
   config,
   pkgs,
+  mylib,
+  mypkgs,
   ...
 }:
 
 let
   inherit (lib) types mkEnableOption mkIf;
-  inherit (lib.nazarick) mkOpt enabled;
+  inherit (mylib) mkOpt enabled;
 
   username = config.nazarick.user.name;
   cfg = config.nazarick.tools.borg;
@@ -42,7 +44,7 @@ in
         pkgs.borgbackup
         pkgs.nushell
         pkgs.networkmanager # check wifi
-        pkgs.nazarick.nordvpn # check wifi pt2
+        mypkgs.nordvpn # check wifi pt2
         pkgs.procps
         pkgs.ripgrep
       ];

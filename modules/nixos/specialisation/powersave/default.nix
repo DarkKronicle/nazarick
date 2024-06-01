@@ -3,11 +3,12 @@
   config,
   lib,
   pkgs,
+  mylib,
   ...
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.nazarick) mkBoolOpt;
+  inherit (mylib) mkBoolOpt;
   cfg = config.nazarick.specialisation.powersave;
   username = config.nazarick.user.name;
 in

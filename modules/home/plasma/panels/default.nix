@@ -2,6 +2,7 @@
   lib,
   config,
   pkgs,
+  mypkgs,
   ...
 }:
 
@@ -21,11 +22,11 @@ in
   };
 
   config = mkIf (cfg.enable && cfgParent.enable) {
-    home.packages = with pkgs; [
-      nazarick.kde-ginti
-      nazarick.kde-application-title-bar
-      nazarick.kde-plasmusic
-      nazarick.kde-nordvpn
+    home.packages = with mypkgs; [
+      kde-ginti
+      kde-application-title-bar
+      kde-plasmusic-toolbar
+      kde-nordvpn
     ];
 
     programs.plasma = {

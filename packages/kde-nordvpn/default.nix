@@ -6,7 +6,7 @@
 }:
 
 let
-  pluginName = "plasma-nordvpn";
+  pluginName = "nordvpn";
   pluginId = "com.github.korapp.nordvpn";
 in
 stdenv.mkDerivation {

@@ -2,14 +2,17 @@
   options,
   config,
   lib,
+  mylib,
   pkgs,
+  mypkgs,
   inputs,
   ...
 }:
 let
   inherit (lib) mkIf;
-  inherit (lib.nazarick) mkBoolOpt;
+  inherit (mylib) mkBoolOpt;
   cfg = config.nazarick.tools.nordvpn;
+  nordvpn-pkg = mypkgs.nordvpn;
 in
 {
   options.nazarick.tools.nordvpn = {
@@ -20,17 +23,17 @@ in
     environment.etc.hosts.mode = "0644";
 
     users.groups.nordvpn = { };
-    environment.systemPackages = with pkgs; [ nazarick.nordvpn ];
+    environment.systemPackages = [ nordvpn-pkg ];
     systemd = {
       services.nordvpn = {
         description = "NordVPN daemon.";
         serviceConfig = {
-          ExecStart = "${pkgs.nazarick.nordvpn}/bin/nordvpnd";
+          ExecStart = "${nordvpn-pkg}/bin/nordvpnd";
           ExecStartPre = ''
             ${pkgs.bash}/bin/bash -c '\
               mkdir -m 700 -p /var/lib/nordvpn; \
               if [ -z "$(ls -A /var/lib/nordvpn)" ]; then \
-                cp -r ${pkgs.nazarick.nordvpn}/var/lib/nordvpn/* /var/lib/nordvpn; \
+                cp -r ${nordvpn-pkg}/var/lib/nordvpn/* /var/lib/nordvpn; \
               fi'
           '';
           NonBlocking = true;
