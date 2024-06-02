@@ -3,10 +3,9 @@
 
   inputs = {
 
-    # nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
     waveforms = {
       url = "github:liff/waveforms-flake";
       inputs.nixpkgs.follows = "nixpkgs";
