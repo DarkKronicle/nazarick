@@ -24,6 +24,17 @@ in
     programs.git = {
       enable = true;
       inherit (cfg) userName userEmail;
+      ignores = [
+        ".Trash-*"
+
+        ".DS_Store"
+        ".DS_Store?"
+        "._*"
+        ".Spotlight-V100"
+        ".Trashes"
+        "ehthumbs.db"
+        "Thumbs.db"
+      ];
       extraConfig = {
         credential.helper = [
           "cache --timeout 60000"

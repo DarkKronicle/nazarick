@@ -10,7 +10,7 @@ let
   inherit (mylib) enabled;
 in
 {
-  imports = [ ./hardware.nix ];
+  imports = [ ./hardware.nix ] ++ (mylib.scanPaths ./specialisation);
 
   nixpkgs.config.allowUnfree = true;
 
@@ -20,73 +20,50 @@ in
   time.timeZone = "America/Denver";
 
   nazarick = {
-    user = {
-      enable = true;
-    };
-    desktop = {
-      plasma = {
-        # Home manager stuff handles specific plasma theming
-        enable = true;
-      };
-    };
-    bundles = {
-      desktop = enabled;
-      impermanence = enabled;
+    core = {
+      common = enabled;
+      sops = enabled;
     };
     system = {
-      sops = {
-        enable = true;
-      };
-      boot = {
-        grub = true;
+      boot.grub = true;
+      common = true;
+      desktop = true;
+      cleanup = enabled;
+      misc = {
+        tlp = true;
+        thermald = true;
       };
       nvidia = {
         enable = true;
         nvidiaBusId = "PCI:1:0:0";
         intelBusId = "PCI:0:2:0";
       };
-      network = {
+    };
+    network = {
+      dnscrypt = enabled;
+      firewall = {
         enable = true;
         kdeconnect = true;
         nordvpn = true;
       };
-      memory = enabled;
+      nordvpn = enabled;
     };
-    apps = {
-      steam = {
-        enable = true;
+    workspace = {
+      user = enabled;
+      impermanence = enabled;
+      gui = {
+        common = enabled;
+        plasma = enabled;
+        steam = enabled;
+        wine = enabled;
+        fcitx = enabled;
       };
-      wine = {
-        enable = true;
+      service = {
+        spotifyd = enabled;
+        kanata = enabled;
+        borg = enabled;
       };
-      spotifyd = {
-        enable = true;
-      };
-    };
-    tools = {
-      fcitx = {
-        enable = true;
-      };
-      kanata = {
-        enable = true;
-      };
-      cli = {
-        enable = true;
-      };
-      nordvpn = {
-        enable = true;
-      };
-      borg = {
-        enable = true;
-      };
-      cleanup = {
-        enable = true;
-      };
-    };
-    specialisation = {
-      powersave = {
-        enable = true;
-      };
+      cli.common = enabled;
     };
   };
 
