@@ -42,6 +42,15 @@ in
     # We rather want a build to be killed than our precious user sessions as builds can be easily restarted.
     systemd.services.nix-daemon.serviceConfig.OOMScoreAdjust = lib.mkDefault 250;
 
+    programs.nh = {
+      enable = true;
+      clean = {
+        enable = true;
+        dates = "weekly";
+        extraArgs = "--keep-since 14d --keep 15";
+      };
+    };
+
     nix = {
 
       # https://github.com/sioodmy/dotfiles/blob/dc9fce23ee4a58b6485f7572b850a7b2dcaf9bb7/system/core/nix.nix#L83
@@ -49,12 +58,6 @@ in
       nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
 
       daemonCPUSchedPolicy = "idle";
-
-      gc = {
-        automatic = true;
-        dates = "weekly";
-        options = "--delete-older-than 30d";
-      };
 
       # TODO: Remove the x86 here as well
       package = inputs.lix-module.packages.x86_64-linux.default;

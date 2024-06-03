@@ -3,6 +3,7 @@
   lib,
   mylib,
   pkgs,
+  mypkgs,
   ...
 }:
 let
@@ -18,17 +19,9 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    environment.systemPackages = with pkgs; [
-      fd
-      fzf
-      ripgrep
-      unzip
-      gnupg
-      acpi
-      ouch
-      gfshare
-      age
-    ];
+    environment.systemPackages = import (mylib.relativeToRoot "modules/shared/cli.nix") {
+      inherit pkgs mypkgs;
+    };
 
     nazarick.workspace.cli.sudo.enable = lib.mkOverride 500 true;
   };

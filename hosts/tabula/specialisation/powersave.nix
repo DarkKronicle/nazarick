@@ -17,7 +17,7 @@ in
       # services.desktopManager.plasma6.enable = lib.mkForce false;
       # services.xserver.desktopManager.lxqt.enable = true;
       home-manager.users.${username}.nazarick = {
-        apps = {
+        app = {
           mpv = {
             enable = lib.mkForce false;
           };

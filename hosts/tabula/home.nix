@@ -43,13 +43,18 @@ in
   };
 
   nazarick = {
-    plasma = {
-      enable = true;
-      noBorders = true;
-      panels = enabled;
+    core.xdg = enabled;
+
+    gui = {
+      plasma = {
+        enable = true;
+        noBorders = true;
+        panels = enabled;
+      };
+      fcitx = enabled;
     };
 
-    tools = {
+    cli = {
       git = {
         enable = true;
         userEmail = "darkkronicle@gmail.com";
@@ -58,26 +63,29 @@ in
       jujutsu = enabled;
       nushell = enabled;
       pager = enabled;
-      playerctl = enabled;
-      easyeffects = enabled;
-      kdeconnect = enabled;
-      fcitx = enabled;
       security = enabled;
     };
 
-    apps = {
+
+    service = {
+      playerctl = enabled;
+      easyeffects = enabled;
+      kdeconnect = enabled;
+    };
+
+    tui = {
+      neovim = enabled;
+      btop = enabled;
+      yazi = enabled;
+    };
+
+    app = {
+      common.document = true;
+      common.messaging = true;
       firefox = enabled;
       kitty = enabled;
-      yazi = enabled;
-      btop = enabled;
       thunderbird = enabled;
       mpv = enabled;
-      defaults = enabled;
-      neovim = enabled;
-    };
-    bundles = {
-      messaging = enabled;
-      document = enabled;
     };
   };
 }

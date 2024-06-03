@@ -97,15 +97,11 @@ in
       })
     ] ++ (with pkgs;
     [
-      wget
-      git
       git-credential-oauth
-      gcc
       brave
       qbittorrent
       gnumake
       matlab
-      playerctl
       rnote
       prismlauncher
 
@@ -115,18 +111,13 @@ in
       anki
 
       qalculate-qt
-      libqalculate
       gparted
       ntfs3g
       pipes-rs
 
-      wl-clipboard
       waveforms
       mecab # TODO: Anki this up
-      bandwhich
       yt-dlp
-      ledger
-      nh
 
       (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
       # TODO: add my catppuccin theme or make a repo
@@ -140,13 +131,8 @@ in
         "rustfmt"
       ])
       rust-analyzer-nightly
-
       filezilla
-      gtrash
-
       kdePackages.partitionmanager
-      dust
-      compsize
     ])
     ++ [ inputs.faerber.packages.x86_64-linux.faerber ];
 
