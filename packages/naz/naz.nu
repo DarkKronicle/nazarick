@@ -21,6 +21,7 @@ def format [] {
 
 def "main commit" [message: string, --noversion] {
     do_safely {
+        git add .
         if (not $noversion)  {
             # Set pager here to less so that there is no confusion
             let generation = PAGER="less" (nixos-rebuild list-generations --flake . | rg "current" | split row " " | filter {|x| not ($x | is-empty)} | get 0)
