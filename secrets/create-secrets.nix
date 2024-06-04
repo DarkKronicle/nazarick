@@ -13,7 +13,9 @@ let
   git-info = builtins.fetchGit { inherit (locked-info) url rev; };
   lix = inputs.lix-module.packages.${system}.default;
   nu-cmd = ''let calced = (${lix}/bin/nix-hash --type sha256 "${git-info}" | str trim); if (not ($calced == ${locked-info.sha256})) { error make { msg: $"Differing hashes. Expected ${locked-info.sha256}, got ($calced)"  } }'';
-  calculated-match = builtins.readFile (pkgs.runCommandNoCC "secrets-hash" { } ''${pkgs.nushell}/bin/nu -c '${nu-cmd}' > $out'');
+  calculated-match = builtins.readFile (
+    pkgs.runCommandNoCC "secrets-hash" { } ''${pkgs.nushell}/bin/nu -c '${nu-cmd}' > $out''
+  );
   valid = (if fake then (true) else (calculated-match == ""));
 in
 {

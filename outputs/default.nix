@@ -27,7 +27,15 @@ let
         inputs
         ;
 
-      mysecrets = import (mylib.relativeToRoot "secrets/create-secrets.nix") { inherit pkgs system inputs lib; fake = fake_secrets;};
+      mysecrets = import (mylib.relativeToRoot "secrets/create-secrets.nix") {
+        inherit
+          pkgs
+          system
+          inputs
+          lib
+          ;
+        fake = fake_secrets;
+      };
 
       # use unstable branch for some packages to get the latest updates
       pkgs-unstable = import inputs.nixpkgs-unstable {
@@ -85,5 +93,5 @@ in
     map (it: it.nixosConfigurations or { }) nixosSystemValues
   );
 
-  packages = forAllSystems (system: allSystems.${system}.packages or { });
+  packages = forAllSystems (system: (allSystems.${system}.packages or { }));
 }

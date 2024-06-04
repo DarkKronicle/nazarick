@@ -2,19 +2,19 @@
 {
   lib,
   pkgs,
-  fetchurl,
   mylib,
   stdenv,
   inputs,
   system,
+  wallpapers ? ./wallpapers.yml,
   ...
 }:
 let
-  wallpapers = ((mylib.importYAML pkgs) ./wallpapers.yml);
+  wallpapers-parsed = ((mylib.importYAML pkgs) wallpapers);
   wallpaperWrapper = import ./wallpaper.nix;
   packageWallpaper =
     wallpaper: (pkgs.callPackage (wallpaperWrapper wallpaper) { inherit inputs system; });
-  finalWallpapers = lib.forEach wallpapers (w: packageWallpaper w);
+  finalWallpapers = lib.forEach wallpapers-parsed (w: packageWallpaper w);
 in
 stdenv.mkDerivation {
   pname = "system-wallpapers";
