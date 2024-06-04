@@ -38,13 +38,6 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    # There is very little reason to have this be a private repository, but makes
-    # me feel better nonetheless. 
-    mysecrets = {
-      url = "git+ssh://git@gitlab.com/DarkKronicle/nix-sops.git?ref=main&shallow=1";
-      flake = false;
-    };
-
     impermanence.url = "github:nix-community/impermanence";
     persist-retro.url = "github:Geometer1729/persist-retro";
 

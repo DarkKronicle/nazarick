@@ -313,24 +313,6 @@
         "url": "https://git.lix.systems/lix-project/nixos-module"
       }
     },
-    "mysecrets": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1712616653,
-        "narHash": "sha256-jQE/LhbSq2scA9J9sk0A0GFB4OOI5ARjew0Hne6yq7g=",
-        "ref": "main",
-        "rev": "bef2265a090cf053cdeb6706432f12073fd066ec",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@gitlab.com/DarkKronicle/nix-sops.git"
-      },
-      "original": {
-        "ref": "main",
-        "shallow": true,
-        "type": "git",
-        "url": "ssh://git@gitlab.com/DarkKronicle/nix-sops.git"
-      }
-    },
     "nix-index-database": {
       "inputs": {
         "nixpkgs": [
@@ -845,7 +827,6 @@
         "impermanence": "impermanence",
         "lix": "lix",
         "lix-module": "lix-module",
-        "mysecrets": "mysecrets",
         "nix-index-database": "nix-index-database",
         "nix-matlab": "nix-matlab",
         "nixos-generators": "nixos-generators",

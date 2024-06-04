@@ -5,6 +5,7 @@
   pkgs,
   mypkgs,
   inputs,
+  mysecrets,
   ...
 }:
 
@@ -50,10 +51,8 @@ in
             mpvScripts.thumbfast
             (pkgs.callPackage ./leader.nix { })
           ])
-          ++ (with mypkgs; [
-            mpv-animecards
-            mpv-skipsilence
-          ]);
+          ++ (with mypkgs; [ mpv-skipsilence ])
+          ++ (lib.optionals (!mysecrets.fake) (with mypkgs; [ mpv-animecards ]));
       };
 
       bindings = {

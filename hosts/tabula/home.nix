@@ -66,7 +66,6 @@ in
       security = enabled;
     };
 
-
     service = {
       playerctl = enabled;
       easyeffects = enabled;
@@ -86,6 +85,7 @@ in
       kitty = enabled;
       thunderbird = enabled;
       mpv = enabled;
+      anki = enabled;
     };
   };
 }

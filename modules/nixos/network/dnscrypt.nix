@@ -35,8 +35,7 @@ in
         block_ipv6 = false;
         doh_servers = true;
 
-        # I had some issues here, and it turns out these 2 both have to be on
-        # for quad9
+        # I had some issues here, but it turns out dnssec requires a filter
         require_nofilter = false; # quad9 has some nice security filters
         require_dnssec = true;
 

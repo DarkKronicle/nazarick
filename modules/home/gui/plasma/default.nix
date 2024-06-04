@@ -21,9 +21,6 @@ in
     noBorders = mkBoolOpt false "Enable borders on windows";
   };
 
-  # TODO: list of files I need to remove from persistence
-  # /home/darkkronicle/.config/systemsettingsrc
-
   config = mkIf cfg.enable {
 
     # gtk 2 config conflicts with *something*, so move it somewhere else to forget about it

@@ -1,5 +1,5 @@
 {
-  options,
+  system,
   config,
   mypkgs,
   lib,
@@ -59,8 +59,7 @@ in
 
       daemonCPUSchedPolicy = "idle";
 
-      # TODO: Remove the x86 here as well
-      package = inputs.lix-module.packages.x86_64-linux.default;
+      package = inputs.lix-module.packages.${system}.default;
 
       settings = {
 

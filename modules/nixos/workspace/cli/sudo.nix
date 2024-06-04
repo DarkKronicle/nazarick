@@ -11,7 +11,6 @@ let
   cfg = config.nazarick.workspace.cli.sudo;
 in
 {
-  # TODO: Move this to a suite
   options.nazarick.workspace.cli.sudo = {
     enable = mkBoolOpt false "Enable sudo configuration";
     removeFirstMessage = mkBoolOpt true "Remove first message about sudo";

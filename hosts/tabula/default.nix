@@ -81,7 +81,8 @@ in
   programs.dconf.enable = true;
 
   environment.systemPackages =
-    with mypkgs; [
+    with mypkgs;
+    [
       kamite-bin
       ltspice
       tomb
@@ -95,8 +96,8 @@ in
           ];
         };
       })
-    ] ++ (with pkgs;
-    [
+    ]
+    ++ (with pkgs; [
       git-credential-oauth
       brave
       qbittorrent
@@ -108,21 +109,16 @@ in
       rust-analyzer
       devenv
 
-      anki
-
       qalculate-qt
       gparted
       ntfs3g
       pipes-rs
 
       waveforms
-      mecab # TODO: Anki this up
       yt-dlp
 
       (texlive.combine { inherit (texlive) scheme-medium circuitikz; })
-      # TODO: add my catppuccin theme or make a repo
       (pkgs.mumble.override { pulseSupport = true; })
-      # nazarick.mint # - I give up, this isn't working
       (fenix.complete.withComponents [
         "cargo"
         "clippy"

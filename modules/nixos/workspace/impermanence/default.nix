@@ -114,7 +114,6 @@ in
         ".config/drg_mod_integration"
         ".config/matlab"
         ".config/qalculate" # TODO: the qt file stores history, so don't delete that, but can set up setting some defaults
-        # ".config/easyeffects" # TODO: There is an option to set profile. The json should be stable
         ".borg"
 
         ".factorio"

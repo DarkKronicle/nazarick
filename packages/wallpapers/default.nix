@@ -6,12 +6,14 @@
   mylib,
   stdenv,
   inputs,
+  system,
   ...
 }:
 let
   wallpapers = ((mylib.importYAML pkgs) ./wallpapers.yml);
   wallpaperWrapper = import ./wallpaper.nix;
-  packageWallpaper = wallpaper: (pkgs.callPackage (wallpaperWrapper wallpaper) { inputs = inputs; });
+  packageWallpaper =
+    wallpaper: (pkgs.callPackage (wallpaperWrapper wallpaper) { inherit inputs system; });
   finalWallpapers = lib.forEach wallpapers (w: packageWallpaper w);
 in
 stdenv.mkDerivation {

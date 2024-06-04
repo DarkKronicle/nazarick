@@ -14,33 +14,34 @@ in
 
   imports = [ ./specialisation.nix ];
 
-  environment.systemPackages = (with pkgs; [
-    neovim
-    nazarick.operator-caska
-    borgbackup
-    ntfs3g
-    gparted
-    cryptsetup
-    maliit-framework
-    maliit-keyboard
-    git
-    rsync
-    firefox
-    yazi
-    libqalculate
-    qalculate-qt
+  environment.systemPackages =
+    (with pkgs; [
+      neovim
+      nazarick.operator-caska
+      borgbackup
+      ntfs3g
+      gparted
+      cryptsetup
+      maliit-framework
+      maliit-keyboard
+      git
+      rsync
+      firefox
+      yazi
+      libqalculate
+      qalculate-qt
 
-    sops
-    ssh-to-age
+      sops
+      ssh-to-age
 
-    kdePackages.partitionmanager
-    dust
-    compsize
-    
-  ]) ++ (with mypkgs; [ 
-    operator-caska
-    tomb 
-  ]);
+      kdePackages.partitionmanager
+      dust
+      compsize
+    ])
+    ++ (with mypkgs; [
+      operator-caska
+      tomb
+    ]);
 
   isoImage.squashfsCompression = "zstd -Xcompression-level 6";
 

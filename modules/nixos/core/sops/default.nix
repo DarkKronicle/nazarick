@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  mysecrets,
   inputs,
   ...
 }:
@@ -22,7 +23,7 @@ in
       age
     ];
     sops = {
-      defaultSopsFile = "${builtins.toString inputs.mysecrets}/secrets.yaml";
+      defaultSopsFile = "${mysecrets.src}/secrets.yaml";
       age = {
         keyFile = "/persist/system/var/lib/sops-nix/keys.txt";
       };

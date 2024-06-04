@@ -19,6 +19,8 @@ in
   };
 
   config = mkIf cfg.enable {
+    home.packages = with pkgs; [ mecab ];
+
     xdg.desktopEntries."anki" = {
       name = "Anki";
       comment = "An intelligent spaced-repetition memory training program";

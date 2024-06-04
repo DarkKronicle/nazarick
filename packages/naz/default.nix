@@ -3,18 +3,23 @@
   stdenv,
   pkgs,
   makeWrapper,
+  system,
+  inputs,
   ...
 }:
 let
-  requiredPackages = with pkgs; [
-    nushell
-    ripgrep
-    nixfmt-rfc-style
-    git
-    nix-output-monitor
-    nh
-    nvd
-  ];
+  requiredPackages =
+    (with pkgs; [
+      nushell
+      ripgrep
+      nixfmt-rfc-style
+      git
+      nix-output-monitor
+      nix-prefetch-git
+      nh
+      nvd
+    ])
+    ++ [ inputs.lix-module.packages.${system}.default ];
 in
 stdenv.mkDerivation {
   pname = "naz";

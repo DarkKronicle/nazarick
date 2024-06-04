@@ -7,6 +7,7 @@
   pkgs,
   pkgs-stable,
   pkgs-unstable,
+  mysecrets,
   ...
 }:
 lib.listToAttrs (
@@ -22,6 +23,7 @@ lib.listToAttrs (
           pkgs
           pkgs-stable
           pkgs-unstable
+          mysecrets
           mylib
           ;
       };

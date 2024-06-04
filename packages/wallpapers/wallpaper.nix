@@ -9,6 +9,7 @@
   stdenv,
   inputs,
   fetchurl,
+  system,
   ...
 }:
 let
@@ -37,7 +38,9 @@ stdenv.mkDerivation {
     }
     ${lib.concatStringsSep "\n" (
       lib.forEach extra_themes (theme: ''
-        ${inputs.faerber.packages.x86_64-linux.faerber}/bin/faerber $src $out/share/wallpapers/${theme}-$name --flavour ${theme}
+        ${
+          inputs.faerber.packages.${system}.faerber
+        }/bin/faerber $src $out/share/wallpapers/${theme}-$name --flavour ${theme}
       '')
     )}
 

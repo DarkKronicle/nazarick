@@ -16,7 +16,7 @@ def do_safely [code: closure] {
 }
 
 def format [] {
-    nixfmt flake.nix homes/ lib/ modules/ overlays/ packages/ systems/
+    nixfmt flake.nix outputs/ hosts/ lib/ modules/ overlays/ packages/ systems/ secrets/
 }
 
 def "main commit" [message: string, --noversion] {
@@ -44,6 +44,10 @@ def "main build" [--update, --flake: string = ".", --plain, --hostname: string] 
         ];
         if ($update) {
             $flags = ($flags | append "--update")
+            let url = "git+ssh://git@gitlab.com/DarkKronicle/nix-sops.git"
+            let locked = (nix eval --impure --expr $"let content = builtins.fetchGit { url = \"($url)\"; }; noOut = builtins.removeAttrs content [ \"outPath\" ]; in noOut // { \"out\" = content.outPath; }" --json) | from json
+            let hash = (nix-hash --type sha256 ($locked | get out))
+            ({url: ($url), rev: ($locked | get rev), sha256: ($hash)} | to json | save -f secrets/secrets.lock)
         }
         if ($plain) {
             $flags = ($flags | append "--no-nom")

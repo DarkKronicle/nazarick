@@ -2,6 +2,7 @@
   pkgs,
   inputs,
   lib,
+  mysecrets,
   runCommand,
 }:
 
@@ -17,7 +18,7 @@
 # https://github.com/NixOS/nixpkgs/blob/nixos-unstable/pkgs/build-support/fetchurl/default.nix#L148
 
 let
-  file = builtins.toPath "${inputs.mysecrets}/packages/animecards.lua";
+  file = builtins.toPath "${mysecrets.src}/packages/animecards.lua";
 in
 pkgs.mpvScripts.buildLua {
   pname = "mpv-animecards";

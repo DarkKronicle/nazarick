@@ -27,8 +27,9 @@
       system,
       genSpecialArgs,
       myvars,
+      fake-secrets ? true,
       nixpkgs ? (inputs.nixpkgs),
-      specialArgs ? (genSpecialArgs system nixpkgs),
+      specialArgs ? (genSpecialArgs system nixpkgs fake-secrets),
       nix-modules ? [ ],
       home-modules ? [ ],
       ...
@@ -63,6 +64,14 @@
           home-manager.extraSpecialArgs = specialArgs;
           # Home manager overlays
           nixpkgs.overlays = overlays;
+        }
+        {
+          assertions = [
+            {
+              assertion = specialArgs.mysecrets.valid;
+              message = specialArgs.mysecrets.message;
+            }
+          ];
         }
       ];
     };
