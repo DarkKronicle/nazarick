@@ -65,6 +65,9 @@ in
         borg = enabled;
       };
       cli.common = enabled;
+      security = {
+        firejail = enabled;
+      };
     };
   };
 

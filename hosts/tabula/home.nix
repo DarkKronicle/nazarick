@@ -104,5 +104,7 @@ in
         minecraft = enabled;
       };
     };
+
+    security.firejail = enabled;
   };
 }
