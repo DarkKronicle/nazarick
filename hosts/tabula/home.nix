@@ -44,6 +44,7 @@ in
 
   nazarick = {
     core.xdg = enabled;
+    core.nix = enabled;
 
     gui = {
       plasma = {
@@ -86,6 +87,7 @@ in
       thunderbird = enabled;
       mpv = enabled;
       anki = enabled;
+      spotify.spotify-qt = enabled;
     };
   };
 }

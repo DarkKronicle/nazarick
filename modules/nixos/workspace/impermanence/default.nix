@@ -213,6 +213,8 @@ in
         ".config/kded5"
         ".config/kded6"
 
+        ".config/kraxarn"
+
         ".config/autostart" # cursed things here
 
         ".config/qBittorrent"
