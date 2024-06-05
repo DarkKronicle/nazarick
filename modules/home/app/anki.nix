@@ -3,7 +3,7 @@
   mylib,
   config,
   pkgs,
-  inputs,
+  mypkgs,
   ...
 }:
 
@@ -16,10 +16,14 @@ in
 {
   options.nazarick.app.anki = {
     enable = mkEnableOption "anki";
+    other-pkgs = mkEnableOption "Install other packages to pair with anki";
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ mecab ];
+    home.packages = lib.optionals cfg.other-pkgs ([
+      pkgs.mecab
+      mypkgs.kamite-bin
+    ]);
 
     xdg.desktopEntries."anki" = {
       name = "Anki";

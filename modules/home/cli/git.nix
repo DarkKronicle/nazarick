@@ -21,6 +21,9 @@ in
   };
 
   config = mkIf cfg.enable {
+
+    home.packages = with pkgs; [ git-credential-oauth ];
+
     programs.git = {
       enable = true;
       inherit (cfg) userName userEmail;

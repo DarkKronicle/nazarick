@@ -4,6 +4,8 @@
   mylib,
   pkgs,
   mypkgs,
+  inputs,
+  system,
   ...
 }:
 let
@@ -15,11 +17,29 @@ in
 
   options.nazarick.cli.common = {
     enable = lib.mkEnableOption "Common CLI configuration";
+    fun = lib.mkEnableOption "Fun CLI configuration";
+    misc = lib.mkEnableOption " Misc configuration";
   };
 
   config = lib.mkIf cfg.enable {
 
-    home.packages = import (mylib.relativeToRoot "modules/shared/cli.nix") { inherit pkgs mypkgs; };
+    home.packages =
+      import (mylib.relativeToRoot "modules/shared/cli.nix") { inherit pkgs mypkgs; }
+      ++ (lib.optionals cfg.fun (with pkgs; [ pipes-rs ]))
+      ++ (lib.optionals cfg.misc ([
+        pkgs.yt-dlp
+        (mypkgs.tomato-c.override {
+          # Home manager simlinks mpv configs, so this forces a fresh config.
+          # This is mainly an issue with sounds because it pulls up a window in my config
+          mpv = pkgs.wrapMpv pkgs.mpv-unwrapped {
+            extraMakeWrapperArgs = [
+              "--add-flags"
+              "--config-dir=/home/darkkronicle/.config/mpv2"
+            ];
+          };
+        })
+        inputs.faerber.packages.${system}.faerber
+      ]));
 
     nazarick.cli = {
       pager.enable = lib.mkOverride 500 true;

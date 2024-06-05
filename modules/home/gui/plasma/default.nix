@@ -42,6 +42,7 @@ in
           flavour = [ "mocha" ];
           accents = [ "mauve" ];
         })
+        (rofimoji.override { x11Support = false; })
       ]);
 
     programs.plasma = {

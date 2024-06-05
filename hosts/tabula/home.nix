@@ -24,8 +24,6 @@ in
     };
   };
 
-  home.packages = with pkgs; [ (rofimoji.override { x11Support = false; }) ];
-
   programs.tofi = {
     enable = true;
     settings = {
@@ -56,6 +54,11 @@ in
     };
 
     cli = {
+      common = {
+        enable = true;
+        fun = true;
+        misc = true;
+      };
       git = {
         enable = true;
         userEmail = "darkkronicle@gmail.com";
@@ -65,6 +68,8 @@ in
       nushell = enabled;
       pager = enabled;
       security = enabled;
+      tex = enabled;
+      rust = enabled;
     };
 
     service = {
@@ -80,14 +85,24 @@ in
     };
 
     app = {
-      common.document = true;
-      common.messaging = true;
+      common = {
+        document = true;
+        messaging = true;
+        web = true;
+        school = true;
+      };
       firefox = enabled;
       kitty = enabled;
       thunderbird = enabled;
       mpv = enabled;
-      anki = enabled;
+      anki = {
+        enable = true;
+        other-pkgs = true;
+      };
       spotify.spotify-qt = enabled;
+      game = {
+        minecraft = enabled;
+      };
     };
   };
 }

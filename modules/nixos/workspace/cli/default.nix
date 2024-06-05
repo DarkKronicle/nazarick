@@ -23,6 +23,8 @@ in
       inherit pkgs mypkgs;
     };
 
+    environment.shells = with pkgs; [ nushell ];
+
     nazarick.workspace.cli.sudo.enable = lib.mkOverride 500 true;
   };
 }

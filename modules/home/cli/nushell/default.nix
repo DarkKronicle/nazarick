@@ -57,6 +57,11 @@ in
 
   config = mkIf cfg.enable {
 
+    home.packages = with pkgs; [
+      # TODO: move this
+      devenv
+    ];
+
     systemd.user.services = {
       nushell-history = {
         Unit = {
