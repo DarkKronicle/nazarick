@@ -29,7 +29,7 @@ stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/wallpapers
+    mkdir -p $out/share/wallpapers/system-wallpapers
     ${lib.concatStringsSep "\n" (
       lib.forEach finalWallpapers (wpPkg: ''
         ln -s ${wpPkg}/share/wallpapers/* $out/share/wallpapers/${name}
