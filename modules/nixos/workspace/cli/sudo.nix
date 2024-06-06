@@ -20,6 +20,7 @@ in
       # Defaults  lecture_file="/path/to/file" - could be fun
       extraConfig = ''
         Defaults  lecture="never"
+        Defaults env_keep += "EDITOR PATH DISPLAY"
       '';
       extraRules = [
         {

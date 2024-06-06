@@ -7,6 +7,7 @@
   inputs,
   system,
   wallpapers ? ./wallpapers.yml,
+  name ? "system-wallpapers",
   ...
 }:
 let
@@ -31,7 +32,7 @@ stdenv.mkDerivation {
     mkdir -p $out/share/wallpapers
     ${lib.concatStringsSep "\n" (
       lib.forEach finalWallpapers (wpPkg: ''
-        ln -s ${wpPkg}/share/wallpapers/* $out/share/wallpapers
+        ln -s ${wpPkg}/share/wallpapers/* $out/share/wallpapers/${name}
       '')
     )}
 

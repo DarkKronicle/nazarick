@@ -57,7 +57,7 @@ in
         cursorTheme = "Catppuccin-Mocha-Mauve-Cursors";
         wallpaperSlideShow = {
           interval = 3600; # Seconds
-          path = [ "${mypkgs.system-wallpapers}/share/wallpapers" ];
+          path = [ "${mypkgs.system-wallpapers}/share/wallpapers/system-wallpapers" ];
         };
       };
 

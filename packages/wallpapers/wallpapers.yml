@@ -1,27 +1,6 @@
 # Cool nu script to fetch the hash if you copy the url and name line (in order)
 # wl-paste | split row (char newline) | each {|x| $x | parse -r '^\s+\w+: (?P<value>\S+)' | get value.0} | nix-prefetch-url $in.0 --name $in.1 | str trim | wl-copy
 - src:
-    url: https://cdna.artstation.com/p/assets/images/images/015/358/506/large/ming-fan-c1885856b178807fff63bf9bc77ae178.jpg
-    sha256: 10mm9sdd0s8gcg0rrqmcfydqk0kwz1kkngrj1l25wkahaklha236
-    name: elDnSS5VDCIr3AR6r7NUw8VNv.jpg
-  tags:
-  - landscape
-  - cool
-- src:
-    url: https://cdna.artstation.com/p/assets/images/images/015/358/508/large/ming-fan-img-0360.jpg
-    sha256: 16abq0xxa36il8raz8ksnbnrhg7mrjqlj4cnlym1kfqw9lsgd364
-    name: nnKqnlU39JkZ5EQJQ722e5dhE.jpg
-  tags:
-  - landscape
-  - cool
-- src:
-    url: https://images6.alphacoders.com/715/715928.png
-    sha256: 0h0wkbmvns9xcwp5q1i6qcxr1yyparb9ssd8fq7800k931fv9qgw
-    name: 38Ogpnev35HdOh9DYiDu4eiqq.png
-  tags:
-  - landscape
-  - cool
-- src:
     url: https://images4.alphacoders.com/661/661705.jpg
     sha256: 0bd4hckl9pd8qfkihwqb7ncghyadfqxgqqyqk0diha9gw338nhim
     name: XcHdkF2O5kiY4ODdLs5Zyzc5b.jpg

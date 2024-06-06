@@ -32,6 +32,16 @@ in
       "d /home/${user}/.local/state/mpv/watch_later - - - 14d"
     ];
 
+    # BTRFS is based so this is significantly less (about 25%), but still, keeping
+    # journals on desktops forever are unnecessary
+
+    # https://github.com/NotAShelf/nyx/blob/0e2d09ea63100c1aefcd833e7eecb9c6d3f6579c/modules/core/common/system/os/misc/journald.nix#L15
+    services.journald.extraConfig = ''
+      SystemMaxUse=100M
+      RuntimeMaxUse=50M
+      SystemMaxFileSize=50M
+    '';
+
     # There *is* the service systemd-tmpfiles-clean, but I 
     # can't figure out how to enable it by default. So this will
     # have to do
