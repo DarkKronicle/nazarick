@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "blocklist": {
+      "flake": false,
+      "locked": {
+        "dir": "alternates/gambling-porn",
+        "lastModified": 1717449440,
+        "narHash": "sha256-QtSCQFBhyQIsKJhOvcIOi+9EN1kEnNeoLo3PeQ5VbIY=",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "rev": "e1a7b23e9769607009d741066b5789a99aaf9923",
+        "type": "github"
+      },
+      "original": {
+        "dir": "alternates/gambling-porn",
+        "owner": "StevenBlack",
+        "repo": "hosts",
+        "type": "github"
+      }
+    },
     "faerber": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -819,6 +837,7 @@
     },
     "root": {
       "inputs": {
+        "blocklist": "blocklist",
         "faerber": "faerber",
         "fenix": "fenix",
         "firefox-addons": "firefox-addons",

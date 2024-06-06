@@ -1,0 +1,14 @@
+diff --git a/utils/generate-domains-blocklist/generate-domains-blocklist.py b/utils/generate-domains-blocklist/generate-domains-blocklist.py
+index a78a542d..7f2b1469 100755
+--- a/utils/generate-domains-blocklist/generate-domains-blocklist.py
++++ b/utils/generate-domains-blocklist/generate-domains-blocklist.py
+@@ -56,9 +56,6 @@ def parse_trusted_list(content):
+ 
+ 
+ def parse_list(content, trusted=False):
+-    if trusted:
+-        return parse_trusted_list(content)
+-
+     rx_comment = re.compile(r"^(#|$)")
+     rx_inline_comment = re.compile(r"\s*#\s*[a-z0-9-].*$")
+     rx_u = re.compile(

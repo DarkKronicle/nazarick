@@ -69,6 +69,11 @@
       url = "github:nix-community/haumea/v0.2.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    blocklist = {
+      url = "github:StevenBlack/hosts?dir=alternates/gambling-porn";
+      flake = false;
+    };
   };
 
   outputs = inputs: import ./outputs inputs;

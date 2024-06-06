@@ -2,6 +2,8 @@
   config,
   lib,
   mylib,
+  inputs,
+  pkgs,
   ...
 }:
 let
@@ -9,6 +11,16 @@ let
   inherit (mylib) mkBoolOpt;
 
   cfg = config.nazarick.network.dnscrypt;
+
+  # Hasn't updated in 2 years, so should be ok
+  generate-domains-blocklist = pkgs.callPackage ./python-blocklist.nix { };
+
+  blocklist = pkgs.callPackage (import ./generate-blocklist.nix {
+    blocklist = "${inputs.blocklist}/alternates/gambling-porn/hosts";
+    name = "gambling-porn";
+    version = inputs.blocklist.shortRev;
+    generate-domains-blocklist = "${generate-domains-blocklist}/generate-domains-blocklist.py";
+  }) { };
 in
 {
   options.nazarick.network.dnscrypt = {
@@ -47,6 +59,10 @@ in
           minisign_key = "RWQBphd2+f6eiAqBsvDZEBXBGHQBJfeG6G+wJPPKxCZMoEQYpmoysKUN";
           cache_file = "/var/lib/dnscrypt-proxy/quad9-resolvers.md";
           prefix = "quad9-";
+        };
+
+        blocked_names = {
+          blocked_names_file = "${blocklist}/share/blocklist/gambling-porn.txt";
         };
       };
     };

@@ -37,3 +37,4 @@ I have looked at a *ton* of Nix configs for inspiration and implementations. Her
 - [EmergentMind](https://github.com/EmergentMind/nix-config) - Good YouTube videos. Based my sops on theirs.
 - [IogaMaster](https://github.com/IogaMaster/dotfiles)
 - [ryan4yin](https://github.com/ryan4yin/nix-config) - A really elegant config
+- [librephoenix](https://github.com/librephoenix/nixos-config)
