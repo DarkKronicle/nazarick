@@ -103,6 +103,11 @@ in
             })
           ))
         ];
+
+        Certifications = {
+          # InstallEnterpriseRoots does not work on linux
+          "Install" = [ "${mylib.mkCA pkgs}/rootCA.pem" ];
+        };
       };
 
       profiles = {
@@ -195,9 +200,12 @@ in
             "browser.contentblocking.category" = "strict"; # May cause issues
             "browser.link.open_newwindow" = 3; # May cause issues
 
-            # This is handled on system level now
-            # "network.trr.uri" = "https://dns.quad9.net/dns-query"; 
-            # "network.trr.custom_uri" = "https://dns.quad9.net/dns-query";
+            # dnscrypt-proxy2 baybee
+            "network.trr.uri" = "https://127.0.0.1:3000/dns-query";
+            "network.trr.custom_uri" = "https://127.0.0.1:3000/dns-query";
+            "network.trr.mode" = 3;
+            "network.dns.echconfig.enabled" = true;
+            "network.dns.use_https_rr_as_altsvc" = true;
 
             # Don't touch
             "extensions.blocklist.enabled" = true;

@@ -79,3 +79,4 @@
 // (import ./module { inherit lib; })
 // (import ./package { inherit lib; })
 // (import ./package/mkwindowsapp { inherit lib; })
+// (import ./certs.nix { inherit lib; })
