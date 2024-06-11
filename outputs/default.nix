@@ -13,10 +13,23 @@ let
   genSpecialArgs =
     system: pkgs_channel: fake_secrets:
     let
-      pkgs = import pkgs_channel {
+      pkgs-args = {
         inherit system;
         config.allowUnfree = true;
       };
+
+      # use unstable branch for some packages to get the latest updates
+      pkgs-unstable = import inputs.nixpkgs-unstable pkgs-args;
+
+      pkgs-stable = import inputs.nixpkgs-stable pkgs-args;
+
+      pkgs =
+        if (pkgs_channel == inputs.nixpkgs-stable) then
+          pkgs-stable
+        else
+          (
+            if (pkgs_channel == inputs.nixpkgs-unstable) then pkgs-unstable else (import pkgs_channel pkgs-args)
+          );
     in
     inputs
     // rec {
@@ -25,6 +38,8 @@ let
         mylib
         system
         inputs
+        pkgs-stable
+        pkgs-unstable
         ;
 
       mysecrets = import (mylib.relativeToRoot "secrets/create-secrets.nix") {
@@ -35,17 +50,6 @@ let
           lib
           ;
         fake = fake_secrets;
-      };
-
-      # use unstable branch for some packages to get the latest updates
-      pkgs-unstable = import inputs.nixpkgs-unstable {
-        inherit system; # refer the `system` parameter form outer scope recursively
-        config.allowUnfree = true;
-      };
-
-      pkgs-stable = import inputs.nixpkgs-stable {
-        inherit system;
-        config.allowUnfree = true;
       };
 
       mypkgs = import (mylib.relativeToRoot "packages") {

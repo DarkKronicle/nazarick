@@ -88,6 +88,7 @@
     options = [
       "subvol=@tombs"
       "noatime"
+      "nodatacow"
     ];
   };
 
@@ -137,6 +138,12 @@
   };
 
   swapDevices = [ { device = "/swap/swapfile"; } ];
+
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+    priority = 5;
+  };
 
   # Extra devices
 

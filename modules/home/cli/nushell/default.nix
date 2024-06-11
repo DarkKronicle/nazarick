@@ -53,6 +53,15 @@ in
       type = types.attrsOf moduleType;
       default = null;
     };
+
+    use = lib.mkOption {
+      type = types.listOf types.path;
+      default = [ ];
+    };
+    source = lib.mkOption {
+      type = types.listOf types.path;
+      default = [ ];
+    };
   };
 
   config = mkIf cfg.enable {
@@ -126,7 +135,9 @@ in
             in
             "use ${file}/share/nushell/${name}"
           ) cfg.module)
+          ++ [ (lib.concatStringsSep "\n" (lib.forEach cfg.use (file: "use ${file}"))) ]
           ++ [ (builtins.readFile ./config.nu) ]
+          ++ [ (lib.concatStringsSep "\n" (lib.forEach cfg.source (file: "source ${file}"))) ]
         );
         envFile.text = builtins.readFile ./env.nu;
         # IMPORTANT: https://github.com/nix-community/home-manager/issues/1011#issuecomment-1624977707

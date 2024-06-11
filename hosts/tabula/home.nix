@@ -66,6 +66,7 @@ in
       };
       jujutsu = enabled;
       nushell = enabled;
+      broot = enabled;
       pager = enabled;
       security = enabled;
       tex = enabled;

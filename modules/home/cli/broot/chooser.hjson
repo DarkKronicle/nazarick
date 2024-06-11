@@ -1,0 +1,12 @@
+verbs: [
+    {
+        invocation: "ok"
+        key: "enter"
+        leave_broot: true
+        execution: ":print_path"
+        apply_to: "any"
+    }
+]
+imports: [
+    ~/.config/broot/conf.toml
+]

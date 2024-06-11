@@ -1,14 +1,4 @@
 #|
-(defcfg
-    ;; linux-dev /dev/input/by-id/usb-ROCCAT_ROCCAT_Kone_XP_Air_Dongle_AB859AAB61551999-event-mouse
-    linux-dev /dev/input/by-id/usb-ROCCAT_ROCCAT_Kone_XP_Air_Dongle_AB859AAB61551999-if01-event-kbd:/dev/input/by-id/usb-ROCCAT_ROCCAT_Kone_XP_Air_Dongle_AB859AAB61551999-event-mouse
-    linux-continue-if-no-devs-found yes
-    process-unmapped-keys yes
-    danger-enable-cmd yes
-)
-|#
-
-#|
   _ _
   _ _    _ _ _  _
   _ _
