@@ -555,7 +555,6 @@
           "nixpkgs"
         ],
         "plugins-accelerated-jk-nvim": "plugins-accelerated-jk-nvim",
-        "plugins-broot-nvim": "plugins-broot-nvim",
         "plugins-cmp-luasnip-choice": "plugins-cmp-luasnip-choice",
         "plugins-cutlass-nvim": "plugins-cutlass-nvim",
         "plugins-fold-cycle-nvim": "plugins-fold-cycle-nvim",
@@ -569,11 +568,11 @@
         "treesitter-kanata": "treesitter-kanata"
       },
       "locked": {
-        "lastModified": 1718210309,
-        "narHash": "sha256-gx6abI3Es4lSd8Kz8SAnsnArIbUg8+fpMP3eSstYcls=",
+        "lastModified": 1718226917,
+        "narHash": "sha256-/M6Xdj3lreg+K9P46abnqD1SRa7ueLxImXJxNTRZ7Xw=",
         "owner": "DarkKronicle",
         "repo": "nvim-dotfiles",
-        "rev": "315937fa95870f9be304ef2f2645cf5985d804f1",
+        "rev": "7ec57c3d70e46997b851ca9e9c4cdcb685b435ce",
         "type": "github"
       },
       "original": {
@@ -633,22 +632,6 @@
       "original": {
         "owner": "rainbowhxch",
         "repo": "accelerated-jk.nvim",
-        "type": "github"
-      }
-    },
-    "plugins-broot-nvim": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1708624002,
-        "narHash": "sha256-x8fCNo0t06WWATTiGaP2SeRMYpRyIRqd/hZ3PY6ZTog=",
-        "owner": "aohoyd",
-        "repo": "broot.nvim",
-        "rev": "c4365d34e5751832206fd6fd0a4f325b742dea0a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "aohoyd",
-        "repo": "broot.nvim",
         "type": "github"
       }
     },
