@@ -9,12 +9,19 @@ let
     name = "br-choose";
     destination = "/share/nushell/br-choose.nu";
     text = ''
+      source ${
+        pkgs.runCommand "br.nushell" {
+          nativeBuildInputs = [ pkgs.broot ];
+        } "broot --print-shell-function nushell > $out"
+      }
+
+      alias bb = br --conf ${./editor.hjson}
       alias br-choose = broot --conf ${./chooser.hjson}
 
       def _br_fzf_goto [] {
         let file = br-choose
         if ($file | is-empty) {
-          return
+          return "."
         }
         let real_file = if (($file | path type) != "dir") {
           $file | path dirname
@@ -95,7 +102,7 @@ in
 
     programs.broot = {
       enable = true;
-      enableNushellIntegration = true;
+      enableNushellIntegration = false;
       settings = {
         imports = [ "${pkgs.broot.src}/resources/default-conf/skins/catppuccin-mocha.hjson" ];
 
@@ -105,7 +112,7 @@ in
 
         enable_kitty_keyboard = lib.mkForce true;
         default_flags = "-Ihg"; # show hidden files and git status
-        icons = "nerdfonts";
+        icon_theme = "nerdfont";
 
         special_paths = {
           "/nix" = {
@@ -114,6 +121,9 @@ in
           };
           ".config" = {
             show = "always";
+          };
+          ".cache" = {
+            list = "never";
           };
           ".local" = {
             show = "always";

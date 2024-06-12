@@ -1,0 +1,13 @@
+verbs: [
+{
+    invocation: "edit"
+    key: "enter"
+    shortcut: "e"
+    execution: "$EDITOR +{line} {file}"
+    apply_to: "text_file"
+    leave_broot: false
+}
+]
+imports: [
+    ~/.config/broot/conf.toml
+]

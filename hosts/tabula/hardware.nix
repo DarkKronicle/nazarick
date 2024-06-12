@@ -82,13 +82,13 @@
     neededForBoot = true;
   };
 
-  fileSystems."/mnt/tomb/tombs" = {
+  fileSystems."/mnt/tomb" = {
     device = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";
     fsType = "btrfs";
     options = [
       "subvol=@tombs"
       "noatime"
-      "nodatacow"
+      # "nodatacow" # This does not work https://btrfs.readthedocs.io/en/latest/Administration.html (will set the entire system to nodatacow)
     ];
   };
 
