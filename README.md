@@ -2,6 +2,10 @@
 
 > The world is all yours
 
+![plasma-rice](doc/rice_desktop.png)
+
+> My plasma rice. (The tiling is done manually for this screenshot)
+
 Named after the Great Tomb of Nazarick from Overlord (very good show).
 
 ## Structure
