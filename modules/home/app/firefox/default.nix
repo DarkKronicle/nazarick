@@ -148,6 +148,7 @@ in
             "extensions.autoDisableScopes" = 0;
 
             # https://arkenfox.github.io/gui/
+            "browser.contentanalysis.default_allow" = false;
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;
             "widget.use-xdg-desktop-portal.file-picker" = 1;
             "browser.aboutConfig.showWarning" = false;

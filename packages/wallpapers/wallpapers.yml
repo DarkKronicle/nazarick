@@ -562,3 +562,21 @@
   themes:
   - mocha
   svg: --dpi 10
+- src:
+    url: https://w.wallhaven.cc/full/5g/wallhaven-5gpv25.jpg
+    name: rain_pink.jpg
+    sha256: 0kf19r7z4vhik7fx6wr6spn4cc15njxh4iabw7qa7q4nk7j41qhq
+  tags:
+  - weaboo
+- src:
+    url: https://w.wallhaven.cc/full/rr/wallhaven-rrxz57.jpg
+    name: cyberpunk_sad1
+    sha256: 0632gn0rr47gs10abhazsv15clwmjffm415wsaaahdhbbh3ygn0n
+- src:
+    url: https://w.wallhaven.cc/full/p9/wallhaven-p973dj.png
+    name: cyberpunk_sad2
+    sha256: 00585kaaql0njq7fd34wy5j32pjih47y94x9jgc7pnhxyrd3yy0g
+- src:
+    url: https://w.wallhaven.cc/full/ex/wallhaven-exzrmw.png
+    name: cyberpunk_rows
+    sha256: 0wfk3r6nsp8ajac9lwxpkw3zp52sah4z9l9cbjil4p92nwf6zk0k

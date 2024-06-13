@@ -92,9 +92,11 @@
     ];
   };
 
+  # TODO: Move this to a good spot maybe?
   systemd.tmpfiles.rules = [
     "d /mnt/tomb 0775 root users -"
     "d /mnt/tomb/tombs 0775 root users -"
+    "H /mnt/tomb/tombs - - - - +C" # Nocow by default
   ];
 
   fileSystems."/boot" = {

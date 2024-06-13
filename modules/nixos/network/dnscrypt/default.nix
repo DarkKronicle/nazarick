@@ -41,6 +41,11 @@ in
       networkmanager.dns = "none";
     };
 
+    environment.systemPackages = [
+      # Captive portal helper
+      (mylib.writeScript pkgs "default-dns" (builtins.readFile ./default-dns.nu))
+    ];
+
     services.dnscrypt-proxy2 = {
       enable = true;
       settings = {

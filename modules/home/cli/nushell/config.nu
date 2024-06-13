@@ -485,3 +485,6 @@ def --env borger [command: closure] {
         do --capture-errors $command
     }
 }
+
+plugin use explore
+alias ex = nu_plugin_explore

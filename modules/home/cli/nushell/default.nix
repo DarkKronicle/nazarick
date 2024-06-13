@@ -3,6 +3,7 @@
   config,
   pkgs,
   inputs,
+  mypkgs,
   ...
 }:
 
@@ -44,6 +45,9 @@ let
   );
 
   cfg = config.nazarick.cli.nushell;
+
+  # TODO: make this config option, also make sure to have de-duplication
+  plugins = [ "${mypkgs.nushell_plugin_explore}/bin/nu_plugin_explore" ];
 in
 {
   options.nazarick.cli.nushell = {
@@ -66,20 +70,41 @@ in
 
   config = mkIf cfg.enable {
 
-    home.packages = with pkgs; [
-      # TODO: move this
-      devenv
-    ];
+    home.packages = (
+      with pkgs;
+      [
+        # TODO: move this
+        devenv
+      ]
+    );
 
     systemd.user.services = {
-      nushell-history = {
+      nushell-setup = {
         Unit = {
-          Description = "Make atuin history nushell history";
+          Description = "Set up nushell environment";
+          # https://github.com/nix-community/home-manager/issues/3865
+          X-SwitchMethod = "restart";
+          X-Restart-Triggers = plugins;
         };
 
         Service = {
           Type = "oneshot";
-          ExecStart = ''${pkgs.nushell}/bin/nu -c "ATUIN_SESSION='blank' ${pkgs.atuin}/bin/atuin history list --cmd-only | split row '\n' | reverse | uniq | reverse | save -f ${config.home.homeDirectory}/.config/nushell/history.txt"'';
+          ExecStart =
+            let
+              file = pkgs.writeTextFile {
+                name = "nu-environment-setup.nu";
+                text = ''
+                  # Make atuin history nushell history
+                  ATUIN_SESSION='blank' ${pkgs.atuin}/bin/atuin history list --cmd-only | split row '\n' | reverse | uniq | reverse | save -f ${config.home.homeDirectory}/.config/nushell/history.txt
+
+                  # Remove each plugin
+                  plugin list | get name | each {|x| (plugin rm $x)}
+
+                  ${lib.concatStringsSep "\n" (lib.forEach plugins (plugin: "plugin add ${plugin}"))}
+                '';
+              };
+            in
+            ''${pkgs.nushell}/bin/nu ${file}'';
         };
 
         Install = {
