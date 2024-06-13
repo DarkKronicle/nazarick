@@ -146,6 +146,10 @@ in
             "privacy.resistFingerprinting" = true;
             "browser.uiCustomization.state" = ((mylib.miniJSON pkgs) ./ui_state.json); # This has to be mini or it won't read it
             "extensions.autoDisableScopes" = 0;
+            "privacy.resistFingerprinting.pbmode" = true;
+            "browser.display.use_system_colors" = false;
+            "privacy.resistFingerprinting.block_mozAddonManager" = false;
+            "privacy.resistFingerprinting.letterboxing" = true;
 
             # https://arkenfox.github.io/gui/
             "browser.contentanalysis.default_allow" = false;
@@ -200,6 +204,10 @@ in
             "browser.download.always_ask_before_handling_new_types" = false;
             "browser.contentblocking.category" = "strict"; # May cause issues
             "browser.link.open_newwindow" = 3; # May cause issues
+            "browser.link.open_newwindow.restriction" = 0;
+
+            "permissions.default.camera" = 0;
+            "permissions.default.microphone" = 0;
 
             # dnscrypt-proxy2 baybee
             "network.trr.uri" = "https://127.0.0.1:3000/dns-query";

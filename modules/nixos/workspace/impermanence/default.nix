@@ -111,7 +111,7 @@ in
         ".local/share/atuin"
         ".local/share/Anki2"
         ".config/filezilla"
-        ".config/drg_mod_integration"
+        ".config/mint"
         ".config/matlab"
         ".config/qalculate" # TODO: the qt file stores history, so don't delete that, but can set up setting some defaults
         ".borg"
@@ -235,6 +235,7 @@ in
         ".local/share/lib"
         ".local/share/Mumble"
         ".local/share/nheko"
+        ".local/share/mint"
         ".local/share/nvim"
         ".local/state/nvim"
         ".local/state/wireplumber"

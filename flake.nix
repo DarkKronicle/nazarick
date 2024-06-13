@@ -74,6 +74,10 @@
       url = "github:StevenBlack/hosts?dir=alternates/gambling-porn";
       flake = false;
     };
+
+    mint = {
+      url = "github:trumank/mint";
+    };
   };
 
   outputs = inputs: import ./outputs inputs;
