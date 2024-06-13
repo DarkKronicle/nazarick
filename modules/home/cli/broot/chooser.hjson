@@ -2,8 +2,8 @@ verbs: [
     {
         invocation: "ok"
         key: "enter"
-        leave_broot: true
-        execution: ":print_path"
+        leave_broot: true # this doesn't do anything lol
+        cmd: ":clear_output;:write_output {file};:quit"
         apply_to: "any"
     }
 ]

@@ -555,3 +555,10 @@
     sha256: 05azqn3v2rqkafxkasap9v4mjfkmdr3lmkw21s8z8ficdz1w3li2
   tags:
   - weaboo
+- src:
+    url: https://inkscape.org/gallery/item/49790/room_night.svg
+    name: kde_room_night.png
+    sha256: 0ylbdl6wykbj9wv44yligcpcw69nzs0v63csf8bymp5cngzkcwwg
+  themes:
+  - mocha
+  svg: --dpi 10

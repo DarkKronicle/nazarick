@@ -1,6 +1,7 @@
 {
   src,
   themes ? [ "none" ],
+  svg ? null,
   ...
 }:
 {
@@ -27,20 +28,34 @@ stdenv.mkDerivation {
     runHook preBuild
     mkdir -p $out/share/wallpapers
     local name=$(stripHash $src) 
+    local filesrc=$src
+
+    ${
+      if svg != null then
+        (''
+          mkdir -p converted
+          local filesrc=converted/$(basename $name).png
+          ${pkgs.resvg}/bin/resvg ${svg} $src $filesrc
+        '')
+      else
+        ""
+    }
 
     ${
       if plain then
         ''
-          cp --reflink=always --no-preserve=mode,ownership $src $out/share/wallpapers
+          cp --reflink=always --no-preserve=mode,ownership $filesrc $out/share/wallpapers
         ''
       else
         ""
     }
+
+
     ${lib.concatStringsSep "\n" (
       lib.forEach extra_themes (theme: ''
         ${
           inputs.faerber.packages.${system}.faerber
-        }/bin/faerber $src $out/share/wallpapers/${theme}-$name --flavour ${theme}
+        }/bin/faerber $filesrc $out/share/wallpapers/${theme}-$name --flavour ${theme}
       '')
     )}
 

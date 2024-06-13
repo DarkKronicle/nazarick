@@ -568,11 +568,11 @@
         "treesitter-kanata": "treesitter-kanata"
       },
       "locked": {
-        "lastModified": 1718226917,
-        "narHash": "sha256-/M6Xdj3lreg+K9P46abnqD1SRa7ueLxImXJxNTRZ7Xw=",
+        "lastModified": 1718237358,
+        "narHash": "sha256-AbwwqdacE+yBdthpEijAF4fcaDr0qSkI2QsvHHCkENs=",
         "owner": "DarkKronicle",
         "repo": "nvim-dotfiles",
-        "rev": "7ec57c3d70e46997b851ca9e9c4cdcb685b435ce",
+        "rev": "4c6706eb3c208766e9712ffca6bfc52034b7f01d",
         "type": "github"
       },
       "original": {

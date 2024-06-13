@@ -18,10 +18,26 @@ let
       alias bb = br --conf ${./editor.hjson}
       alias br-choose = broot --conf ${./chooser.hjson}
 
-      def _br_fzf_goto [] {
-        let file = br-choose
+      def --env bz [place?] {
+        let place = if ($place | is-empty) { "." } else { zoxide query $place }
+        if ($place | is-empty) {
+          return
+        }
+        let place = _br_fzf_goto $place --to-dir
+        cd $place
+      }
+
+      def _br_fzf_goto [place? = ".", words?: string = "", --to-dir] {
+        let location = mktemp -t broot-XXXXXX.txt
+        br-choose -c $words --verb-output $location $place
+        let $file = (open $location)
+        rm -pf $location
+
         if ($file | is-empty) {
           return "."
+        }
+        if (not $to_dir) {
+          return $file
         }
         let real_file = if (($file | path type) != "dir") {
           $file | path dirname
@@ -39,15 +55,15 @@ let
         mut index = 0
         mut current_word = 0
         for word in $words {
-        let length = $word.length
-        $current_word = $index
-        if (($i + $length) > $cursor) {
-          break
+            let length = $word.length
+            $current_word = $index
+            if (($i + $length) > $cursor) {
+            break
+            }
+            $i = $i + $length
+            $index = $index + 1
         }
-        $i = $i + $length
-          $index = $index + 1
-        }
-        let file = br-choose -c ($words | get $current_word | get word)
+        let file = _br_fzf_goto "." ($words | get $current_word | get word)
         if ($file | is-empty) {
           return
         }
@@ -55,7 +71,6 @@ let
         commandline edit --replace $newline
         commandline set-cursor ($i + (($file | str length) + 1))
       }
-
 
       # Following structure taken from atuin
 
@@ -107,10 +122,11 @@ in
         imports = [ "${pkgs.broot.src}/resources/default-conf/skins/catppuccin-mocha.hjson" ];
 
         modal = true;
-        initial_mode = "input";
+        initial_mode = "command";
         quit_on_last_cancel = true;
 
-        enable_kitty_keyboard = lib.mkForce true;
+        # I want to enable this, but it adds delays on certain (annoying) keys
+        # enable_kitty_keyboard = lib.mkForce true;
         default_flags = "-Ihg"; # show hidden files and git status
         icon_theme = "nerdfont";
 
@@ -129,6 +145,21 @@ in
             show = "always";
           };
         };
+
+        verbs = [
+          {
+            key = "q";
+            internal = ":quit";
+          }
+          # { # Sadly does not work, no way to set input right now I guess, should maybe make an issue
+          # key = ":";
+          # cmd = ":mode_input;:";
+          # }
+          {
+            key = "i";
+            internal = ":mode_input";
+          }
+        ];
       };
     };
   };

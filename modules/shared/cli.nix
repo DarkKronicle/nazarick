@@ -23,5 +23,6 @@
   neovim
   nushell
   eza
+  dysk
 ])
 ++ (with mypkgs; [ tomb ])

@@ -49,11 +49,11 @@ in
         };
         brave = {
           executable = "${pkgs.brave}/bin/brave";
-          profile = "${pkgs.brave}/etc/firejail/brave.profile";
+          profile = "${pkgs.firejail}/etc/firejail/brave.profile";
         };
         vesktop = {
           executable = "${pkgs.vesktop}/bin/vesktop";
-          profile = "${pkgs.brave}/etc/firejail/discord.profile";
+          profile = "${pkgs.firejail}/etc/firejail/discord.profile";
         };
       };
     };
