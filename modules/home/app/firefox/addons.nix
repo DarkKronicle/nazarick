@@ -1,17 +1,5 @@
 { buildFirefoxXpiAddon, lib, ... }:
 {
-  adaptive-tab-bar-colour = buildFirefoxXpiAddon rec {
-    pname = "adaptive-tab-bar-colour";
-    version = "2.1.4";
-    addonId = "ATBC@EasonWong";
-    url = "https://github.com/easonwong-de/Adaptive-Tab-Bar-Colour/releases/download/v${version}/adaptive_tab_bar_colour-${version}.xpi";
-    sha256 = "1y1g4952phl9rkkks7qnj78swz0v102fwhr0y0kxcvc29100c7j0";
-    meta = {
-      homepage = "https://github.com/easonwong-de/Adaptive-Tab-Bar-Colour";
-      license = lib.licenses.mit;
-      platforms = lib.platforms.all;
-    };
-  };
   better-canvas = buildFirefoxXpiAddon rec {
     pname = "better-canvas";
     version = "5.10.9";

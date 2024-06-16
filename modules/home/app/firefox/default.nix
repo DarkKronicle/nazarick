@@ -45,9 +45,10 @@ let
       violentmonkey
       yomitan
       no-pdf-download
+      canvasblocker
+      adaptive-tab-bar-colour
     ])
     ++ (with custom-addons; [
-      adaptive-tab-bar-colour
       better-canvas
       hide-youtube-shorts
     ]);
@@ -150,6 +151,7 @@ in
             "browser.display.use_system_colors" = false;
             "privacy.resistFingerprinting.block_mozAddonManager" = false;
             "privacy.resistFingerprinting.letterboxing" = true;
+            "webgl.disabled" = true;
 
             # https://arkenfox.github.io/gui/
             "browser.contentanalysis.default_allow" = false;
