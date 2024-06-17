@@ -31,7 +31,8 @@ in
         (mypkgs.tomato-c.override {
           # Home manager simlinks mpv configs, so this forces a fresh config.
           # This is mainly an issue with sounds because it pulls up a window in my config
-          mpv = pkgs.wrapMpv pkgs.mpv-unwrapped {
+          mpv = pkgs.mpv-unwrapped.wrapper {
+            mpv = pkgs.mpv-unwrapped;
             extraMakeWrapperArgs = [
               "--add-flags"
               "--config-dir=/home/darkkronicle/.config/mpv2"
