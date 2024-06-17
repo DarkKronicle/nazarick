@@ -66,7 +66,6 @@ in
       };
       jujutsu = enabled;
       nushell = enabled;
-      broot = enabled;
       pager = enabled;
       security = enabled;
       tex = enabled;
@@ -83,6 +82,7 @@ in
       neovim = enabled;
       btop = enabled;
       yazi = enabled;
+      broot = enabled;
     };
 
     app = {

@@ -21,11 +21,13 @@ let
   };
 
   readPlugin = file: pkgs.callPackage file { };
+  # TODO: Cursed, do something about this
   plugins = lib.forEach [
     ./plugins/starship.nix
     ./plugins/hexyl.nix
     ./plugins/ouch.nix
     ./plugins/exiftool.nix
+    ./plugins/broot.nix
   ] readPlugin;
 in
 {
@@ -93,6 +95,11 @@ in
               ''shell '${pkgs.ripdrag}/bin/ripdrag "$@" -x -n 2>/dev/null &' --confirm''
             ];
             desc = "Drag and drop selection";
+          }
+          {
+            on = [ "b" ];
+            run = [ "plugin broot" ];
+            desc = "Broot fuzzy find";
           }
         ];
       };

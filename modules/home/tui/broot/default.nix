@@ -104,10 +104,10 @@ let
     '';
   };
 
-  cfg = config.nazarick.cli.broot;
+  cfg = config.nazarick.tui.broot;
 in
 {
-  options.nazarick.cli.broot = {
+  options.nazarick.tui.broot = {
     enable = lib.mkEnableOption "broot";
   };
 
