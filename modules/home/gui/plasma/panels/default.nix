@@ -61,9 +61,6 @@ in
                       "applications:firefox.desktop"
                       "applications:kitty.desktop"
                       "applications:nheko.desktop"
-                      "applications:vesktop.desktop"
-                      # TODO: Wtf
-                      # "file:///nix/store/rqkvi8w1vkvcav7xzn0594z8i4w9019f-home-manager-path/share/applications/anki.desktop"
                       "applications:betterbird.desktop"
                       "applications:spotify-qt.desktop"
                     ]

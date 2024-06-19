@@ -28,6 +28,7 @@ in
       "d /home/${user}/.cache/thumbnails/x-large - - - 7d"
       "d /home/${user}/.cache/thumbnails/xx-large - - - 7d"
       "d /home/${user}/.cache/yazi - - - 7d"
+      "d /home/${user}/.cache/newsboat - - - 14d"
 
       "d /home/${user}/.local/state/mpv/watch_later - - - 14d"
     ];

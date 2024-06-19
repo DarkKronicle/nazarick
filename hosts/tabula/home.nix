@@ -83,6 +83,7 @@ in
       btop = enabled;
       yazi = enabled;
       broot = enabled;
+      newsboat = enabled;
     };
 
     app = {

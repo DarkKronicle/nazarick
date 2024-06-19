@@ -44,6 +44,9 @@ in
 
     nazarick.cli = {
       pager.enable = lib.mkOverride 500 true;
+      starship.enable = lib.mkOverride 500 true;
+      eza.enable = lib.mkOverride 500 true;
     };
+
   };
 }

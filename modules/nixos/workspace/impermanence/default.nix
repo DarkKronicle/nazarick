@@ -125,6 +125,7 @@ in
         ".config/kde.org"
         ".config/plasma-workspace"
         ".config/xsettingsd"
+        ".config/newsboat" # TODO: Decide if I want urls declarative or not
         ".kde"
 
         ".local/share/baloo"
@@ -224,6 +225,8 @@ in
 
         ".cache/mozilla"
         ".cache/yazi"
+        ".cache/newsboat"
+        ".local/share/newsboat"
 
         ".local/share/klipper"
         ".local/share/kactivitymanagerd"

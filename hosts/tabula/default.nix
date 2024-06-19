@@ -19,6 +19,10 @@ in
   networking.hostName = "tabula";
   time.timeZone = "America/Denver";
 
+  # environment.plasma6.excludePackages = [
+  # pkgs.kdePackages.kwallet
+  # ];
+
   nazarick = {
     core = {
       common = enabled;

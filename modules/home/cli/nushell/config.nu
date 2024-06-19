@@ -462,22 +462,6 @@ source ~/.config/nushell/scripts/dolphin.nu
 source ~/.config/nushell/completions/man.nu
 source ~/.config/nushell/completions/tldr.nu
 
-alias zz = systemd-inhibit sleep infinity
-
-def --env fuck [] {
-    let cmd = (history | last 1 | get 0 | get command)
-    ^(thefuck $cmd)
-}
-
-alias bruh = fuck
-
-alias xt = eza -T -L=3 --icons
-alias xi = eza --icons 
-alias x = eza --icons -l -b -h --no-user --no-permissions --group-directories-first
-alias xm = eza --icons -l -b -h --no-user --no-permissions --group-directories-first --sort modified --reverse
-
-alias icat = kitten icat
-
 def --env borger [command: closure] {
     do --capture-errors {
         $env.BORG_REPO = (cat /run/secrets/borg/repository)
