@@ -17,12 +17,16 @@ in
 {
   options.nazarick.network.nordvpn = {
     enable = mkBoolOpt false "Enable nordvpn.";
+    applyUsers = mkBoolOpt true "Apply nordvpn group to all users";
   };
   config = mkIf cfg.enable {
     # This makes hosts readable, but it will be reset each time restarted. Works well enough for meshnet tho :)
     environment.etc.hosts.mode = "0644";
 
     users.groups.nordvpn = { };
+
+    nazarick.users.extraGroups = lib.optional cfg.applyUsers [ "nordvpn" ];
+
     environment.systemPackages = [ nordvpn-pkg ];
     systemd = {
       services.nordvpn = {

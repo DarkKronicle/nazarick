@@ -35,22 +35,6 @@ $env.NU_PLUGIN_DIRS = [
     ($nu.default-config-dir | path join 'plugins'),
 ]
 
-# let path_prepend = [
-    # "/home/darkkronicle/.local/bin", 
-    # "/home/darkkronicle/.local/share/bob/nvim-bin", 
-    # "/home/darkkronicle/.local/share/fnm"
-# ]
-
-# let path_append = [
-    # "/home/darkkronicle/.cargo/bin", 
-    # "/home/darkkronicle/Applications",
-    # "/usr/local/go/bin", 
-    # "/home/darkkronicle/go/bin",
-    # "/home/darkkronicle/.node/bin",
-# ]
-
-# $env.PATH = ($path_prepend | append ($env.PATH | split row (char esep)) | append $path_append)
-
 $env.FZF_DEFAULT_COMMAND = ("fd . " + $env.HOME)
 $env.FZF_CTRL_T_COMMAND= $env.FZF_DEFAULT_COMMAND
 $env.FZF_ALT_C_COMMAND = ("fd -t d . " + $env.HOME)

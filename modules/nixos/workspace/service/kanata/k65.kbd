@@ -42,11 +42,6 @@
 	englyt (cmd ibus engine xkb:us::eng)
 	jplyt (cmd ibus engine mozc-jp)
 
-	inpsw (tap-hold 1 100 (cmd detach /home/darkkronicle/programming/scripts/ibuskbd.sh) (multi 
-	  (on-press-fakekey jpinp tap)
-	  (on-release-fakekey enginp tap)
-	))
-
 	zsym (tap-hold-press 1 1000 z (layer-while-held symbols))
     ;; Issues with plasma keybindings at times
     ;; pp (cmd playerctl play-pause)
@@ -76,7 +71,7 @@
 	grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
 	tab  q  w  e  r  t  y  u  i  o  p  [  ]  \
 	@ead  a  s  d  f  g  h  j  k  l  ;  '  ret
-	lsft z  x  c  v  b  n  m  ,  .  /  @inpsw
+	lsft z  x  c  v  b  n  m  ,  .  /  rsft
 	lctl met lalt   spc  ralt   menu rctrl
 )
 
@@ -273,7 +268,7 @@ KU -> QU
 	grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
 	tab  w  f  m  p  v  /  .  ,  S-'  '  [  ]  \
 	@ead  r  @sdk n  @tdk g  ;  @adk  @edk  i  h  j  ret
-	@fsft @xs c  l  d  b  ;  @udk  @odk  y  @ks  @inpsw
+	@fsft @xs c  l  d  b  ;  @udk  @odk  y  @ks  rsft
 	@ctrlt met lalt   spc  ralt   menu rctrl
 )
 
