@@ -1,6 +1,5 @@
 {
   config,
-  options,
   lib,
   mylib,
   pkgs,
@@ -11,12 +10,6 @@ let
   inherit (mylib) mkBoolOpt;
 
   cfg = config.nazarick.workspace.impermanence;
-  copy_files = [
-    "/home/darkkronicle/.config/kconf_updaterc"
-    "/home/darkkronicle/.config/spectaclerc"
-    "/home/darkkronicle/.config/bluedevilglobalrc"
-  ];
-  jank_files = [ "/home/darkkronicle/.config/plasma-org.kde.plasma.desktop-appletsrc" ];
 in
 {
   options.nazarick.workspace.impermanence = {
@@ -24,47 +17,6 @@ in
   };
   config = mkIf cfg.enable {
     impermanence.enable = true;
-
-    # https://github.com/nix-community/impermanence/pull/146
-    # systemd-journald.socket sysinit.target local-fs.target system.slice 
-    systemd.services."setup-impermanence-copy" = {
-      # after = lib.mkForce [ "local-fs.target" "systemd-journald.socket" "system.slice" ];
-      after = [ "local-fs.target" ];
-      unitConfig.DefaultDependencies = false;
-      before = [ "sysinit.target" ];
-      wantedBy = [ "local-fs.target" ];
-      path = [
-        pkgs.nushell
-        pkgs.util-linux
-        pkgs.btrfs-progs
-      ];
-      script = "${pkgs.nushell}/bin/nu ${./copy.nu} ${lib.concatMapStrings (x: x + " ") copy_files} ";
-      serviceConfig = {
-        Type = "oneshot";
-        User = "root";
-      };
-    };
-    systemd.services."setup-jank-fixes" = {
-      # after = lib.mkForce [
-      # "local-fs.target"
-      # "systemd-journald.socket"
-      # "system.slice"
-      # ];
-      after = [ "local-fs.target" ];
-      unitConfig.DefaultDependencies = false;
-      before = [ "sysinit.target" ];
-      wantedBy = [ "local-fs.target" ];
-      path = [
-        pkgs.nushell
-        pkgs.util-linux
-        pkgs.btrfs-progs
-      ];
-      script = "${pkgs.nushell}/bin/nu ${./jank.nu} ${lib.concatMapStrings (x: x + " ") jank_files} ";
-      serviceConfig = {
-        Type = "oneshot";
-        User = "root";
-      };
-    };
 
     environment.persist = {
       hideMounts = true;
@@ -153,8 +105,6 @@ in
         # in the copy script because bind mounting files can be weird
         # to check see if there are any OS `16 errors (Disk full?)`
         ".config/akregatorrc"
-        # ".config/gtkrc"
-        # ".config/gtkrc-2.0"
         ".config/gwenviewrc"
         ".config/katemetainfos"
         ".config/kateschemarc"
@@ -162,18 +112,13 @@ in
         ".config/kcmfonts"
         ".config/konsolerc"
         ".config/ktimezonedrc"
-        # ".config/kwinrulesrc"
         ".config/kwinoutputconfig.json"
         ".config/startkderc"
-        # ".config/systemsettingsrc"
         ".config/Trolltech.conf"
         ".config/user-dirs.dirs"
         ".config/user-dirs.locale"
 
         ".local/share/krunnerstaterc"
-        # ".local/share/user-places.xbel"
-        # ".local/share/user-places.xbel.bak"
-        # ".local/share/user-places.xbel.tbcache"
 
         ".cache/plasma_theme_lightly-plasma-git.kcache"
         ".cache/plasma_theme_internal-system-colors.kcache"
