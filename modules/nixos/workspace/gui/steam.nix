@@ -13,7 +13,7 @@ let
   inherit (lib) mkIf;
   inherit (mylib) mkBoolOpt;
   cfg = config.nazarick.workspace.gui.steam;
-  username = config.nazarick.workspace.user.name;
+  username = "darkkronicle";
 in
 {
   options.nazarick.workspace.gui.steam = {
@@ -31,6 +31,7 @@ in
     ];
 
     environment.sessionVariables = {
+      # TODO: Move this to home
       STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${username}/.steam/root/compatibilitytools.d";
     };
   };

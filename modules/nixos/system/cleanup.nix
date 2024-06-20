@@ -10,8 +10,8 @@ let
   inherit (lib) types mkEnableOption mkIf;
   inherit (mylib) mkOpt enabled;
 
-  user = config.nazarick.workspace.user.name;
   cfg = config.nazarick.system.cleanup;
+  forEachUser = mylib.forEachUser config;
 in
 {
   options.nazarick.system.cleanup = {
@@ -19,19 +19,24 @@ in
   };
 
   config = mkIf cfg.enable {
-    systemd.user.tmpfiles.users.${user}.rules = [
-      "d /home/${user}/Downloads - - - 14d"
-      "d /home/${user}/.vim/undodir - - - 14d"
+    systemd.user.tmpfiles.users = lib.mkMerge (
+      forEachUser (user: {
 
-      "d /home/${user}/.cache/thumbnails/large - - - 7d"
-      "d /home/${user}/.cache/thumbnails/normal - - - 7d"
-      "d /home/${user}/.cache/thumbnails/x-large - - - 7d"
-      "d /home/${user}/.cache/thumbnails/xx-large - - - 7d"
-      "d /home/${user}/.cache/yazi - - - 7d"
-      "d /home/${user}/.cache/newsboat - - - 14d"
+        ${user}.rules = [
+          "d /home/${user}/Downloads - - - 14d"
+          "d /home/${user}/.vim/undodir - - - 14d"
 
-      "d /home/${user}/.local/state/mpv/watch_later - - - 14d"
-    ];
+          "d /home/${user}/.cache/thumbnails/large - - - 7d"
+          "d /home/${user}/.cache/thumbnails/normal - - - 7d"
+          "d /home/${user}/.cache/thumbnails/x-large - - - 7d"
+          "d /home/${user}/.cache/thumbnails/xx-large - - - 7d"
+          "d /home/${user}/.cache/yazi - - - 7d"
+          "d /home/${user}/.cache/newsboat - - - 14d"
+
+          "d /home/${user}/.local/state/mpv/watch_later - - - 14d"
+        ];
+      })
+    );
 
     # BTRFS is based so this is significantly less (about 25%), but still, keeping
     # journals on desktops forever are unnecessary

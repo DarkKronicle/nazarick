@@ -29,6 +29,9 @@
       meta.mainProgram = name;
     };
 
+  forEachUser =
+    config: function: (lib.mapAttrsToList (name: _: function name)) config.nazarick.users.user;
+
   nixosSystem =
     {
       inputs,

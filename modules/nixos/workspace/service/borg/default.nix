@@ -11,7 +11,7 @@ let
   inherit (lib) types mkEnableOption mkIf;
   inherit (mylib) mkOpt enabled;
 
-  username = config.nazarick.workspace.user.name;
+  username = "darkkronicle"; # TODO: Move this to home?
   cfg = config.nazarick.workspace.service.borg;
 in
 {

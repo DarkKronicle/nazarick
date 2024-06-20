@@ -14,7 +14,7 @@ let
   toml = pkgs.formats.toml { };
 
   cfg = config.nazarick.workspace.service.spotifyd;
-  username = config.nazarick.workspace.user.name;
+  username = "darkkronicle"; # TODO: Can I move this to home?
 
   spotifydConf = toml.generate "spotifyd.toml" {
     global = {
