@@ -36,6 +36,7 @@ let
     home-modules = (map mylib.relativeToRoot [ "modules/home" ]);
     home-root = mylib.relativeToRoot "hosts/cocytus/home";
     nixpkgs = inputs.nixpkgs-stable;
+    home-manager = inputs.home-manager-stable;
   };
 in
 {

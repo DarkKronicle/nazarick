@@ -46,10 +46,11 @@ rec {
       nix-modules ? [ ],
       home-modules ? [ ],
       home-root ? null,
+      home-manager ? inputs.home-manager,
       ...
     }:
     let
-      inherit (inputs) home-manager nixos-generators;
+      inherit (inputs) nixos-generators;
       overlays = import (mylib.relativeToRoot "overlays") {
         inherit
           inputs
