@@ -46,7 +46,7 @@ in
 
     module = lib.mkOption {
       type = types.attrsOf moduleType;
-      default = null;
+      default = { };
     };
 
     use = lib.mkOption {
