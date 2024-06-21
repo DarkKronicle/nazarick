@@ -11,9 +11,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # home-manager.url = "github:nix-community/home-manager/release-23.11";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager-stable.url = "github:nix-community/home-manager/release-24.05";
+    home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
 
     fenix = {
       url = "github:nix-community/fenix";

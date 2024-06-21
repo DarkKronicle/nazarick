@@ -25,7 +25,7 @@ let
       ++ (with inputs; [
         # persist-retro.nixosModules.persist-retro
         impermanence.nixosModules.impermanence
-        home-manager.nixosModules.home-manager
+        home-manager-stable.nixosModules.home-manager
         sops-nix.nixosModules.sops
         lix-module.nixosModules.default
       ])

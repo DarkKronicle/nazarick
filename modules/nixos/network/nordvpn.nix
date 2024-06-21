@@ -25,7 +25,7 @@ in
 
     users.groups.nordvpn = { };
 
-    nazarick.users.extraGroups = lib.optional cfg.applyUsers [ "nordvpn" ];
+    nazarick.users.extraGroups = lib.optionals cfg.applyUsers [ "nordvpn" ];
 
     environment.systemPackages = [ nordvpn-pkg ];
     systemd = {
