@@ -78,7 +78,6 @@ in
           fcitx = enabled;
         };
         service = {
-          spotifyd = enabled;
           kanata = enabled;
           borg = enabled;
         };

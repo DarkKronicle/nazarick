@@ -11,7 +11,6 @@ let
   inherit (lib) types mkEnableOption mkIf;
   inherit (mylib) mkOpt enabled;
 
-  username = "darkkronicle"; # TODO: Move this to home?
   cfg = config.nazarick.workspace.service.borg;
 in
 {
@@ -20,15 +19,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."borg/repository" = {
-      owner = username;
-    };
-    sops.secrets."borg/wifi" = {
-      owner = username;
-    };
-    sops.secrets."borg/password" = {
-      owner = username;
-    };
+    sops.secrets."borg/repository" = { };
+    sops.secrets."borg/wifi" = { };
+    sops.secrets."borg/password" = { };
     environment.systemPackages = with pkgs; [ borgbackup ];
 
     systemd.timers."borger" = {
@@ -53,7 +46,6 @@ in
       }) $(cat ${config.sops.secrets."borg/wifi".path}) ${./exclude.txt}";
       serviceConfig = {
         Type = "oneshot";
-        User = username;
       };
     };
   };

@@ -13,8 +13,7 @@ let
 
   toml = pkgs.formats.toml { };
 
-  cfg = config.nazarick.workspace.service.spotifyd;
-  username = "darkkronicle"; # TODO: Can I move this to home?
+  cfg = config.nazarick.service.spotifyd;
 
   spotifydConf = toml.generate "spotifyd.toml" {
     global = {
@@ -30,30 +29,42 @@ let
   };
 in
 {
-  options.nazarick.workspace.service.spotifyd = {
+  options.nazarick.service.spotifyd = {
     enable = mkEnableOption "spotifyd";
   };
 
   config = mkIf cfg.enable {
-    sops.secrets."spotifyd/username" = {
-      owner = username;
-    };
-    sops.secrets."spotifyd/password" = {
-      owner = username;
-    };
+    sops.secrets."spotifyd/username" = { };
+    sops.secrets."spotifyd/password" = { };
 
-    systemd.services.spotifyd-restart = {
-      enable = true;
-      wantedBy = [ "sleep.target" ];
-      description = "Restart spotifyd after suspend";
-      script = "systemctl --machine ${username}@.host --user restart spotifyd";
+    systemd.user.services.spotifyd-restart = {
+      Install = {
+        # This requires the custom per-user sleep target
+        WantedBy = [ "sleep.target" ];
+      };
+
+      Unit = {
+        Description = "Restart spotifyd after suspend";
+      };
+
+      Service = {
+        Type = "oneshot";
+        ExecStart = "systemctl --user restart spotifyd";
+      };
     };
 
     systemd.user.services.spotifyd = {
-      wantedBy = [ "default.target" ];
-      description = "spotify daemon";
 
-      serviceConfig = {
+      Install = {
+        WantedBy = [ "default.target" ];
+      };
+
+      Unit = {
+        Description = "spotify daemon";
+        After = [ "sops-nix.service" ];
+      };
+
+      Service = {
         ExecStart = "${pkgs.spotifyd}/bin/spotifyd --no-daemon --config-path ${spotifydConf}";
         Environment = [
           "DISPLAY=:1"

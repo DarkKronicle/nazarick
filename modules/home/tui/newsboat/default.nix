@@ -68,7 +68,7 @@ in
       extraConfig = ''
         include ${catppuccin}/themes/dark
 
-        suppress-first-reload = yes
+        suppress-first-reload yes
 
         bind-key j next
         bind-key k prev

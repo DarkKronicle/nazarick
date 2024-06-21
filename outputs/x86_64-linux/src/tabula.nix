@@ -18,6 +18,7 @@ let
           home-manager.sharedModules = [
             inputs.plasma-manager.homeManagerModules.plasma-manager
             inputs.nix-index-database.hmModules.nix-index
+            inputs.sops-nix.homeManagerModules.sops
           ];
         }
       ]

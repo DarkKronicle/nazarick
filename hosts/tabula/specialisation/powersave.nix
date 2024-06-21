@@ -18,7 +18,11 @@ in
       # services.xserver.desktopManager.lxqt.enable = true;
       home-manager.users = lib.mkMerge (
         forEachUser (username: {
-          ${username}.nazarick.app.mpv.enable = lib.mkForce false;
+          ${username}.nazarick = {
+            service.spotifyd.enable = lib.mkForce false;
+
+            app.mpv.enable = lib.mkForce false;
+          };
         })
       );
       nazarick = {
@@ -33,9 +37,6 @@ in
           printing = {
             enable = lib.mkForce false;
           };
-        };
-        workspace.service = {
-          spotifyd.enable = lib.mkForce false;
         };
         workspace.gui = {
           steam.enable = lib.mkForce false;

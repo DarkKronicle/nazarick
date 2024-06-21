@@ -13,7 +13,6 @@ let
   inherit (lib) mkIf;
   inherit (mylib) mkBoolOpt;
   cfg = config.nazarick.workspace.gui.steam;
-  username = "darkkronicle";
 in
 {
   options.nazarick.workspace.gui.steam = {
@@ -29,10 +28,5 @@ in
       protonup
       inputs.mint.packages.${system}.mint
     ];
-
-    environment.sessionVariables = {
-      # TODO: Move this to home
-      STEAM_EXTRA_COMPAT_TOOLS_PATHS = "/home/${username}/.steam/root/compatibilitytools.d";
-    };
   };
 }

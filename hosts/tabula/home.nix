@@ -4,12 +4,18 @@
   mylib,
   config,
   inputs,
+  mysecrets,
   ...
 }:
 let
   inherit (mylib) enabled;
 in
 {
+  sops = {
+    age.keyFile = "/home/darkkronicle/.config/sops/age/keys.txt";
+    defaultSopsFile = "${mysecrets.src}/secrets.yaml";
+  };
+
   programs.ssh = {
     enable = true;
     matchBlocks = {
@@ -73,6 +79,7 @@ in
     };
 
     service = {
+      spotifyd = enabled;
       playerctl = enabled;
       easyeffects = enabled;
       kdeconnect = enabled;
@@ -103,6 +110,8 @@ in
       };
       spotify.spotify-qt = enabled;
       game = {
+        protonup = enabled;
+        mint = enabled;
         minecraft = enabled;
       };
     };

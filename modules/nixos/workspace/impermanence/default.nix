@@ -49,6 +49,7 @@ in
     };
 
     # Stuff to back up
+    # TODO: this should be configured in home, but be sourced here
     environment.keepPersist.users.darkkronicle = {
 
       directories = [
@@ -94,6 +95,10 @@ in
         }
         {
           directory = ".gnupg";
+          mode = "0700";
+        }
+        {
+          directory = ".config/sops/age";
           mode = "0700";
         }
       ];

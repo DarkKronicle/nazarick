@@ -24,9 +24,7 @@ in
     ];
     sops = {
       defaultSopsFile = "${mysecrets.src}/secrets.yaml";
-      age = {
-        keyFile = "/persist/system/var/lib/sops-nix/keys.txt";
-      };
+      age.keyFile = "/persist/system/var/lib/sops-nix/keys.txt";
     };
   };
 }

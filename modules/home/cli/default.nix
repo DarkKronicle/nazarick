@@ -35,7 +35,7 @@ in
             mpv = pkgs.mpv-unwrapped;
             extraMakeWrapperArgs = [
               "--add-flags"
-              "--config-dir=/home/darkkronicle/.config/mpv2"
+              "--config-dir=/home/${config.home.username}/.config/mpv2"
             ];
           };
         })
