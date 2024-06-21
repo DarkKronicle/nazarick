@@ -16,15 +16,17 @@ let
       [
         {
           home-manager.sharedModules = [
+            inputs.plasma-manager.homeManagerModules.plasma-manager # TODO: This needs to be installed even if not used bc of how I'm sourcing files
             inputs.nix-index-database.hmModules.nix-index
-            # inputs.sops-nix.homeManagerModules.sops
+            inputs.sops-nix.homeManagerModules.sops
           ];
         }
       ]
       ++ (with inputs; [
         # persist-retro.nixosModules.persist-retro
+        impermanence.nixosModules.impermanence
         home-manager.nixosModules.home-manager
-        # sops-nix.nixosModules.sops
+        sops-nix.nixosModules.sops
         lix-module.nixosModules.default
       ])
       ++ (map mylib.relativeToRoot [

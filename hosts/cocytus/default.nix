@@ -8,7 +8,7 @@ let
   inherit (mylib) enabled;
 in
 {
-  imports = [ ./hardware.nix ] ++ (mylib.scanPaths ./specialisation);
+  imports = [ ./hardware.nix ];
 
   config = {
 
@@ -32,7 +32,7 @@ in
         common = enabled;
       };
       system = {
-        boot.systemd-boot = true;
+        boot.systemd-boot.enable = true;
         common = true;
         desktop = true;
         # cleanup = enabled;
