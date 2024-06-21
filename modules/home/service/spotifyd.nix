@@ -41,6 +41,7 @@ in
       Install = {
         # This requires the custom per-user sleep target
         WantedBy = [ "sleep.target" ];
+        After = [ "sleep.target" ];
       };
 
       Unit = {

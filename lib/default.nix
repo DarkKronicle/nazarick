@@ -1,6 +1,6 @@
 { lib, ... }:
 
-{
+rec {
   # https://github.com/ryan4yin/nix-config/blob/82dccbdecaf73835153a6470c1792d397d2881fa/lib/default.nix#L13
   # use path relative to the root of the project
   relativeToRoot = lib.path.append ../.;
@@ -45,6 +45,7 @@
       specialArgs ? (genSpecialArgs system nixpkgs fake-secrets),
       nix-modules ? [ ],
       home-modules ? [ ],
+      home-root ? null,
       ...
     }:
     let
@@ -70,14 +71,31 @@
           # NixOS overlays
           nixpkgs.overlays = overlays;
         }
-        {
-          home-manager.users."${myvars.username}".imports = home-modules;
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = specialArgs;
-          # Home manager overlays
-          nixpkgs.overlays = overlays;
-        }
+        (
+          {
+            config,
+            ...
+
+          }:
+          {
+            config = {
+              # Global home manager settings
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = specialArgs;
+              home-manager.backupFileExtension = "backup";
+
+              home-manager.users = lib.mkMerge (
+                (forEachUser config) (user: {
+                  ${user} = {
+                    imports = home-modules ++ [ "${home-root}/${user}.nix" ];
+                    # nixpkgs.overlays = overlays; # TODO: I don't think this is needed, but should probably double check
+                  };
+                })
+              );
+            };
+          }
+        )
         {
           assertions = [
             {

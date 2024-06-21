@@ -34,12 +34,8 @@ let
         "modules/nixos"
         "hosts/tabula"
       ]);
-    home-modules = (
-      map mylib.relativeToRoot [
-        "modules/home"
-        "hosts/tabula/home.nix"
-      ]
-    );
+    home-modules = (map mylib.relativeToRoot [ "modules/home" ]);
+    home-root = mylib.relativeToRoot "hosts/tabula/home";
   };
 in
 {

@@ -45,7 +45,6 @@ def "backup-borg-default" [repo: string, password: string, exclude: path] {
     $env.BORG_REPO = $repo
     $env.BORG_PASSPHRASE = $password
 
-    let home_dir = "/home/darkkronicle"
     let persist = [
       "/persist/keep"
     ]
