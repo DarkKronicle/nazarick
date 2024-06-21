@@ -69,7 +69,7 @@ in
       lib.mapAttrsToList (name: conf: {
         ${name} = {
           inherit name;
-          inherit (conf) extraGroups;
+          extraGroups = conf.extraGroups ++ cfg.extraGroups;
 
           isNormalUser = true;
           initialHashedPassword =

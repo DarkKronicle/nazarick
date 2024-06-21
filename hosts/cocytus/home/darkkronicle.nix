@@ -32,7 +32,6 @@ in
     cli = {
       common = {
         enable = true;
-        misc = true;
       };
       git = {
         enable = true;
