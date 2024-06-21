@@ -15,7 +15,7 @@ let
       options = {
 
         extraGroups = lib.mkOption {
-          type = types.listOf types.string;
+          type = types.listOf types.str;
           default = [ ];
           description = "Extra groups for the user to be added to";
         };

@@ -13,6 +13,7 @@ in
   config = {
 
     nixpkgs.config.allowUnfree = true;
+    services.openssh.enable = true;
 
     networking.hostName = "cocytus";
     time.timeZone = "America/Denver";
