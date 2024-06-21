@@ -44,7 +44,7 @@ in
         sops = enabled;
       };
       system = {
-        boot.grub = true;
+        boot.grub.enable = true;
         common = true;
         desktop = true;
         cleanup = enabled;

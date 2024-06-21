@@ -23,7 +23,7 @@ in
       bluetooth.enable = lib.mkOverride 500 true;
       printing.enable = lib.mkOverride 500 true;
     })
-    (lib.mkIf cfg.desktop {
+    (lib.mkIf cfg.common {
       # boot.enable = lib.mkOverride 450 true;
       memory.enable = lib.mkOverride 450 true;
       misc = {

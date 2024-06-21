@@ -9,13 +9,13 @@
 let
   inherit (lib) mkIf;
   inherit (mylib) mkBoolOpt;
-  cfg = config.nazarick.system.boot;
+  cfg = config.nazarick.system.boot.grub;
 in
 {
-  options.nazarick.system.boot = {
-    grub = mkBoolOpt false "Enable grub bootloader.";
+  options.nazarick.system.boot.grub = {
+    enable = mkBoolOpt false "Enable grub bootloader.";
   };
-  config = mkIf cfg.grub {
+  config = mkIf cfg.enable {
     boot.loader.systemd-boot = {
       enable = false;
       # consoleMode = "max";
