@@ -16,6 +16,7 @@ in
 {
   options.nazarick.core.nix = {
     enable = mkBoolOpt false "Enable nix configuration.";
+    update-registry = mkBoolOpt true "Update system wide nix registry";
   };
   config = mkIf cfg.enable {
 
@@ -54,9 +55,6 @@ in
     nix = {
 
       # https://github.com/sioodmy/dotfiles/blob/dc9fce23ee4a58b6485f7572b850a7b2dcaf9bb7/system/core/nix.nix#L83
-      registry = lib.mapAttrs (_: v: { flake = v; }) inputs;
-      nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-
       daemonCPUSchedPolicy = "idle";
 
       package = inputs.lix-module.packages.${system}.default;
@@ -88,6 +86,11 @@ in
           "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
         ];
       };
+    } // lib.mkIf cfg.update-registry {
+      # FIXME: 
+      # This needs to be different bc of nixpkgs, if using stable it breaks things
+      registry = lib.mapAttrs (_: v: { flake = v; }) inputs;
+      nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
     };
   };
 }

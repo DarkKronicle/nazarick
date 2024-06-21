@@ -30,6 +30,7 @@ in
     nazarick = {
       core = {
         common = enabled;
+        nix.update-registry = false;
       };
       system = {
         boot.systemd-boot.enable = true;
