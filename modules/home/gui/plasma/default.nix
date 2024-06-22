@@ -124,7 +124,7 @@ in
           "kdeglobals"."WM"."inactiveBackground".value = "17,17,27";
           "kdeglobals"."WM"."inactiveBlend".value = "166,173,200";
           "kdeglobals"."WM"."inactiveForeground".value = "166,173,200";
-          "kwinrc"."Wayland"."InputMethod[$e]".value = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
+          "kwinrc"."Wayland"."InputMethod\x5b$e\x5d".value = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
           "dolphinrc"."DetailsMode"."PreviewSize".value = 16;
           "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize".value = false;
           "dolphinrc"."KFileDialog Settings"."Places Icons Static Size".value = 22;

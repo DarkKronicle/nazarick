@@ -41,7 +41,10 @@ in
     nazarick = {
       core = {
         common = enabled;
-        sops = enabled;
+        sops = {
+          enable = true;
+          keyFile = "/persist/system/var/lib/sops-nix/keys.txt";
+        };
       };
       system = {
         boot.grub.enable = true;

@@ -7,13 +7,18 @@
   ...
 }:
 let
-  inherit (lib) mkIf mkEnableOption;
+  inherit (lib) mkIf mkEnableOption types;
 
   cfg = config.nazarick.core.sops;
 in
 {
   options.nazarick.core.sops = {
     enable = mkEnableOption "Use sops for secrets";
+    keyFile = lib.mkOption {
+      type = types.str;
+      description = "Path for sops file";
+      default = "/var/lib/sops-nix/keys.txt";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -24,7 +29,7 @@ in
     ];
     sops = {
       defaultSopsFile = "${mysecrets.src}/secrets.yaml";
-      age.keyFile = "/persist/system/var/lib/sops-nix/keys.txt";
+      age.keyFile = cfg.keyFile;
     };
   };
 }

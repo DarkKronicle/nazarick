@@ -25,13 +25,26 @@ in
         extraGroups = [ "wheel" ];
         uid = 1000;
       };
+    };
 
+    hardware = {
+      opengl = {
+        enable = true;
+        extraPackages = [
+          pkgs.intel-media-driver
+          pkgs.intel-media-sdk # Doesn't support vpl
+        ];
+      };
     };
 
     nazarick = {
       core = {
         common = enabled;
         nix.update-registry = false;
+        sops = {
+          enable = true;
+          keyFile = "/var/lib/sops-nix/keys.txt";
+        };
       };
       system = {
         boot.systemd-boot.enable = true;
@@ -45,10 +58,16 @@ in
           enable = true;
           nordvpn = true;
         };
-        nordvpn = enabled;
+        nordvpn = {
+          enable = true;
+          autoMeshnetRestart = true;
+        };
       };
       workspace = {
         cli.common = enabled;
+        service = {
+          jellyfin = enabled;
+        };
       };
     };
 

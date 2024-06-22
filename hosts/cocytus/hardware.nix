@@ -62,6 +62,26 @@
     ];
   };
 
+  fileSystems."/mnt/demiurge" = {
+    device = "/dev/disk/by-uuid/a782c0c1-1891-44eb-aeda-d682ba647a41";
+    fsType = "btrfs";
+    options = [
+      "subvol=@"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
+  fileSystems."/mnt/jaldabaoth" = {
+    device = "/dev/disk/by-uuid/dcbeb530-dbe0-4277-9067-5b6f1d6de754";
+    fsType = "btrfs";
+    options = [
+      "subvol=@"
+      "compress=zstd"
+      "noatime"
+    ];
+  };
+
   swapDevices = [ ];
 
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
