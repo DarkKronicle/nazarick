@@ -54,7 +54,7 @@ in
         theme = "lightly-plasma-git";
         iconTheme = "Fluent-dark";
         colorScheme = "CatppuccinMochaMauve";
-        cursorTheme = "Catppuccin-Mocha-Mauve-Cursors";
+        cursor.theme = "Catppuccin-Mocha-Mauve-Cursors";
         wallpaperSlideShow = {
           interval = 3600; # Seconds
           path = [ "${mypkgs.system-wallpapers}/share/wallpapers/system-wallpapers" ];
@@ -124,7 +124,6 @@ in
           "kdeglobals"."WM"."inactiveBackground".value = "17,17,27";
           "kdeglobals"."WM"."inactiveBlend".value = "166,173,200";
           "kdeglobals"."WM"."inactiveForeground".value = "166,173,200";
-          # TODO: Make this use the package declaration
           "kwinrc"."Wayland"."InputMethod[$e]".value = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
           "dolphinrc"."DetailsMode"."PreviewSize".value = 16;
           "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize".value = false;

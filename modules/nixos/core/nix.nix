@@ -52,45 +52,50 @@ in
       };
     };
 
-    nix = {
+    nix =
+      lib.mkMerge
+        [{
 
-      # https://github.com/sioodmy/dotfiles/blob/dc9fce23ee4a58b6485f7572b850a7b2dcaf9bb7/system/core/nix.nix#L83
-      daemonCPUSchedPolicy = "idle";
+          # https://github.com/sioodmy/dotfiles/blob/dc9fce23ee4a58b6485f7572b850a7b2dcaf9bb7/system/core/nix.nix#L83
+          daemonCPUSchedPolicy = "idle";
 
-      package = inputs.lix-module.packages.${system}.default;
+          package = inputs.lix-module.packages.${system}.default;
 
-      settings = {
+          settings = {
 
-        max-jobs = 2;
+            max-jobs = 2;
 
-        experimental-features = [
-          "nix-command"
-          "flakes"
-        ];
+            experimental-features = [
+              "nix-command"
+              "flakes"
+            ];
 
-        builders-use-substitutes = true;
-        warn-dirty = false;
-        auto-optimise-store = true;
+            builders-use-substitutes = true;
+            warn-dirty = false;
+            auto-optimise-store = true;
 
-        substituters = [
-          "https://cache.nixos.org"
-          "https://nix-community.cachix.org"
-          "https://devenv.cachix.org"
-          "https://cache.lix.systems"
-        ];
+            substituters = [
+              "https://cache.nixos.org"
+              "https://nix-community.cachix.org"
+              "https://devenv.cachix.org"
+              "https://cache.lix.systems"
+            ];
 
-        trusted-public-keys = [
-          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-          "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-          "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
-        ];
-      };
-    } // lib.mkIf cfg.update-registry {
-      # FIXME: 
-      # This needs to be different bc of nixpkgs, if using stable it breaks things
-      registry = lib.mapAttrs (_: v: { flake = v; }) inputs;
-      nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
-    };
+            trusted-public-keys = [
+              "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+              "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+              "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+              "cache.lix.systems:aBnZUw8zA7H35Cz2RyKFVs3H4PlGTLawyY5KRbvJR8o="
+            ];
+          };
+        }
+        (
+          lib.mkIf cfg.update-registry {
+            # FIXME: 
+            # This needs to be different bc of nixpkgs, if using stable it breaks things
+            registry = lib.mapAttrs (_: v: { flake = v; }) inputs;
+            nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;
+          }
+        )];
   };
 }

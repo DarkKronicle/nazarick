@@ -59,9 +59,7 @@ in
       default = [ ];
     };
 
-    alias = lib.mkOption {
-      type = types.attrsOf types.str;
-    };
+    alias = lib.mkOption { type = types.attrsOf types.str; };
   };
 
   config = mkIf cfg.enable {
