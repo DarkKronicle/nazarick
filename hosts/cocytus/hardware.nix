@@ -69,6 +69,8 @@
       "subvol=@"
       "compress=zstd"
       "noatime"
+      "nofail"
+      "x-systemd.device-timeout=10"
     ];
   };
 
@@ -79,6 +81,8 @@
       "subvol=@"
       "compress=zstd"
       "noatime"
+      "nofail"
+      "x-systemd.device-timeout=10"
     ];
   };
 
