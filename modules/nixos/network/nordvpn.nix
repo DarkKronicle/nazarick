@@ -64,7 +64,8 @@ in
 
     systemd.services."nordvpn-meshnet-restart" = {
       # We do the weird boolean stuff so that everything will be triggered even if meshnet is off (want to make sure it's on!)
-      script = "(${mypkgs.nordvpn}/bin/nordvpn set meshnet off) || (sleep 3 && ${mypkgs.nordvpn}/bin/nordvpn set meshnet on)";
+      # I also just dislike bash bc these cursed things are needed (before you ask, set -e is enabled here)
+      script = "${mypkgs.nordvpn}/bin/nordvpn set meshnet off || true; sleep 3 && ${mypkgs.nordvpn}/bin/nordvpn set meshnet on";
       serviceConfig = {
         Type = "oneshot";
         Environment = [
