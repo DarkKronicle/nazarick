@@ -21,6 +21,7 @@ def format [] {
 
 def "main commit" [message: string, --noversion] {
     do_safely {
+        format
         git add .
         if (not $noversion)  {
             # Set pager here to less so that there is no confusion
@@ -33,8 +34,9 @@ def "main commit" [message: string, --noversion] {
     }
 }
 
-def "main build" [--update, --flake: string = ".", --plain, --hostname: string] {
+def "main build" [--update, --pull, --flake: string = ".", --plain, --hostname: string] {
     do_safely {
+        git pull
         format
         git add .
         mut flags = [

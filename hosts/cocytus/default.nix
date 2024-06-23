@@ -31,9 +31,6 @@ in
 
         extraGroups = [ "wheel" ];
         uid = 1001;
-        extraOptions = {
-          hashedPasswordFile = config.sops.secrets."user/darkkronicle/password".path;
-        };
       };
     };
 
