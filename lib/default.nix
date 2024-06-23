@@ -32,6 +32,9 @@ rec {
   forEachUser =
     config: function: (lib.mapAttrsToList (name: _: function name)) config.nazarick.users.user;
 
+  forEachUserAttr =
+    config: function: (lib.mapAttrsToList (name: cfg: function name cfg)) config.nazarick.users.user;
+
   nixosSystem =
     {
       inputs,
@@ -71,11 +74,7 @@ rec {
           nixpkgs.overlays = overlays;
         }
         (
-          {
-            config,
-            ...
-
-          }:
+          { config, ... }:
           {
             config = {
               # Global home manager settings
@@ -85,12 +84,14 @@ rec {
               home-manager.backupFileExtension = "backup";
 
               home-manager.users = lib.mkMerge (
-                (forEachUser config) (user: {
-                  ${user} = {
-                    imports = home-modules ++ [ "${home-root}/${user}.nix" ];
-                    # nixpkgs.overlays = overlays; # TODO: I don't think this is needed, but should probably double check
-                  };
-                })
+                (forEachUserAttr config) (
+                  user: cfg: {
+                    ${user} = {
+                      imports = home-modules ++ [ "${home-root}/${cfg.homeManagerFileName}" ];
+                      # nixpkgs.overlays = overlays; # TODO: I don't think this is needed, but should probably double check
+                    };
+                  }
+                )
               );
             };
           }

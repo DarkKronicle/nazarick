@@ -10,7 +10,7 @@ let
   cfg = config.nazarick.users;
 
   userType = types.submodule (
-    { config, ... }:
+    { name, config, ... }:
     {
       options = {
 
@@ -35,6 +35,12 @@ let
         uid = mkOption {
           type = types.int;
           description = "Set UID for the user";
+        };
+
+        homeManagerFileName = mkOption {
+          type = types.str;
+          default = "${name}.nix";
+          description = "Name of the home manager file that links to the user";
         };
 
       };

@@ -2,6 +2,7 @@
   pkgs,
   config,
   mylib,
+  myvars,
   ...
 }:
 let
@@ -35,7 +36,6 @@ in
           hashedPasswordFile = config.sops.secrets."user/darkkronicle/password".path;
         };
       };
-
     };
 
     nazarick = {

@@ -27,8 +27,13 @@ in
         uid = 1000;
       };
       user."${myvars.user.user2.name}" = {
+        homeManagerFileName = "user2.nix";
+
         extraGroups = [ "wheel" ];
         uid = 1001;
+        extraOptions = {
+          hashedPasswordFile = config.sops.secrets."user/darkkronicle/password".path;
+        };
       };
     };
 

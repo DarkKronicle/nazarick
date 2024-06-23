@@ -26,10 +26,7 @@ let
         fake = fake_secrets;
       };
 
-      myvars = lib.mkMerge [
-        (import ../vars { inherit lib; })
-        (import "${mysecrets.src}/vars.nix")
-      ];
+      myvars = lib.recursiveUpdate (import ../vars { inherit lib; }) (import "${mysecrets.src}/vars.nix");
 
       # use unstable branch for some packages to get the latest updates
       pkgs-unstable = import inputs.nixpkgs-unstable pkgs-args;
