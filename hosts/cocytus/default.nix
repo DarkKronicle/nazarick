@@ -2,6 +2,7 @@
   pkgs,
   config,
   mylib,
+  myvars,
   ...
 }:
 let
@@ -24,6 +25,10 @@ in
       user."darkkronicle" = {
         extraGroups = [ "wheel" ];
         uid = 1000;
+      };
+      user."${myvars.user.user2.name}" = {
+        extraGroups = [ "wheel" ];
+        uid = 1001;
       };
     };
 

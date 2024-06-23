@@ -2,7 +2,6 @@
   inputs,
   lib,
   mylib,
-  myvars,
   system,
   pkgs,
   pkgs-stable,
@@ -18,7 +17,6 @@ lib.listToAttrs (
         inherit
           inputs
           lib
-          myvars
           system
           pkgs
           pkgs-stable

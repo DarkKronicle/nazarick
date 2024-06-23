@@ -6,8 +6,6 @@ let
   # Licensed Apache 2.0
   inherit (nixpkgs) lib;
 
-  myvars = import ../vars { inherit lib; };
-
   mylib = import ../lib { inherit lib; };
 
   genSpecialArgs =
@@ -17,6 +15,21 @@ let
         inherit system;
         config.allowUnfree = true;
       };
+
+      mysecrets = import (mylib.relativeToRoot "secrets/create-secrets.nix") {
+        inherit
+          pkgs
+          system
+          inputs
+          lib
+          ;
+        fake = fake_secrets;
+      };
+
+      myvars = lib.mkMerge [
+        (import ../vars { inherit lib; })
+        (import "${mysecrets.src}/vars.nix")
+      ];
 
       # use unstable branch for some packages to get the latest updates
       pkgs-unstable = import inputs.nixpkgs-unstable pkgs-args;
@@ -40,17 +53,8 @@ let
         inputs
         pkgs-stable
         pkgs-unstable
+        mysecrets
         ;
-
-      mysecrets = import (mylib.relativeToRoot "secrets/create-secrets.nix") {
-        inherit
-          pkgs
-          system
-          inputs
-          lib
-          ;
-        fake = fake_secrets;
-      };
 
       mypkgs = import (mylib.relativeToRoot "packages") {
         inherit
@@ -72,7 +76,6 @@ let
       inputs
       lib
       mylib
-      myvars
       genSpecialArgs
       ;
   };

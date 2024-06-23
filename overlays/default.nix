@@ -1,7 +1,6 @@
 {
   inputs,
   lib,
-  myvars,
   mylib,
   mypkgs,
   system,
@@ -17,7 +16,6 @@ lib.forEach (mylib.scanPaths ./.) (
       inputs
       lib
       mypkgs
-      myvars
       system
       pkgs
       pkgs-stable

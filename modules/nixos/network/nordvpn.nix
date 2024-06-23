@@ -67,6 +67,9 @@ in
       script = "(${mypkgs.nordvpn}/bin/nordvpn set meshnet off) || (sleep 3 && ${mypkgs.nordvpn}/bin/nordvpn set meshnet on)";
       serviceConfig = {
         Type = "oneshot";
+        Environment = [
+          "HOME=/root" # needs this for some reason...
+        ];
       };
     };
   };

@@ -39,7 +39,6 @@ rec {
       mylib,
       system,
       genSpecialArgs,
-      myvars,
       fake-secrets ? true,
       nixpkgs ? (inputs.nixpkgs),
       specialArgs ? (genSpecialArgs system nixpkgs fake-secrets),
@@ -57,7 +56,6 @@ rec {
           lib
           mylib
           system
-          myvars
           ;
         inherit (specialArgs) pkgs-stable pkgs-unstable mypkgs;
         pkgs = nixpkgs;
