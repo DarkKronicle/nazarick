@@ -41,6 +41,6 @@ let
 in
 {
   nixosConfigurations = {
-    "${name}" = mylib.nixosSystem ({ fake-secrets = true; } // modules // args);
+    "${name}" = mylib.nixosSystem ({ fake-secrets = false; } // modules // args);
   };
 }
