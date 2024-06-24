@@ -76,6 +76,10 @@ in
       security = enabled;
       tex = enabled;
       rust = enabled;
+      zk = {
+        enable = true;
+        notebookDir = "/home/darkkronicle/Documents/writing/notes/";
+      };
     };
 
     service = {

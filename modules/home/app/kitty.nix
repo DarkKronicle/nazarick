@@ -20,6 +20,11 @@ in
 
   config = mkIf cfg.enable {
 
+    home.sessionVariables = {
+      "TERM" = "kitty";
+      "TERMINAL" = "kitty";
+    };
+
     programs.kitty = {
       package = pkgs.kitty;
       enable = true;

@@ -91,6 +91,8 @@ in
         } // conf.extraOptions;
       }) cfg.user
     );
+
+    environment.shells = (mylib.forEachUserAttr config (user: cfg: cfg.shell));
   };
 
 }

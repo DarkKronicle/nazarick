@@ -19,6 +19,13 @@ in
     networking.hostName = "cocytus";
     time.timeZone = "America/Denver";
 
+    programs.zsh = {
+      enable = true;
+      enableCompletion = true;
+      autosuggestions.enable = true;
+      syntaxHighlighting.enable = true;
+    };
+
     nazarick.users = {
       mutableUsers = true;
 
@@ -31,6 +38,8 @@ in
 
         extraGroups = [ "wheel" ];
         uid = 1001;
+
+        shell = pkgs.zsh;
       };
     };
 

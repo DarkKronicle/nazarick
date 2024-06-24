@@ -124,8 +124,6 @@ in
   documentation.doc.enable = lib.mkOverride 500 true;
   zramSwap.enable = true;
 
-  environment.shells = with pkgs; [ nushell ];
-
   system.activationScripts.installerDesktop =
     let
 
