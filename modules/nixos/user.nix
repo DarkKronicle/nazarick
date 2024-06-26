@@ -87,7 +87,7 @@ in
           uid = conf.uid;
           home = "/home/${name}";
           group = "users";
-          shell = pkgs.nushell;
+          shell = conf.shell;
         } // conf.extraOptions;
       }) cfg.user
     );

@@ -12,6 +12,24 @@ let
   inherit (lib) mkIf;
   inherit (mylib) mkBoolOpt;
   cfg = config.nazarick.core.nix;
+
+  nixos-option-wrapped =
+    let
+      flake-compact = pkgs.fetchFromGitHub {
+        owner = "edolstra";
+        repo = "flake-compat";
+        rev = "12c64ca55c1014cdc1b16ed5a804aa8576601ff2";
+        sha256 = "sha256-hY8g6H2KFL8ownSiFeMOjwPC8P0ueXpCVEbxgda3pko=";
+      };
+      prefix = ''(import ${flake-compact} { src = /home/darkkronicle/nazarick; }).defaultNix.nixosConfigurations.\$(hostname)'';
+    in
+    pkgs.runCommandNoCC "nixos-option" { buildInputs = [ pkgs.makeWrapper ]; } ''
+      makeWrapper ${pkgs.nixos-option}/bin/nixos-option $out/bin/nixos-option \
+        --add-flags --config_expr \
+        --add-flags "\"${prefix}.config\"" \
+        --add-flags --options_expr \
+        --add-flags "\"${prefix}.options\""
+    '';
 in
 {
   options.nazarick.core.nix = {
@@ -25,6 +43,7 @@ in
         nixfmt-rfc-style
         nix-output-monitor
         nurl
+        nixos-option-wrapped
       ])
       ++ [ mypkgs.naz ];
 
@@ -79,6 +98,13 @@ in
             "https://devenv.cachix.org"
             "https://cache.lix.systems"
           ];
+
+          # Get names | from where user have "wheel" group
+          trusted-users = lib.mapAttrsToList (name: _: name) (
+            lib.attrsets.filterAttrs (
+              name: cfg: builtins.elem "wheel" cfg.extraGroups
+            ) config.nazarick.users.user
+          );
 
           trusted-public-keys = [
             "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="

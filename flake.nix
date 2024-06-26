@@ -3,72 +3,69 @@
 
   inputs = {
 
+    # --------------------
+    # Main channels
+    # --------------------
+
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
-    waveforms = {
-      url = "github:liff/waveforms-flake";
+
+    home-manager = {
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager-stable = {
+      url = "github:nix-community/home-manager/release-24.05";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
 
-    home-manager-stable.url = "github:nix-community/home-manager/release-24.05";
-    home-manager-stable.inputs.nixpkgs.follows = "nixpkgs-stable";
+    # --------------------
+    # System functionality and utilities
+    # --------------------
 
-    fenix = {
-      url = "github:nix-community/fenix";
+    impermanence.url = "github:nix-community/impermanence";
+
+    lix-module = {
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.90.0-rc1.tar.gz";
+      inputs.nixpkgs.follows = "nixpkgs-stable";
+    };
+
+    haumea = {
+      url = "github:nix-community/haumea/v0.2.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Generate System Images
-    nixos-generators.url = "github:nix-community/nixos-generators";
-    nixos-generators.inputs.nixpkgs.follows = "nixpkgs";
-
-    nix-matlab = {
+    nixos-generators = {
+      url = "github:nix-community/nixos-generators";
       inputs.nixpkgs.follows = "nixpkgs";
-      url = "gitlab:doronbehar/nix-matlab";
     };
 
     sops-nix.url = "github:Mic92/sops-nix";
 
-    plasma-manager.url = "github:pjones/plasma-manager";
-    plasma-manager.inputs.nixpkgs.follows = "nixpkgs";
-    plasma-manager.inputs.home-manager.follows = "home-manager";
-
-    nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-
-    impermanence.url = "github:nix-community/impermanence";
-    persist-retro.url = "github:Geometer1729/persist-retro";
-
-    faerber.url = "github:nekowinston/faerber";
-
-    lix = {
-      url = "git+https://git@git.lix.systems/lix-project/lix?ref=refs/tags/2.90.0-rc1";
-      flake = false;
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
     };
-    lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module";
-      inputs.lix.follows = "lix";
+
+    nix-index-database = {
+      url = "github:nix-community/nix-index-database";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # --------------------
+    # Application specific inputs
+    # --------------------
 
     nvim-cats = {
       url = "github:DarkKronicle/nvim-dotfiles";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    haumea = {
-      url = "github:nix-community/haumea/v0.2.2";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -77,10 +74,33 @@
       flake = false;
     };
 
+    # --------------------
+    # Specific applications
+    # --------------------
+
+    faerber.url = "github:nekowinston/faerber";
+
     mint = {
       url = "github:trumank/mint";
     };
+
+    waveforms = {
+      url = "github:liff/waveforms-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-matlab = {
+      inputs.nixpkgs.follows = "nixpkgs";
+      url = "gitlab:doronbehar/nix-matlab";
+    };
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
   outputs = inputs: import ./outputs inputs;
+
 }

@@ -23,7 +23,6 @@ let
       ]
       ++ (with inputs; [
         impermanence.nixosModules.impermanence
-        # persist-retro.nixosModules.persist-retro
         home-manager.nixosModules.home-manager
         sops-nix.nixosModules.sops
         waveforms.nixosModule
@@ -39,6 +38,13 @@ let
 in
 {
   nixosConfigurations = {
-    "${name}" = mylib.nixosSystem ({ fake-secrets = false; } // modules // args);
+    "${name}" = mylib.nixosSystem (
+      {
+        fake-secrets = false;
+        headless = true;
+      }
+      // modules
+      // args
+    );
   };
 }

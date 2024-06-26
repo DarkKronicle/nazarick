@@ -153,6 +153,8 @@ in
             "privacy.resistFingerprinting.letterboxing" = true;
             "webgl.disabled" = true;
 
+            "middlemouse.paste" = false; # Disable paste on middle mouse button
+
             # https://arkenfox.github.io/gui/
             "browser.contentanalysis.default_allow" = false;
             "toolkit.legacyUserProfileCustomizations.stylesheets" = true;

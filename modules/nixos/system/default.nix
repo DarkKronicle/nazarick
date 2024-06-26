@@ -26,6 +26,7 @@ in
     (lib.mkIf cfg.common {
       # boot.enable = lib.mkOverride 450 true;
       memory.enable = lib.mkOverride 450 true;
+      disk.enable = lib.mkOverride 450 true;
       misc = {
         enable = lib.mkOverride 450 true;
         system76cpu = lib.mkOverride 450 true;

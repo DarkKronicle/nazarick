@@ -8,100 +8,101 @@ let
   broot-choose-file = pkgs.writeTextFile {
     name = "br-choose";
     destination = "/share/nushell/br-choose.nu";
-    text = ''
-      source ${
-        pkgs.runCommand "br.nushell" {
-          nativeBuildInputs = [ pkgs.broot ];
-        } "broot --print-shell-function nushell > $out"
-      }
-
-      alias bb = br --conf ${./editor.hjson}
-      alias br-choose = broot --conf ${./chooser.hjson}
-
-      def --env bz [place?] {
-        let place = if ($place | is-empty) { "." } else { zoxide query $place }
-        if ($place | is-empty) {
-          return
+    text = # nu
+      ''
+        source ${
+          pkgs.runCommand "br.nushell" {
+            nativeBuildInputs = [ pkgs.broot ];
+          } "broot --print-shell-function nushell > $out"
         }
-        let place = _br_fzf_goto $place --to-dir
-        cd $place
-      }
 
-      def _br_fzf_goto [place? = ".", words?: string = "", --to-dir] {
-        let location = mktemp -t broot-XXXXXX.txt
-        br-choose -c $words --verb-output $location $place
-        let $file = (open $location)
-        rm -pf $location
+        alias bb = br --conf ${./editor.hjson}
+        alias br-choose = broot --conf ${./chooser.hjson}
 
-        if ($file | is-empty) {
-          return "."
+        def --env bz [place?] {
+          let place = if ($place | is-empty) { "." } else { zoxide query $place }
+          if ($place | is-empty) {
+            return
+          }
+          let place = _br_fzf_goto $place --to-dir
+          cd $place
         }
-        if (not $to_dir) {
-          return $file
-        }
-        let real_file = if (($file | path type) != "dir") {
-          $file | path dirname
-        } else {
-          $file
-        }
-        $real_file
-      }
 
-      def _br_fzf_select [] {
-        let current = commandline
-        let cursor = commandline get-cursor
-        let words = ($current | split row " " | each {|x| { word: $x, length: ($x | str length) }})
-        mut i = 0
-        mut index = 0
-        mut current_word = 0
-        for word in $words {
-            let length = $word.length
-            $current_word = $index
-            if (($i + $length) > $cursor) {
-            break
-            }
-            $i = $i + $length
-            $index = $index + 1
+        def _br_fzf_goto [place? = ".", words?: string = "", --to-dir] {
+          let location = mktemp -t broot-XXXXXX.txt
+          br-choose -c $words --verb-output $location $place
+          let $file = (open $location)
+          rm -pf $location
+
+          if ($file | is-empty) {
+            return "."
+          }
+          if (not $to_dir) {
+            return $file
+          }
+          let real_file = if (($file | path type) != "dir") {
+            $file | path dirname
+          } else {
+            $file
+          }
+          $real_file
         }
-        let file = _br_fzf_goto "." ($words | get $current_word | get word)
-        if ($file | is-empty) {
-          return
+
+        def _br_fzf_select [] {
+          let current = commandline
+          let cursor = commandline get-cursor
+          let words = ($current | split row " " | each {|x| { word: $x, length: ($x | str length) }})
+          mut i = 0
+          mut index = 0
+          mut current_word = 0
+          for word in $words {
+              let length = $word.length
+              $current_word = $index
+              if (($i + $length) > $cursor) {
+              break
+              }
+              $i = $i + $length
+              $index = $index + 1
+          }
+          let file = _br_fzf_goto "." ($words | get $current_word | get word)
+          if ($file | is-empty) {
+            return
+          }
+          let newline = ($words.word | drop $current_word | insert $current_word $file | str join " ")
+          commandline edit --replace $newline
+          commandline set-cursor ($i + (($file | str length) + 1))
         }
-        let newline = ($words.word | drop $current_word | insert $current_word $file | str join " ")
-        commandline edit --replace $newline
-        commandline set-cursor ($i + (($file | str length) + 1))
-      }
 
-      # Following structure taken from atuin
+        # Following structure taken from atuin
 
-      $env.config = ($env.config | default [] keybindings)
+        $env.config = ($env.config | default [] keybindings)
 
-      $env.config = (
-          $env.config | upsert keybindings (
-            $env.config.keybindings
-            | append {
-              name: broot-choose-file
-              modifier: control
-              keycode: char_f
-              mode: [emacs, vi_normal, vi_insert]
-              event: { send: executehostcommand cmd: _br_fzf_select }
-            }
+        $env.config = (
+            $env.config | upsert keybindings (
+              $env.config.keybindings
+              | append {
+                name: broot-choose-file
+                modifier: control
+                keycode: char_f
+                mode: [emacs, vi_normal, vi_insert]
+                event: { send: executehostcommand cmd: _br_fzf_select }
+              }
+          )
         )
-      )
 
-      $env.config = (
-          $env.config | upsert keybindings (
-            $env.config.keybindings
-            | append {
-              name: broot-choose-goto
-              modifier: control
-              keycode: char_g
-              mode: [emacs, vi_normal, vi_insert]
-              event: { send: executehostcommand cmd: "cd (_br_fzf_goto)" }
-            }
+        $env.config = (
+            $env.config | upsert keybindings (
+              $env.config.keybindings
+              | append {
+                name: broot-choose-goto
+                modifier: control
+                keycode: char_g
+                mode: [emacs, vi_normal, vi_insert]
+                event: { send: executehostcommand cmd: "cd (_br_fzf_goto)" }
+              }
+          )
         )
-      )
-    '';
+      '';
   };
 
   cfg = config.nazarick.tui.broot;

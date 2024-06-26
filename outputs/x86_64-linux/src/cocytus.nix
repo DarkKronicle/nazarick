@@ -22,7 +22,6 @@ let
         }
       ]
       ++ (with inputs; [
-        # persist-retro.nixosModules.persist-retro
         impermanence.nixosModules.impermanence
         home-manager-stable.nixosModules.home-manager
         sops-nix.nixosModules.sops

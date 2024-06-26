@@ -11,7 +11,11 @@ let
     inputs = args;
   };
   dataWithoutPaths = builtins.attrValues data;
-  package-args = genSpecialArgs "x86_64-linux" inputs.nixpkgs true;
+  package-args = genSpecialArgs {
+    system = "x86_64-linux";
+    pkgsChannel = inputs.nixpkgs;
+    fakeSecrets = true;
+  };
   outputs = {
     nixosConfigurations = lib.attrsets.mergeAttrsList (
       map (it: it.nixosConfigurations or { }) dataWithoutPaths

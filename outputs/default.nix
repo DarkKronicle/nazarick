@@ -2,14 +2,17 @@
 # https://github.com/ryan4yin/nix-config/blob/82dccbdecaf73835153a6470c1792d397d2881fa/outputs/default.nix
 { self, nixpkgs, ... }@inputs:
 let
-  # https://github.com/snowfallorg/lib/blob/5d6e9f235735393c28e1145bec919610b172a20f/snowfall-lib/default.nix#L21C1-L33C38
-  # Licensed Apache 2.0
   inherit (nixpkgs) lib;
 
   mylib = import ../lib { inherit lib; };
 
+  # This defines the arguments for each system
   genSpecialArgs =
-    system: pkgs_channel: fake_secrets:
+    {
+      system,
+      pkgsChannel,
+      fakeSecrets,
+    }:
     let
       pkgs-args = {
         inherit system;
@@ -23,9 +26,10 @@ let
           inputs
           lib
           ;
-        fake = fake_secrets;
+        fake = fakeSecrets;
       };
 
+      # Variables specific to the host and whole configuration
       myvars = lib.recursiveUpdate (import ../vars { inherit lib; }) (import "${mysecrets.src}/vars.nix");
 
       # use unstable branch for some packages to get the latest updates
@@ -33,12 +37,13 @@ let
 
       pkgs-stable = import inputs.nixpkgs-stable pkgs-args;
 
+      # Prevent double initializing package if possible
       pkgs =
-        if (pkgs_channel == inputs.nixpkgs-stable) then
+        if (pkgsChannel == inputs.nixpkgs-stable) then
           pkgs-stable
         else
           (
-            if (pkgs_channel == inputs.nixpkgs-unstable) then pkgs-unstable else (import pkgs_channel pkgs-args)
+            if (pkgsChannel == inputs.nixpkgs-unstable) then pkgs-unstable else (import pkgsChannel pkgs-args)
           );
     in
     inputs
