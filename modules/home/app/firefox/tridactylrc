@@ -41,7 +41,7 @@ autocmd DocStart mail.google.com mode ignore
 autocmd DocStart monkeytype.com mode ignore
 
 
-set searchurls.sx https://searxng.ca/search?q=%s
+set searchurls.sx https://etsi.me/search?q=%s
 set searchurls.np https://search.nixos.org/packages?channel=unstable&query=%s
 set searchurls.no https://search.nixos.org/options?channel=unstable&query=%s
 set searchurls.nh https://home-manager-options.extranix.com/?query=%s

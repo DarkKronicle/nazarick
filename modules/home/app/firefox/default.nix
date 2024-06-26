@@ -128,7 +128,7 @@ in
                 definedAliases = [ "@sx" ];
                 urls = [
                   {
-                    template = "https://searxng.ca/search";
+                    template = "https://etsi.me/search";
                     params = [
                       {
                         name = "q";
