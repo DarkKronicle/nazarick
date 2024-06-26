@@ -119,7 +119,7 @@ $env.config = {
   use_ansi_coloring: true
   bracketed_paste: true # enable bracketed paste, currently useless on windows
   edit_mode: vi # emacs, vi
-  use_kitty_protocol: true,
+  use_kitty_protocol: (($env | columns | find -r "^ZELLIJ$" | length) < 0), # enables keyboard enhancement protocol implemented by kitty console, only if your terminal support this.
   shell_integration: {
     osc2: true
     osc7: true

@@ -19,6 +19,9 @@ in
     programs.zellij = {
       enable = true;
       settings = {
+        pane_frames = false;
+        theme = "catppuccin-mocha";
+        copy_on_select = false;
 
       };
     };

@@ -38,6 +38,9 @@ in
         userEmail = "darkkronicle@gmail.com";
         userName = "DarkKronicle";
       };
+      tui = {
+        zellij = enabled;
+      };
       nushell = enabled;
       pager = enabled;
     };
