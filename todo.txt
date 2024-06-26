@@ -1,0 +1,2 @@
+- Default configuration options? Is there a way to do it without behaving unpredictably?
+-- The main issue is that defaults are defaults, and if they're on they are harder to find to turn off

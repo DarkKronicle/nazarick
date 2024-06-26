@@ -95,6 +95,7 @@ in
       yazi = enabled;
       broot = enabled;
       newsboat = enabled;
+      zellij = enabled;
     };
 
     app = {

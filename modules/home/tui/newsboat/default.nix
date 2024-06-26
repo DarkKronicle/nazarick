@@ -11,6 +11,7 @@ let
       python3 = pkgs.python3.withPackages (ps: [ ps.readability-lxml ]);
       cache-dir = "~/.cache/newsboat";
     in
+    # nu
     ''
       #!/usr/bin/env nu
 

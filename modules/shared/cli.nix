@@ -24,5 +24,6 @@
   nushell
   eza
   dysk
+  magic-wormhole-rs
 ])
 ++ (with mypkgs; [ tomb ])
