@@ -1,0 +1,200 @@
+format = """
+[](fg:host_color)\
+$hostname\
+[](fg:host_color bg:dir_bg_color)\
+$directory\
+[](fg:dir_bg_color bg:git_bg_color)\
+$git_branch\
+$git_status\
+[](fg:git_bg_color bg:code_bg_color)\
+$buf\
+$c\
+$elixir\
+$elm\
+$golang\
+$gradle\
+$haskell\
+$java\
+$julia\
+$nodejs\
+$nim\
+$rust\
+$scala\
+[](fg:code_bg_color bg:tool_bg_color)\
+$kubernetes\
+$container\
+$docker_context\
+$character\
+$fill\
+[](fg:dir_bg_color)\
+${custom.yazilevel}\
+$cmd_duration\
+[](fg:git_bg_color bg:dir_bg_color)\
+$memory_usage\
+[](fg:git_bg_color)
+$shell
+"""
+
+# right_format = """
+# """
+
+palette = 'polar_night'
+
+add_newline = true
+
+# Nord Polar Night
+[palettes.polar_night]
+dir_bg_color = '#2E3440'
+git_bg_color = '#3B4252'
+code_bg_color = '#434C5E'
+tool_bg_color = '#4C566A'
+text_color = '#D8DEE9'
+character_bg_color = '#D8DEE9'
+character_text_color = '#2E3440'
+character_text_error_color = '#BF616A'
+special = "#9d0df0"
+host_color = "@HOSTCOLOR@"
+
+[buf]
+symbol = "󰿘 "
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[cmd_duration]
+min_time = 0
+style = "bg:dir_bg_color fg:text_color"
+format = '[ $duration ]($style)'
+
+[character]
+success_symbol = "[](fg:tool_bg_color bg:tool_bg_color)[](fg:tool_bg_color)"
+error_symbol = "[](fg:tool_bg_color bg:character_text_error_color)[](fg:character_text_error_color)"
+format = '$symbol'
+
+[directory]
+style = "bg:dir_bg_color fg:text_color"
+format = "[ $path $read_only ]($style)"
+home_symbol = "󰟒"
+truncation_length = 3
+truncation_symbol = "󰦩 "
+read_only = "󰌾 "
+
+[directory.substitutions]
+"/" = "  "
+
+[hostname]
+style = "bg:host_color fg:text_color"
+disabled = false
+format = "[ $ssh_symbol$hostname ]($style)"
+ssh_symbol = "󰴽"
+
+[c]
+symbol = " "
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[docker_context]
+disabled = false
+symbol = " "
+style = "bg:tool_bg_color fg:text_color"
+format = '[ $symbol $context ]($style) $path'
+
+[kubernetes]
+symbol = "󱃾 "
+disabled = false
+format = '[ $symbol $cluster ]($style)'
+style = "bg:tool_bg_color fg:text_color"
+
+[elixir]
+symbol = " "
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[elm]
+symbol = " "
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[git_branch]
+symbol = "󰊢"
+style = "bg:git_bg_color fg:text_color"
+format = '[ $symbol $branch ]($style)'
+
+[git_status]
+style = "bg:git_bg_color fg:text_color"
+format = '[$all_status$ahead_behind ]($style)'
+
+[golang]
+symbol = " "
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[gradle]
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[haskell]
+symbol = " "
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[java]
+symbol = " "
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[julia]
+symbol = " "
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[nodejs]
+symbol = ""
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[nim]
+symbol = "󰆥 "
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[rust]
+symbol = ""
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[scala]
+symbol = " "
+style = "bg:code_bg_color fg:text_color"
+format = '[ $symbol ($version) ]($style)'
+
+[fill]
+symbol = '─'
+style = "fg:dir_bg_color bg:none"
+
+[shell]
+disabled = false
+nu_indicator = "[››](fg:tool_bg_color)"
+bash_indicator = "[@bash ](fg:green)[›› ](fg:tool_bg_color)"
+format = '$indicator'
+
+[memory_usage]
+disabled = false
+threshold = 0
+format = "[ ${ram_pct} 󰍛 ](fg:text_color bg:git_bg_color)"
+
+[custom.yazilevel]
+description = "Display current Yazi level"
+command = 'echo 󰃻 $YAZI_LEVEL'
+shell = ["bash", "--noprofile", "--norc"]
+style = "bg:dir_bg_color fg:special"
+when = 'test "${YAZI_LEVEL}"'
+
+[custom.lastcommit]
+description = "Display last commit hash and message"
+command = "git show -s --format='%h \"%s\"'"
+when = 'git rev-parse --is-inside-work-tree 2> /dev/null'
+style = "bright-yellow bold"
+format = "[$output]($style) "
+shell = ["bash", "--noprofile", "--norc"]
+
+
