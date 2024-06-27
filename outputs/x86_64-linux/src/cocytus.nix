@@ -39,6 +39,17 @@ let
 in
 {
   nixosConfigurations = {
-    "${name}" = mylib.nixosSystem ({ fake-secrets = false; } // modules // args);
+    "${name}" = mylib.nixosSystem (
+      {
+        fake-secrets = false;
+        variables = {
+          system = {
+            type = "server";
+          };
+        };
+      }
+      // modules
+      // args
+    );
   };
 }
