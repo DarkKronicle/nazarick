@@ -3,12 +3,13 @@
   lib,
   mylib,
   system,
+  variables,
   genSpecialArgs,
   fake-secrets ? true,
   nixpkgs ? (inputs.nixpkgs),
   specialArgs ? (
     genSpecialArgs {
-      inherit system;
+      inherit system variables;
       pkgsChannel = nixpkgs;
       fakeSecrets = fake-secrets;
     }
@@ -54,10 +55,18 @@ nixpkgs.lib.nixosSystem {
           home-manager.users = lib.mkMerge (
             (mylib.forEachUserAttr config) (
               user: cfg: {
-                ${user} = {
-                  imports = home-modules ++ [ "${home-root}/${cfg.homeManagerFileName}" ];
-                  # nixpkgs.overlays = overlays; # TODO: I don't think this is needed, but should probably double check
-                };
+                ${user} =
+                  let
+                    hostFile = "${home-root}/${cfg.homeManagerFileName}";
+                    globalFile = mylib.relativeToRoot "homes/${cfg.homeManagerFileName}";
+                  in
+                  {
+                    imports =
+                      home-modules
+                      ++ (lib.optionals (builtins.pathExists hostFile) [ hostFile ])
+                      ++ (lib.optionals (builtins.pathExists globalFile) [ globalFile ]);
+                    # nixpkgs.overlays = overlays; # TODO: I don't think this is needed, but should probably double check
+                  };
               }
             )
           );

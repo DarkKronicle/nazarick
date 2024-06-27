@@ -12,6 +12,7 @@ let
       system,
       pkgsChannel,
       fakeSecrets,
+      variables,
     }:
     let
       pkgs-args = {
@@ -30,7 +31,9 @@ let
       };
 
       # Variables specific to the host and whole configuration
-      myvars = lib.recursiveUpdate (import ../vars { inherit lib; }) (import "${mysecrets.src}/vars.nix");
+      myvars = lib.recursiveUpdate (lib.recursiveUpdate (import ../vars { inherit lib; }) (
+        import "${mysecrets.src}/vars.nix"
+      )) variables;
 
       # use unstable branch for some packages to get the latest updates
       pkgs-unstable = import inputs.nixpkgs-unstable pkgs-args;

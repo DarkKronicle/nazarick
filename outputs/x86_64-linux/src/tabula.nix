@@ -42,6 +42,11 @@ in
       {
         fake-secrets = false;
         headless = true;
+        variables = {
+          system = {
+            type = "laptop";
+          };
+        };
       }
       // modules
       // args

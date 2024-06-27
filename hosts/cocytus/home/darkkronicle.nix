@@ -46,6 +46,7 @@ in
     };
 
     tui = {
+      zellij = enabled;
       neovim = enabled;
       btop = enabled;
       yazi = enabled;
