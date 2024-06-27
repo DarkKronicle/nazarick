@@ -23,6 +23,10 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    nazarick.cli.nushell.alias = {
+      "wrm" = "wormhole-rs";
+    };
+
     home.packages =
       import (mylib.relativeToRoot "modules/shared/cli.nix") { inherit pkgs mypkgs; }
       ++ (lib.optionals cfg.fun (with pkgs; [ pipes-rs ]))

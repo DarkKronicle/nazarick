@@ -31,6 +31,10 @@ in
       ]
     );
 
+    nazarick.cli.nushell.source = [
+      "${pkgs.nu_scripts}/share/nu_scripts/custom-completions/man/man-completions.nu"
+    ];
+
     nazarick.cli.nushell.alias = {
       "icat" = "kitten icat";
       "zz" = "systemd-inhibit sleep infinity";

@@ -16,6 +16,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    nazarick.cli.nushell.alias = {
+      "zel" = "zellij -l welcome";
+    };
+
     programs.zellij = {
       enable = true;
       settings = {

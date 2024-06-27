@@ -1,6 +1,5 @@
-use ~/.config/nushell/themes/black-metal-immortal.nu
-use ~/.config/nushell/auto-venv.nu auto-venv-toggle
-use ~/.config/nushell/task.nu
+use @BLACK_IMORTAL@
+use @TASK@
 
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
@@ -111,15 +110,14 @@ $env.config = {
     vi_insert: block # block, underscore, line , blink_block, blink_underscore, blink_line (block is the default)
     vi_normal: underscore # block, underscore, line, blink_block, blink_underscore, blink_line (underscore is the default)
   }
-  color_config: (black-metal-immortal)   # if you want a light theme, replace `$dark_theme` to `$light_theme`
+  color_config: (black-metal-immortal)
   use_grid_icons: true
-  footer_mode: "25" # always, never, number_of_rows, auto
-  float_precision: 2 # the precision for displaying floats in tables
-  # buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctrl+o, if unset fallback to $env.EDITOR and $env.VISUAL
+  footer_mode: "25"
+  float_precision: 2
   use_ansi_coloring: true
-  bracketed_paste: true # enable bracketed paste, currently useless on windows
-  edit_mode: vi # emacs, vi
-  use_kitty_protocol: ("ZELLIJ" in ($env | columns)), # enables keyboard enhancement protocol implemented by kitty console, only if your terminal support this.
+  bracketed_paste: true
+  edit_mode: vi
+  use_kitty_protocol: (@KITTY_PROTOCOL@ and ("ZELLIJ" not-in ($env | columns))), # enables keyboard enhancement protocol implemented by kitty console, only if your terminal support this.
   shell_integration: {
     osc2: true
     osc7: true
@@ -128,47 +126,15 @@ $env.config = {
     osc133: true
     reset_application_mode: true
   }
-  render_right_prompt_on_last_line: false # true or false to enable or disable right prompt to be rendered on last line of the prompt.
+  render_right_prompt_on_last_line: false
 
   hooks: {
-    pre_prompt: [{||
-      null  # replace with source code to run before the prompt is shown
-    }]
-    pre_execution: [{||
-      null  # replace with source code to run before the repl input is run
-    }]
-    env_change: {
-      PWD: [{|before, after| auto-venv-toggle $env }]
-    }
     display_output: {||
       if (term size).columns >= 100 { table -e } else { table }
     }
-    command_not_found: {||
-      null  # replace with source code to return an error message when a command is not found
-    }
   }
-  menus: [
-      # Configuration for default nushell menus
-      # Note the lack of source parameter
-	  {
-        name: fzf_history_menu_fzf_ui
-        only_buffer_difference: false
-        marker: "# "
-        type: {
-            layout: list
-			page_size: 10
-        }
-        style: {
-            text: "#cdd6f4"
-            selected_text: "#cba6f7"
-            description_text: "#bac2de"
-        }
-        source: { |buffer, position|
-			history | each { |it| $it.command } | uniq | reverse | 
-			str join (char -i 0) | fzf --read0 --height 40% -f $buffer | 
-			lines | each { |v| {value: ($v | str trim) } }
-        }
-      }
+
+    menus: [
       {
         name: completion_menu
         only_buffer_difference: false
@@ -217,147 +183,14 @@ $env.config = {
             description_text: "#bac2de"
         }
       }
-      # Example of extra menus created using a nushell source
-      # Use the source field to create a list of records that populates
-      # the menu
-      {
-        name: commands_menu
-        only_buffer_difference: false
-        marker: "# "
-        type: {
-            layout: columnar
-            columns: 4
-            col_width: 20
-            col_padding: 2
-        }
-        style: {
-            text: "#cdd6f4"
-            selected_text: "#cba6f7"
-            description_text: "#bac2de"
-        }
-        source: { |buffer, position|
-            $nu.scope.commands
-            | where name =~ $buffer
-            | each { |it| {value: $it.name description: $it.usage} }
-        }
-      }
-      {
-        name: vars_menu
-        only_buffer_difference: true
-        marker: "# "
-        type: {
-            layout: list
-            page_size: 10
-        }
-        style: {
-            text: "#cdd6f4"
-            selected_text: "#cba6f7"
-            description_text: "#bac2de"
-        }
-        source: { |buffer, position|
-            $nu.scope.vars
-            | where name =~ $buffer
-            | sort-by name
-            | each { |it| {value: $it.name description: $it.type} }
-        }
-      }
-      {
-        name: commands_with_description
-        only_buffer_difference: true
-        marker: "# "
-        type: {
-            layout: description
-            columns: 4
-            col_width: 20
-            col_padding: 2
-            selection_rows: 4
-            description_rows: 10
-        }
-        style: {
-            text: "#cdd6f4"
-            selected_text: "#cba6f7"
-            description_text: "#bac2de"
-        }
-        source: { |buffer, position|
-            $nu.scope.commands
-            | where name =~ $buffer
-            | each { |it| {value: $it.name description: $it.usage} }
-        }
-      }
-  ]
+    ]
+
   keybindings: [
     {
-      name: completion_menu
-      modifier: none
-      keycode: tab
-      mode: [emacs vi_normal vi_insert]
-      event: {
-        until: [
-          { send: menu name: completion_menu }
-          { send: menunext }
-        ]
-      }
-    }
-    {
-      name: completion_previous
-      modifier: shift
-      keycode: backtab
-      mode: [emacs, vi_normal, vi_insert] # Note: You can add the same keybinding to all modes by using a list
-      event: { send: menuprevious }
-    }
-	{
-	  name: fuzzy_history
-	  modifier: control
-	  keycode: char_r
-	  mode: [emacs, vi_normal, vi_insert]
-	  event: { send: menu name: fzf_history_menu_fzf_ui }
-	}
-	# {
-      # name: fuzzy_history
-      # modifier: control
-      # keycode: char_r
-      # mode: [emacs, vi_normal, vi_insert]
-      # event: [
-        # {
-          # send: ExecuteHostCommand
-          # cmd: "commandline (
-            # history
-              # | each { |it| $it.command }
-              # | uniq
-              # | reverse
-              # | str join (char -i 0)
-              # | fzf --read0 --layout=reverse +s --height=40% -q (commandline)
-              # | decode utf-8
-              # | str trim
-          # )"
-        # }
-      # ]
-    # }
-    {
-      name: next_page
-      modifier: control
-      keycode: char_x
-      mode: emacs
-      event: { send: menupagenext }
-    }
-    {
-      name: undo_or_previous_page
-      modifier: control
-      keycode: char_z
-      mode: emacs
-      event: {
-        until: [
-          { send: menupageprevious }
-          { edit: undo }
-        ]
-       }
-    }
-    {
-            
       name: yank
       modifier: control
       keycode: char_y
-      mode: emacs
+      mode: [ emacs, vi_insert ]
       event: {
         until: [
           {edit: pastecutbufferafter}
@@ -365,48 +198,11 @@ $env.config = {
       }
     }
     {
-      name: unix-line-discard
-      modifier: control
-      keycode: char_u
-      mode: [emacs, vi_normal, vi_insert]
-      event: {
-        until: [
-          {edit: cutfromlinestart}
-        ]
-      }
-    }
-    {
-      name: kill-line
-      modifier: control
-      keycode: char_k
-      mode: [emacs, vi_normal, vi_insert]
-      event: {
-        until: [
-          {edit: cuttolineend}
-        ]
-      }
-    }
-    # Keybindings used to trigger the user defined menus
-    {
-      name: commands_menu
-      modifier: control
-      keycode: char_t
-      mode: [emacs, vi_normal, vi_insert]
-      event: { send: menu name: commands_menu }
-    }
-    {
-      name: vars_menu
-      modifier: alt
-      keycode: char_o
-      mode: [emacs, vi_normal, vi_insert]
-      event: { send: menu name: vars_menu }
-    }
-    {
-      name: commands_with_description
-      modifier: control
-      keycode: char_s
-      mode: [emacs, vi_normal, vi_insert]
-      event: { send: menu name: commands_with_description }
+        name: help_menu
+        modifier: control
+        keycode: "char_/"
+        mode: [emacs, vi_insert, vi_normal]
+        event: { send: menu name: help_menu }
     }
   ]
 }
@@ -457,9 +253,7 @@ def --env nvim [
 alias neovim = nvim
 alias v = nvim
 
-source ~/.config/nushell/scripts/fuzzy.nu
 source ~/.config/nushell/scripts/dolphin.nu
-source ~/.config/nushell/completions/man.nu
 source ~/.config/nushell/completions/tldr.nu
 
 def --env borger [command: closure] {

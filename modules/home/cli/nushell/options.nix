@@ -38,6 +38,22 @@ let
 
   cfg = config.nazarick.cli.nushell;
 
+  configContent = pkgs.substitute {
+    src = ./config.nu;
+    # TODO: Make this a bit easier to add to
+    substitutions = [
+      "--replace-fail"
+      "@BLACK_IMORTAL@"
+      "${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/black-metal-immortal.nu"
+      "--replace-fail"
+      "@TASK@"
+      "${pkgs.nu_scripts}/share/nu_scripts/modules/background_task/task.nu"
+      "--replace-fail"
+      "@KITTY_PROTOCOL@"
+      "${if cfg.useKittyProtocol then "true" else "false"}"
+    ];
+  };
+
   # TODO: make this config option, also make sure to have de-duplication
   plugins = [ "${mypkgs.nushell_plugin_explore}/bin/nu_plugin_explore" ];
 in
@@ -57,6 +73,12 @@ in
     source = lib.mkOption {
       type = types.listOf types.path;
       default = [ ];
+    };
+
+    useKittyProtocol = lib.mkOption {
+      type = types.bool;
+      default = false;
+      description = "Enable kitty protocol, it will be disabled if within zellij";
     };
 
     alias = lib.mkOption { type = types.attrsOf types.str; };
@@ -139,7 +161,7 @@ in
           "use ${file}/share/nushell/${name}"
         ) cfg.module)
         ++ [ (lib.concatStringsSep "\n" (lib.forEach cfg.use (file: "use ${file}"))) ]
-        ++ [ (builtins.readFile ./config.nu) ]
+        ++ [ (builtins.readFile configContent) ]
         ++ [ (lib.concatStringsSep "\n" (lib.forEach cfg.source (file: "source ${file}"))) ]
         ++ [
           (lib.concatStringsSep "\n" (

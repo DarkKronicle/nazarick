@@ -57,7 +57,10 @@ in
         userName = "DarkKronicle";
       };
       jujutsu = enabled;
-      nushell = enabled;
+      nushell = {
+        enable = lib.mkDefault true;
+        useKittyProtocol = lib.mkDefault isPersonalComputer;
+      };
       pager = enabled;
       security = enabled;
       tex = enablePersonalComputer;
