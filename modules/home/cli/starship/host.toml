@@ -84,7 +84,7 @@ read_only = "󰌾 "
 [hostname]
 style = "bg:host_color fg:text_color"
 disabled = false
-format = "[ $ssh_symbol$hostname ]($style)"
+format = "[ $ssh_symbol $hostname ]($style)"
 ssh_symbol = "󰴽"
 
 [c]

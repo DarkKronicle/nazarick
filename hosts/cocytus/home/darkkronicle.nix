@@ -11,5 +11,5 @@ let
   inherit (mylib) enabled;
 in
 {
-  nazarick.cli.starship.hostnameColor = "#274ab0";
+  nazarick.cli.starship.hostnameColor = "#06194f";
 }

@@ -142,9 +142,11 @@
   swapDevices = [ { device = "/swap/swapfile"; } ];
 
   zramSwap = {
+    # Chonky games require a ton of ram easily accessible. I faced some crashes when this was at 50% (I only have 16 gb of ram)
     enable = true;
     algorithm = "zstd";
     priority = 5;
+    memoryPercent = 25;
   };
 
   # Extra devices

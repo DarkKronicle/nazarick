@@ -15,6 +15,7 @@ in
 
     nixpkgs.config.allowUnfree = true;
     services.openssh.enable = true;
+    programs.mosh.enable = true;
 
     networking.hostName = "cocytus";
     time.timeZone = "America/Denver";
@@ -91,6 +92,7 @@ in
       enable = true;
       algorithm = "zstd";
       priority = 5;
+      memoryPercent = 50;
     };
 
     # Frozen variables up ahead, don't touch 🥶🥶🥶🥶🥶

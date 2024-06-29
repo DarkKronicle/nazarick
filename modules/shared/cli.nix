@@ -25,5 +25,6 @@
   eza
   dysk
   magic-wormhole-rs
+  mosh
 ])
 ++ (with mypkgs; [ tomb ])
