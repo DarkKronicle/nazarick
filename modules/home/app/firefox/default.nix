@@ -36,7 +36,7 @@ let
       redirector
       refined-github
       sidebery
-      smart-referer
+      smart-referer # DRM protection may break on stuff (crunchyroll), make sure to disable it for that website
       sponsorblock
       stylus
       temporary-containers

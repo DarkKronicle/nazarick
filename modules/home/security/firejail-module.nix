@@ -10,6 +10,52 @@
 let
   cfg = config.programs.firejail;
 
+  # Why do this weirdo nu stuff? Well because bash is super annoying and I really dislike bash 
+  # When passing in extra arguments like `--noexec=${HOME}`, that would get evaluated in the cat
+  # body.
+  nuScript = ''
+    mkdir $"($env.out)/bin"
+    mkdir $"($env.out)/share/applications"
+    ${lib.concatStringsSep "\n" (
+      lib.mapAttrsToList (
+        command: value:
+        let
+          opts =
+            if builtins.isAttrs value then
+              value
+            else
+              {
+                executable = value;
+                desktop = null;
+                profile = null;
+                extraArgs = [ ];
+              };
+          args = lib.escapeShellArgs (
+            opts.extraArgs
+            ++ (lib.optional (opts.profile != null) "--profile=${builtins.toString opts.profile}")
+          );
+        in
+        # nu
+        ''
+          r#'
+          #! ${pkgs.runtimeShell} -e
+          exec /run/wrappers/bin/firejail ${args} -- ${builtins.toString opts.executable} $@
+          '# | str trim | save $"($env.out)/bin/${command}"
+          chmod 0755 $"($env.out)/bin/${command}"
+          ${lib.optionalString (opts.desktop != null) ''
+            substitute ${opts.desktop} $"($env.out)/share/applications/(basename ${opts.desktop})" \
+              --replace ${opts.executable} $"(env.out)/bin/${command}"
+          ''}
+        ''
+      ) cfg.wrappedBinaries
+    )}
+  '';
+
+  nuFile = pkgs.writeTextFile {
+    name = "firejail.nu";
+    text = nuScript;
+  };
+
   wrappedBins =
     pkgs.runCommand "firejail-wrapped-binaries"
       {
@@ -19,41 +65,7 @@ let
         meta.priority = -1;
       }
       ''
-        mkdir -p $out/bin
-        mkdir -p $out/share/applications
-        ${lib.concatStringsSep "\n" (
-          lib.mapAttrsToList (
-            command: value:
-            let
-              opts =
-                if builtins.isAttrs value then
-                  value
-                else
-                  {
-                    executable = value;
-                    desktop = null;
-                    profile = null;
-                    extraArgs = [ ];
-                  };
-              args = lib.escapeShellArgs (
-                opts.extraArgs
-                ++ (lib.optional (opts.profile != null) "--profile=${builtins.toString opts.profile}")
-              );
-            in
-            ''
-              cat <<_EOF >$out/bin/${command}
-              #! ${pkgs.runtimeShell} -e
-              exec /run/wrappers/bin/firejail ${args} -- ${builtins.toString opts.executable} "\$@"
-              _EOF
-              chmod 0755 $out/bin/${command}
-
-              ${lib.optionalString (opts.desktop != null) ''
-                substitute ${opts.desktop} $out/share/applications/$(basename ${opts.desktop}) \
-                  --replace ${opts.executable} $out/bin/${command}
-              ''}
-            ''
-          ) cfg.wrappedBinaries
-        )}
+        out=$out ${pkgs.nushell}/bin/nu ${nuFile}
       '';
 in
 {

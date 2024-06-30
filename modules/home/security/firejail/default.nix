@@ -25,8 +25,9 @@ in
           extraArgs = [
             "--ignore=no-root"
             # "--browser-allow-drm=yes"
-            "--ignore=noexec \${HOME}"
-            "--ignore=noexec \${RUNUSER}"
+            ''--ignore=noexec ''${HOME}''
+            ''--ignore=noexec ''${RUNUSER}''
+            ''--whitelist=''${HOME}/.config/tridactyl''
             "--dbus-user.own=org.mpris.MediaPlayer2.plasma-browser-integration"
             "--dbus-user.talk=org.kde.JobViewServer"
             "--dbus-user.talk=org.kde.kuiserver"
