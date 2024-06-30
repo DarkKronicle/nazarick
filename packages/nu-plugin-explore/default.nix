@@ -11,11 +11,10 @@ rustPlatform.buildRustPackage {
   src = fetchFromGitHub {
     owner = "amtoine";
     repo = "nu_plugin_explore";
-    rev = "5873a8416d7933045d4ccd15c3f28a967150289c";
-    hash = "sha256-8TTuYaPT17/b5d/7hwRbKWl9gFsaFagnFgWFpnm1hKU=";
+    rev = "9be16d9ead3699932376d8e2a54b96145b9af19d";
+    hash = "sha256-SeuplqaLn+ysRfDTm0yBtzpSaXqV9eFpRBB22dHg1WU=";
   };
+  cargoHash = "sha256-HsjeveIcu7kt2HLThsi4V/gN4CcK+qrbzl0XN1goboI=";
 
-  cargoHash = "sha256-KDR6tkK1MXbURSW2ZwiuEYEIPDOZtIsaJjDPIt/Stcc=";
-
-  version = "0.94.0";
+  version = "0.95.0";
 }
