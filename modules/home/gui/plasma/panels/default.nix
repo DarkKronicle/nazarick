@@ -22,12 +22,13 @@ in
   };
 
   config = mkIf (cfg.enable && cfgParent.enable) {
-    home.packages = with mypkgs; [
-      kde-ginti
-      kde-application-title-bar
-      kde-plasmusic-toolbar
-      kde-nordvpn
-    ];
+    home.packages =
+      (with mypkgs; [
+        kde-ginti
+        kde-plasmusic-toolbar
+        kde-nordvpn
+      ])
+      ++ [ pkgs.application-title-bar ];
 
     programs.plasma = {
       panels = [
