@@ -87,6 +87,9 @@ in
         ".local/share/sddm"
 
         ".local/share/dolphin"
+        ".config/GIMP"
+        ".config/krita"
+        ".local/share/krita"
 
         # Keys
         {

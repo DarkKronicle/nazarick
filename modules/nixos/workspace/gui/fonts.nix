@@ -30,6 +30,7 @@ in
         noto-fonts-cjk-sans
         noto-fonts-cjk-serif
         roboto
+        fraunces
       ];
       fontconfig = {
         enable = true;

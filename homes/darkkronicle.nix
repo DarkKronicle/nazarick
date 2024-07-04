@@ -88,6 +88,7 @@ in
         messaging = lib.mkDefault true;
         web = lib.mkDefault true;
         school = lib.mkDefault true;
+        design = lib.mkDefault true;
       };
       firefox = enabled;
       kitty = enabled;

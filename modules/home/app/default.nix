@@ -18,6 +18,7 @@ in
     messaging = lib.mkEnableOption "Messaging applications";
     web = lib.mkEnableOption "Web applications";
     school = lib.mkEnableOption "School applications";
+    design = lib.mkEnableOption "Design applications";
   };
 
   config = lib.mkMerge [
@@ -30,6 +31,12 @@ in
       nazarick.app = {
         vesktop.enable = lib.mkOverride 500 true;
         nheko.enable = lib.mkOverride 500 true;
+      };
+    })
+    (lib.mkIf cfg.design {
+      nazarick.app = {
+        krita.enable = lib.mkOverride 500 true;
+        gimp.enable = lib.mkOverride 500 true;
       };
     })
     {
