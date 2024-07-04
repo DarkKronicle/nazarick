@@ -26,7 +26,7 @@ in
         timeoutStyle = "countdown";
         enable = true;
         splashImage = null;
-        configurationLimit = 50;
+        configurationLimit = 20;
         # useOSProber = true;
         efiSupport = true;
         device = "nodev";
