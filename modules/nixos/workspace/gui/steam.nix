@@ -23,6 +23,24 @@ in
     programs.steam.enable = true;
     programs.steam.gamescopeSession.enable = true;
     programs.gamemode.enable = true;
+
+    # https://github.com/TLATER/dotfiles/blob/5eb6f6ac73e2324e3d5ccac9b73fe1f2358ef451/nixos-config/hosts/yui/games.nix#L24C5-L38C1
+    # Good defaults
+    programs.gamescope = {
+      enable = true;
+      # Launch games like:
+      # gamescope -- gamemoderun %command%
+      args = [
+        "--steam"
+        "--expose-wayland"
+        # "--rt"
+        "-W 1920"
+        "-H 1080"
+        "--force-grab-cursor"
+        "--grab"
+        "--fullscreen"
+      ];
+    };
     # This works with xbox controllers. If it can't connect (connection/disconnect cycles...)
     # You can *try* to update the firmware, or go as far as to connect with it on Windows with the
     # same bluetooth card.

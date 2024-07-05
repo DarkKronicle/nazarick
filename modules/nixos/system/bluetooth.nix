@@ -15,7 +15,7 @@ in
 {
   options.nazarick.system.bluetooth = {
     enable = mkBoolOpt false "Enable bluetooth support.";
-    disable_hsp = mkBoolOpt false "Disable handsfree support";
+    disable_hfp = mkBoolOpt true "Disable handsfree support";
   };
 
   config = mkIf cfg.enable {
@@ -28,23 +28,58 @@ in
         };
       };
     };
-    services.pipewire.wireplumber = mkIf cfg.disable_hsp {
-      configPackages = (
-        pkgs.writeTextDir "share/wireplumber/bluetooth.lua.d/51-bluez-config.lua" ''
-          bluez_monitor.properties = {
-            ["bluez5.roles"] = "[ a2dp_sink ]",
-            ["bluez5.hfphsp-backend"] = "none",
+
+    # THANK YOU. Tried to do this 4 months ago and failed
+    # https://github.com/TLATER/dotfiles/blob/5eb6f6ac73e2324e3d5ccac9b73fe1f2358ef451/nixos-config/default.nix#L159C7-L206C11
+
+    # Disable the HFP bluetooth profile, because I always use external
+    # microphones anyway. It sucks and sometimes devices end up caught
+    # in it even if I have another microphone.
+    services.pipewire.wireplumber.extraConfig = lib.mkIf cfg.disable_hfp {
+      "50-bluez" = {
+        "monitor.bluez.rules" = [
+          {
+            matches = [ { "device.name" = "~bluez_card.*"; } ];
+            actions = {
+              update-props = {
+                "bluez5.auto-connect" = [
+                  "a2dp_sink"
+                  "a2dp_source"
+                ];
+                "bluez5.hw-volume" = [
+                  "a2dp_sink"
+                  "a2dp_source"
+                ];
+              };
+            };
           }
-          bluez_monitor.rules = {
-            {
-              apply_properties = {
-                ["bluez5.auto-connect"] = "[ a2dp_sink ]",
-                ["bluez5.hw-volume"] = "[ a2dp_sink ]",
-              },
-            },
-          }
-        ''
-      );
+        ];
+        "monitor.bluez.properties" = {
+          "bluez5.roles" = [
+            "a2dp_sink"
+            "a2dp_source"
+            "bap_sink"
+            "bap_source"
+          ];
+
+          "bluez5.codecs" = [
+            "ldac"
+            "aptx"
+            "aptx_ll_duplex"
+            "aptx_ll"
+            "aptx_hd"
+            "opus_05_pro"
+            "opus_05_71"
+            "opus_05_51"
+            "opus_05"
+            "opus_05_duplex"
+            "aac"
+            "sbc_xq"
+          ];
+
+          "bluez5.hfphsp-backend" = "none";
+        };
+      };
     };
   };
 }

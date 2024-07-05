@@ -52,6 +52,11 @@ in
             intelBusId = cfg.intelBusId;
           };
         };
+
+        # https://github.com/ventureoo/nvidia-tweaks
+        # https://github.com/TLATER/dotfiles/blob/5eb6f6ac73e2324e3d5ccac9b73fe1f2358ef451/nixos-config/hosts/yui/nvidia/default.nix#L32
+        boot.extraModprobeConfig =
+          "options nvidia " + lib.concatStringsSep " " [ "NVreg_UsePageAttributeTable=1" ];
       }
       (
         mkIf cfg.blacklist {

@@ -144,6 +144,7 @@ in
           # extensions = extensions;
 
           settings = {
+            "reader.parse-on-load.force-enabled" = true; # Reader mode always available
             "privacy.resistFingerprinting" = true;
             "browser.uiCustomization.state" = ((mylib.miniJSON pkgs) ./ui_state.json); # This has to be mini or it won't read it
             "extensions.autoDisableScopes" = 0;

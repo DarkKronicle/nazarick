@@ -29,7 +29,14 @@ in
 
     home.packages =
       import (mylib.relativeToRoot "modules/shared/cli.nix") { inherit pkgs mypkgs; }
-      ++ (lib.optionals cfg.fun (with pkgs; [ pipes-rs ]))
+      ++ (lib.optionals cfg.fun (
+        with pkgs;
+        [
+          pipes-rs
+          thokr
+          typespeed
+        ]
+      ))
       ++ (lib.optionals cfg.misc ([
         pkgs.yt-dlp
         (mypkgs.tomato-c.override {
