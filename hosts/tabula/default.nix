@@ -16,6 +16,7 @@ in
     nixpkgs.config.allowUnfree = true;
 
     boot.kernelPackages = pkgs.linuxPackages_zen;
+    boot.initrd.systemd.enable = true;
 
     networking.hostName = "tabula";
     time.timeZone = "America/Denver";

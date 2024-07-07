@@ -1,3 +1,4 @@
+# This is theoretically a temporary specialisation
 {
   options,
   config,
@@ -12,34 +13,27 @@ let
   forEachUser = mylib.forEachUser config;
 in
 {
-  specialisation.powersave.configuration = {
+  specialisation.sway.configuration = {
     # services.desktopManager.plasma6.enable = lib.mkForce false;
     # services.xserver.desktopManager.lxqt.enable = true;
     home-manager.users = lib.mkMerge (
       forEachUser (username: {
         ${username}.nazarick = {
-          service.spotifyd.enable = lib.mkForce false;
-
-          app.mpv.enable = lib.mkForce false;
+          gui.sway.enable = true;
+          gui.plasma.enable = lib.mkForce false;
         };
       })
     );
     nazarick = {
-      system = {
-        nvidia = {
-          enable = lib.mkForce false;
-          blacklist = true;
-        };
-        bluetooth = {
-          enable = lib.mkForce false;
-        };
-        printing = {
-          enable = lib.mkForce false;
-        };
-      };
       workspace.gui = {
-        steam.enable = lib.mkForce false;
+        sway.enable = lib.mkForce true;
+        sddm = {
+          enable = true;
+          defaultSession = "sway";
+        };
+        plasma.enable = lib.mkForce false;
       };
+      system.boot.plymouth.enable = lib.mkForce false; # Give me at least some good debug info
     };
   };
 }
