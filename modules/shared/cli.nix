@@ -26,5 +26,7 @@
   dysk
   magic-wormhole-rs
   mosh
+  e2fsprogs
+  sshfs
 ])
 ++ (with mypkgs; [ tomb ])

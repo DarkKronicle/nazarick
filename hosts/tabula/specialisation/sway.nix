@@ -20,10 +20,13 @@ in
       forEachUser (username: {
         ${username}.nazarick = {
           gui.sway.enable = true;
+          gui.qt.enable = true;
           gui.plasma.enable = lib.mkForce false;
         };
       })
     );
+
+    environment.systemPackages = with pkgs; [ networkmanagerapplet ];
     nazarick = {
       workspace.gui = {
         sway.enable = lib.mkForce true;

@@ -34,10 +34,12 @@ in
     home.sessionVariables.GTK2_RC_FILES = lib.mkForce "${config.home.homeDirectory}/.gtkrc-2.0";
 
     home.packages =
-      [ mypkgs.kde-citygrow ]
+      [
+        mypkgs.kde-citygrow
+        mypkgs.lightly-qt6
+      ]
       ++ (with pkgs; [
         fluent-icon-theme
-        (kdePackages.callPackage ./lightly-qt6.nix { })
         (catppuccin-kde.override {
           flavour = [ "mocha" ];
           accents = [ "mauve" ];

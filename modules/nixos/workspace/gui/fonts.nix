@@ -19,7 +19,7 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = with mypkgs; [ operator-caska ];
+    environment.systemPackages = (with mypkgs; [ operator-caska ]) ++ (with pkgs; [ font-manager ]);
     fonts = {
       packages = with pkgs; [
         (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
@@ -31,6 +31,7 @@ in
         noto-fonts-cjk-serif
         roboto
         fraunces
+        mypkgs.operator-caska
       ];
       fontconfig = {
         enable = true;

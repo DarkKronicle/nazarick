@@ -17,8 +17,8 @@ let
 
   spotifydConf = toml.generate "spotifyd.toml" {
     global = {
-      username_cmd = "cat ${config.sops.secrets."spotifyd/username".path}";
-      password_cmd = "cat ${config.sops.secrets."spotifyd/password".path}";
+      username_cmd = "${pkgs.coreutils}/bin/cat ${config.sops.secrets."spotifyd/username".path}";
+      password_cmd = "${pkgs.coreutils}/bin/cat ${config.sops.secrets."spotifyd/password".path}";
       use_mpris = true;
       dbus_type = "session";
       initial_volume = "80";

@@ -85,6 +85,7 @@ in
         ".local/share/kscreen"
         ".local/share/kwalletd"
         ".local/share/sddm"
+        ".local/share/keyrings"
 
         ".local/share/dolphin"
         ".config/GIMP"

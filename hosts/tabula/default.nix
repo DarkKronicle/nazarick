@@ -31,7 +31,10 @@ in
       mutableUsers = false;
 
       user."darkkronicle" = {
-        extraGroups = [ "wheel" ];
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+        ];
         uid = 1000;
         extraOptions = {
           hashedPasswordFile = config.sops.secrets."user/darkkronicle/password".path;

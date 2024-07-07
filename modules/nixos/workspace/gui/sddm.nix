@@ -24,9 +24,9 @@ in
       enable = true;
       theme = "where_is_my_sddm_theme"; # or _qt5
       wayland.enable = true;
-      package = pkgs.kdePackages.sddm; # Force qt6
-      extraPackages = with pkgs; [
-        qtvitualkeyboard
+      package = lib.mkDefault pkgs.kdePackages.sddm; # Force qt6
+      extraPackages = with pkgs.kdePackages; [
+        qtvirtualkeyboard
         qtsvg
       ];
     };
