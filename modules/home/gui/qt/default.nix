@@ -33,8 +33,11 @@ in
     gtk = {
       iconTheme = {
         name = "Fluent-dark";
-
         package = pkgs.fluent-icon-theme;
+      };
+      cursorTheme = {
+        package = pkgs.catppuccin-cursors.mochaMauve;
+        name = "Catppuccin-Mocha-Mauve";
       };
       theme.package = pkgs.kdePackages.breeze-gtk;
       enable = true;
@@ -47,8 +50,9 @@ in
     home.packages = with pkgs; [
       mypkgs.lightly-qt6
       lightly-boehs # For qt5
-      kdePackages.qt6ct
       fluent-icon-theme
+      kdePackages.qt6ct
+      kdePackages.ark
     ];
 
     # This has to be inside this directory for some reason (can't link from wherever)

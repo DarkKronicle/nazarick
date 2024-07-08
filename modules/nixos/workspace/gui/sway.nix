@@ -34,6 +34,7 @@ in
 
     environment.systemPackages = with pkgs; [
       kdePackages.qtwayland
+      qt5.qtwayland
       networkmanagerapplet
     ];
 
@@ -58,14 +59,15 @@ in
       gtkUsePortal = true;
       wlr.enable = true;
       extraPortals = with pkgs; [
-        kdePackages.xdg-desktop-portal-kde
+        # kdePackages.xdg-desktop-portal-kde # Doesn't work 
         xdg-desktop-portal-gtk
       ];
       config = {
         common = {
           default = [
-            "kde"
+            # "kde"
             "gtk"
+            "wlr"
           ];
           "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
         };

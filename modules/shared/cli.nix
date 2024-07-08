@@ -28,5 +28,7 @@
   mosh
   e2fsprogs
   sshfs
+  usbutils
+  inxi
 ])
 ++ (with mypkgs; [ tomb ])

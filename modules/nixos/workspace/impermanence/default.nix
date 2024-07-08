@@ -162,7 +162,6 @@ in
         ".config/vesktop"
         ".config/unity3d"
         ".config/Mumble"
-        ".config/nheko"
         ".config/nixpkgs"
         ".config/kdedefaults"
         ".config/kded5"
@@ -191,7 +190,6 @@ in
         ".local/share/icons"
         ".local/share/lib"
         ".local/share/Mumble"
-        ".local/share/nheko"
         ".local/share/mint"
         ".local/share/nvim"
         ".local/state/nvim"
@@ -208,6 +206,10 @@ in
         ".steam"
         ".thunderbird"
 
+        ".config/nheko"
+        ".local/share/nheko"
+        ".cache/nheko"
+
         ".wifi"
         ".wine"
         ".codeium"
@@ -220,7 +222,6 @@ in
         ".cache/fontconfig"
         ".cache/gstreamer"
         ".cache/atuin" # do I need this one?
-        ".cache/nheko"
         ".cache/kscreenlocker_greet"
         ".cache/lua-language-server"
         ".cache/mesa-shader-cache"

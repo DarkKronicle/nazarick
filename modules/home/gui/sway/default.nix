@@ -4,6 +4,7 @@
   lib,
   pkgs,
   mypkgs,
+  options,
   ...
 }:
 let
@@ -20,6 +21,20 @@ let
       ];
     }
   );
+
+  toml = pkgs.formats.toml { };
+
+  wallpaperConf = toml.generate "wpaperd.toml" {
+    # Can have specific displays... DP-1...
+    default = {
+      path = "${mypkgs.system-wallpapers}/share/wallpapers/system-wallpapers";
+      duration = "30m";
+      sorting = "random";
+      mode = "center";
+    };
+  };
+
+  homeCfg = config.wayland.windowManager.sway;
 in
 {
 
@@ -34,15 +49,40 @@ in
     wayland.windowManager.sway = {
       enable = true;
       package = null; # Let NixOS handle this one
+      checkConfig = false; # Annoying with swayfx
       extraConfig = extraLines;
       systemd.enable = true;
       config = {
         menu = launcher;
         terminal = "kitty";
+        keybindings = { };
       };
     };
 
-    home.packages = with pkgs; [ kdePackages.dolphin ];
-  };
+    home.packages = with pkgs; [
+      kdePackages.dolphin
+      wpaperd
+      perl538Packages.Apppapersway
+      swayosd # Graphical volume controls
+    ];
 
+    xdg.configFile."wpaperd/config.toml" = {
+      enable = true;
+      source = wallpaperConf;
+    };
+
+    xdg.configFile."sway/config.d" = {
+      enable = true;
+      recursive = true;
+      source = ./config.d;
+    };
+
+    services.dunst = {
+      enable = true;
+      iconTheme = {
+        name = "Fluent-dark";
+        package = pkgs.fluent-icon-theme;
+      };
+    };
+  };
 }
