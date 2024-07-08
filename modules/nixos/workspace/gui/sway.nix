@@ -32,7 +32,10 @@ in
     # Maybe change this? But sddm with my theme is pretty cool
     services.displayManager.sddm.wayland.enable = true;
 
-    environment.systemPackages = with pkgs; [ kdePackages.qtwayland ];
+    environment.systemPackages = with pkgs; [
+      kdePackages.qtwayland
+      networkmanagerapplet
+    ];
 
     # Majority of stuff is configured in home manager land
     programs.sway = {
@@ -49,5 +52,25 @@ in
       ''; # QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
       wrapperFeatures.gtk = true;
     };
+
+    xdg.portal = {
+      enable = true;
+      gtkUsePortal = true;
+      wlr.enable = true;
+      extraPortals = with pkgs; [
+        kdePackages.xdg-desktop-portal-kde
+        xdg-desktop-portal-gtk
+      ];
+      config = {
+        common = {
+          default = [
+            "kde"
+            "gtk"
+          ];
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        };
+      };
+    };
+
   };
 }

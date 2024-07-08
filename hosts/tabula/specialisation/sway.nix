@@ -26,7 +26,6 @@ in
       })
     );
 
-    environment.systemPackages = with pkgs; [ networkmanagerapplet ];
     nazarick = {
       workspace.gui = {
         sway.enable = lib.mkForce true;
