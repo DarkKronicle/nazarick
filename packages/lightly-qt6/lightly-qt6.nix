@@ -45,6 +45,11 @@ mkKdeDerivation {
       cp -v ${lightlystyleconfig-json} kstyle/config/lightlystyleconfig.json
     '';
 
+  # Prevent conflict between qt6 and qt5
+  postInstall = ''
+    mv $out/share/kstyle/themes/lightly.themerc $out/share/kstyle/themes/lightly6.themerc
+  '';
+
   extraBuildInputs = [
     kdecoration
     plasma-workspace

@@ -46,14 +46,34 @@ in
 
     home.packages = with pkgs; [
       mypkgs.lightly-qt6
+      lightly-boehs # For qt5
       kdePackages.qt6ct
       fluent-icon-theme
     ];
 
     # This has to be inside this directory for some reason (can't link from wherever)
+    # TODO: Actually maybe not
+
+    xdg.configFile."qt5ct/colors/Catppuccin-Mocha.conf" = {
+      enable = true;
+      source = "${cattpuccinQtct}/themes/Catppuccin-Mocha.conf";
+    };
+
     xdg.configFile."qt6ct/colors/Catppuccin-Mocha.conf" = {
       enable = true;
       source = "${cattpuccinQtct}/themes/Catppuccin-Mocha.conf";
+    };
+
+    xdg.configFile."qt5ct/qt5ct.conf" = {
+      enable = true;
+      source = pkgs.substitute {
+        src = ./qt5ct.conf;
+        substitutions = [
+          "--replace-fail"
+          "##COLORSCHEME##"
+          "/home/${config.home.username}/.config/qt6ct/colors/Catppuccin-Mocha.conf"
+        ];
+      };
     };
 
     xdg.configFile."qt6ct/qt6ct.conf" = {
