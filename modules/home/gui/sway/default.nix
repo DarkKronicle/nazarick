@@ -55,7 +55,8 @@ in
       config = {
         menu = launcher;
         terminal = "kitty";
-        keybindings = { };
+        keybindings = { }; # Remove default
+        bars = [ ]; # Remove default
       };
     };
 
@@ -64,6 +65,7 @@ in
       wpaperd
       perl538Packages.Apppapersway
       swayosd # Graphical volume controls
+      blueman
     ];
 
     xdg.configFile."wpaperd/config.toml" = {

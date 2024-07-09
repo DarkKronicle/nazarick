@@ -21,5 +21,6 @@ in
     services.playerctld = {
       enable = true;
     };
+    home.packages = [ pkgs.playerctl ];
   };
 }

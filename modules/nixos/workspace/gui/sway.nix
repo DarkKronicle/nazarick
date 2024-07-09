@@ -54,6 +54,8 @@ in
       wrapperFeatures.gtk = true;
     };
 
+    services.blueman.enable = true;
+
     xdg.portal = {
       enable = true;
       gtkUsePortal = true;

@@ -53,6 +53,7 @@ in
       fluent-icon-theme
       kdePackages.qt6ct
       kdePackages.ark
+      catppuccin-cursors.mochaMauve
     ];
 
     # This has to be inside this directory for some reason (can't link from wherever)
