@@ -66,6 +66,10 @@ in
       perl538Packages.Apppapersway
       swayosd # Graphical volume controls
       blueman
+
+      # Screenies
+      grim
+      slurp
     ];
 
     xdg.configFile."wpaperd/config.toml" = {

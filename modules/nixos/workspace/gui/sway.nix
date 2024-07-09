@@ -29,6 +29,13 @@ in
     services.gnome.gnome-keyring.enable = lib.mkDefault true;
     programs.seahorse.enable = true;
 
+    # Autostart won't happen here bc not gnome, and too much work modifying autostart files
+    systemd.user.services."gnome-keyring-secret" = {
+      wantedBy = [ "graphical-session-pre.target" ];
+      description = "Gnome Keyring Daemon";
+      script = "/run/wrappers/bin/gnome-keyring-daemon --start --components=secrets";
+    };
+
     # Maybe change this? But sddm with my theme is pretty cool
     services.displayManager.sddm.wayland.enable = true;
 

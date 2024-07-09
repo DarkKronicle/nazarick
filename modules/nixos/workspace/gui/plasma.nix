@@ -30,6 +30,12 @@ in
     # Prevents conflict
     programs.ssh.askPassword = "${pkgs.seahorse}/libexec/seahorse/ssh-askpass";
 
+    # Auto start won't be auto starting
+    systemd.user.services."gnome-keyring-secret" = {
+      wantedBy = [ "graphical-session-pre.target" ];
+      description = "Gnome Keyring Daemon";
+      script = "/run/wrappers/bin/gnome-keyring-daemon --start --components=secrets";
+    };
     services.gnome.gnome-keyring.enable = true;
     programs.seahorse.enable = true;
 

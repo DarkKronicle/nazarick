@@ -37,7 +37,7 @@ in
       };
       cursorTheme = {
         package = pkgs.catppuccin-cursors.mochaMauve;
-        name = "Catppuccin-Mocha-Mauve";
+        name = "Catppuccin-Mocha-Mauve-Cursors";
       };
       theme.package = pkgs.kdePackages.breeze-gtk;
       enable = true;
