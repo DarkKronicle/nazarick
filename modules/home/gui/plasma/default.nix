@@ -143,6 +143,9 @@ in
           "kcminputrc"."Keyboard"."NumLock".value = 0;
           "klaunchrc"."BusyCursorSettings"."Bouncing".value = false;
           "klaunchrc"."FeedbackStyle"."BusyCursor".value = false;
+
+          "kwalletrc"."Wallet"."Enabled" = false;
+          "kwalletrc"."org.freedesktop.secrets"."apiEnabled" = false;
         }
         (mkIf cfg.noBorders {
 

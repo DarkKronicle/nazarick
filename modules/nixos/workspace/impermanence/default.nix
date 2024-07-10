@@ -83,7 +83,7 @@ in
 
         ".local/share/baloo"
         ".local/share/kscreen"
-        ".local/share/kwalletd"
+        # ".local/share/kwalletd"
         ".local/share/sddm"
         ".local/share/keyrings"
 
