@@ -144,6 +144,8 @@ in
           # extensions = extensions;
 
           settings = {
+            "browser.tabs.inTitlebar" = 0; # Window border shadow (this turns it off) https://bugzilla.mozilla.org/show_bug.cgi?id=1765171
+
             "reader.parse-on-load.force-enabled" = true; # Reader mode always available
             "privacy.resistFingerprinting" = true;
             "browser.uiCustomization.state" = ((mylib.miniJSON pkgs) ./ui_state.json); # This has to be mini or it won't read it

@@ -49,6 +49,7 @@ in
     programs.sway = {
       inherit package;
       enable = true;
+      extraPackages = [ pkgs.foot ]; # No defaults please (just foot incase of worst case)
       extraOptions = [
         "--unsupported-gpu" # not going to use open source :(
       ];

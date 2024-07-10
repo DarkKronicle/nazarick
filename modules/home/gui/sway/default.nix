@@ -18,6 +18,9 @@ let
         "--replace-fail"
         "##LAUNCHER##"
         launcher
+        "--replace-fail"
+        "##LOCKCMD##"
+        "swaylock -f -c 000000"
       ];
     }
   );
@@ -33,8 +36,6 @@ let
       mode = "center";
     };
   };
-
-  homeCfg = config.wayland.windowManager.sway;
 in
 {
 
@@ -66,6 +67,9 @@ in
       perl538Packages.Apppapersway
       swayosd # Graphical volume controls
       blueman
+      nwg-displays # ~/.config/sway/outputs
+      swaylock
+      swayidle
 
       # Screenies
       grim
