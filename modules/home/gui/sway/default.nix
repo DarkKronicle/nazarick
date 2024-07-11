@@ -64,27 +64,54 @@ in
     home.packages = with pkgs; [
       kdePackages.dolphin
       wpaperd
-      perl538Packages.Apppapersway
       swayosd # Graphical volume controls
       blueman
       nwg-displays # ~/.config/sway/outputs
       swaylock
       swayidle
+      swaysome
+      # perl538Packages.Apppapersway # Slightly buggy :/ I'll try this again
+
+      mypkgs.inhibit-bridge
 
       # Screenies
       grim
       slurp
     ];
 
+    xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+      extraPortals = with pkgs; [
+        # kdePackages.xdg-desktop-portal-kde # Doesn't work 
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+      ];
+      config = {
+        common = {
+          default = [
+            # "kde"
+            "gtk"
+            "wlr"
+          ];
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        };
+      };
+    };
+
     xdg.configFile."wpaperd/config.toml" = {
       enable = true;
       source = wallpaperConf;
     };
 
-    xdg.configFile."sway/config.d" = {
+    xdg.configFile."sway/config.d/swayosd.conf" = {
       enable = true;
-      recursive = true;
-      source = ./config.d;
+      source = ./config.d/swayosd.conf;
+    };
+
+    xdg.configFile."sway/config.d/swaysome.conf" = {
+      enable = true;
+      source = ./config.d/swaysome.conf;
     };
 
     services.dunst = {

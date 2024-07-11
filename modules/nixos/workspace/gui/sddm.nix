@@ -12,6 +12,11 @@ in
 {
   options.nazarick.workspace.gui.sddm = {
     enable = mkEnableOption "sddm theming";
+    kwin = lib.mkOption {
+      type = lib.types.bool;
+      default = true;
+      description = "Use kwin as the compositor";
+    };
     defaultSession = lib.mkOption {
       type = lib.types.nullOr lib.types.str;
       default = null;
@@ -23,12 +28,18 @@ in
     services.displayManager.sddm = {
       enable = true;
       theme = "where_is_my_sddm_theme"; # or _qt5
-      wayland.enable = true;
+      wayland = {
+        enable = true;
+        compositor = lib.mkDefault (if cfg.kwin then "kwin" else "weston");
+      };
       package = lib.mkDefault pkgs.kdePackages.sddm; # Force qt6
-      extraPackages = with pkgs.kdePackages; [
-        qtvirtualkeyboard
-        qtsvg
-      ];
+      extraPackages =
+        with pkgs.kdePackages;
+        [
+          qtvirtualkeyboard
+          qtsvg
+        ]
+        ++ lib.optionals cfg.kwin [ pkgs.kdePackages.kwin ];
     };
     services.displayManager.defaultSession = cfg.defaultSession;
     qt.enable = true;

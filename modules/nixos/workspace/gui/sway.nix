@@ -64,26 +64,5 @@ in
 
     services.blueman.enable = true;
 
-    xdg.portal = {
-      enable = true;
-      gtkUsePortal = true;
-      xdgOpenUsePortal = true;
-      wlr.enable = true;
-      extraPortals = with pkgs; [
-        # kdePackages.xdg-desktop-portal-kde # Doesn't work 
-        xdg-desktop-portal-gtk
-      ];
-      config = {
-        common = {
-          default = [
-            # "kde"
-            "gtk"
-            "wlr"
-          ];
-          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-        };
-      };
-    };
-
   };
 }
