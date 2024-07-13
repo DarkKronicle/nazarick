@@ -1,0 +1,478 @@
+(defcfg
+  process-unmapped-keys yes
+danger-enable-cmd yes
+  log-layer-changes no
+
+  linux-dev ("/dev/input/by-id/usb-Corsair_CORSAIR_K65_RGB_MINI_60__Mechanical_Gaming_Keyboard_F5001901605DE321AA3518670D028020-event-kbd" "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
+  linux-continue-if-no-devs-found yes
+)
+
+(defvar
+    ;; When pressing the sway leader key, how long should it wait to try to activate?
+    sway-timeout 100
+
+    ;; The sway keybind uses a somewhat common letter - f
+    ;; To make sure that this doesn't get in the way of our typing fl bigrams (and other ones)
+    ;; we have to do some complicated things behind the scenes
+    ;;
+    ;; Here are some requirements that make this whole process significantly more complicated:
+    ;; - f on it's own must just be f. You hold f for too long: f, f then another key: f. It has to feel like
+    ;;   f unless we spend the extra brain power to make it behave like sway
+    ;; -- this means things like rolling have to be very nice. Hands don't just tap one key and immediately untap.
+    ;;    there is overlap of pressed keys at any given time. 
+    ;; -- this can't be perfect, so it has to be customizable
+    ;; - I don't want to have to write a script to generate this flipping config
+    ;; - This shouldn't impact speed at all. Mostly typing speed, but also not increase the runtime footprint of kanata
+    ;; - Only certain keys should trigger sway mode (sd, hjkl in our case)
+    ;; - Once in sway mode, stay in sway mod
+    ;; 
+    ;; So a quick list of f things:
+    ;; - tap f - f
+    ;; - roll f + l - fl
+    ;; - hold f + sdhjkl - do action and move to layer
+    ;; - hold f + other key - f + other
+    ;;
+    ;; Things we cannot guarantee:
+    ;; - key + hold may not work for these specialty keys/roll protection
+    ;; - there may *occasionally* be typos if timing is very weird (typically under 1/20 of a second, quite hard)
+    ;; -- the only one I can reproduce is: fliud very fast, with `fliu` lingering on `l` and pressing `d` slightly after
+    ;;
+    ;; Known bugs:
+    ;; is means really uncomfortable key pressing and knowing
+    ;;   the internals
+    ;;
+    ;; General todo:
+    ;; - learn how to use templates
+    ;; - there's probably some redundant virtualkeys, but still using well under 100 out of 767
+    ;; --- Config ---
+    ;;
+    ;; For simple roll release: (sd)
+    ;;   If you do the full f+s/d combo (release f first) in under this time period, it will just type out the normal keys
+    ;;   This is using a more trivial one that will not capture keys that are pressed during it so (fsu) very fast
+    ;;   appears as (ufs). This can be fixed by migrating, so this will probably eventually be removed.
+    ;;
+    ;; For complicated: (l)
+    ;;   only trigger action on release of special key, if f is held it will trigger.
+    ;;   if the full action was done under $roll-grace, *and* sway leader is not pressed, it will not be triggered
+    roll-grace 80 
+
+    ;; This is for complicated only. Imagine right-roll-grace = 10:
+    ;;   press f
+    ;;   wait 10
+    ;;   press l 
+    ;;   wait 5
+    ;;   release l
+    ;;   wait 5
+    ;;   release f
+    ;; even though l was released first, because 5 is < $right-roll-grace, the action is not triggered
+    ;; NOTE: this does make letter eating less likely the higher it is
+    right-roll-grace 20
+
+    combined-roll-grace 120
+
+    ;; This is a do nothing, but still act like a key. This should not be used in
+    ;; sequences or anything
+    nop-reserved nop8
+
+    ;; This should literally pretty much never show up, this is a full stop
+    nop-stop nop9 
+)
+
+
+(defsrc
+	esc  1  2  3  4  5  6  7  8  9  0  -  =  bspc
+	tab  q  w  e  r  t  y  u  i  o  p  [  ]  \
+	caps a  s  d  f  g  h  j  k  l  ;  '  ret
+	lsft z  x  c  v  b  n  m  ,  .  /  rsft
+	lctl met lalt   spc  ralt   menu rctrl
+)
+
+;; blank layout
+#|
+(
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _   _      _    _      _    _
+)
+|#
+
+(defalias
+    ;; -----
+    ;; Simple layer toggles
+    ;; -----
+	lay (layer-toggle layers) ;; perma layer switching
+    etd (layer-toggle extend) ;; extra functionality
+	qwt (layer-switch qwerty) ;; main layer
+	gmg (layer-switch gaming) ;; main layer minus fanciness
+
+	ead (tap-hold-press 1 1000 esc @etd) ;; main extend layer toggle (caps lock)
+	aly (tap-hold-release 100 100 (one-shot-press 1000 ralt) @lay) ;; helper for alt + fN
+
+    ;; sway mode super -=- entry point for all things sway
+    fsway (
+        fork 
+            (multi 
+                ;; on press
+                (on-press tap-virtualkey swayseq-key) ;; initate sequene
+
+                ;; on release (remove all sway things)
+                (on-release tap-virtualkey stopseq) 
+
+                ;; release layers
+                (on-release release-virtualkey fsway)
+                (on-release release-virtualkey dsway) ;; this should technically already be handled, but don't want to be stuck
+                (on-release release-virtualkey ssway)
+
+                (on-release tap-virtualkey check-roll) ;; see if we are within roll timings
+            )
+        ;; true key
+        f
+        ;; due to mods behaving weird with a delay (i.e. very hard to do Fl), don't do anything
+        ;; sway if any modifier is pressed
+        (lalt ralt lsft rsft lctrl rctl lmeta rmeta)
+    )
+)
+
+(defvirtualkeys
+  stopseq $nop-stop
+)
+
+(defalias
+    ;; quick actions
+	cpy C-c
+	pst C-v
+	quit A-f4
+	mnimz M-m
+
+    ;; these are the complicated sway entering bindings
+    ;; s/d should be simple roll protection (for now :tm:)
+    ;; l should be complicated
+    s-for-sway (multi
+        s
+        (on-release release-virtualkey ssway) ;; release layer
+    )
+
+    d-for-sway (multi
+        d
+        (on-release release-virtualkey dsway) ;; release layer
+    )
+
+    l-for-sway (multi
+        l ;; real key
+
+        ;; check to see if action should be done now, or if it should reconstruct
+        ;; intermediary keypresses
+        (on-release tap-virtualkey check-l-roll)
+        (macro-release-cancel $combined-roll-grace (on-press tap-virtualkey check-l-roll))
+
+        ;; unset the reserved key that specifies that the l action happened
+        (on-press release-virtualkey sl)
+        (on-press press-virtualkey sl-wait)
+        
+        (macro-release-cancel $combined-roll-grace (on-release release-virtualkey sl-wait))
+        (on-release release-virtualkey sl-wait)
+    )
+)
+
+;; Main layer with the added features:
+;; - extend layer -=- gives really nice shortcuts
+;; - sway keybinds
+(deflayer qwerty
+	grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
+	tab  q  w  e  r  t  y  u  i  o  p  [  ]  \
+	@ead  a  @s-for-sway  @d-for-sway  @fsway  g  h  j  k  @l-for-sway  ;  '  ret
+	lsft z  x  c  v  b  n  m  ,  .  /  rsft
+	lctl met lalt   spc  ralt   menu rctrl
+)
+
+;; No weird timings or anything, all it has is the caps-lock extend layer
+(deflayer gaming
+	grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
+	tab  q  w  e  r  t  y  u  i  o  p  [  ]  \
+	@ead  a  s  d  f  g  h  j  k  l  ;  '  ret
+	lsft z  x  c  v  b  n  m  ,  .  /  rsft
+	lctl met lalt   spc  ralt   menu rctrl
+)
+
+(deflayer extend
+	_    f1  f2  f3  f4  f5  f6  f7  f8  f9  f10  f11 f12 _
+	_    @ch1 @ch2 @ch3  _  _  _  @md1  @md2 @md3  _  _  _  _
+	_    @ch4 @ch5 @ch6  _  _  lft  down  up  rght  _  _  _
+	_    _ _ @cpy @pst  _ _  _ _ _  _  _
+	_    _   @aly      _    _      _    _
+)
+
+(deflayer layers
+	lrld    @qwt  @gmg  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _ _  _  _  _  _ _
+	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _   _      _    _      _    _
+)
+
+
+;; This is a layer that essentially has XX's everywhere (but nop8's are more fun)
+;; The whole point of this is to be able to record a dynamic macro and not have
+;; the macro creation process produce any output. This will eat it all up, and
+;; can then be perfectly replayed on qwerty or something. This will not block
+;; the extend layer as a safety precaution
+
+(defalias
+    d nop8
+)
+
+(deflayer dummy
+	@d   @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d
+	@d   @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d
+	_   @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d
+	@d   @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d
+	@d   @d   @d      @d    @d      @d    @d
+)
+
+;; really nice media controls right on the right hand
+(defchords media 300
+  ;; (1 2 3)
+  ;; (1   3) 
+  (1 2  ) prev
+  (  2 3) next
+  (  2  ) pp 
+  (    3) volu
+  (1    ) voldwn
+)
+
+;; 1 2 3
+;; 4 5 6
+(defchords win 100
+  ;; (  2 3       ) M-C-rght
+  ;; (1 2         ) M-C-lft
+  (1 2 3       ) A-f4
+  (1   3       ) M-m
+  (    3       ) M-C-l
+  (  2 3       ) M-C-k
+  (1           ) M-g
+  (  2         ) M-C-up
+  ;; (    3       ) M-C-s
+  (       4    ) M-C-lft
+  (         5  ) M-C-down
+  (           6) M-C-rght
+  (       4 5 6) M-f
+)
+
+(defalias
+  ch1 (chord win 1)
+  ch2 (chord win 2)
+  ch3 (chord win 3)
+  ch4 (chord win 4)
+  ch5 (chord win 5)
+  ch6 (chord win 6)
+  md1 (chord media 1)
+  md2 (chord media 2)
+  md3 (chord media 3)
+  windows C-A-S-k
+  launcher C-A-S-j
+)
+
+(defalias
+    ;; The virtual keys should be reserved for instant sway activations.
+    ;; This is bc they have to be virtual keys, but we shouldn't overuse them
+    ;; bc there is a limited amount of virtual keys. Everything else
+    ;; can be aliases!
+    sw-lft (on-press tap-virtualkey sw-lft-key)
+    sw-rght (on-press tap-virtualkey sw-rght-key)
+    sw-up (on-press tap-virtualkey sw-up-key)
+    sw-down (on-press tap-virtualkey sw-down-key)
+)
+
+;; -----
+;; SWAY SECTION
+;; -----
+
+;; These sequences are triggered each time f is pressed (automatically canceled after $sway-timeout)
+;; nop1 never gets sent to OS, so it's a good leader key
+;;
+;; The reason we use this here is so that if any other key other than the sway entry keys
+;; are pressed, they will just act like the normal keypresses
+;;
+;; (this is where the modifiers and shifting make it weird, (no reason to do this, but) a fix could maybe be doing
+;; the cursed macros things again with the dummy layer, and playing it back, but unmodding may be needed?)
+(defseq
+  fs-switch (nop1 f s) 
+  fd-switch (nop1 f d)
+  fh-switch (nop1 f h)
+  fj-switch (nop1 f j)
+  fk-switch (nop1 f k)
+  fl-switch (nop1 f l)
+)
+
+;; Ah, this is the fun part
+(defvirtualkeys
+    ;; This starts the sway-sequence defined above
+    ;; start seq + wait $sway-timeout + fill in nop1 and f
+    swayseq-key (macro (sequence $sway-timeout hidden-delay-type) nop1 f)
+
+    ;; Because swya entry keys need to be virtualkeys because of sequences, the layers here
+    ;; also need to be virtual keys.
+    ;; An added benefit: easy way to see if stuff is on/off and easy to disable them
+    fsway (layer-while-held sway) 
+    ssway (layer-while-held sway-s)
+    dsway (layer-while-held sway-d)
+
+    ;; same as above, just the fast movements
+    sw-lft-key (cmd swaymsg focus left)
+    sw-rght-key (cmd swaymsg focus right)
+    sw-up-key (cmd swaymsg focus up)
+    sw-down-key (cmd swaymsg focus down)
+    
+    ;; these are nop keys that let us keep track of if these keys are in an activate-able state.
+    ;; This is solely used for roll check.
+    ss $nop-reserved
+    sl $nop-reserved
+    sd $nop-reserved
+
+    sl-wait (switch
+        ;; Is f (sway super) currently pressed?
+        ((input real f)) (
+            multi 
+                ;; Start macro recording!
+                ;;
+                ;; dummy here does literally nothing but gives macro the ability
+                ;; to record. This is because if the sway layer is triggered, don't pass through
+                ;; keys.
+                ;;
+                ;; the macro allows us to reconstruct blocked keypresses during this time
+                ;; we stop to be safe.
+                ;;
+                ;; this gives us the issue that we can't have other macros at the same time,
+                ;; but I personally never use any
+                (layer-while-held dummy)
+                (macro dynamic-macro-record-stop 3 (dynamic-macro-record 0))
+            )
+            break
+        () XX break
+    )
+
+    ;; Simple roll check. f + key starts. After $roll-grace, it checks if something else was pushed.
+    check-roll (switch 
+        ((input virtual ss)) (multi (macro f s) (on-press release-virtualkey ss)) break
+        ((input virtual sd)) (multi (macro f d) (on-press release-virtualkey sd)) break
+        () XX break
+    )
+
+    ;; complicated roll check
+    ;; triggered on release of key + $right-roll-grace
+    ;;   if the f key is still pressed, then we just run the action
+    ;;   if it's not, then we have rolled, and so we type in the keys and then run the macro that
+    ;;     saved the pressed keys
+    check-l-roll-real (switch 
+        ((input virtual fsway)) (multi 
+            (on-press tap-virtualkey sw-rght-key)
+            (on-press release-virtualkey sl)
+        ) break
+        ((input virtual sl)) (
+            multi 
+                (macro dynamic-macro-record-stop f 1 l 1 (dynamic-macro-play 0))
+                (on-press release-virtualkey sl)
+        ) break
+        () XX break
+    )
+
+    ;; wrapper for check-l-roll-real that adds $right-roll-grace
+    check-l-roll (macro $right-roll-grace (on-press tap-virtualkey check-l-roll-real))
+
+    ;; These are that will put you into sway mode (they need to be virtualkeys)
+    ;; These will be triggered directly from the sequence, so they are the entry point
+    ;; and may not trigger immediately because of roll check
+
+    ;; s/d have simple checks
+    ;; - they activate sway layer
+    ;; - mark that they are currently pressed
+    ;; - after $roll-grace mark not-pressed (roll grace has left)
+    ;; when f is released, it will check if they are marked as pressed, if so it's been fast
+    ;; enough that they can just be simulated.
+    ;; this approach works because the layer can be activated instantly without (much) issue
+    fs-switch (
+        multi 
+            ;; layers (1 then 2)
+            (on-press press-virtualkey fsway) 
+            (macro 5 (on-press press-virtualkey ssway))
+
+            (on-press press-virtualkey ss) 
+            (macro $roll-grace (on-press release-virtualkey ss))
+    )
+    fd-switch (
+        multi 
+            ;; layers (1 then 2)
+            (on-press press-virtualkey fsway) 
+            (macro 5 (on-press press-virtualkey dsway))
+
+            (on-press press-virtualkey sd)
+            (macro $roll-grace (on-press release-virtualkey sd))
+    )
+
+    ;; These do not need roll protection (also they need to be *fast*)
+    ;; Reason for no roll protection is: fh, fj, fk, are very uncommon
+    fh-switch (
+        multi 
+            (on-press press-virtualkey fsway) 
+            (on-press tap-virtualkey sw-lft-key)
+    )
+    fj-switch (
+        multi 
+            (on-press press-virtualkey fsway) 
+            (on-press tap-virtualkey sw-down-key)
+    )
+    fk-switch (
+        multi 
+            (on-press press-virtualkey fsway) 
+            (on-press tap-virtualkey sw-up-key)
+    )
+
+    ;; fancy roll protection
+    fl-switch (
+        multi 
+            (on-press press-virtualkey fsway) 
+            (on-press press-virtualkey sl)
+    )
+)
+
+;; -----
+;; SWAY LAYERS
+;; -----
+;; We made it! Sway mode is now active and we can actually use keybinds.
+
+
+;; This is main sway layer. Manual work needs to be done to add keys to activation phase
+;; (i.e.) hjkl + sd. This is so that f can be treated as a normal key even if you slur the typing.
+(deflayer sway
+	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
+	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
+	_    XX  (layer-while-held sway-s) (layer-while-held sway-d) XX  XX  @sw-lft @sw-down @sw-up @sw-rght XX  XX  XX
+	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
+	_    _   _      _    _      _    _
+)
+
+(deflayer sway-s
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  (layer-while-held sway-ds)  _  _  @sw-lft @sw-down @sw-up @sw-rght _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _   _      _    _      _    _
+)
+
+(deflayer sway-d
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  (layer-while-held sway-ds)  _  _  _  @sw-lft @sw-down @sw-up @sw-rght _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _   _      _    _      _    _
+)
+
+(deflayer sway-ds
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  @sw-lft @sw-down @sw-up @sw-rght _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _   _      _    _      _    _
+)

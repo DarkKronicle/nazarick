@@ -45,6 +45,10 @@ in
       newsboat = enabled;
     };
 
+    service = {
+      kanata.enable = true;
+    };
+
     security.firejail = enabled;
   };
 

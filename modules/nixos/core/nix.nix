@@ -44,6 +44,8 @@ in
         nix-output-monitor
         nurl
         nixos-option-wrapped
+        nix-tree
+        nix-init
       ])
       ++ [ mypkgs.naz ];
 

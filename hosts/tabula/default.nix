@@ -86,7 +86,6 @@ in
           fcitx = enabled;
         };
         service = {
-          kanata = enabled;
           borg = enabled;
         };
         cli.common = enabled;
