@@ -25,7 +25,6 @@ in
     home.packages =
       (with mypkgs; [
         kde-ginti
-        kde-plasmusic-toolbar
         kde-nordvpn
       ])
       ++ [ pkgs.application-title-bar ];

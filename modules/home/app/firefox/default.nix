@@ -47,6 +47,7 @@ let
       no-pdf-download
       canvasblocker
       adaptive-tab-bar-colour
+      lovely-forks # Shows forks on github projects
     ])
     ++ (with custom-addons; [
       better-canvas

@@ -42,10 +42,13 @@ autocmd DocStart monkeytype.com mode ignore
 
 
 set searchurls.sx https://etsi.me/search?q=%s
-set searchurls.np https://search.nixos.org/packages?channel=unstable&query=%s
-set searchurls.no https://search.nixos.org/options?channel=unstable&query=%s
-set searchurls.nh https://home-manager-options.extranix.com/?query=%s
+" set searchurls.np https://search.nixos.org/packages?channel=unstable&query=%s
+" set searchurls.nh https://home-manager-options.extranix.com/?query=%s
+set searchurls.no https://searchix.alanpearce.eu/options/nixos/search?query=%s
+set searchurls.nh https://searchix.alanpearce.eu/options/home-manager/search?query=%s
+set searchurls.np https://searchix.alanpearce.eu/packages/nixpkgs/search?query=%s
 set searchurls.nw https://wiki.nixos.org/w/index.php?search=%s
+set searchurls.noo https://search.nixos.org/options?channel=unstable&query=%s
 set searchurls.j https://jisho.org/search/%s
 set searchurls.gh https://github.com/search?q=%s
 

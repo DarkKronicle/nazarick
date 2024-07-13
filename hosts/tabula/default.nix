@@ -23,6 +23,8 @@ in
 
     sops.secrets."user/darkkronicle/password".neededForUsers = true;
 
+    hardware.uinput.enable = true;
+
     nazarick.users = {
       mutableUsers = false;
 
@@ -30,6 +32,8 @@ in
         extraGroups = [
           "wheel"
           "networkmanager"
+          "uinput" # TODO: remove
+          "input" # TODO: remove
         ];
         uid = 1000;
         extraOptions = {

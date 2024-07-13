@@ -4,6 +4,7 @@
   lib,
   mylib,
   pkgs,
+  mypkgs,
   ...
 }:
 let
@@ -17,6 +18,8 @@ in
     enable = mkBoolOpt false "Enable kanta configuration.";
   };
   config = mkIf cfg.enable {
+    environment.systemPackages = with mypkgs; [ kanata ];
+
     services.kanata = {
       enable = true;
       package = pkgs.kanata-with-cmd;

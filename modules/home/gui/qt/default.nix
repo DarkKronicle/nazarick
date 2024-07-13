@@ -53,8 +53,33 @@ in
       fluent-icon-theme
       kdePackages.qt6ct
       kdePackages.ark
+      kdePackages.okular
+      kdePackages.ffmpegthumbs
+      kdePackages.kimageformats
+      kdePackages.print-manager
       catppuccin-cursors.mochaMauve
     ];
+
+    programs.wlogout.enable = true;
+
+    # Make it so icons are nice and small
+    xdg.configFile."dolphinrc" = {
+      enable = true;
+      text = ''
+        [DetailsMode]
+        PreviewSize=16
+
+        [KFileDialog Settings]
+        Places Icons Auto-resize=false
+        Places Icons Static Size=22
+
+        [MainWindow]
+        MenuBar=Disabled
+        ToolBarsMovable=Disabled
+
+      '';
+
+    };
 
     # This has to be inside this directory for some reason (can't link from wherever)
     # TODO: Actually maybe not

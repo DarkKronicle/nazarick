@@ -42,3 +42,4 @@ I have looked at a *ton* of Nix configs for inspiration and implementations. Her
 - [IogaMaster](https://github.com/IogaMaster/dotfiles)
 - [ryan4yin](https://github.com/ryan4yin/nix-config) - A really elegant config
 - [librephoenix](https://github.com/librephoenix/nixos-config)
+- [spikespaz](https://github.com/spikespaz/dotfiles) - Awesome config (especially sway)

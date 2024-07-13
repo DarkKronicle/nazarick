@@ -63,6 +63,7 @@ in
 
     home.packages = with pkgs; [
       kdePackages.dolphin
+      lxqt.pavucontrol-qt
       wpaperd
       swayosd # Graphical volume controls
       blueman
