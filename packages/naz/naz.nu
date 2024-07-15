@@ -34,7 +34,7 @@ def "main commit" [message: string, --noversion] {
     }
 }
 
-def "main build" [--update, --pull, --flake: string = ".", --plain, --hostname: string] {
+def "main build" [--update, --pull, --flake: string = ".", --plain, --hostname: string, --specialisation: string] {
     do_safely {
         git pull
         format
@@ -56,6 +56,9 @@ def "main build" [--update, --pull, --flake: string = ".", --plain, --hostname: 
         }
         if ($hostname | is-not-empty) {
             $flags = ($flags | append "--hostname" | append $hostname)
+        }
+        if ($specialisation | is-not-empty) {
+            $flags = ($flags | append "--specialisation" | append $specialisation)
         }
         run-external "nh" ...$flags
     }

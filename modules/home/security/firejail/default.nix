@@ -55,6 +55,7 @@ in
         vesktop = {
           executable = "${pkgs.vesktop}/bin/vesktop";
           profile = "${pkgs.firejail}/etc/firejail/discord.profile";
+          extraArgs = [ ''--whitelist=''${HOME}/.config/vesktop'' ];
         };
       };
     };

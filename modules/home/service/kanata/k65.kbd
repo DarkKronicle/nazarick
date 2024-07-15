@@ -1,7 +1,7 @@
 (defcfg
   process-unmapped-keys yes
 danger-enable-cmd yes
-  log-layer-changes no
+  ;; log-layer-changes no
 
   linux-dev ("/dev/input/by-id/usb-Corsair_CORSAIR_K65_RGB_MINI_60__Mechanical_Gaming_Keyboard_F5001901605DE321AA3518670D028020-event-kbd" "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
   linux-continue-if-no-devs-found yes
@@ -23,27 +23,22 @@ danger-enable-cmd yes
     ;; -- this can't be perfect, so it has to be customizable
     ;; - I don't want to have to write a script to generate this flipping config
     ;; - This shouldn't impact speed at all. Mostly typing speed, but also not increase the runtime footprint of kanata
-    ;; - Only certain keys should trigger sway mode (sd, hjkl in our case)
+    ;; - Only certain keys should trigger sway mode (sd in our case)
     ;; - Once in sway mode, stay in sway mod
     ;; 
     ;; So a quick list of f things:
-    ;; - tap f - f
-    ;; - roll f + l - fl
-    ;; - hold f + sdhjkl - do action and move to layer
-    ;; - hold f + other key - f + other
+    ;; - tap f = f
+    ;; - hold f + sd = do action and move to layer
+    ;; - hold f + other key = f + other
     ;;
     ;; Things we cannot guarantee:
     ;; - key + hold may not work for these specialty keys/roll protection
     ;; - there may *occasionally* be typos if timing is very weird (typically under 1/20 of a second, quite hard)
-    ;; -- the only one I can reproduce is: fliud very fast, with `fliu` lingering on `l` and pressing `d` slightly after
-    ;;
-    ;; Known bugs:
-    ;; is means really uncomfortable key pressing and knowing
-    ;;   the internals
     ;;
     ;; General todo:
     ;; - learn how to use templates
     ;; - there's probably some redundant virtualkeys, but still using well under 100 out of 767
+
     ;; --- Config ---
     ;;
     ;; For simple roll release: (sd)
@@ -51,24 +46,7 @@ danger-enable-cmd yes
     ;;   This is using a more trivial one that will not capture keys that are pressed during it so (fsu) very fast
     ;;   appears as (ufs). This can be fixed by migrating, so this will probably eventually be removed.
     ;;
-    ;; For complicated: (l)
-    ;;   only trigger action on release of special key, if f is held it will trigger.
-    ;;   if the full action was done under $roll-grace, *and* sway leader is not pressed, it will not be triggered
     roll-grace 80 
-
-    ;; This is for complicated only. Imagine right-roll-grace = 10:
-    ;;   press f
-    ;;   wait 10
-    ;;   press l 
-    ;;   wait 5
-    ;;   release l
-    ;;   wait 5
-    ;;   release f
-    ;; even though l was released first, because 5 is < $right-roll-grace, the action is not triggered
-    ;; NOTE: this does make letter eating less likely the higher it is
-    right-roll-grace 20
-
-    combined-roll-grace 120
 
     ;; This is a do nothing, but still act like a key. This should not be used in
     ;; sequences or anything
@@ -158,22 +136,6 @@ danger-enable-cmd yes
         d
         (on-release release-virtualkey dsway) ;; release layer
     )
-
-    l-for-sway (multi
-        l ;; real key
-
-        ;; check to see if action should be done now, or if it should reconstruct
-        ;; intermediary keypresses
-        (on-release tap-virtualkey check-l-roll)
-        (macro-release-cancel $combined-roll-grace (on-press tap-virtualkey check-l-roll))
-
-        ;; unset the reserved key that specifies that the l action happened
-        (on-press release-virtualkey sl)
-        (on-press press-virtualkey sl-wait)
-        
-        (macro-release-cancel $combined-roll-grace (on-release release-virtualkey sl-wait))
-        (on-release release-virtualkey sl-wait)
-    )
 )
 
 ;; Main layer with the added features:
@@ -182,7 +144,7 @@ danger-enable-cmd yes
 (deflayer qwerty
 	grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
 	tab  q  w  e  r  t  y  u  i  o  p  [  ]  \
-	@ead  a  @s-for-sway  @d-for-sway  @fsway  g  h  j  k  @l-for-sway  ;  '  ret
+	@ead  a  @s-for-sway  @d-for-sway  @fsway  g  h  j  k l  ;  '  ret
 	lsft z  x  c  v  b  n  m  ,  .  /  rsft
 	lctl met lalt   spc  ralt   menu rctrl
 )
@@ -274,17 +236,6 @@ danger-enable-cmd yes
   launcher C-A-S-j
 )
 
-(defalias
-    ;; The virtual keys should be reserved for instant sway activations.
-    ;; This is bc they have to be virtual keys, but we shouldn't overuse them
-    ;; bc there is a limited amount of virtual keys. Everything else
-    ;; can be aliases!
-    sw-lft (on-press tap-virtualkey sw-lft-key)
-    sw-rght (on-press tap-virtualkey sw-rght-key)
-    sw-up (on-press tap-virtualkey sw-up-key)
-    sw-down (on-press tap-virtualkey sw-down-key)
-)
-
 ;; -----
 ;; SWAY SECTION
 ;; -----
@@ -300,10 +251,6 @@ danger-enable-cmd yes
 (defseq
   fs-switch (nop1 f s) 
   fd-switch (nop1 f d)
-  fh-switch (nop1 f h)
-  fj-switch (nop1 f j)
-  fk-switch (nop1 f k)
-  fl-switch (nop1 f l)
 )
 
 ;; Ah, this is the fun part
@@ -319,39 +266,10 @@ danger-enable-cmd yes
     ssway (layer-while-held sway-s)
     dsway (layer-while-held sway-d)
 
-    ;; same as above, just the fast movements
-    sw-lft-key (cmd swaymsg focus left)
-    sw-rght-key (cmd swaymsg focus right)
-    sw-up-key (cmd swaymsg focus up)
-    sw-down-key (cmd swaymsg focus down)
-    
     ;; these are nop keys that let us keep track of if these keys are in an activate-able state.
     ;; This is solely used for roll check.
     ss $nop-reserved
-    sl $nop-reserved
     sd $nop-reserved
-
-    sl-wait (switch
-        ;; Is f (sway super) currently pressed?
-        ((input real f)) (
-            multi 
-                ;; Start macro recording!
-                ;;
-                ;; dummy here does literally nothing but gives macro the ability
-                ;; to record. This is because if the sway layer is triggered, don't pass through
-                ;; keys.
-                ;;
-                ;; the macro allows us to reconstruct blocked keypresses during this time
-                ;; we stop to be safe.
-                ;;
-                ;; this gives us the issue that we can't have other macros at the same time,
-                ;; but I personally never use any
-                (layer-while-held dummy)
-                (macro dynamic-macro-record-stop 3 (dynamic-macro-record 0))
-            )
-            break
-        () XX break
-    )
 
     ;; Simple roll check. f + key starts. After $roll-grace, it checks if something else was pushed.
     check-roll (switch 
@@ -359,27 +277,6 @@ danger-enable-cmd yes
         ((input virtual sd)) (multi (macro f d) (on-press release-virtualkey sd)) break
         () XX break
     )
-
-    ;; complicated roll check
-    ;; triggered on release of key + $right-roll-grace
-    ;;   if the f key is still pressed, then we just run the action
-    ;;   if it's not, then we have rolled, and so we type in the keys and then run the macro that
-    ;;     saved the pressed keys
-    check-l-roll-real (switch 
-        ((input virtual fsway)) (multi 
-            (on-press tap-virtualkey sw-rght-key)
-            (on-press release-virtualkey sl)
-        ) break
-        ((input virtual sl)) (
-            multi 
-                (macro dynamic-macro-record-stop f 1 l 1 (dynamic-macro-play 0))
-                (on-press release-virtualkey sl)
-        ) break
-        () XX break
-    )
-
-    ;; wrapper for check-l-roll-real that adds $right-roll-grace
-    check-l-roll (macro $right-roll-grace (on-press tap-virtualkey check-l-roll-real))
 
     ;; These are that will put you into sway mode (they need to be virtualkeys)
     ;; These will be triggered directly from the sequence, so they are the entry point
@@ -411,36 +308,32 @@ danger-enable-cmd yes
             (macro $roll-grace (on-press release-virtualkey sd))
     )
 
-    ;; These do not need roll protection (also they need to be *fast*)
-    ;; Reason for no roll protection is: fh, fj, fk, are very uncommon
-    fh-switch (
-        multi 
-            (on-press press-virtualkey fsway) 
-            (on-press tap-virtualkey sw-lft-key)
-    )
-    fj-switch (
-        multi 
-            (on-press press-virtualkey fsway) 
-            (on-press tap-virtualkey sw-down-key)
-    )
-    fk-switch (
-        multi 
-            (on-press press-virtualkey fsway) 
-            (on-press tap-virtualkey sw-up-key)
-    )
-
-    ;; fancy roll protection
-    fl-switch (
-        multi 
-            (on-press press-virtualkey fsway) 
-            (on-press press-virtualkey sl)
-    )
 )
 
 ;; -----
 ;; SWAY LAYERS
 ;; -----
 ;; We made it! Sway mode is now active and we can actually use keybinds.
+
+;; main sway aliases
+(defalias
+    ds (layer-while-held sway-ds)
+    sd (layer-while-held sway-sd)
+
+    sw-lft (cmd swaymsg focus left)
+    sw-rght (cmd swaymsg focus right)
+    sw-up (cmd swaymsg focus up)
+    sw-down (cmd swaymsg focus down)
+
+    sw-meta (multi
+        (on-press press-virtualkey sw-meta1)
+        (on-release release-virtualkey sw-meta1)
+    )
+)
+
+(defvirtualkeys
+    sw-meta1 $nop-reserved
+)
 
 
 ;; This is main sway layer. Manual work needs to be done to add keys to activation phase
@@ -450,26 +343,158 @@ danger-enable-cmd yes
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
 	_    XX  (layer-while-held sway-s) (layer-while-held sway-d) XX  XX  @sw-lft @sw-down @sw-up @sw-rght XX  XX  XX
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
-	_    _   _      _    _      _    _
+	_    _   _      @sw-meta    _      _    _
 )
 
-(deflayer sway-s
-	_    _  _  _  _  _  _  _  _  _  _  _  _  _
-	_    _  _  _  _  _  _  _  _  _  _  _  _  _
-	_    _  _  (layer-while-held sway-ds)  _  _  @sw-lft @sw-down @sw-up @sw-rght _  _  _
-	_    _  _  _  _  _  _  _  _  _  _  _
-	_    _   _      _    _      _    _
-)
 
 (deflayer sway-d
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
-	_    _  (layer-while-held sway-ds)  _  _  _  @sw-lft @sw-down @sw-up @sw-rght _  _  _
+	_    _  @ds  _  _  _  @sw-lft @sw-down @sw-up @sw-rght _  _  _
 	_    _  _  _  _  _  _  _  _  _  _  _
 	_    _   _      _    _      _    _
 )
 
 (deflayer sway-ds
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  @swap-left @swap-down @swap-up @swap-right _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _   _      _    _      _    _
+)
+
+;; Workspace and display management
+
+(deftemplate ws-cmd (output workspace) 
+    (cmd workspace_helper rundisplay $output $workspace swaymsg "workspace @NAME@ output @WORKSPACE@; workspace @NAME@")
+)
+
+(deftemplate ws-swap (output workspace) 
+    (cmd workspace_helper rundisplay $output $workspace swaymsg "workspace @NAME@ output @WORKSPACE@; workspace @NAME@")
+)
+
+(deftemplate ws-wherever (workspace) 
+    (cmd swaymsg workspace $workspace)
+)
+
+(deftemplate ws-cmd-or-swap (output workspace) 
+    (switch 
+        ((input virtual sw-meta1)) (cmd workspace_helper swap $output $workspace 0) break
+        () (cmd workspace_helper rundisplay $output $workspace swaymsg "workspace @NAME@ output @WORKSPACE@; workspace @NAME@") break
+    )
+)
+
+(deftemplate ws-cmd-or-move (output workspace)
+    (switch 
+        ((input virtual sw-meta1)) (cmd workspace_helper swap $output $workspace) break
+        () (cmd workspace_helper rundisplay $output $workspace swaymsg "workspace @NAME@ output @WORKSPACE@; workspace @NAME@") break
+    )
+)
+
+(defalias
+    swap-left (switch 
+        ((input virtual sw-meta1)) (cmd swaymsg "move left") break
+        () (cmd swaymsg "mark swap; focus left; swap container with mark swap; [con_mark="swap"] focus") break
+    )
+    swap-right (switch 
+        ((input virtual sw-meta1)) (cmd swaymsg "move right") break
+        () (cmd swaymsg "mark swap; focus right; swap container with mark swap; [con_mark="swap"] focus") break
+    )
+    swap-up (switch 
+        ((input virtual sw-meta1)) (cmd swaymsg "move up") break
+        () (cmd swaymsg "mark swap; focus up; swap container with mark swap; [con_mark="swap"] focus") break
+    )
+    swap-down (switch 
+        ((input virtual sw-meta1)) (cmd swaymsg "move down") break
+        () (cmd swaymsg "mark swap; focus down; swap container with mark swap; [con_mark="swap"] focus") break
+    )
+)
+
+;; 4 keys give us (using choose(n, k) = (n!) / ((n - k)!)(k!))
+;; choose(4, 1) + choose(4, 2) + choose(4, 3) + choose(4, 1) = 4 + 6 + 4 + 1 = 15
+;; if we add a fifth one we get (if 4 fingers), 1 + 10 + 10 + 5 = 26, that's too many for me lol
+;; for now I won't do the 4 choose 3
+;;
+;; I also won't add binds for a third monitor, since that seems a bit extreme. Alt + 0-9 will still exist
+;; for a swaymergency
+(defchords workspace 100
+    ;; 1 2 3 4
+    ;; 5 6 7 8
+    ;; a b c d
+    ;; m - meta
+    (    1      ) (t! ws-cmd-or-swap 0 10)
+    (      2    ) (t! ws-cmd-or-swap 0 11)
+    (        3  ) (t! ws-cmd-or-swap 0 12)
+    (          4) (t! ws-cmd-or-swap 0 13)
+    (    1 2    ) (t! ws-cmd-or-swap 0 14)
+    (      2 3  ) (t! ws-cmd-or-swap 0 15)
+    (        3 4) (t! ws-cmd-or-swap 0 16)
+    (    1   3  ) (t! ws-cmd-or-swap 0 17)
+    (      2   4) (t! ws-cmd-or-swap 0 18)
+    (    1     4) (t! ws-cmd-or-swap 0 19)
+
+    (    5      ) (t! ws-cmd-or-swap 1 20)
+    (      6    ) (t! ws-cmd-or-swap 1 21)
+    (        7  ) (t! ws-cmd-or-swap 1 22)
+    (          8) (t! ws-cmd-or-swap 1 23)
+    (    5 6    ) (t! ws-cmd-or-swap 1 24)
+    (      6 7  ) (t! ws-cmd-or-swap 1 25)
+    (        7 8) (t! ws-cmd-or-swap 1 26)
+    (    5   7  ) (t! ws-cmd-or-swap 1 27)
+    (      6   8) (t! ws-cmd-or-swap 1 28)
+    (    5     8) (t! ws-cmd-or-swap 1 29)
+
+    ;; screen independent workspaces
+
+    ;; the -5 signifies don't care about which monitor if needs to be created
+    (    a      ) (t! ws-cmd-or-swap -5 00)
+    (      b    ) (t! ws-cmd-or-swap -5 01)
+    (        c  ) (t! ws-cmd-or-swap -5 02)
+    (          d) (t! ws-cmd-or-swap -5 03)
+    (    a b    ) (t! ws-cmd-or-swap -5 04)
+    (      b c  ) (t! ws-cmd-or-swap -5 05)
+    (        c d) (t! ws-cmd-or-swap -5 06)
+    (    a   c  ) (t! ws-cmd-or-swap -5 07)
+    (      b   d) (t! ws-cmd-or-swap -5 08)
+    (    a     d) (t! ws-cmd-or-swap -5 09)
+
+    ;; move left/right (only special workspace)
+    (    5 6 7  ) (cmd workspace_helper move -1 0)
+    (      6 7 8) (cmd workspace_helper move 1 0)
+
+    ( 
+        6
+      a
+    ) (switch
+      ((input virtual sw-meta1)) (cmd swaymsg move scratchpad) break
+      () (cmd swaymsg scratchpad show) break
+    )
+)
+
+(defalias
+    w1 (chord workspace 1)
+    w2 (chord workspace 2)
+    w3 (chord workspace 3)
+    w4 (chord workspace 4)
+    w5 (chord workspace 5)
+    w6 (chord workspace 6)
+    w7 (chord workspace 7)
+    w8 (chord workspace 8)
+    wa (chord workspace a)
+    wb (chord workspace b)
+    wc (chord workspace c)
+    wd (chord workspace d)
+)
+
+(deflayer sway-s
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _ @w1 @w2 @w3 @w4 _  _  _
+	_    _  _  (layer-while-held sway-d)  _  _  _ @w5 @w6 @w7 @w8  _  _
+	_    _  _  _  _  _  _  @wa @wb @wc @wd  _
+	_    _   _      _    _      _    _
+)
+
+(deflayer sway-sd
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
 	_    _  _  _  _  _  @sw-lft @sw-down @sw-up @sw-rght _  _  _

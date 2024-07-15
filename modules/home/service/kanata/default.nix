@@ -13,7 +13,33 @@ let
   inherit (lib) mkIf;
 
   cfg = config.nazarick.service.kanata;
-  packages = [ pkgs.swayfx ];
+
+  workspaceHelper =
+    let
+      requiredPackages = with pkgs; [
+        swayfx
+        nushell
+      ];
+    in
+    pkgs.stdenv.mkDerivation {
+      pname = "workspace_helper";
+      version = "latest";
+      src = ./workspace_helper.nu;
+      nativeBuildInputs = [ pkgs.makeWrapper ];
+      phases = [ "installPhase" ];
+      buildInputs = requiredPackages;
+      installPhase = ''
+        mkdir -p $out/bin
+        cp $src $out/bin/workspace_helper
+        chmod +x $out/bin/workspace_helper
+        wrapProgram $out/bin/workspace_helper --prefix PATH : ${lib.makeBinPath requiredPackages}
+      '';
+    };
+
+  packages = [
+    pkgs.swayfx
+    workspaceHelper
+  ];
 
   mkKanataService =
     { name, file }:
@@ -28,14 +54,12 @@ let
       };
 
       Service = {
-        Environment = [
-          "PATH=${lib.concatStringsSep ":" (lib.forEach packages (pkg: "${lib.getBin pkg}/bin
-        }"))}"
-        ];
+        Environment = [ "PATH=${lib.makeBinPath packages}" ];
         Type = "simple";
         ExecStart = "${lib.getExe cfg.package} --cfg ${file}";
       };
     };
+
 in
 {
   options.nazarick.service.kanata = {
@@ -47,7 +71,10 @@ in
     };
   };
   config = mkIf cfg.enable {
-    home.packages = with mypkgs; [ kanata ];
+    home.packages = with mypkgs; [
+      kanata
+      workspaceHelper
+    ];
 
     systemd.user.services = {
       "kanata-k65" = mkKanataService {
