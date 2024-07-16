@@ -101,7 +101,6 @@ danger-enable-cmd yes
                 ;; release layers
                 (on-release release-virtualkey fsway)
                 (on-release release-virtualkey dsway) ;; this should technically already be handled, but don't want to be stuck
-                (on-release release-virtualkey ssway)
 
                 (on-release tap-virtualkey check-roll) ;; see if we are within roll timings
             )
@@ -125,12 +124,8 @@ danger-enable-cmd yes
 	mnimz M-m
 
     ;; these are the complicated sway entering bindings
-    ;; s/d should be simple roll protection (for now :tm:)
+    ;; d should be simple roll protection (for now :tm:)
     ;; l should be complicated
-    s-for-sway (multi
-        s
-        (on-release release-virtualkey ssway) ;; release layer
-    )
 
     d-for-sway (multi
         d
@@ -144,7 +139,7 @@ danger-enable-cmd yes
 (deflayer qwerty
 	grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
 	tab  q  w  e  r  t  y  u  i  o  p  [  ]  \
-	@ead  a  @s-for-sway  @d-for-sway  @fsway  g  h  j  k l  ;  '  ret
+	@ead  a  s @d-for-sway  @fsway  g  h  j  k l  ;  '  ret
 	lsft z  x  c  v  b  n  m  ,  .  /  rsft
 	lctl met lalt   spc  ralt   menu rctrl
 )
@@ -249,7 +244,6 @@ danger-enable-cmd yes
 ;; (this is where the modifiers and shifting make it weird, (no reason to do this, but) a fix could maybe be doing
 ;; the cursed macros things again with the dummy layer, and playing it back, but unmodding may be needed?)
 (defseq
-  fs-switch (nop1 f s) 
   fd-switch (nop1 f d)
 )
 
@@ -263,7 +257,6 @@ danger-enable-cmd yes
     ;; also need to be virtual keys.
     ;; An added benefit: easy way to see if stuff is on/off and easy to disable them
     fsway (layer-while-held sway) 
-    ssway (layer-while-held sway-s)
     dsway (layer-while-held sway-d)
 
     ;; these are nop keys that let us keep track of if these keys are in an activate-able state.
@@ -282,22 +275,13 @@ danger-enable-cmd yes
     ;; These will be triggered directly from the sequence, so they are the entry point
     ;; and may not trigger immediately because of roll check
 
-    ;; s/d have simple checks
+    ;; d have simple checks
     ;; - they activate sway layer
     ;; - mark that they are currently pressed
     ;; - after $roll-grace mark not-pressed (roll grace has left)
     ;; when f is released, it will check if they are marked as pressed, if so it's been fast
     ;; enough that they can just be simulated.
     ;; this approach works because the layer can be activated instantly without (much) issue
-    fs-switch (
-        multi 
-            ;; layers (1 then 2)
-            (on-press press-virtualkey fsway) 
-            (macro 5 (on-press press-virtualkey ssway))
-
-            (on-press press-virtualkey ss) 
-            (macro $roll-grace (on-press release-virtualkey ss))
-    )
     fd-switch (
         multi 
             ;; layers (1 then 2)
@@ -318,6 +302,7 @@ danger-enable-cmd yes
 ;; main sway aliases
 (defalias
     ds (layer-while-held sway-ds)
+    dw (layer-while-held sway-dw)
     sd (layer-while-held sway-sd)
 
     sw-lft (cmd swaymsg focus left)
@@ -331,64 +316,190 @@ danger-enable-cmd yes
     )
 )
 
+(deftemplate meta1-fork (action1 action2)
+    (switch
+        ((input virtual sw-meta1)) $action1 break
+        () $action2 break
+    )
+)
+
 (defvirtualkeys
     sw-meta1 $nop-reserved
 )
 
+;; Chords for sway layer
+(defchords sway 100
+    ;; There should not be any keybinds for just jkl incase you forget you're not in move mode
+    ;; 1 2 3 4
+    ;; 5 6 7 8
+    ;; a b c d
+    (  1 2 3 4) a
+    (  5 6 7 8) b
+    (  a b c d) c
+    (  a b    ) (t! meta1-fork
+        (cmd swaymsg exec wlogout)
+        (cmd swaymsg exec swaylock)
+    )
+    (  a      ) (cmd swaymsg kill)
+    ( 
+        6
+      a
+    ) (switch
+      ((input virtual sw-meta1)) (cmd swaymsg move scratchpad) break
+      () (cmd swaymsg scratchpad show) break
+    )
+)
+
+(defalias
+    sw1 (chord sway 1)
+    sw2 (chord sway 2)
+    sw3 (chord sway 3)
+    sw4 (chord sway 4)
+    sw5 (chord sway 5)
+    sw6 (chord sway 6)
+    sw7 (chord sway 7)
+    sw8 (chord sway 8)
+    swa (chord sway a)
+    swb (chord sway b)
+    swc (chord sway c)
+    swd (chord sway d)
+)
+
+;; Workspace and display management
+
+(deftemplate ws-goto (o1 w1 o2 w2) 
+    (switch 
+        ((input virtual sw-meta1)) (cmd workspace_helper goto $o1 $w1) break
+        () (cmd workspace_helper goto $o2 $w2) break
+    )
+)
+
+(deftemplate ws-swap (o1 w1 o2 w2) 
+    (switch 
+        ((input virtual sw-meta1)) (cmd workspace_helper swap $o1 $w1) break
+        () (cmd workspace_helper swap $o2 $w2) break
+    )
+)
+
+;; 4 keys give us (using choose(n, k) = (n!) / ((n - k)!)(k!))
+;; choose(4, 1) + choose(4, 2) + choose(4, 3) + choose(4, 1) = 4 + 6 + 4 + 1 = 15
+;; if we add a fifth one we get (if 4 fingers), 1 + 10 + 10 + 5 = 26, that's too many for me lol
+;; for now I won't do the 4 choose 3
+;;
+;; I also won't add binds for a third monitor, since that seems a bit extreme. Alt + 0-9 will still exist
+;; for a swaymergency
+(defchords workspace 100
+    ;; 1 2 3 4
+    (    1      ) (t! ws-goto 1 10 0 00)
+    (      2    ) (t! ws-goto 1 11 0 01)
+    (        3  ) (t! ws-goto 1 12 0 02)
+    (          4) (t! ws-goto 1 13 0 03)
+    (    1 2    ) (t! ws-goto 1 14 0 04)
+    (      2 3  ) (t! ws-goto 1 15 0 05)
+    (        3 4) (t! ws-goto 1 16 0 06)
+    (    1   3  ) (t! ws-goto 1 17 0 07)
+    (      2   4) (t! ws-goto 1 18 0 08)
+    (    1     4) (t! ws-goto 1 19 0 09)
+    (    1 2 3  ) (t! ws-goto 1 1A 0 0A)
+    (    1   3 4) (t! ws-goto 1 1B 0 0B)
+    (    1 2   4) (t! ws-goto 1 1C 0 0C)
+    (      2 3 4) (t! ws-goto 1 1D 0 0D)
+    (    1 2 3 4) (t! ws-goto 1 1E 0 0E)
+)
+
+(defchords workspace-swap 100
+    ;; 1 2 3 4
+    (    1      ) (t! ws-swap 1 10 0 00)
+    (      2    ) (t! ws-swap 1 11 0 01)
+    (        3  ) (t! ws-swap 1 12 0 02)
+    (          4) (t! ws-swap 1 13 0 03)
+    (    1 2    ) (t! ws-swap 1 14 0 04)
+    (      2 3  ) (t! ws-swap 1 15 0 05)
+    (        3 4) (t! ws-swap 1 16 0 06)
+    (    1   3  ) (t! ws-swap 1 17 0 07)
+    (      2   4) (t! ws-swap 1 18 0 08)
+    (    1     4) (t! ws-swap 1 19 0 09)
+    (    1 2 3  ) (t! ws-swap 1 1A 0 0A)
+    (    1   3 4) (t! ws-swap 1 1B 0 0B)
+    (    1 2   4) (t! ws-swap 1 1C 0 0C)
+    (      2 3 4) (t! ws-swap 1 1D 0 0D)
+    (    1 2 3 4) (t! ws-swap 1 1E 0 0E)
+)
+
+(defchords sway-quick 100
+    ;; 1 2 3 4
+    (1 2    ) (cmd swaymsg kill)
+    (1   3  ) (cmd swaymsg exec swaylock)
+    (1 2 3  ) (cmd swaymsg exec wlogout)
+    (    3 4) a
+    (1      ) (switch
+      ((input virtual sw-meta1)) (cmd swaymsg move scratchpad) break
+      () (cmd swaymsg scratchpad show) break
+    )
+)
+
+(defalias
+    w1 (chord workspace 1)
+    w2 (chord workspace 2)
+    w3 (chord workspace 3)
+    w4 (chord workspace 4)
+
+    ws1 (chord workspace-swap 1)
+    ws2 (chord workspace-swap 2)
+    ws3 (chord workspace-swap 3)
+    ws4 (chord workspace-swap 4)
+
+    qs1 (chord sway-quick 1)
+    qs2 (chord sway-quick 2)
+    qs3 (chord sway-quick 3)
+    qs4 (chord sway-quick 4)
+)
 
 ;; This is main sway layer. Manual work needs to be done to add keys to activation phase
 ;; (i.e.) hjkl + sd. This is so that f can be treated as a normal key even if you slur the typing.
 (deflayer sway
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
-	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
-	_    XX  (layer-while-held sway-s) (layer-while-held sway-d) XX  XX  @sw-lft @sw-down @sw-up @sw-rght XX  XX  XX
-	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
-	_    _   _      @sw-meta    _      _    _
+	_    XX  XX  XX  XX  XX  XX  @sw1  @sw2  @sw3  @sw4  XX  XX  XX
+	_    XX  XX (layer-while-held sway-d) XX  XX XX @sw5 @sw6 @sw7 @sw8  XX  XX
+	_    XX  XX  XX  XX  XX  XX  @swa  @swb  @swc @swd  XX
+	_    _   _      _    _      _    _
 )
 
 
 (deflayer sway-d
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
-	_    _  _  _  _  _  _  _  _  _  _  _  _  _
-	_    _  @ds  _  _  _  @sw-lft @sw-down @sw-up @sw-rght _  _  _
-	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _  @dw  _  _  _  _  @w1 @w2 @w3 @w4  _  _  _
+	_    _  @ds  _  _  _  @sw-lft @sw-down @sw-up @sw-rght @sw-meta  _  _
+	_    _  _  _  _  _  _  @qs1  @qs2  @qs3  @qs4  _
 	_    _   _      _    _      _    _
 )
 
 (deflayer sway-ds
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
-	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  @ws1  @ws2  @ws3  @ws4  _  _  _
 	_    _  _  _  _  _  @swap-left @swap-down @swap-up @swap-right _  _  _
 	_    _  _  _  _  _  _  _  _  _  _  _
 	_    _   _      _    _      _    _
 )
 
-;; Workspace and display management
-
-(deftemplate ws-cmd (output workspace) 
-    (cmd workspace_helper rundisplay $output $workspace swaymsg "workspace @NAME@ output @WORKSPACE@; workspace @NAME@")
+(defvar
+    nsize 10
+    bsize 30
 )
 
-(deftemplate ws-swap (output workspace) 
-    (cmd workspace_helper rundisplay $output $workspace swaymsg "workspace @NAME@ output @WORKSPACE@; workspace @NAME@")
-)
-
-(deftemplate ws-wherever (workspace) 
-    (cmd swaymsg workspace $workspace)
-)
-
-(deftemplate ws-cmd-or-swap (output workspace) 
-    (switch 
-        ((input virtual sw-meta1)) (cmd workspace_helper swap $output $workspace 0) break
-        () (cmd workspace_helper rundisplay $output $workspace swaymsg "workspace @NAME@ output @WORKSPACE@; workspace @NAME@") break
+(deftemplate resize (type direction normal big)
+    (switch
+        ((input virtual sw-meta1)) (cmd swaymsg resize $type $direction $big px) break
+        () (cmd swaymsg resize $type $direction $normal px) break
     )
 )
 
-(deftemplate ws-cmd-or-move (output workspace)
-    (switch 
-        ((input virtual sw-meta1)) (cmd workspace_helper swap $output $workspace) break
-        () (cmd workspace_helper rundisplay $output $workspace swaymsg "workspace @NAME@ output @WORKSPACE@; workspace @NAME@") break
-    )
+(deflayer sway-dw
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  (t! resize shrink width $nsize $bsize) (t! resize shrink height $nsize $bsize) (t! resize grow height $nsize $bsize) (t! resize grow width $nsize $bsize)  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _   _      _    _      _    _
 )
 
 (defalias
@@ -410,94 +521,10 @@ danger-enable-cmd yes
     )
 )
 
-;; 4 keys give us (using choose(n, k) = (n!) / ((n - k)!)(k!))
-;; choose(4, 1) + choose(4, 2) + choose(4, 3) + choose(4, 1) = 4 + 6 + 4 + 1 = 15
-;; if we add a fifth one we get (if 4 fingers), 1 + 10 + 10 + 5 = 26, that's too many for me lol
-;; for now I won't do the 4 choose 3
-;;
-;; I also won't add binds for a third monitor, since that seems a bit extreme. Alt + 0-9 will still exist
-;; for a swaymergency
-(defchords workspace 100
-    ;; 1 2 3 4
-    ;; 5 6 7 8
-    ;; a b c d
-    ;; m - meta
-    (    1      ) (t! ws-cmd-or-swap 0 10)
-    (      2    ) (t! ws-cmd-or-swap 0 11)
-    (        3  ) (t! ws-cmd-or-swap 0 12)
-    (          4) (t! ws-cmd-or-swap 0 13)
-    (    1 2    ) (t! ws-cmd-or-swap 0 14)
-    (      2 3  ) (t! ws-cmd-or-swap 0 15)
-    (        3 4) (t! ws-cmd-or-swap 0 16)
-    (    1   3  ) (t! ws-cmd-or-swap 0 17)
-    (      2   4) (t! ws-cmd-or-swap 0 18)
-    (    1     4) (t! ws-cmd-or-swap 0 19)
-
-    (    5      ) (t! ws-cmd-or-swap 1 20)
-    (      6    ) (t! ws-cmd-or-swap 1 21)
-    (        7  ) (t! ws-cmd-or-swap 1 22)
-    (          8) (t! ws-cmd-or-swap 1 23)
-    (    5 6    ) (t! ws-cmd-or-swap 1 24)
-    (      6 7  ) (t! ws-cmd-or-swap 1 25)
-    (        7 8) (t! ws-cmd-or-swap 1 26)
-    (    5   7  ) (t! ws-cmd-or-swap 1 27)
-    (      6   8) (t! ws-cmd-or-swap 1 28)
-    (    5     8) (t! ws-cmd-or-swap 1 29)
-
-    ;; screen independent workspaces
-
-    ;; the -5 signifies don't care about which monitor if needs to be created
-    (    a      ) (t! ws-cmd-or-swap -5 00)
-    (      b    ) (t! ws-cmd-or-swap -5 01)
-    (        c  ) (t! ws-cmd-or-swap -5 02)
-    (          d) (t! ws-cmd-or-swap -5 03)
-    (    a b    ) (t! ws-cmd-or-swap -5 04)
-    (      b c  ) (t! ws-cmd-or-swap -5 05)
-    (        c d) (t! ws-cmd-or-swap -5 06)
-    (    a   c  ) (t! ws-cmd-or-swap -5 07)
-    (      b   d) (t! ws-cmd-or-swap -5 08)
-    (    a     d) (t! ws-cmd-or-swap -5 09)
-
-    ;; move left/right (only special workspace)
-    (    5 6 7  ) (cmd workspace_helper move -1 0)
-    (      6 7 8) (cmd workspace_helper move 1 0)
-
-    ( 
-        6
-      a
-    ) (switch
-      ((input virtual sw-meta1)) (cmd swaymsg move scratchpad) break
-      () (cmd swaymsg scratchpad show) break
-    )
-)
-
-(defalias
-    w1 (chord workspace 1)
-    w2 (chord workspace 2)
-    w3 (chord workspace 3)
-    w4 (chord workspace 4)
-    w5 (chord workspace 5)
-    w6 (chord workspace 6)
-    w7 (chord workspace 7)
-    w8 (chord workspace 8)
-    wa (chord workspace a)
-    wb (chord workspace b)
-    wc (chord workspace c)
-    wd (chord workspace d)
-)
-
-(deflayer sway-s
-	_    _  _  _  _  _  _  _  _  _  _  _  _  _
-	_    _  _  _  _  _  _ @w1 @w2 @w3 @w4 _  _  _
-	_    _  _  (layer-while-held sway-d)  _  _  _ @w5 @w6 @w7 @w8  _  _
-	_    _  _  _  _  _  _  @wa @wb @wc @wd  _
-	_    _   _      _    _      _    _
-)
-
 (deflayer sway-sd
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
-	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  _  XX  XX  XX  _  _  _
 	_    _  _  _  _  _  @sw-lft @sw-down @sw-up @sw-rght _  _  _
-	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  XX  XX  XX  XX  _
 	_    _   _      _    _      _    _
 )

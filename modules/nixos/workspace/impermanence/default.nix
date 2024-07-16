@@ -176,6 +176,8 @@ in
 
         ".config/fcitx5"
 
+        ".config/ags" # TODO: REMOVE ME
+
         ".cache/mozilla"
         ".cache/yazi"
         ".cache/newsboat"

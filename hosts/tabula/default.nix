@@ -25,6 +25,10 @@ in
 
     hardware.uinput.enable = true;
 
+    # for ags
+    services.upower.enable = true;
+    services.gvfs.enable = true;
+
     nazarick.users = {
       mutableUsers = false;
 

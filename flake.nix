@@ -80,6 +80,11 @@
 
     faerber.url = "github:nekowinston/faerber";
 
+    ags = {
+      url = "github:Aylur/ags";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     mint = {
       url = "github:trumank/mint";
     };

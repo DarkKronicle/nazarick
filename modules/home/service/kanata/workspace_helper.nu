@@ -20,69 +20,62 @@ def "sorted-displays" [] {
     $x_pos | transpose | get column0
 }
 
+def "main display" [order: int] {
+    let prio = [ 'HDMI-A-1' 'eDP-1' ]
+    mut outputs = sorted-displays
+    mut i = 0
+    for $display in $prio {
+        let index = $outputs | list index-of $display
+        if $index >= 0 {
+            if $i == $order {
+                return $display
+            }
+            $i = ($i + 1)
+            $outputs = ($outputs | drop nth $index)
+        }
+    }
+    let target = ($order - $i)
+    if $target >= ($outputs | length) {
+        return null
+    }
+    return ($outputs | get $target)
+}
+
+def "main sorted-prio" [] {
+    let prio = [ 'HDMI-A-1' 'eDP-1' ]
+    mut outputs = sorted-displays
+    mut final = []
+    for $display in $prio {
+        let index = $outputs | list index-of $display
+        if $index >= 0 {
+            $final = ($final | append $display)
+            $outputs = ($outputs | drop nth $index)
+        }
+    }
+    ($final | append $outputs)
+}
+
 def "main init" [] {
-    let outputs = swaymsg -t get_outputs | from json
-    let x_pos = $outputs | each {|x| { $x.name: $x.rect.x }} | merge deep | sort -v
-    let sorted = $x_pos | transpose | get column0
-    mut i = 1;
-    for $display in $sorted {
+    let outputs = sorted-prio
+    mut i = 0;
+    for $display in $outputs {
         swaymsg $"workspace ($i)0 output ($display); workspace ($i)0"
 
         $i = ($i + 1)
     }
 }
 
-# Move the current workspace to the left or right monitor
-def "main move" [direction: int, prefix_reserved: string] {
-    let workspaces = swaymsg -t get_workspaces | from json
-    let sorted = sorted-displays
-    if ($sorted | length) == 1 { 
-        # One monitor, where would we move it to?
-        return
-    }
-    let current = $workspaces | filter {|w| $w | get focused } | get 0
-    let special = $current | get name | str starts-with $prefix_reserved
-    if not $special {
-        # The current workspace is bound by a monitor, use swap instead
-        # TODO: check if I just want to swap it here, I don't really see a reason to
-        return
-    }  
-    let visible = $workspaces | filter {|w| $w | get visible }
-    let current_display = $current | get output
-    let current_index = $sorted | list index-of $current_display
-    let target_index = if $direction == 1 {
-        # To the right
-        if ($current_index >= (($sorted | length) - 1)) {
-           -1 
-        } else {
-            $current_index + 1
-        }
-    } else {
-        if ($current_index < 0) {
-            -1
-        } else {
-            $current_index - 1
-        }
-    }
-    if $target_index < 0 {
-        # Can't go any more in the direction
-        return
-    }
-    # Just move, don't need to ensure anything
-    swaymsg $"move workspace to ($sorted | get $target_index); workspace ($current | get name)"
-}
-
 # Move a window to another workspace
 def "main move-container" [output: int, workspace: string] {
-    let sorted = sorted-displays
-    if $output >= ($sorted | length) {
+    let display = main display $output
+    if $display == null {
         return
     }
     let workspaces = swaymsg -t get_workspaces | from json
-    let target = $workspaces | filter {|w| ($w | get name) == $workspace } | get 0
+    let target = $workspaces | filter {|w| ($w | get name) == $workspace } | get 0?
     if $target == null {
         # Need to create it
-        swaymsg $"workspace ($workspace) output ($sorted | get $output); move container to workspace ($workspace)"
+        swaymsg $"workspace ($workspace) output ($display); move container to workspace ($workspace)"
         return
     }
     # Exists, so just move
@@ -92,7 +85,7 @@ def "main move-container" [output: int, workspace: string] {
 # Swap workspace with another one that may or may not exist. Will keep focus
 # On current one
 # Cannot swap with the current one (doesn't make sense, needs to be able to create a new one)
-def "main swap" [left_index: int, workspace: string, prefix_reserved: string] {
+def "main swap" [output: int, workspace: string] {
     let reserved = "-";
     let workspaces = swaymsg -t get_workspaces | from json
     let current = $workspaces | filter {|w| $w | get focused } | get 0
@@ -101,15 +94,11 @@ def "main swap" [left_index: int, workspace: string, prefix_reserved: string] {
         return
     }
     let target = $workspaces | filter {|w| ($w | get name) == $workspace } | get 0?
-    let sorted = sorted-displays
+    let display = main display $output
     let target_display = if ($target == null) { 
-        if $left_index < -4 {
-            $current | get output
-        } else {
-            $sorted | get $left_index 
-        }
+        $current | get output
     } else {
-        ($target | get output)
+        $display
     }
     let same_display = ($target_display == ($current | get output))
     if ($target == null) {
@@ -139,26 +128,9 @@ def "main swap" [left_index: int, workspace: string, prefix_reserved: string] {
     swaymsg $"workspace ($current | get name); move workspace to ($current | get output) current; rename workspace ($reserved) to ($workspace); workspace ($workspace)"
 }
 
-# Use @WORKSPACE@ in command to specify where to replace
-def "main rundisplay" [left_index: int, name_sub: string, ...command: string] {
-    let sorted = sorted-displays
-    if $left_index >= ($sorted | length) {
-        return
-    }
-    let display = if $left_index < -4 {
-        # Don't care about which display
-        let workspaces = swaymsg -t get_workspaces | from json
-        let current = $workspaces | filter {|w| $w | get focused } | get 0
-        $current | get output
-    } else {
-        $sorted | get $left_index 
-    }
-    let formatted_command = $command | each { 
-        |x| 
-            $x | str replace --all '@WORKSPACE@' $display 
-            | str replace --all '@NAME@' $name_sub
-    }
-    run-external ($formatted_command | get 0) ...($formatted_command | skip 1)
+def "main goto" [output: int, workspace: string] {
+    let display = main display $output
+    swaymsg $"workspace ($workspace) output ($display); workspace ($workspace)"
 }
 
 def "main" [] {
