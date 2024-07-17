@@ -56,7 +56,7 @@ def "main sorted-prio" [] {
 }
 
 def "main init" [] {
-    let outputs = sorted-prio
+    let outputs = main sorted-prio
     mut i = 0;
     for $display in $outputs {
         swaymsg $"workspace ($i)0 output ($display); workspace ($i)0"

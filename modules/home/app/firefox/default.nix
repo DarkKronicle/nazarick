@@ -153,9 +153,26 @@ in
             "extensions.autoDisableScopes" = 0;
             "privacy.resistFingerprinting.pbmode" = true;
             "browser.display.use_system_colors" = false;
-            "privacy.resistFingerprinting.block_mozAddonManager" = false;
+            "privacy.resistFingerprinting.block_mozAddonManager" = false; # Can't install any new extensions if you get here lol
+            "extensions.webextensions.restrictedDomains" = lib.concatStringsSep "," [
+              "accounts-static.cdn.mozilla.net"
+              "accounts.firefox.com"
+              "addons.cdn.mozilla.net"
+              # "addons.mozilla.org" # extensions can't even do anything here
+              "api.accounts.firefox.com"
+              "content.cdn.mozilla.net"
+              "discovery.addons.mozilla.org"
+              "install.mozilla.org"
+              "oauth.accounts.firefox.com"
+              "profile.accounts.firefox.com"
+              # "support.mozilla.org" # I don't think anything is going to try to mess up the support page
+              "sync.services.mozilla.com"
+            ];
+
             "privacy.resistFingerprinting.letterboxing" = true;
             "webgl.disabled" = true;
+
+            "dom.private-attribution.submission.enabled" = false; # Could be cool eventually, but no incentive for websites to actually use this
 
             "middlemouse.paste" = false; # Disable paste on middle mouse button
 

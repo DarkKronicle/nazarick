@@ -71,6 +71,7 @@ in
       swaylock
       swayidle
       swaysome
+      xwaylandvideobridge
       # perl538Packages.Apppapersway # Slightly buggy :/ I'll try this again
 
       mypkgs.inhibit-bridge
@@ -80,20 +81,26 @@ in
       slurp
     ];
 
+    services.kdeconnect = {
+      enable = true;
+      indicator = true;
+      package = pkgs.kdePackages.kdeconnect-kde;
+    };
+
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
       extraPortals = with pkgs; [
-        # kdePackages.xdg-desktop-portal-kde # Doesn't work 
+        kdePackages.xdg-desktop-portal-kde
         xdg-desktop-portal-gtk
         xdg-desktop-portal-wlr
       ];
       config = {
         common = {
           default = [
-            # "kde"
             "gtk"
             "wlr"
+            "kde"
           ];
           "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
         };
