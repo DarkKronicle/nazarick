@@ -51,7 +51,7 @@ def "main move-to-scratchpad" [] {
     let tree = swaymsg -t get_tree | from json
     let focused = tree find $tree {|x| $x | get focused }
     if (($focused | get pid?) != null) {
-        swaymsg 'layout splith; layout tabbed; focus parent; mark --replace scratch; move scratchpad'
+        swaymsg 'splith; layout tabbed; focus parent; mark --replace scratch; move scratchpad'
         # An app, so funny business commence (to ensure that only the window we're focusing gets scratchpadded)
         return
     }
