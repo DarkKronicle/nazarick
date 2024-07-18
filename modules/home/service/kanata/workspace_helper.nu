@@ -20,6 +20,45 @@ def "sorted-displays" [] {
     $x_pos | transpose | get column0
 }
 
+def "tree find" [input, block, columns = [ 'nodes' 'floating_nodes' ]] {
+    if (do $block $input) {
+        return $input
+    } 
+    for column in $columns {
+        for $node in ($input | get $column) {
+            let val = tree find $node $block
+            if ($val != null) {
+                return $val
+            }
+        }
+    }
+    return null
+}
+
+# Fancy scratchpad that enforces tabbed layout
+def "main move-to-scratchpad" [] {
+    # Check if the scratchpad tabbed layout exists
+    let marks = swaymsg -t get_marks
+
+    if "scratch" in $marks {
+        # Just move to scratchpad. Have to show scratchpad first to be added to layout correctly
+        swaymsg "mark --replace tomove; scratchpad show; [con_mark="tomove"] focus; move container to mark scratch; scratchpad show; unmark tomove"
+
+        return
+    }
+    # Does not exist so create layout
+
+    let tree = swaymsg -t get_tree | from json
+    let focused = tree find $tree {|x| $x | get focused }
+    if (($focused | get pid?) != null) {
+        swaymsg 'layout splith; layout tabbed; focus parent; mark --replace scratch; move scratchpad'
+        # An app, so funny business commence (to ensure that only the window we're focusing gets scratchpadded)
+        return
+    }
+    swaymsg 'layout tabbed; focus parent; mark --replace scratch; move scratchpad;'
+    return
+}
+
 def "main display" [order: int] {
     let prio = [ 'HDMI-A-1' 'eDP-1' ]
     mut outputs = sorted-displays
@@ -80,6 +119,7 @@ def "main move-container" [output: int, workspace: string] {
     }
     # Exists, so just move
     swaymsg $"move container to workspace ($workspace)"
+    return null
 }
 
 # Swap workspace with another one that may or may not exist. Will keep focus
@@ -95,8 +135,8 @@ def "main swap" [output: int, workspace: string] {
     }
     let target = $workspaces | filter {|w| ($w | get name) == $workspace } | get 0?
     let display = main display $output
-    let target_display = if ($target == null) { 
-        $current | get output
+    let target_display = if ($target != null) { 
+        $target | get output
     } else {
         $display
     }
@@ -126,11 +166,13 @@ def "main swap" [output: int, workspace: string] {
         swaymsg $"rename workspace ($workspace) to ($current | get name)"
     }
     swaymsg $"workspace ($current | get name); move workspace to ($current | get output) current; rename workspace ($reserved) to ($workspace); workspace ($workspace)"
+    return null
 }
 
 def "main goto" [output: int, workspace: string] {
     let display = main display $output
     swaymsg $"workspace ($workspace) output ($display); workspace ($workspace)"
+    return null
 }
 
 def "main" [] {

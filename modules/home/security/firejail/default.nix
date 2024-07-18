@@ -33,6 +33,8 @@ in
             "--dbus-user.talk=org.kde.kuiserver"
             "--dbus-user.talk=org.freedesktop.portal.Desktop"
             "--dbus-user.talk=org.freedesktop.portal.Desktop"
+            "--whitelist=/run/current-system/sw/bin/swaymsg" # I can't get this to be a wildcard, so just this will work
+            ''--whitelist=''${RUNUSER}/sway-ipc*''
           ];
         };
         # HD2 don't work :(

@@ -53,7 +53,9 @@ set searchurls.j https://jisho.org/search/%s
 set searchurls.gh https://github.com/search?q=%s
 
 " https://github.com/simonwjackson/mountainous/blob/c5e1a055a8ace26e5f7a7bbd42f3260852b92671/modules/home/firefox/tridactyl/default.nix#L38
-alias mpvvideo composite get_current_url | js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet(`mpv ${url}`))
+" this will send through sway so that GPU acceleration isn't blocked bc of
+" firejail
+alias mpvvideo composite get_current_url | js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet(`swaymsg exec mpv ${url}`))
 
 bind mv mpvvideo 
 bind 'mv hint -W mpvvideo

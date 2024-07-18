@@ -1,7 +1,7 @@
 (defcfg
   process-unmapped-keys yes
 danger-enable-cmd yes
-  ;; log-layer-changes no
+  log-layer-changes no
 
   linux-dev ("/dev/input/by-id/usb-Corsair_CORSAIR_K65_RGB_MINI_60__Mechanical_Gaming_Keyboard_F5001901605DE321AA3518670D028020-event-kbd" "/dev/input/by-path/platform-i8042-serio-0-event-kbd")
   linux-continue-if-no-devs-found yes
@@ -445,17 +445,20 @@ danger-enable-cmd yes
 )
 
 (defchords sway-quick 100
-    ;; 1 2 3 4
-    (1 2    ) (cmd swaymsg kill)
-    (1   3  ) (cmd swaymsg exec swaylock)
-    (1 2 3  ) (cmd swaymsg exec wlogout)
-    (  2    ) (t! meta1-fork (cmd swaymsg splith) (cmd swaymsg splitv))
-    (    3  ) (t! meta1-fork (cmd swaymsg focus child) (cmd swaymsg focus parent))
-    (      4) (cmd swaymsg layout toggle split)
-    (    3 4) (cmd swaymsg layout tabbed)
-    (  2 3 4) (cmd swaymsg layout stacking)
-    (1      ) (switch
-      ((input virtual sw-meta1)) (cmd swaymsg move scratchpad) break
+    ;; 0 1 2 3 4
+    (0        ) (cmd swaymsg exec tofi_app)
+    (  1 2    ) (cmd swaymsg kill)
+    (  1   3  ) (cmd swaymsg exec swaylock)
+    (  1 2 3  ) (cmd swaymsg exec wlogout)
+    (    2    ) (t! meta1-fork (cmd swaymsg splith) (cmd swaymsg splitv))
+    (      3  ) (t! meta1-fork (cmd swaymsg focus child) (cmd swaymsg focus parent))
+    (        4) (cmd swaymsg layout toggle split)
+    (      3 4) (cmd swaymsg layout tabbed)
+    (    2 3 4) (cmd swaymsg layout stacking)
+    (    2   4) (cmd swaymsg fullscreen toggle)
+    (  1 2 3 4) (cmd swaymsg floating toggle)
+    (  1      ) (switch
+      ((input virtual sw-meta1)) (cmd workspace_helper move-to-scratchpad) break
       () (cmd swaymsg scratchpad show) break
     )
 )
@@ -471,6 +474,7 @@ danger-enable-cmd yes
     ws3 (chord workspace-swap 3)
     ws4 (chord workspace-swap 4)
 
+    qs0 (chord sway-quick 0)
     qs1 (chord sway-quick 1)
     qs2 (chord sway-quick 2)
     qs3 (chord sway-quick 3)
@@ -488,7 +492,7 @@ danger-enable-cmd yes
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
 	_    XX  XX  XX  XX  XX  XX  @sw1  @sw2  @sw3  @sw4  XX  XX  XX
 	_    XX  XX (multi (on-press press-virtualkey dsway) (on-release release-virtualkey dsway)) XX  XX XX @sw5 @sw6 @sw7 @sw8  XX  XX
-	_    XX  XX  XX  XX  XX  XX  @qs1  @qs2  @qs3 @qs4  XX
+	_    XX  XX  XX  XX  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX
 	_    _   _      _    _      _    _
 )
 

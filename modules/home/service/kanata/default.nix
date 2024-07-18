@@ -36,9 +36,14 @@ let
       '';
     };
 
+  tofiApp = pkgs.writeScriptBin "tofi_app" ''
+    pkill tofi || nu -c "tofi-drun | swaymsg exec -- ...(\$in | str trim | split row ' ')"
+  '';
+
   packages = [
     pkgs.swayfx
     workspaceHelper
+    tofiApp
   ];
 
   mkKanataService =
@@ -74,6 +79,7 @@ in
     home.packages = with mypkgs; [
       kanata
       workspaceHelper
+      tofiApp
     ];
 
     systemd.user.services = {

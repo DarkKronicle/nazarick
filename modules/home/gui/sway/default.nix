@@ -16,9 +16,6 @@ let
       src = ./sway.conf;
       substitutions = [
         "--replace-fail"
-        "##LAUNCHER##"
-        launcher
-        "--replace-fail"
         "##LOCKCMD##"
         "swaylock -f -c 000000"
       ];
@@ -55,6 +52,7 @@ in
       systemd.enable = true;
       config = {
         menu = launcher;
+        modifier = "Mod4"; # Right now only used for floating_modifier
         terminal = "kitty";
         keybindings = { }; # Remove default
         bars = [ ]; # Remove default
