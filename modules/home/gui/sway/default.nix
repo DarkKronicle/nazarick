@@ -99,6 +99,7 @@ in
         xdg-desktop-portal-gtk
         xdg-desktop-portal-wlr
       ];
+      configPackages = with pkgs; [ gnome-keyring ];
       config = {
         common = {
           default = [

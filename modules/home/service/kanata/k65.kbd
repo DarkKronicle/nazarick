@@ -93,7 +93,7 @@ danger-enable-cmd yes
         fork 
             (multi 
                 ;; on press
-                (on-press tap-virtualkey swayseq-key) ;; initate sequene
+                (on-press tap-virtualkey swayseq-key) ;; initate sequence
 
                 ;; on release (remove all sway things)
                 (on-release tap-virtualkey stopseq) 
@@ -156,9 +156,9 @@ danger-enable-cmd yes
 (deflayer extend
 	_    f1  f2  f3  f4  f5  f6  f7  f8  f9  f10  f11 f12 _
 	_    @ch1 @ch2 @ch3  _  _  _  @md1  @md2 @md3  _  _  _  _
-	_    @ch4 @ch5 @ch6  _  _  lft  down  up  rght  _  _  _
+	_    @ch4 @ch5 @ch6  (layer-while-held sway)  _  lft  down  up  rght  _  _  _
 	_    _ _ @cpy @pst  _ _  _ _ _  _  _
-	_    _   @aly      _    _      _    _
+	_    _   @aly      _    _      _    (on-press press-virtualkey dummy-switch)
 )
 
 (deflayer layers
@@ -180,12 +180,21 @@ danger-enable-cmd yes
     d nop8
 )
 
+(defvirtualkeys
+    dummy-switch (layer-while-held dummy)
+    dummy-switch-stop (on-press release-virtualkey dummy-switch)
+)
+
+(defseq
+    dummy-switch-stop (nop2 nop3 nop4 nop2 nop4)
+)
+
 (deflayer dummy
 	@d   @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d
 	@d   @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d
-	_   @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d
-	@d   @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d
-	@d   @d   @d      @d    @d      @d    @d
+	@d   @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  nop4
+	@d   @d  @d  @d  @d  @d  @d  @d  @d  @d  @d  nop3
+	(sequence 3000 hidden-suppressed)   @d   @d      @d    @d      @d nop2
 )
 
 ;; really nice media controls right on the right hand
@@ -197,6 +206,7 @@ danger-enable-cmd yes
   (  2  ) pp 
   (    3) volu
   (1    ) voldwn
+  (1 2 3) mute
 )
 
 ;; 1 2 3
@@ -261,12 +271,10 @@ danger-enable-cmd yes
 
     ;; these are nop keys that let us keep track of if these keys are in an activate-able state.
     ;; This is solely used for roll check.
-    ss $nop-reserved
     sd $nop-reserved
 
     ;; Simple roll check. f + key starts. After $roll-grace, it checks if something else was pushed.
     check-roll (switch 
-        ((input virtual ss)) (multi (macro f s) (on-press release-virtualkey ss)) break
         ((input virtual sd)) (multi (macro f d) (on-press release-virtualkey sd)) break
         () XX break
     )
@@ -332,22 +340,10 @@ danger-enable-cmd yes
     ;; There should not be any keybinds for just jkl incase you forget you're not in move mode
     ;; 1 2 3 4
     ;; 5 6 7 8
-    ;; a b c d
     (  1 2 3 4) a
     (  5 6 7 8) b
-    (  a b c d) c
-    (  a b    ) (t! meta1-fork
-        (cmd swaymsg exec wlogout)
-        (cmd swaymsg exec swaylock)
-    )
-    (  a      ) (cmd swaymsg kill)
-    ( 
-        6
-      a
-    ) (switch
-      ((input virtual sw-meta1)) (cmd swaymsg move scratchpad) break
-      () (cmd swaymsg scratchpad show) break
-    )
+    (  5      ) (cmd swaymsg exec kitty)
+    (  5 6    ) (cmd swaymsg exec firefox)
 )
 
 (defalias
@@ -359,10 +355,6 @@ danger-enable-cmd yes
     sw6 (chord sway 6)
     sw7 (chord sway 7)
     sw8 (chord sway 8)
-    swa (chord sway a)
-    swb (chord sway b)
-    swc (chord sway c)
-    swd (chord sway d)
 )
 
 ;; Workspace and display management
@@ -371,6 +363,13 @@ danger-enable-cmd yes
     (switch 
         ((input virtual sw-meta1)) (cmd workspace_helper goto $o1 $w1) break
         () (cmd workspace_helper goto $o2 $w2) break
+    )
+)
+
+(deftemplate ws-move (o1 w1 o2 w2) 
+    (switch 
+        ((input virtual sw-meta1)) (cmd workspace_helper move-container $o1 $w1) break
+        () (cmd workspace_helper move-container $o2 $w2) break
     )
 )
 
@@ -407,6 +406,25 @@ danger-enable-cmd yes
     (    1 2 3 4) (t! ws-goto 1 1E 0 0E)
 )
 
+(defchords workspace-move 100
+    ;; 1 2 3 4
+    (    1      ) (t! ws-move 1 10 0 00)
+    (      2    ) (t! ws-move 1 11 0 01)
+    (        3  ) (t! ws-move 1 12 0 02)
+    (          4) (t! ws-move 1 13 0 03)
+    (    1 2    ) (t! ws-move 1 14 0 04)
+    (      2 3  ) (t! ws-move 1 15 0 05)
+    (        3 4) (t! ws-move 1 16 0 06)
+    (    1   3  ) (t! ws-move 1 17 0 07)
+    (      2   4) (t! ws-move 1 18 0 08)
+    (    1     4) (t! ws-move 1 19 0 09)
+    (    1 2 3  ) (t! ws-move 1 1A 0 0A)
+    (    1   3 4) (t! ws-move 1 1B 0 0B)
+    (    1 2   4) (t! ws-move 1 1C 0 0C)
+    (      2 3 4) (t! ws-move 1 1D 0 0D)
+    (    1 2 3 4) (t! ws-move 1 1E 0 0E)
+)
+
 (defchords workspace-swap 100
     ;; 1 2 3 4
     (    1      ) (t! ws-swap 1 10 0 00)
@@ -431,7 +449,11 @@ danger-enable-cmd yes
     (1 2    ) (cmd swaymsg kill)
     (1   3  ) (cmd swaymsg exec swaylock)
     (1 2 3  ) (cmd swaymsg exec wlogout)
-    (    3 4) a
+    (  2    ) (t! meta1-fork (cmd swaymsg splith) (cmd swaymsg splitv))
+    (    3  ) (t! meta1-fork (cmd swaymsg focus child) (cmd swaymsg focus parent))
+    (      4) (cmd swaymsg layout toggle split)
+    (    3 4) (cmd swaymsg layout tabbed)
+    (  2 3 4) (cmd swaymsg layout stacking)
     (1      ) (switch
       ((input virtual sw-meta1)) (cmd swaymsg move scratchpad) break
       () (cmd swaymsg scratchpad show) break
@@ -453,6 +475,11 @@ danger-enable-cmd yes
     qs2 (chord sway-quick 2)
     qs3 (chord sway-quick 3)
     qs4 (chord sway-quick 4)
+
+    wm1 (chord workspace-move 1)
+    wm2 (chord workspace-move 2)
+    wm3 (chord workspace-move 3)
+    wm4 (chord workspace-move 4)
 )
 
 ;; This is main sway layer. Manual work needs to be done to add keys to activation phase
@@ -460,8 +487,8 @@ danger-enable-cmd yes
 (deflayer sway
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
 	_    XX  XX  XX  XX  XX  XX  @sw1  @sw2  @sw3  @sw4  XX  XX  XX
-	_    XX  XX (layer-while-held sway-d) XX  XX XX @sw5 @sw6 @sw7 @sw8  XX  XX
-	_    XX  XX  XX  XX  XX  XX  @swa  @swb  @swc @swd  XX
+	_    XX  XX (multi (on-press press-virtualkey dsway) (on-release release-virtualkey dsway)) XX  XX XX @sw5 @sw6 @sw7 @sw8  XX  XX
+	_    XX  XX  XX  XX  XX  XX  @qs1  @qs2  @qs3 @qs4  XX
 	_    _   _      _    _      _    _
 )
 
@@ -470,7 +497,7 @@ danger-enable-cmd yes
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
 	_    _  @dw  _  _  _  _  @w1 @w2 @w3 @w4  _  _  _
 	_    _  @ds  _  _  _  @sw-lft @sw-down @sw-up @sw-rght @sw-meta  _  _
-	_    _  _  _  _  _  _  @qs1  @qs2  @qs3  @qs4  _
+	_    _  _  _  _  _  _  _  _  _  _  _
 	_    _   _      _    _      _    _
 )
 
@@ -496,7 +523,7 @@ danger-enable-cmd yes
 
 (deflayer sway-dw
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
-	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  @wm1  @wm2  @wm3  @wm4  _  _  _
 	_    _  _  _  _  _  (t! resize shrink width $nsize $bsize) (t! resize shrink height $nsize $bsize) (t! resize grow height $nsize $bsize) (t! resize grow width $nsize $bsize)  _  _  _
 	_    _  _  _  _  _  _  _  _  _  _  _
 	_    _   _      _    _      _    _
