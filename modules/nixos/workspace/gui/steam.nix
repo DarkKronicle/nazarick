@@ -28,18 +28,19 @@ in
     # Good defaults
     programs.gamescope = {
       enable = true;
+      capSysNice = true;
       # Launch games like:
       # gamescope -- gamemoderun %command%
-      args = [
-        "--steam"
-        "--expose-wayland"
-        # "--rt"
-        "-W 1920"
-        "-H 1080"
-        "--force-grab-cursor"
-        "--grab"
-        "--fullscreen"
-      ];
+      # args = [
+      # "--steam"
+      # "--expose-wayland"
+      # "--rt"
+      # "-W 2560"
+      # "-H 1440"
+      # "--force-grab-cursor"
+      # "--grab"
+      # "--fullscreen"
+      # ];
     };
     # This works with xbox controllers. If it can't connect (connection/disconnect cycles...)
     # You can *try* to update the firmware, or go as far as to connect with it on Windows with the

@@ -342,6 +342,7 @@ danger-enable-cmd yes
     ;; 5 6 7 8
     (  1 2 3 4) a
     (  5 6 7 8) b
+    (        8) (multi (on-press press-virtualkey sw-meta1) (on-release release-virtualkey sw-meta1))
     (  5      ) (cmd swaymsg exec kitty)
     (  5 6    ) (cmd swaymsg exec firefox)
 )
@@ -389,64 +390,65 @@ danger-enable-cmd yes
 ;; for a swaymergency
 (defchords workspace 100
     ;; 1 2 3 4
-    (    1      ) (t! ws-goto 1 10 0 00)
-    (      2    ) (t! ws-goto 1 11 0 01)
-    (        3  ) (t! ws-goto 1 12 0 02)
-    (          4) (t! ws-goto 1 13 0 03)
-    (    1 2    ) (t! ws-goto 1 14 0 04)
-    (      2 3  ) (t! ws-goto 1 15 0 05)
-    (        3 4) (t! ws-goto 1 16 0 06)
-    (    1   3  ) (t! ws-goto 1 17 0 07)
-    (      2   4) (t! ws-goto 1 18 0 08)
+    (    1      ) (t! ws-goto 1 11 0 01)
+    (      2    ) (t! ws-goto 1 12 0 02)
+    (    1 2    ) (t! ws-goto 1 13 0 03)
+    (        3  ) (t! ws-goto 1 14 0 04)
+    (    1   3  ) (t! ws-goto 1 15 0 05)
+    (      2 3  ) (t! ws-goto 1 16 0 06)
+    (    1 2 3  ) (t! ws-goto 1 17 0 07)
+    (          4) (t! ws-goto 1 18 0 08)
     (    1     4) (t! ws-goto 1 19 0 09)
-    (    1 2 3  ) (t! ws-goto 1 1A 0 0A)
-    (    1   3 4) (t! ws-goto 1 1B 0 0B)
-    (    1 2   4) (t! ws-goto 1 1C 0 0C)
-    (      2 3 4) (t! ws-goto 1 1D 0 0D)
-    (    1 2 3 4) (t! ws-goto 1 1E 0 0E)
+    (      2   4) (t! ws-goto 1 1A 0 0A)
+    (    1 2   4) (t! ws-goto 1 1B 0 0B)
+    (        3 4) (t! ws-goto 1 1C 0 0C)
+    (    1   3 4) (t! ws-goto 1 1D 0 0D)
+    (      2 3 4) (t! ws-goto 1 1E 0 0E)
+    (    1 2 3 4) (t! ws-goto 1 1F 0 0F)
 )
 
 (defchords workspace-move 100
     ;; 1 2 3 4
-    (    1      ) (t! ws-move 1 10 0 00)
-    (      2    ) (t! ws-move 1 11 0 01)
-    (        3  ) (t! ws-move 1 12 0 02)
-    (          4) (t! ws-move 1 13 0 03)
-    (    1 2    ) (t! ws-move 1 14 0 04)
-    (      2 3  ) (t! ws-move 1 15 0 05)
-    (        3 4) (t! ws-move 1 16 0 06)
-    (    1   3  ) (t! ws-move 1 17 0 07)
-    (      2   4) (t! ws-move 1 18 0 08)
+    (    1      ) (t! ws-move 1 11 0 01)
+    (      2    ) (t! ws-move 1 12 0 02)
+    (    1 2    ) (t! ws-move 1 13 0 03)
+    (        3  ) (t! ws-move 1 14 0 04)
+    (    1   3  ) (t! ws-move 1 15 0 05)
+    (      2 3  ) (t! ws-move 1 16 0 06)
+    (    1 2 3  ) (t! ws-move 1 17 0 07)
+    (          4) (t! ws-move 1 18 0 08)
     (    1     4) (t! ws-move 1 19 0 09)
-    (    1 2 3  ) (t! ws-move 1 1A 0 0A)
-    (    1   3 4) (t! ws-move 1 1B 0 0B)
-    (    1 2   4) (t! ws-move 1 1C 0 0C)
-    (      2 3 4) (t! ws-move 1 1D 0 0D)
-    (    1 2 3 4) (t! ws-move 1 1E 0 0E)
+    (      2   4) (t! ws-move 1 1A 0 0A)
+    (    1 2   4) (t! ws-move 1 1B 0 0B)
+    (        3 4) (t! ws-move 1 1C 0 0C)
+    (    1   3 4) (t! ws-move 1 1D 0 0D)
+    (      2 3 4) (t! ws-move 1 1E 0 0E)
+    (    1 2 3 4) (t! ws-move 1 1F 0 0F)
 )
 
 (defchords workspace-swap 100
     ;; 1 2 3 4
-    (    1      ) (t! ws-swap 1 10 0 00)
-    (      2    ) (t! ws-swap 1 11 0 01)
-    (        3  ) (t! ws-swap 1 12 0 02)
-    (          4) (t! ws-swap 1 13 0 03)
-    (    1 2    ) (t! ws-swap 1 14 0 04)
-    (      2 3  ) (t! ws-swap 1 15 0 05)
-    (        3 4) (t! ws-swap 1 16 0 06)
-    (    1   3  ) (t! ws-swap 1 17 0 07)
-    (      2   4) (t! ws-swap 1 18 0 08)
+    (    1      ) (t! ws-swap 1 11 0 01)
+    (      2    ) (t! ws-swap 1 12 0 02)
+    (    1 2    ) (t! ws-swap 1 13 0 03)
+    (        3  ) (t! ws-swap 1 14 0 04)
+    (    1   3  ) (t! ws-swap 1 15 0 05)
+    (      2 3  ) (t! ws-swap 1 16 0 06)
+    (    1 2 3  ) (t! ws-swap 1 17 0 07)
+    (          4) (t! ws-swap 1 18 0 08)
     (    1     4) (t! ws-swap 1 19 0 09)
-    (    1 2 3  ) (t! ws-swap 1 1A 0 0A)
-    (    1   3 4) (t! ws-swap 1 1B 0 0B)
-    (    1 2   4) (t! ws-swap 1 1C 0 0C)
-    (      2 3 4) (t! ws-swap 1 1D 0 0D)
-    (    1 2 3 4) (t! ws-swap 1 1E 0 0E)
+    (      2   4) (t! ws-swap 1 1A 0 0A)
+    (    1 2   4) (t! ws-swap 1 1B 0 0B)
+    (        3 4) (t! ws-swap 1 1C 0 0C)
+    (    1   3 4) (t! ws-swap 1 1D 0 0D)
+    (      2 3 4) (t! ws-swap 1 1E 0 0E)
+    (    1 2 3 4) (t! ws-swap 1 1F 0 0F)
 )
 
 (defchords sway-quick 100
     ;; 0 1 2 3 4
     (0        ) (cmd swaymsg exec tofi_app)
+    (0 1      ) (cmd swaymsg workspace back_and_forth)
     (  1 2    ) (cmd swaymsg kill)
     (  1   3  ) (cmd swaymsg exec swaylock)
     (  1 2 3  ) (cmd swaymsg exec wlogout)
@@ -456,7 +458,7 @@ danger-enable-cmd yes
     (      3 4) (cmd swaymsg layout tabbed)
     (    2 3 4) (cmd swaymsg layout stacking)
     (    2   4) (cmd swaymsg fullscreen toggle)
-    (  1 2 3 4) (cmd swaymsg floating toggle)
+    (0   2    ) (t! meta1-fork (cmd swaymsg toggle floating) (cmd swaymsg focus mode_toggle))
     (  1      ) (switch
       ((input virtual sw-meta1)) (cmd workspace_helper move-to-scratchpad) break
       () (cmd swaymsg scratchpad show) break
@@ -491,7 +493,7 @@ danger-enable-cmd yes
 (deflayer sway
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
 	_    XX  XX  XX  XX  XX  XX  @sw1  @sw2  @sw3  @sw4  XX  XX  XX
-	_    XX  XX (multi (on-press press-virtualkey dsway) (on-release release-virtualkey dsway)) XX  XX XX @sw5 @sw6 @sw7 @sw8  XX  XX
+	_    XX  XX (multi (on-press press-virtualkey dsway) (on-release release-virtualkey dsway)) XX  XX XX @sw5 @sw6 @sw7 @sw8  XX  (cmd swaymsg exec kitty)
 	_    XX  XX  XX  XX  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX
 	_    _   _      _    _      _    _
 )
