@@ -40,13 +40,16 @@ in
         tab_title_max_length = 20;
         listen_on = "unix:/tmp/mykitty";
 
-        background_opacity = "0.85";
+        background_opacity = "0.75";
         cursor_blink_interval = 0;
 
         # font_size = "11.3";
 
         background = "#16161D";
         enable_audio_bell = false;
+
+        allow_remote_control = true;
+        dynamic_background_opacity = true;
       };
       keybindings = {
         "alt+l" = "next_tab";

@@ -11,6 +11,7 @@ let
 
   swwwScriptContent = # nu
     ''
+      #!/usr/bin/env nu
       let path = '${cfg.wallpaperPath}'
 
       let displays = ${pkgs.swww}/bin/swww query | split row (char newline) | split column ':' | get column1
@@ -40,7 +41,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.swww ];
+    home.packages = [
+      pkgs.swww
+      swwwScript
+    ];
 
     systemd.user.services.swww-daemon = {
       Install = {
