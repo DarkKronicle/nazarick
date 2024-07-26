@@ -55,6 +55,7 @@ in
             showUsersByDefault = false;
             showSessionsByDefault = true;
             backgroundFill = "#000000";
+            cursorBlinkAnimation = false;
           };
         };
       })

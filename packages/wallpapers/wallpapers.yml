@@ -580,3 +580,23 @@
     url: https://w.wallhaven.cc/full/ex/wallhaven-exzrmw.png
     name: cyberpunk_rows
     sha256: 0wfk3r6nsp8ajac9lwxpkw3zp52sah4z9l9cbjil4p92nwf6zk0k
+- src:
+    url: https://images2.alphacoders.com/694/thumb-1920-694069.png
+    name: cowboy_background
+    sha256: 14gxz6dizxbymqlk98ry4r11nyzqpxyqfjy0i089jdykai0r3zyl
+- src:
+    url: https://images3.alphacoders.com/739/thumb-1920-739456.png
+    name: mob_lines
+    sha256: 0nqpc4wslqzb93pcnsqpax9m4vswqaa745a3lpq8z1c5rkfadhfl
+- src:
+    url: https://picfiles.alphacoders.com/245/245628.jpg
+    name: mob_stuff
+    sha256: 0k5y0f9a6vi4zby67m2w8ls8js8jwqv3hnr94zm352vs45asl2m2
+- src:
+    url: https://picfiles.alphacoders.com/245/245629.jpg
+    name: mob_collage
+    sha256: 1ymq8x3cy89hk6nqacpgvpb77h07xyx4lv8c24irldfqfj8l0c3x
+- src:
+    url: https://images8.alphacoders.com/754/thumb-1920-754327.png
+    name: mob_scray_lines
+    sha256: 0fmydywy5mxm5p0a2ydsb2afjzclbxf0xbknh7w4gqfgzybh6ydd

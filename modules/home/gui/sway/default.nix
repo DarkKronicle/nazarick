@@ -14,25 +14,11 @@ let
   extraLines = builtins.readFile (
     pkgs.substitute {
       src = ./sway.conf;
-      substitutions = [
-        "--replace-fail"
-        "##LOCKCMD##"
-        "swaylock -f -c 000000"
-      ];
+      substitutions = [ ];
     }
   );
 
-  toml = pkgs.formats.toml { };
-
-  wallpaperConf = toml.generate "wpaperd.toml" {
-    # Can have specific displays... DP-1...
-    default = {
-      path = "${mypkgs.system-wallpapers}/share/wallpapers/system-wallpapers";
-      duration = "30m";
-      sorting = "random";
-      mode = "center";
-    };
-  };
+  wallpaperPath = "${mypkgs.system-wallpapers}/share/wallpapers/system-wallpapers";
 in
 {
 
@@ -43,6 +29,11 @@ in
   config = lib.mkIf cfg.enable {
 
     # services.gnome-keyring.enable = true;
+
+    nazarick.gui.swww = {
+      enable = true;
+      wallpaperPath = wallpaperPath;
+    };
 
     wayland.windowManager.sway = {
       enable = true;
@@ -59,14 +50,27 @@ in
       };
     };
 
+    programs.swaylock = {
+      enable = true;
+      package = pkgs.swaylock-effects;
+      settings = {
+        color = "000000";
+        fade-in = 0.2;
+        clock = true;
+        indicator = true;
+        text-clear = "(×_×;）";
+        text-wrong = "（/＞□＜）/亠亠";
+        text-ver = "｢(ﾟﾍﾟ)";
+        daemonize = true;
+      };
+    };
+
     home.packages = with pkgs; [
       kdePackages.dolphin
       lxqt.pavucontrol-qt
-      wpaperd
       swayosd # Graphical volume controls
       blueman
       nwg-displays # ~/.config/sway/outputs
-      swaylock
       swayidle
       swaysome
       xwaylandvideobridge
@@ -108,11 +112,6 @@ in
           "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
         };
       };
-    };
-
-    xdg.configFile."wpaperd/config.toml" = {
-      enable = true;
-      source = wallpaperConf;
     };
 
     xdg.configFile."sway/config.d/swayosd.conf" = {

@@ -17,6 +17,8 @@ in
 
   config = lib.mkIf cfg.enable {
 
+    home.packages = with pkgs; [ sass ];
+
     programs.ags = {
       enable = true;
       extraPackages = with pkgs; [
@@ -24,6 +26,7 @@ in
         gnome.gnome-bluetooth
         gvfs
         libdbusmenu-gtk3
+        sass
       ];
     };
   };

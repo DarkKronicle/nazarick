@@ -20,7 +20,6 @@ in
       forEachUser (username: {
         ${username}.nazarick = {
           gui.sway.enable = true;
-          gui.waybar.enable = true;
           gui.ags.enable = true;
           gui.qt.enable = true;
           gui.plasma.enable = lib.mkForce false;

@@ -31,6 +31,7 @@ in
         noto-fonts-cjk-serif
         roboto
         fraunces
+        material-symbols
         mypkgs.operator-caska
       ];
       fontconfig = {
