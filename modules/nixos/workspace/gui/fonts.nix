@@ -22,7 +22,12 @@ in
     environment.systemPackages = (with mypkgs; [ operator-caska ]) ++ (with pkgs; [ font-manager ]);
     fonts = {
       packages = with pkgs; [
-        (nerdfonts.override { fonts = [ "CascadiaCode" ]; })
+        (nerdfonts.override {
+          fonts = [
+            "CascadiaCode"
+            "IosevkaTerm"
+          ];
+        })
         inter
         noto-fonts
         noto-fonts-cjk
@@ -32,6 +37,9 @@ in
         roboto
         fraunces
         material-symbols
+        recursive
+        vistafonts # Windows stuff
+        twitter-color-emoji
         mypkgs.operator-caska
       ];
       fontconfig = {

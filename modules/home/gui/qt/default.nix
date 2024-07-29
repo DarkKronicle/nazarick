@@ -8,7 +8,7 @@
 let
   cfg = config.nazarick.gui.qt;
 
-  cattpuccinQtct = pkgs.fetchFromGitHub {
+  catpuccinQtct = pkgs.fetchFromGitHub {
     owner = "catppuccin";
     repo = "qt5ct";
     rev = "89ee948e72386b816c7dad72099855fb0d46d41e";
@@ -20,7 +20,6 @@ in
   options.nazarick.gui.qt = {
     enable = lib.mkEnableOption "qt";
   };
-
   config = lib.mkIf cfg.enable {
 
     # INFO: This will probably *not* set your system level environment variables, so make sure to do system stuff.
@@ -84,14 +83,27 @@ in
     # This has to be inside this directory for some reason (can't link from wherever)
     # TODO: Actually maybe not
 
+    # Quick and dirty way to get colors to apply for everything (including you, kdeconnect)
+    # MVP this random forum post https://forum.endeavouros.com/t/getting-kdeconnect-to-use-kvantum-theme-outside-of-plasma/57717
+
+    xdg.configFile."kdeglobals" = {
+      enable = true;
+      source = "${
+        pkgs.catppuccin-kde.override {
+          flavour = [ "mocha" ];
+          accents = [ "mauve" ];
+        }
+      }/share/color-schemes/CatppuccinMochaMauve.colors";
+    };
+
     xdg.configFile."qt5ct/colors/Catppuccin-Mocha.conf" = {
       enable = true;
-      source = "${cattpuccinQtct}/themes/Catppuccin-Mocha.conf";
+      source = "${catpuccinQtct}/themes/Catppuccin-Mocha.conf";
     };
 
     xdg.configFile."qt6ct/colors/Catppuccin-Mocha.conf" = {
       enable = true;
-      source = "${cattpuccinQtct}/themes/Catppuccin-Mocha.conf";
+      source = "${catpuccinQtct}/themes/Catppuccin-Mocha.conf";
     };
 
     xdg.configFile."qt5ct/qt5ct.conf" = {

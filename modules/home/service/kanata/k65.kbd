@@ -458,7 +458,7 @@ danger-enable-cmd yes
     (      3 4) (cmd swaymsg layout tabbed)
     (    2 3 4) (cmd swaymsg layout stacking)
     (    2   4) (cmd swaymsg fullscreen toggle)
-    (0   2    ) (t! meta1-fork (cmd swaymsg toggle floating) (cmd swaymsg focus mode_toggle))
+    (0   2    ) (t! meta1-fork (cmd swaymsg floating toggle) (cmd swaymsg focus mode_toggle))
     (  1      ) (switch
       ((input virtual sw-meta1)) (cmd workspace_helper move-to-scratchpad) break
       () (cmd swaymsg scratchpad show) break

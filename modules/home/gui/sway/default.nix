@@ -67,6 +67,8 @@ in
 
     home.packages = with pkgs; [
       kdePackages.dolphin
+      kdePackages.qqc2-desktop-style # https://discuss.kde.org/t/broken-kde-connect-theme/18451/5
+      kdePackages.plasma-integration
       lxqt.pavucontrol-qt
       swayosd # Graphical volume controls
       blueman
@@ -82,6 +84,24 @@ in
       grim
       slurp
     ];
+
+    services.gammastep = {
+      enable = true;
+      # This is not dusk/dawn, just the time I like for this
+      dawnTime = "21:30-23:00";
+      duskTime = "5:00-6:00";
+
+      temperature = {
+        day = 6500;
+        night = 4500;
+      };
+
+      settings = {
+        fade = 1;
+        brightness-day = 1.0;
+        brightness-night = 0.7;
+      };
+    };
 
     services.kdeconnect = {
       enable = true;
@@ -124,12 +144,5 @@ in
       source = ./config.d/swaysome.conf;
     };
 
-    services.dunst = {
-      enable = true;
-      iconTheme = {
-        name = "Fluent-dark";
-        package = pkgs.fluent-icon-theme;
-      };
-    };
   };
 }

@@ -600,3 +600,45 @@
     url: https://images8.alphacoders.com/754/thumb-1920-754327.png
     name: mob_scray_lines
     sha256: 0fmydywy5mxm5p0a2ydsb2afjzclbxf0xbknh7w4gqfgzybh6ydd
+- src:
+    url: https://w.wallhaven.cc/full/yx/wallhaven-yxve2x.jpg
+    name: windwaker_dusk
+    sha256: 1wvg1mqs391wrvrd2vxwxv11lwz2fq4pmlgmz2p237k456v4gwxz
+- src:
+    url: https://w.wallhaven.cc/full/57/wallhaven-577og5.jpg
+    name: hateno.jpg
+    sha256: 0s85213aymlazhg6si5157n26piasz6fh7qixswv3r6w3lrf3mdc
+  themes:
+  - mocha
+- src:
+    url: https://w.wallhaven.cc/full/o5/wallhaven-o52l8m.jpg
+    name: majoras_winter
+    sha256: 0qxisw5qy68c7w2dm5lijbl6q5fzgsd79bzbwr7c86gyhkyycglp
+- src:
+    url: https://w.wallhaven.cc/full/gp/wallhaven-gp29gl.jpg
+    name: mastersword
+    sha256: 0f23r1pzwfrf3zzdsi4ikqw91y51rb3qc4ijs5kn9pc3yhrhm7yi
+- src:
+    url: https://w.wallhaven.cc/full/jx/wallhaven-jxvk7q.jpg
+    name: kakariko
+    sha256: 0p8nl3y6fk9va2z7dynn1isprba7wbalp52kkpamp4gdpq6n05z4
+- src:
+    url: https://w.wallhaven.cc/full/y8/wallhaven-y88oxg.jpg
+    name: link_forest
+    sha256: 0vb4gspwx9w2z5s919ix6ffkk6vl8n9xwa7fa53ikp4wj18np5pr
+- src:
+    url: https://w.wallhaven.cc/full/5d/wallhaven-5dodx5.png
+    name: zelda_link_hugging
+    sha256: 01nh00f5f36camc12q43qv8kskg3q9pwqxjhx6avv0g65inqgkp1
+- src:
+    url: https://w.wallhaven.cc/full/xl/wallhaven-xllvgl.jpg
+    name: shaltear_walking
+    sha256: 0pi3j3xff8swi80asmiw4571i09v8n009zshmy5dj7mz4pvfr4j8
+  tags:
+  - weaboo
+- src:
+    url: https://w.wallhaven.cc/full/o3/wallhaven-o3rv7m.png
+    name: shaltear_crazy
+    sha256: 1dp91c3rc2ad1y9naq1p799295sbryd97lg3smjxy3fx6xq7hykg
+  tags:
+  - weaboo
