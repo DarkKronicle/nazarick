@@ -96,10 +96,10 @@ in
         night = 4500;
       };
 
-      settings = {
+      settings.general = {
         fade = 1;
-        brightness-day = 1.0;
-        brightness-night = 0.7;
+        brightness-day = "1.0";
+        brightness-night = "0.7";
       };
     };
 
