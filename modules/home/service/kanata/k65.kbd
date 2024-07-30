@@ -313,10 +313,10 @@ danger-enable-cmd yes
     dw (layer-while-held sway-dw)
     sd (layer-while-held sway-sd)
 
-    sw-lft (cmd swaymsg focus left)
-    sw-rght (cmd swaymsg focus right)
-    sw-up (cmd swaymsg focus up)
-    sw-down (cmd swaymsg focus down)
+    sw-lft (cmd-log none error swaymsg focus left)
+    sw-rght (cmd-log none error swaymsg focus right)
+    sw-up (t! meta1-fork (cmd-log none error swaymsg focus parent) (cmd-log none error swaymsg focus up))
+    sw-down (t! meta1-fork (cmd-log none error swaymsg focus child) (cmd-log none error swaymsg focus down))
 
     sw-meta (multi
         (on-press press-virtualkey sw-meta1)
@@ -343,8 +343,8 @@ danger-enable-cmd yes
     (  1 2 3 4) a
     (  5 6 7 8) b
     (        8) (multi (on-press press-virtualkey sw-meta1) (on-release release-virtualkey sw-meta1))
-    (  5      ) (cmd swaymsg exec kitty)
-    (  5 6    ) (cmd swaymsg exec firefox)
+    (  5      ) (cmd-log none error swaymsg exec kitty)
+    (  5 6    ) (cmd-log none error swaymsg exec firefox)
 )
 
 (defalias
@@ -362,22 +362,22 @@ danger-enable-cmd yes
 
 (deftemplate ws-goto (o1 w1 o2 w2) 
     (switch 
-        ((input virtual sw-meta1)) (cmd workspace_helper goto $o1 $w1) break
-        () (cmd workspace_helper goto $o2 $w2) break
+        ((input virtual sw-meta1)) (cmd-log none error workspace_helper goto $o1 $w1) break
+        () (cmd-log none error workspace_helper goto $o2 $w2) break
     )
 )
 
 (deftemplate ws-move (o1 w1 o2 w2) 
     (switch 
-        ((input virtual sw-meta1)) (cmd workspace_helper move-container $o1 $w1) break
-        () (cmd workspace_helper move-container $o2 $w2) break
+        ((input virtual sw-meta1)) (cmd-log none error workspace_helper move-container $o1 $w1) break
+        () (cmd-log none error workspace_helper move-container $o2 $w2) break
     )
 )
 
 (deftemplate ws-swap (o1 w1 o2 w2) 
     (switch 
-        ((input virtual sw-meta1)) (cmd workspace_helper swap $o1 $w1) break
-        () (cmd workspace_helper swap $o2 $w2) break
+        ((input virtual sw-meta1)) (cmd-log none error workspace_helper swap $o1 $w1) break
+        () (cmd-log none error workspace_helper swap $o2 $w2) break
     )
 )
 
@@ -447,21 +447,20 @@ danger-enable-cmd yes
 
 (defchords sway-quick 100
     ;; 0 1 2 3 4
-    (0        ) (cmd swaymsg exec tofi_app)
-    (0 1      ) (cmd swaymsg workspace back_and_forth)
-    (  1 2    ) (cmd swaymsg kill)
-    (  1   3  ) (cmd swaymsg exec swaylock)
-    (  1 2 3  ) (cmd swaymsg exec wlogout)
-    (    2    ) (t! meta1-fork (cmd swaymsg splith) (cmd swaymsg splitv))
-    (      3  ) (t! meta1-fork (cmd swaymsg focus child) (cmd swaymsg focus parent))
-    (        4) (cmd swaymsg layout toggle split)
-    (      3 4) (cmd swaymsg layout tabbed)
-    (    2 3 4) (cmd swaymsg layout stacking)
-    (    2   4) (cmd swaymsg fullscreen toggle)
-    (0   2    ) (t! meta1-fork (cmd swaymsg floating toggle) (cmd swaymsg focus mode_toggle))
+    (0        ) (cmd-log none error swaymsg exec tofi_app)
+    (      3  ) (cmd-log none error swaymsg workspace back_and_forth)
+    (  1 2    ) (cmd-log none error swaymsg kill)
+    (  1   3  ) (t! meta1-fork (cmd-log none error swaymsg exec swaylock) (cmd-log none error swaymsg exec wlogout))
+    (    2    ) (t! meta1-fork (cmd-log none error swaymsg splith) (cmd-log none error swaymsg splitv))
+    (    2 3  ) (cmd-log none error swaymsg split none)
+    (        4) (cmd-log none error swaymsg layout toggle split)
+    (      3 4) (cmd-log none error swaymsg layout tabbed)
+    (    2 3 4) (cmd-log none error swaymsg layout stacking)
+    (    2   4) (cmd-log none error swaymsg fullscreen toggle)
+    (0   2    ) (t! meta1-fork (cmd-log none error swaymsg floating toggle) (cmd-log none error swaymsg focus mode_toggle))
     (  1      ) (switch
-      ((input virtual sw-meta1)) (cmd workspace_helper move-to-scratchpad) break
-      () (cmd swaymsg scratchpad show) break
+      ((input virtual sw-meta1)) (cmd-log none error workspace_helper move-to-scratchpad) break
+      () (cmd-log none error swaymsg scratchpad show) break
     )
 )
 
@@ -493,7 +492,7 @@ danger-enable-cmd yes
 (deflayer sway
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
 	_    XX  XX  XX  XX  XX  XX  @sw1  @sw2  @sw3  @sw4  XX  XX  XX
-	_    XX  XX (multi (on-press press-virtualkey dsway) (on-release release-virtualkey dsway)) XX  XX XX @sw5 @sw6 @sw7 @sw8  XX  (cmd swaymsg exec kitty)
+	_    XX  XX (multi (on-press press-virtualkey dsway) (on-release release-virtualkey dsway)) XX  XX XX @sw5 @sw6 @sw7 @sw8  XX  (cmd-log none error swaymsg exec kitty)
 	_    XX  XX  XX  XX  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX
 	_    _   _      _    _      _    _
 )
@@ -503,7 +502,7 @@ danger-enable-cmd yes
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
 	_    _  @dw  _  _  _  _  @w1 @w2 @w3 @w4  _  _  _
 	_    _  @ds  _  _  _  @sw-lft @sw-down @sw-up @sw-rght @sw-meta  _  _
-	_    _  _  _  _  _  _  _  _  _  _  _
+	@sw-meta    _  _  _  _  _  _  _  _  _  _  _
 	_    _   _      _    _      _    _
 )
 
@@ -522,8 +521,8 @@ danger-enable-cmd yes
 
 (deftemplate resize (type direction normal big)
     (switch
-        ((input virtual sw-meta1)) (cmd swaymsg resize $type $direction $big px) break
-        () (cmd swaymsg resize $type $direction $normal px) break
+        ((input virtual sw-meta1)) (cmd-log none error swaymsg resize $type $direction $big px) break
+        () (cmd-log none error swaymsg resize $type $direction $normal px) break
     )
 )
 
@@ -537,20 +536,20 @@ danger-enable-cmd yes
 
 (defalias
     swap-left (switch 
-        ((input virtual sw-meta1)) (cmd swaymsg "move left") break
-        () (cmd swaymsg "mark swap; focus left; swap container with mark swap; [con_mark="swap"] focus") break
+        ((input virtual sw-meta1)) (cmd-log none error swaymsg "move left") break
+        () (cmd-log none error swaymsg "mark swap; focus left; swap container with mark swap; [con_mark="swap"] focus") break
     )
     swap-right (switch 
-        ((input virtual sw-meta1)) (cmd swaymsg "move right") break
-        () (cmd swaymsg "mark swap; focus right; swap container with mark swap; [con_mark="swap"] focus") break
+        ((input virtual sw-meta1)) (cmd-log none error swaymsg "move right") break
+        () (cmd-log none error swaymsg "mark swap; focus right; swap container with mark swap; [con_mark="swap"] focus") break
     )
     swap-up (switch 
-        ((input virtual sw-meta1)) (cmd swaymsg "move up") break
-        () (cmd swaymsg "mark swap; focus up; swap container with mark swap; [con_mark="swap"] focus") break
+        ((input virtual sw-meta1)) (cmd-log none error swaymsg "move up") break
+        () (cmd-log none error swaymsg "mark swap; focus up; swap container with mark swap; [con_mark="swap"] focus") break
     )
     swap-down (switch 
-        ((input virtual sw-meta1)) (cmd swaymsg "move down") break
-        () (cmd swaymsg "mark swap; focus down; swap container with mark swap; [con_mark="swap"] focus") break
+        ((input virtual sw-meta1)) (cmd-log none error swaymsg "move down") break
+        () (cmd-log none error swaymsg "mark swap; focus down; swap container with mark swap; [con_mark="swap"] focus") break
     )
 )
 

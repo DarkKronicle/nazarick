@@ -88,8 +88,8 @@ in
     services.gammastep = {
       enable = true;
       # This is not dusk/dawn, just the time I like for this
-      dawnTime = "21:30-23:00";
-      duskTime = "5:00-6:00";
+      dawnTime = "5:00-6:00";
+      duskTime = "21:30-23:00";
 
       temperature = {
         day = 6500;
