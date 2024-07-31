@@ -30,5 +30,6 @@
   sshfs
   usbutils
   inxi
+  file
 ])
 ++ (with mypkgs; [ tomb ])

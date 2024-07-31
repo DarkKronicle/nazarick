@@ -1,0 +1,75 @@
+# Cool nu script to fetch the hash if you copy the url and name line (in order)
+# wl-paste | split row (char newline) | each {|x| $x | parse -r '^\s+\w+: (?P<value>\S+)' | get value.0} | nix-prefetch-url $in.0 --name $in.1 | str trim | wl-copy
+- src:
+    url: https://static.zerochan.net/Albedo.%28Overlord%29.full.3362466.png
+    name: albedo_chibi.png
+    sha256: 11ipqd3d327rjgzcc2i5pvlm72kyrbm9rsbsx9jik8m1h41gagjn
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://i.redd.it/30zzwgt7zro81.png
+    name: albedo_tea.png
+    sha256: 0lx062wnwvxk8iw8nnwp8994clx71ddfb6gjbycyhqxv6brbkw3f
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/48d4d968-2139-4e2d-9727-adf476d01ce3/dfx9mjm-569b7962-70ac-4341-8c65-b337daaaa5d8.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQ4ZDRkOTY4LTIxMzktNGUyZC05NzI3LWFkZjQ3NmQwMWNlM1wvZGZ4OW1qbS01NjliNzk2Mi03MGFjLTQzNDEtOGM2NS1iMzM3ZGFhYWE1ZDgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.y4bw_kSsdTTohhkRqm_N5vM3SPssZWy-T9rPzRTpzPE
+    name: book_shalltear.png
+    sha256: 14jpii0k285ma4hk97brblly3c0586r6fjymnij5lmgddr7nfvr2
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://tiermaker.com/images/chart/chart/overlords-waifu-tier-list-260097/shalltearbloodfallenprofilepng.png
+    name: shalltear_dress.png
+    sha256: 1d478d6dxzhfwsgcj6wfkw8scjfag6g82ribprcnvd9r645arbp7
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://tiermaker.com/images/chart/chart/overlords-waifu-tier-list-260097/lupusreginabetapng.png
+    name: lupusreginabeta.png
+    sha256: 1hyf568v3jdsl7abrkj38jmvja65jfkmxj8wmcr237ky2aqc87j2
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/3c8b03b6-013a-43d7-8b1e-e1c18852a527/dck8opo-b028d84e-376c-45a8-9c58-a43cfc0d77d5.png
+    name: evileye.png
+    sha256: 0w2y2jzqrizy5m9bndbbbgbcgxkgjdlx919hc3231acfdb0ik11q
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/99b0b4b2-1ec2-42db-8d72-689653733407/dc6c732-f6c94148-f71d-4eeb-ad99-991d68538025.png/v1/fit/w_512,h_512,q_70,strp/violet_evergarden_folder_icon_by_holiekay_dc6c732-375w-2x.jpg
+    name: violet_mask.jpg
+    sha256: 11majx6hm726yy52pka87013m8wrasm24wqgn0h1rbkmb3g7z6n0
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://i.imgur.com/SUF6wH3h.jpg
+    name: albedo_closeup.jpg
+    sha256: 1ijqzmkc1lvr5i1fh3nzmhb5km38ynsq1pk8y1b7swxnrim5982d
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://digwallpapers.com/wallpapers/full/c/5/4/63760-2560x1440-overlord-background-image-desktop-hd.jpg
+    name: albedo_feathers.jpg
+    sha256: 0qcyf9hggi7zl8cn193y86a0fgq8z2p68pcnz124fq72m1b9ki09
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+

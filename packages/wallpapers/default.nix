@@ -11,14 +11,46 @@
   ...
 }:
 let
+  squareScript =
+    mylib.writeScript pkgs "magick-square" # nu
+      ''
+          #!/usr/bin/env nu
+          
+          def main [input: path, output: path] {
+            let dimensions = magick identify $input | split row " " | get 2 | split row "x" | into int
+            let smallest = $dimensions | math min
+            let largest = $dimensions | math max
+            if ($smallest == $largest) {
+                # Already square
+                cp $input $output
+                return
+            }
+            # true if smallest is width
+            let width_wise = ($smallest == ($dimensions | get 0))
+            let offset = ($largest - $smallest) / 2 | math ceil
+            let hoffset = if $width_wise {
+                0
+            } else {
+                $offset
+            }
+            let voffset = if $width_wise {
+                $offset
+            } else {
+                0
+            }
+            let dimensions = $"($smallest)x($smallest)+($hoffset)+($voffset)"
+            magick $input -crop $dimensions $output
+        }
+      '';
+
   wallpapers-parsed = ((mylib.importYAML pkgs) wallpapers);
   wallpaperWrapper = import ./wallpaper.nix;
   packageWallpaper =
-    wallpaper: (pkgs.callPackage (wallpaperWrapper wallpaper) { inherit inputs system; });
+    wallpaper: (pkgs.callPackage (wallpaperWrapper wallpaper) { inherit inputs system squareScript; });
   finalWallpapers = lib.forEach wallpapers-parsed (w: packageWallpaper w);
 in
 stdenv.mkDerivation {
-  pname = "system-wallpapers";
+  pname = name;
   version = "0.0.1";
 
   phases = [ "installPhase" ];
@@ -29,7 +61,7 @@ stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/wallpapers/system-wallpapers
+    mkdir -p $out/share/wallpapers/${name}
     ${lib.concatStringsSep "\n" (
       lib.forEach finalWallpapers (wpPkg: ''
         ln -s ${wpPkg}/share/wallpapers/* $out/share/wallpapers/${name}

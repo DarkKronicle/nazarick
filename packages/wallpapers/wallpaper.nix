@@ -2,6 +2,8 @@
   src,
   themes ? [ "none" ],
   svg ? null,
+  square ? false,
+  resolution ? null,
   ...
 }:
 {
@@ -11,6 +13,7 @@
   inputs,
   fetchurl,
   system,
+  squareScript,
   ...
 }:
 let
@@ -24,18 +27,49 @@ stdenv.mkDerivation {
   dontUnpack = true;
   phases = "buildPhase";
 
+  buildInputs = [
+    pkgs.nushell
+    pkgs.imagemagick
+  ];
+
   buildPhase = ''
     runHook preBuild
     mkdir -p $out/share/wallpapers
     local name=$(stripHash $src) 
+    local oldsrc=$src
     local filesrc=$src
 
     ${
       if svg != null then
         (''
-          mkdir -p converted
-          local filesrc=converted/$(basename $name).png
-          ${pkgs.resvg}/bin/resvg ${svg} $src $filesrc
+          mkdir -p converted-svg
+          local filesrc=converted-svg/$(basename $name).png
+          ${pkgs.resvg}/bin/resvg ${svg} $oldsrc $filesrc
+          local oldsrc=$filesrc
+        '')
+      else
+        ""
+    }
+
+    ${
+      if square then
+        (''
+          mkdir -p converted-square
+          local filesrc=converted-square/$(basename $name).png
+          nu ${squareScript}/bin/magick-square $oldsrc $filesrc
+          local oldsrc=$filesrc
+        '')
+      else
+        ""
+    }
+
+    ${
+      if resolution != null then
+        (''
+          mkdir -p converted-resolution
+          local filesrc=converted-resolution/$(basename $name).png
+          magick $oldsrc -resize ${resolution} $filesrc
+          local oldsrc=$filesrc
         '')
       else
         ""
@@ -58,6 +92,8 @@ stdenv.mkDerivation {
         }/bin/faerber $filesrc $out/share/wallpapers/${theme}-$name --flavour ${theme}
       '')
     )}
+
+    nu -c "glob converted-* | each {|folder| if ((\$folder | path type) == "dir") { rm -rp \$folder }}"
 
     runHook postBuild
   '';

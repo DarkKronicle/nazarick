@@ -51,6 +51,7 @@ in
         fun = isPersonalComputer;
         misc = isPersonalComputer;
       };
+      fastfetch = enablePersonalComputer;
       git = {
         enable = lib.mkDefault true;
         userEmail = "darkkronicle@gmail.com";
