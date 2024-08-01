@@ -266,5 +266,3 @@ def --env borger [command: closure] {
 
 plugin use explore
 alias ex = nu_plugin_explore
-
-fastfetch-icon

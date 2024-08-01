@@ -37,6 +37,8 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [ fastFetchRandom ];
 
+    programs.nushell.extraConfig = "fastfetch-icon";
+
     programs.fastfetch = {
       enable = true;
       settings = {
