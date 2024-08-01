@@ -64,7 +64,7 @@ in
     };
 
     systemd.services."nordvpn-meshnet-healthcheck" = {
-      script = "ping -c 1 ${config.networking.hostName}.nord";
+      script = "${pkgs.iputils}/bin/ping -c 1 ${config.networking.hostName}.nord";
       onFailure = [ "nordvpn-meshnet-restart.service" ];
       serviceConfig = {
         Type = "oneshot";
