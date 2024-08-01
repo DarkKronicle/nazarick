@@ -1,5 +1,6 @@
-# Cool nu script to fetch the hash if you copy the url and name line (in order)
-# wl-paste | split row (char newline) | each {|x| $x | parse -r '^\s+\w+: (?P<value>\S+)' | get value.0} | nix-prefetch-url $in.0 --name $in.1 | str trim | wl-copy
+# Cool script to bulk get sha's.
+# wl-paste | from yaml | each {|x| mut y = $x; $y.src.sha256 = (nix-prefetch-url $x.src.url --name $x.src.name | str trim); $y } | to yaml | wl-copy
+# Just make sure to cpoy starting at source
 - src:
     url: https://static.zerochan.net/Albedo.%28Overlord%29.full.3362466.png
     name: albedo_chibi.png
@@ -49,14 +50,6 @@
   square: true
   resolution: 200x200
 - src:
-    url: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/99b0b4b2-1ec2-42db-8d72-689653733407/dc6c732-f6c94148-f71d-4eeb-ad99-991d68538025.png/v1/fit/w_512,h_512,q_70,strp/violet_evergarden_folder_icon_by_holiekay_dc6c732-375w-2x.jpg
-    name: violet_mask.jpg
-    sha256: 11majx6hm726yy52pka87013m8wrasm24wqgn0h1rbkmb3g7z6n0
-  tags:
-  - weaboo
-  square: true
-  resolution: 200x200
-- src:
     url: https://i.imgur.com/SUF6wH3h.jpg
     name: albedo_closeup.jpg
     sha256: 1ijqzmkc1lvr5i1fh3nzmhb5km38ynsq1pk8y1b7swxnrim5982d
@@ -68,6 +61,90 @@
     url: https://digwallpapers.com/wallpapers/full/c/5/4/63760-2560x1440-overlord-background-image-desktop-hd.jpg
     name: albedo_feathers.jpg
     sha256: 0qcyf9hggi7zl8cn193y86a0fgq8z2p68pcnz124fq72m1b9ki09
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://i.pinimg.com/736x/42/6d/4e/426d4e5c56be0c512416f32eaad415d5.jpg
+    name: frieren_sketch.jpg
+    sha256: 120bj92xrc4fx5nmd6yrrg4ybmzk849nxh5jxgzz931ijqf6silx
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://static.zerochan.net/Frieren.full.4010745.jpg
+    name: frieren_stars.jpg
+    sha256: 18sc1vc0q3662xkdnbimzkip7iz59y18gximbh506d2nzdd88n3j
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://s1.zerochan.net/Shalltear.Bloodfallen.600.2670092.jpg
+    name: shalltear_red.jpg
+    sha256: 0ll86cacd2awgmmvsl6vd1dcf9pdxwqkjvg5snjppmxhsldgh145
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://safebooru.org//samples/4520/sample_8343e50d7a4cd138dd6ee40e4c3ff224198492fd.jpg?4714303
+    name: shalltear_eyes.jpg
+    sha256: 17nv8jk9x3bim4dlasc4r1xlg43h9zw8wz6ddbwpkc52xbm6043p
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://safebooru.org//images/3810/e3f8ceab1057032e725cad49e57450e072361259.jpg?3981016
+    name: shalltear_flowers.jpg
+    sha256: 0l44378gkl7rpjwqy1axcs1zf5dig5hav24ibb9m6ibdhy5a5nij
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://safebooru.org//images/2393/5e57d0059b63084f74fae4d9bc4493b0c34b3aa3.jpg?2492902
+    name: demiurge_cool.jpg
+    sha256: 1kjdml6jpm78kaz3vc384iinxk121iav0v4ldvqgvvj8q001kb0m
+  square: true
+  resolution: 200x200
+- src:
+    url: https://safebooru.org//images/3262/3be39fa30165fe208694c127fc37caa34c574d7d.jpg?3392359
+    name: ains.jpg
+    sha256: 0lzz7sqzxq4g0mbac8mh1fdgydbvyqbdwnwc9mamkrvwvcbk28ky
+  square: true
+  resolution: 200x200
+- src:
+    url: https://safebooru.org//images/2365/9776155be416ad86a1668864243ce2a550196b5d.png?2463644
+    name: touch_and_sebas.jpg
+    sha256: 0mdmic26ndd0vxqsfbfjzc2ld4z6m3gd34532wrysnpff0f4fxf5
+  square: true
+  resolution: 200x200
+- src:
+    url: https://safebooru.org//samples/3440/sample_55bd01cca36a7003ab4ab08d60b6683fa367e3f8.jpg?3578718
+    name: slime_diablo.jpg
+    sha256: 1vns37xynwf4bcf2cr4yi0sh84hdnj0c444w9i23428al31i8d5c
+  square: true
+  resolution: 200x200
+- src:
+    url: https://safebooru.org//samples/4619/sample_661a6f6ce0de2c9b5a2128c9fc7cd49f87ecb2b6.jpg?4843073
+    name: diablo.jpg
+    sha256: 13hi89qwc3n8r9xf8gli2pnkgi711nq50pfiwd7yzms05n71cy8p
+  square: true
+  resolution: 200x200
+- src:
+    url: https://safebooru.org//images/3089/dcfadde495702003150893bf7a3b1b3f53676cbe.png?3215742
+    name: slime_portrait.jpg
+    sha256: 0qm55xwb8933khapw43574c59v8j23l53bkdwv9y28hn34z67pyw
+  square: true
+  resolution: 200x200
+- src:
+    url: https://safebooru.org//samples/4619/sample_1f4d5d18319d1441839b33bebd176db3f274bb8f.jpg?5098093
+    name: bocchi_powers.jpg
+    sha256: 0wfmzp4lczymy3fpx06695v4pfa3bppaagbwrprwlwddbg5y8l3q
   tags:
   - weaboo
   square: true

@@ -91,6 +91,7 @@ in
         ".config/GIMP"
         ".config/krita"
         ".local/share/krita"
+        ".local/share/love" # Tetris
 
         # Keys
         {

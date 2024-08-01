@@ -23,26 +23,6 @@ let
   }) { };
 
   cert = mylib.mkLocalCert pkgs "localhost 127.0.0.1 ::1" "localhost";
-
-  # TODO: Look into this some more, right now the main issue is that it causes
-  # certificate issues
-  searxng_instances = [
-    "search.rhscz.eu"
-    "priv.au"
-    "openxng.com"
-    "search.bus-hit.me"
-    "etsi.me"
-  ];
-
-  cloaking_file = pkgs.writeTextFile {
-    name = "cloaking_rules";
-    destination = "/share/cloaking_rules";
-    text = ''
-      ${lib.concatStringsSep "\n" (
-        lib.forEach searxng_instances (instance: "searxng.proxy      ${instance}")
-      )}
-    '';
-  };
 in
 {
   options.nazarick.network.dnscrypt = {
@@ -69,14 +49,10 @@ in
     services.dnscrypt-proxy2 = {
       enable = true;
       settings = {
-        # TODO: Maybe setup cloaking for local servers?
-        # TODO: nordvpn requires dns server to be set to 127.0.0.1 to use dnscrypt, so maybe figure out how to do that declaritivaly?
         ipv4_servers = true;
         ipv6_servers = true;
         block_ipv6 = false;
         doh_servers = true;
-
-        # cloaking_rules = "${cloaking_file}/share/cloaking_rules";
 
         # I had some issues here, but it turns out dnssec requires a filter
         require_nofilter = false; # quad9 has some nice security filters
