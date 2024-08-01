@@ -53,19 +53,32 @@ in
       wants = [ "network-online.target" ];
     };
 
-    systemd.timers."nordvpn-meshnet-restart" = {
+    systemd.timers."nordvpn-meshnet-healthcheck" = {
       enable = cfg.autoMeshnetRestart;
       wantedBy = [ "default.target" ];
       timerConfig = {
-        OnCalendar = "*-*-* 3:00:00"; # Every day at 3am +- 10 min
-        RandomizedDelaySec = "10m";
+        OnBootSec = "5m";
+        OnUnitActiveSec = "30m";
+        RandomizedDelaySec = "3m";
+      };
+    };
+
+    systemd.services."nordvpn-meshnet-healthcheck" = {
+      script = "ping -c 1 ${config.networking.hostName}.nord";
+      onFailure = [ "nordvpn-meshnet-restart.service" ];
+      serviceConfig = {
+        Type = "oneshot";
       };
     };
 
     systemd.services."nordvpn-meshnet-restart" = {
       # We do the weird boolean stuff so that everything will be triggered even if meshnet is off (want to make sure it's on!)
       # I also just dislike bash bc these cursed things are needed (before you ask, set -e is enabled here)
-      script = "${mypkgs.nordvpn}/bin/nordvpn set meshnet off || true; sleep 3 && ${mypkgs.nordvpn}/bin/nordvpn set meshnet on";
+      script = ''
+        echo "Meshnet stopped working! Restarting..."
+        ${mypkgs.nordvpn}/bin/nordvpn set meshnet off || true; sleep 3 && ${mypkgs.nordvpn}/bin/nordvpn set meshnet on
+        systemctl reset-failed nordvpn-meshnet-healthcheck.service
+      '';
       serviceConfig = {
         Type = "oneshot";
         Environment = [
