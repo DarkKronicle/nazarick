@@ -28,11 +28,12 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    # services.gnome-keyring.enable = true;
-
-    nazarick.gui.swww = {
-      enable = true;
-      wallpaperPath = wallpaperPath;
+    nazarick.gui = {
+      gammastep.enable = true;
+      swww = {
+        enable = true;
+        wallpaperPath = wallpaperPath;
+      };
     };
 
     wayland.windowManager.sway = {
@@ -53,16 +54,40 @@ in
     programs.swaylock = {
       enable = true;
       package = pkgs.swaylock-effects;
-      settings = {
-        color = "000000";
-        fade-in = 0.2;
-        clock = true;
-        indicator = true;
-        text-clear = "(×_×;）";
-        text-wrong = "（/＞□＜）/亠亠";
-        text-ver = "｢(ﾟﾍﾟ)";
-        daemonize = true;
-      };
+      settings =
+        let
+          highlight = "9d0df0";
+          highlight2 = "ffffff";
+          background = "000000";
+        in
+        {
+          color = background;
+          inside-color = background;
+          inside-wrong-color = background;
+          inside-clear-color = background;
+          inside-ver-color = background;
+          key-hl-color = background;
+
+          ring-color = highlight;
+          ring-clear-color = highlight2;
+          ring-ver-color = highlight2;
+          ring-wrong-color = highlight2;
+
+          text-color = "ffffff";
+
+          line-color = background;
+          line-clear-color = background;
+          line-wrong-color = background;
+          line-ver-color = background;
+
+          fade-in = 0.2;
+          indicator = true;
+          text-clear = "clear";
+          text-wrong = "incorrect";
+          text-ver = "checking...";
+          font = "Recursive Mono Linear Static";
+          daemonize = true;
+        };
     };
 
     home.packages = with pkgs; [
@@ -76,7 +101,6 @@ in
       swayidle
       swaysome
       xwaylandvideobridge
-      # perl538Packages.Apppapersway # Slightly buggy :/ I'll try this again
 
       mypkgs.inhibit-bridge
 
@@ -84,24 +108,6 @@ in
       grim
       slurp
     ];
-
-    services.gammastep = {
-      enable = true;
-      # This is not dusk/dawn, just the time I like for this
-      dawnTime = "5:00-6:00";
-      duskTime = "21:30-23:00";
-
-      temperature = {
-        day = 6500;
-        night = 4500;
-      };
-
-      settings.general = {
-        fade = 1;
-        brightness-day = "1.0";
-        brightness-night = "0.7";
-      };
-    };
 
     services.kdeconnect = {
       enable = true;
