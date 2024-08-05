@@ -41,7 +41,6 @@ in
 
     xdg.portal = {
       enable = true;
-      gtkUsePortal = true;
       # wlr.enable = true;
       extraPortals = with pkgs; [
         kdePackages.xdg-desktop-portal-kde

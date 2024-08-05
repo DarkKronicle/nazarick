@@ -36,9 +36,9 @@ in
       enable = true;
       package = (
         pkgs.btop.overrideAttrs (oldAttrs: {
-          nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.addOpenGLRunpath ];
+          nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.addDriverRunpath ];
           postFixup = ''
-            addOpenGLRunpath $out/bin/btop
+            addDriverRunpath $out/bin/btop
           '';
         })
       );

@@ -24,7 +24,7 @@ in
       {
         services.xserver.videoDrivers = [ "nvidia" ];
 
-        hardware.opengl = {
+        hardware.graphics = {
           enable = true;
           extraPackages = with pkgs; [
             vulkan-loader

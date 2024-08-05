@@ -115,10 +115,6 @@ in
       package = pkgs.kdePackages.kdeconnect-kde;
     };
 
-    home.sessionVariables = {
-      "GTK_USE_PORTAL" = "1";
-    };
-
     xdg.portal = {
       enable = true;
       xdgOpenUsePortal = true;
