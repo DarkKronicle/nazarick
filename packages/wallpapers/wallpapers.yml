@@ -255,15 +255,6 @@
   - night
   - cool
 - src:
-    url: https://images3.alphacoders.com/133/1337212.png
-    sha256: 1ard1lnvixra9kin84jzbhiwidc9jgkiffpg0gbc5gamlgjafg8p
-    name: Z9u5ZWgrvr8jgIYjgo9PZnErn.png
-  tags:
-  - demon_slayer
-  - dark
-  - warm
-  - simple
-- src:
     url: https://images.alphacoders.com/131/1319583.png
     sha256: 1pyry9jrf84n46s7x46airj6b9fgk1k689p4xzba6yvw5bz8cmni
     name: FCzsCUd7VvRIZYxZdBOM4EOvb.png

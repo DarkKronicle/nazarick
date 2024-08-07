@@ -23,16 +23,14 @@ in
 
   config = mkIf cfg.enable {
 
-    home.packages = (
-      with pkgs;
-      [
-        # TODO: move this
-        devenv
-      ]
-    );
+    home.packages = ([ mypkgs.scripts.nux ]);
 
     nazarick.cli.nushell.source = [
       "${pkgs.nu_scripts}/share/nu_scripts/custom-completions/man/man-completions.nu"
+    ];
+
+    systemd.user.tmpfiles.rules = [
+      "L /home/${config.home.username}/.local/share/nushell - - - - /home/${config.home.username}/.local/state/home-manager/gcroots/current-home/home-path/share/nushell"
     ];
 
     nazarick.cli.nushell.alias = {
