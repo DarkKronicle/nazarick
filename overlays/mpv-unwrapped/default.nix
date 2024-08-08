@@ -4,4 +4,7 @@
 
 final: prev:
 
-{ mpv-unwrapped = pkgs-unstable.mpv-unwrapped.override { ffmpeg = prev.ffmpeg-full; }; }
+{
+  mpv-unwrapped = pkgs-unstable.mpv-unwrapped.override { ffmpeg = prev.ffmpeg-full; };
+  mpv-unwrapped-normal = prev.mpv-unwrapped;
+}

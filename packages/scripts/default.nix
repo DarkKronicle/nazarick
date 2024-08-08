@@ -56,22 +56,38 @@ let
         scriptNuSource=$out/share/nushell/vendor/autoload/${script.name}
 
         mkdir -p $(dirname "$scriptTarget")
-        mkdir -p $(dirname "$scriptBin")
         mkdir -p $(dirname "$scriptNuSource")
 
         cp "${modifiedSource}" "$scriptTarget"
 
-        echo "use $scriptTarget" >> $scriptNuSource
+        ${
+          if script.useAll then
+            ''
+              echo "use $scriptTarget *" >> $scriptNuSource
+            ''
+          else
+            ''
+              echo "use $scriptTarget" >> $scriptNuSource
+            ''
+        }
 
-        cat <<EOT >> $scriptUnwrappedBin
-        #!/usr/bin/env sh 
-        nu -c "$scriptTarget \$*"
-        EOT
+        ${
+          if script.createBin then
+            ''
+              mkdir -p $(dirname "$scriptBin")
+              cat <<EOT >> $scriptUnwrappedBin
+              #!/usr/bin/env sh 
+              nu -c "use $scriptTarget; \$*"
+              EOT
 
-        chmod +x $scriptUnwrappedBin
+              chmod +x $scriptUnwrappedBin
 
-        makeWrapper $scriptUnwrappedBin $scriptBin --prefix PATH : ${
-          lib.makeBinPath (script.dependencies ++ [ pkgs.nushell ])
+              makeWrapper $scriptUnwrappedBin $scriptBin --prefix PATH : ${
+                lib.makeBinPath (script.dependencies ++ [ pkgs.nushell ])
+              }
+            ''
+          else
+            ""
         }
 
         runHook postBuild
@@ -82,7 +98,11 @@ let
   createScript =
     packageFile:
     let
-      scriptLoaded = import packageFile extra-inputs;
+      scriptLoaded = {
+        useAll = false;
+        createBin = true;
+        dependencies = [ ];
+      } // (import packageFile extra-inputs);
     in
     {
       name = scriptLoaded.name;

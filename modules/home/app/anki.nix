@@ -12,6 +12,7 @@ let
   inherit (mylib) mkOpt enabled;
 
   cfg = config.nazarick.app.anki;
+  ankiPkg = pkgs.anki.override ({ mpv-unwrapped = pkgs.mpv-unwrapped-normal; });
 in
 {
   options.nazarick.app.anki = {
@@ -36,7 +37,7 @@ in
         "application/x-ankiaddon"
       ];
       icon = "anki";
-      exec = "env QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor ${pkgs.anki}/bin/anki";
+      exec = "env QT_SCALE_FACTOR_ROUNDING_POLICY=RoundPreferFloor ${ankiPkg}/bin/anki";
       settings = {
         SingleMainWindow = "true";
       };
