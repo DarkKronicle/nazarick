@@ -37,7 +37,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = [ fastFetchRandom ];
 
-    programs.nushell.extraConfig = "fastfetch-icon";
+    programs.nushell.extraConfig = "if (not ('SESSION_CONTEXT' in $env and $env.SESSION_CONTEXT == 'school')) { fastfetch-icon }";
 
     programs.fastfetch = {
       enable = true;

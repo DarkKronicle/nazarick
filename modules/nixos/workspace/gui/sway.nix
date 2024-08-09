@@ -10,6 +10,31 @@ let
   cfg = config.nazarick.workspace.gui.sway;
 
   package = pkgs.swayfx;
+
+  swayWrapped =
+    let
+      sway = config.programs.sway.package;
+    in
+    pkgs.runCommandNoCC "sway-school" { buildInputs = [ pkgs.makeWrapper ]; } ''
+      makeWrapper ${sway}/bin/sway $out/bin/sway-school --set SESSION_CONTEXT school
+    '';
+
+  sessionFile = ''
+    [Desktop Entry]
+    Name=SwayFX School
+    Comment=An i3-compatible Wayland compositor
+    Exec=${swayWrapped}/bin/sway-school
+    Type=Application
+  '';
+
+  sessionPkg = pkgs.writeTextFile {
+    name = "sway-school.desktop";
+    text = sessionFile;
+    destination = "/share/wayland-sessions/sway-school.desktop";
+    derivationArgs = {
+      passthru.providedSessions = [ "sway-school" ];
+    };
+  };
 in
 {
   options.nazarick.workspace.gui.sway = {
@@ -39,6 +64,10 @@ in
     # Maybe change this? But sddm with my theme is pretty cool
     services.displayManager.sddm.wayland.enable = true;
 
+    environment.etc."sway/config.d/session.conf".source = pkgs.writeText "session.conf" ''
+      exec dbus-update-activation-environment --systemd SESSION_CONTEXT
+    '';
+
     environment.systemPackages = with pkgs; [
       kdePackages.qtwayland
       qt5.qtwayland
@@ -63,6 +92,8 @@ in
     };
 
     services.blueman.enable = true;
+
+    services.displayManager.sessionPackages = [ sessionPkg ];
 
   };
 }

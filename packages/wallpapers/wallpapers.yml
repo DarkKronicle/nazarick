@@ -52,6 +52,7 @@
   - ryuko
   - white
   - warm
+  - weaboo
 - src:
     url: https://images8.alphacoders.com/562/562172.jpg
     sha256: 1xqrj33yxjnpcw4421jh7v184vw5i9606ijgykpslgz4ncw2z4fy
@@ -152,6 +153,7 @@
   - suzume
   - water
   - cool
+  - weaboo
 - src:
     url: https://images2.alphacoders.com/131/1319731.jpeg
     sha256: 0bs7nhycv8l5n42caz65j7i56r58k56q64iy24vajq13j0cdmhy1
@@ -206,6 +208,7 @@
   - slime
   - warm
   - cool_art
+  - weaboo
 - src:
     url: https://images7.alphacoders.com/100/1001390.png
     sha256: 16v6bg00m9kwkpx1m4b4zv344hskkprfbkga9vy3a4za8hz3pq9v
@@ -215,6 +218,7 @@
   - rimuru
   - simple
   - cool
+  - weaboo
 - src:
     url: https://images8.alphacoders.com/114/1143202.jpg
     sha256: 0cyrb2wad4331z15jll5v6nm18jxxmqnf0rpv1ngx9z913wwlll9
@@ -225,6 +229,7 @@
   - simple
   - cool
   - cool_art
+  - weaboo
 - src:
     url: https://images.alphacoders.com/135/1350221.jpeg
     sha256: 14dkylfl700dp3y3fz9b3q8xbp2ypfnms30jsh6sg9hk8vr4j6i6
@@ -233,6 +238,7 @@
   - frieren
   - cool
   - cool_art
+  - weaboo
 - src:
     url: https://images.alphacoders.com/133/1338277.png
     sha256: 1s5sg786wimbky29izjlrhpxvnkyr65zcj0qjhklplwq2ksx0fdg
@@ -292,6 +298,7 @@
   - albedo
   - warm
   - simple
+  - weaboo
 - src:
     url: https://w.wallhaven.cc/full/l8/wallhaven-l8kkxr.jpg
     sha256: 16am2zvla1m10s5ngigpkjfllxy501hzfbz6afy8fnzwzanv9lqk
@@ -318,6 +325,7 @@
   tags:
   - bocchi
   - warm
+  - weaboo
 - src:
     url: https://w.wallhaven.cc/full/l8/wallhaven-l8v6oy.jpg
     sha256: 0ncq4xzhivks71647g80x5gldp0brfw6hpjwwqakvsa3y9i8g8wa
@@ -325,6 +333,7 @@
   tags:
   - bocchi
   - cool
+  - weaboo
 - src:
     url: https://w.wallhaven.cc/full/yx/wallhaven-yx3dlx.jpg
     sha256: 015akyrl0yxq6586v6bdwwqapv1i3xpf10cdlx4h3a9ba0cr6hgh
@@ -332,6 +341,7 @@
   tags:
   - bocchi
   - cool
+  - weaboo
 - src:
     url: https://w.wallhaven.cc/full/85/wallhaven-85o6mj.jpg
     sha256: 0a5lcv0w36cxkas5g80p1yfv8fxv5wv2r76cwy4x39dswj45yyzs
@@ -347,6 +357,7 @@
   tags:
   - bocchi
   - cool
+  - weaboo
 - src:
     url: https://w.wallhaven.cc/full/6d/wallhaven-6d1k6l.jpg
     sha256: 0icaxxmic7df2y48m0bnabl5l1nb32snhyrwwi3064hjkgm92643
@@ -366,6 +377,7 @@
   - frieren
   - cool
   - cool_art
+  - weaboo
 - src:
     url: https://w.wallhaven.cc/full/gp/wallhaven-gpl8d3.jpg
     sha256: 1a42nhykckgmn1163ar6rpnzrqpic4hlycmb36iccrf7w5agg5xp
@@ -405,6 +417,7 @@
   - fern
   - dark
   - cool_art
+  - weaboo
 - src:
     url: https://w.wallhaven.cc/full/ox/wallhaven-oxg2qm.jpg
     sha256: 1yfbfrm7w4vprymlpjc6gjizdw52dwj6wk4cvvrnchml2dbsscji
@@ -433,6 +446,7 @@
   tags:
   - jjk
   - cool
+  - weaboo
 - src:
     url: https://images8.alphacoders.com/133/1331317.jpeg
     sha256: 1nff2rp1f27w6iqgppr3hn38h8sn7gvpkmw4a5nnrhqpyjc9d1di
@@ -464,6 +478,7 @@
   tags:
   - shield_hero
   - cool
+  - weaboo
 - src:
     url: https://images6.alphacoders.com/112/1124802.jpg
     sha256: 0l3g7w5rjmkbwhmf3w5ybrh9xpzx90k418lad0wzkmkb4ggkgyw4
@@ -563,14 +578,20 @@
     url: https://w.wallhaven.cc/full/rr/wallhaven-rrxz57.jpg
     name: cyberpunk_sad1
     sha256: 0632gn0rr47gs10abhazsv15clwmjffm415wsaaahdhbbh3ygn0n
+  tags:
+  - weaboo
 - src:
     url: https://w.wallhaven.cc/full/p9/wallhaven-p973dj.png
     name: cyberpunk_sad2
     sha256: 00585kaaql0njq7fd34wy5j32pjih47y94x9jgc7pnhxyrd3yy0g
+  tags:
+  - weaboo
 - src:
     url: https://w.wallhaven.cc/full/ex/wallhaven-exzrmw.png
     name: cyberpunk_rows
     sha256: 0wfk3r6nsp8ajac9lwxpkw3zp52sah4z9l9cbjil4p92nwf6zk0k
+  tags:
+  - weaboo
 - src:
     url: https://images2.alphacoders.com/694/thumb-1920-694069.png
     name: cowboy_background
@@ -587,6 +608,8 @@
     url: https://picfiles.alphacoders.com/245/245629.jpg
     name: mob_collage
     sha256: 1ymq8x3cy89hk6nqacpgvpb77h07xyx4lv8c24irldfqfj8l0c3x
+  tags:
+  - weaboo
 - src:
     url: https://images8.alphacoders.com/754/thumb-1920-754327.png
     name: mob_scray_lines

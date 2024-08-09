@@ -224,6 +224,7 @@ in
         ".cache/filezilla" # wtf
         ".cache/fontconfig"
         ".cache/gstreamer"
+        ".cache/nushell"
         ".cache/atuin" # do I need this one?
         ".cache/kscreenlocker_greet"
         ".cache/lua-language-server"

@@ -6,6 +6,7 @@
   stdenv,
   inputs,
   system,
+  filterFunc ? (wall: true),
   wallpapers ? ./wallpapers.yml,
   name ? "system-wallpapers",
   ...
@@ -47,7 +48,9 @@ let
   wallpaperWrapper = import ./wallpaper.nix;
   packageWallpaper =
     wallpaper: (pkgs.callPackage (wallpaperWrapper wallpaper) { inherit inputs system squareScript; });
-  finalWallpapers = lib.forEach wallpapers-parsed (w: packageWallpaper w);
+  finalWallpapers = lib.forEach (builtins.filter filterFunc wallpapers-parsed) (
+    w: packageWallpaper w
+  );
 in
 stdenv.mkDerivation {
   pname = name;

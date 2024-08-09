@@ -12,7 +12,11 @@ let
   swwwScriptContent = # nu
     ''
       #!/usr/bin/env nu
-      let path = '${cfg.wallpaperPath}'
+      let path = if ("SESSION_CONTEXT" in $env and $env.SESSION_CONTEXT == "school") {
+        '${cfg.schoolWallpaperPath}'
+      } else {
+        '${cfg.wallpaperPath}'
+      }
 
       let displays = ${pkgs.swww}/bin/swww query | split row (char newline) | split column ':' | get column1
 
@@ -37,6 +41,11 @@ in
     wallpaperPath = lib.mkOption {
       type = lib.types.nullOr lib.types.path;
       description = "path for wallpaper";
+    };
+
+    schoolWallpaperPath = lib.mkOption {
+      type = lib.types.nullOr lib.types.path;
+      description = "path for wallpaper at school";
     };
   };
 
@@ -72,9 +81,9 @@ in
 
     systemd.user.services."swww-switch" = {
 
-      Install = {
-        WantedBy = [ "graphical-session.target" ];
-      };
+      # Install = {
+      # WantedBy = [ "graphical-session.target" ];
+      # };
 
       Unit = {
         Description = "rotate swww wallpaper";

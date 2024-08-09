@@ -36,6 +36,11 @@ in
       "L /home/${config.home.username}/.local/share/nushell - - - - /home/${config.home.username}/.local/state/home-manager/gcroots/current-home/home-path/share/nushell"
     ];
 
+    programs.nushell.extraConfig = ''
+      use ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/nuenv/hook.nu [ "nuenv allow", "nuenv disallow" ]
+      $env.config.hooks.env_change.PWD = (use ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/nuenv/hook.nu; hook setup)
+    '';
+
     nazarick.cli.nushell.alias = {
       "icat" = "kitten icat";
       "zz" = "systemd-inhibit sleep infinity";

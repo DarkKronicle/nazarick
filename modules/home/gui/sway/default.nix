@@ -19,6 +19,12 @@ let
   );
 
   wallpaperPath = "${mypkgs.system-wallpapers}/share/wallpapers/system-wallpapers";
+  schoolWallpaperPath = "${
+    mypkgs.system-wallpapers.override {
+      name = "school-wallpapers";
+      filterFunc = (wall: !(builtins.elem "weaboo" (wall.tags or [ ])));
+    }
+  }/share/wallpapers/school-wallpapers";
 in
 {
 
@@ -33,6 +39,7 @@ in
       swww = {
         enable = true;
         wallpaperPath = wallpaperPath;
+        schoolWallpaperPath = schoolWallpaperPath;
       };
     };
 
