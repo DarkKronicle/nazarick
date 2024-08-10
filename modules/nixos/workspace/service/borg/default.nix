@@ -16,6 +16,12 @@ in
 {
   options.nazarick.workspace.service.borg = {
     enable = mkEnableOption "Borg";
+
+    sshFile = lib.mkOption {
+      description = "Path to grab the ssh key from, can be runtime or nix store (probably shouldn't be store)";
+      type = lib.types.str;
+
+    };
   };
 
   config = mkIf cfg.enable {
@@ -35,15 +41,18 @@ in
     systemd.services."borger" = {
       path = [
         pkgs.borgbackup
+        pkgs.openssh
         pkgs.nushell
         pkgs.networkmanager # check wifi
         mypkgs.nordvpn # check wifi pt2
         pkgs.procps
         pkgs.ripgrep
       ];
-      script = "${./backup.nu} $(cat ${config.sops.secrets."borg/repository".path}) $(cat ${
-        config.sops.secrets."borg/password".path
-      }) $(cat ${config.sops.secrets."borg/wifi".path}) ${./exclude.txt}";
+      script = ''BORG_RSH="ssh -i ${cfg.sshFile}" HOME=/root ${./backup.nu} $(cat ${
+        config.sops.secrets."borg/repository".path
+      }) $(cat ${config.sops.secrets."borg/password".path}) $(cat ${
+        config.sops.secrets."borg/wifi".path
+      }) ${./exclude.txt}'';
       serviceConfig = {
         Type = "oneshot";
       };

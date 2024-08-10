@@ -90,7 +90,10 @@ in
           fcitx = enabled;
         };
         service = {
-          borg = enabled;
+          borg = {
+            enable = true;
+            sshFile = "/home/darkkronicle/.ssh/id_tabula";
+          };
         };
         cli.common = enabled;
         security = {
