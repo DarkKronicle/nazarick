@@ -36,9 +36,13 @@ in
       enable = true;
       package = (
         pkgs.btop.overrideAttrs (oldAttrs: {
-          nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.addDriverRunpath ];
+          nativeBuildInputs =
+            (oldAttrs.nativeBuildInputs or [ ])
+            ++ (
+              if (lib.version == "24.05pre-git") then [ pkgs.addOpenGLRunpath ] else [ pkgs.addDriverRunpath ]
+            );
           postFixup = ''
-            addDriverRunpath $out/bin/btop
+            ${if (lib.version == "24.05pre-git") then "addOpenGLRunpath" else "addDriverRunpath"} $out/bin/btop
           '';
         })
       );

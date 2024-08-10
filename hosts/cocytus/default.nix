@@ -45,7 +45,7 @@ in
     };
 
     hardware = {
-      graphics = {
+      opengl = {
         enable = true;
         extraPackages = [
           pkgs.intel-media-driver
