@@ -86,6 +86,14 @@ in
           jellyfin = enabled;
         };
       };
+      service = {
+        borg = {
+          enable = true;
+          restrictPath = "/mnt/demiurge/borg";
+          name = "cocytus";
+        };
+
+      };
     };
 
     zramSwap = {

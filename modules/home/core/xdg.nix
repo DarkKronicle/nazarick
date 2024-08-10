@@ -59,7 +59,7 @@ in
         associations = flipAssocs {
           "firefox" = browserAssociations;
 
-          "okular" = [
+          "org.kde.okular" = [
             "application/pdf"
             "application/epub"
             "application/djvu"

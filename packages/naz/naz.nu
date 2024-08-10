@@ -61,6 +61,10 @@ def "main build" [--update, --pull, --flake: string = ".", --plain, --hostname: 
             $flags = ($flags | append "--specialisation" | append $specialisation)
         }
         run-external "nh" ...$flags
+        if ($specialisation | is-not-empty) {
+            # TODO: Make this not depend on building in specialisation...
+            sudo /nix/var/nix/profiles/system/specialisation/sway/bin/switch-to-configuration boot
+        }
     }
 }
 
