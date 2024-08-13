@@ -55,7 +55,6 @@ in
           ];
           # https://flatpak.github.io/xdg-desktop-portal/docs/impl-dbus-interfaces.html
           "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-          "org.freedesktop.impl.portal.FileChooser" = [ "kde" ];
         };
       };
     };

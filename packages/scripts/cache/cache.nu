@@ -13,14 +13,14 @@ export def --env "main" [
     code: closure,             # The code to run
     --save(-s),                # Save the result to a file in nushell cache directory
     --force(-f),               # Regardless of cache status, run the command
-    --no-pwd(-p),              # Don't account for pwd in the cache
+    --pwd(-p),              # Don't account for pwd in the cache
     --tee(-t),                 # Tee off and print output
     --no-return(-r),           # Don't return the result after it's computed (prevents duplicate output if tee is on)
     --max-session-cache = 10,  # Max results stored in nushell session
     --max-saved-cache = 100,   # Max results stored in cache files
 ] nothing -> any { 
     mut extra = []
-    if (not $no_pwd) {
+    if ($pwd) {
         $extra = ($extra | append ("PWD: " + $env.PWD))
     }
     let hash = ($extra | str join "\n") + (view source $code) | hash md5

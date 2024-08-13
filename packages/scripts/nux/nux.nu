@@ -69,5 +69,5 @@ export def "parse-options" [] {
 export def "options" [
     prefix: string # Prefix for options. Some of these can take a *long time*.
 ] {
-  nixos-options -r $prefix | parse-options
+  nixos-option -r $prefix | parse-options
 }
