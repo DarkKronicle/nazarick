@@ -25,6 +25,21 @@ let
       filterFunc = (wall: !(builtins.elem "weaboo" (wall.tags or [ ])));
     }
   }/share/wallpapers/school-wallpapers";
+
+  # Wrap dolphin to ensure that the file picker works
+  wrappedDolphin =
+    let
+      dolphin = pkgs.kdePackages.dolphin;
+    in
+    pkgs.symlinkJoin {
+      inherit (dolphin) name version;
+      paths = [ dolphin ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/dolphin \
+          --set XDG_MENU_PREFIX "plasma-"
+      '';
+    };
 in
 {
 
@@ -97,24 +112,26 @@ in
         };
     };
 
-    home.packages = with pkgs; [
-      kdePackages.dolphin
-      kdePackages.qqc2-desktop-style # https://discuss.kde.org/t/broken-kde-connect-theme/18451/5
-      kdePackages.plasma-integration
-      lxqt.pavucontrol-qt
-      swayosd # Graphical volume controls
-      blueman
-      nwg-displays # ~/.config/sway/outputs
-      swayidle
-      swaysome
-      xwaylandvideobridge
+    home.packages =
+      (with pkgs; [
+        kdePackages.qqc2-desktop-style # https://discuss.kde.org/t/broken-kde-connect-theme/18451/5
+        kdePackages.plasma-integration
+        lxqt.pavucontrol-qt
+        swayosd # Graphical volume controls
+        blueman
+        nwg-displays # ~/.config/sway/outputs
+        swayidle
+        swaysome
+        xwaylandvideobridge
 
-      mypkgs.inhibit-bridge
-
-      # Screenies
-      grim
-      slurp
-    ];
+        # Screenies
+        grim
+        slurp
+      ])
+      ++ [
+        mypkgs.inhibit-bridge
+        wrappedDolphin
+      ];
 
     services.kdeconnect = {
       enable = true;

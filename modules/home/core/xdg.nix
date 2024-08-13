@@ -64,6 +64,10 @@ in
             "application/epub"
             "application/djvu"
             "application/mobi"
+            "application/vnd.kde.okular-archive"
+            "application/x-gzpdf"
+            "application/x-bzpdf"
+            "application/x-wwf"
           ];
 
           "mpv" = [
@@ -189,7 +193,7 @@ in
             "audio/m3u"
           ];
 
-          "ark" = [
+          "org.kde.ark" = [
             "application/zip"
             "application/gzip"
             "application/x-tar"
@@ -197,6 +201,39 @@ in
             "application/x-bzip2"
             "application/x-7z-compressed"
             "application/xz"
+            "application/x-targ"
+            "application/x-compressed-targ"
+            "application/x-bzip-compressed-targ"
+            "application/x-tarzg"
+            "application/x-xz-compressed-targ"
+            "application/x-lzma-compressed-targ"
+            "application/x-lzip-compressed-targ"
+            "application/x-tzog"
+            "application/x-lrzip-compressed-targ"
+            "application/x-lz4-compressed-targ"
+            "application/x-zstd-compressed-targ"
+            "application/x-cd-imageg"
+            "application/x-bcpiog"
+            "application/x-cpiog"
+            "application/x-cpio-compressedg"
+            "application/x-sv4cpiog"
+            "application/x-sv4crcg"
+            "application/x-source-rpmg"
+            "application/vnd.ms-cab-compressedg"
+            "application/x-xarg"
+            "application/x-iso9660-appimageg"
+            "application/x-archiveg"
+            "application/vnd.rarg"
+            "application/x-rarg"
+            "application/x-7z-compressedg"
+            "application/zipg"
+            "application/x-compressg"
+            "application/gzipg"
+            "application/x-bzipg"
+            "application/x-lzmag"
+            "application/x-xzg"
+            "application/zstdg"
+            "application/x-lhag"
           ];
 
           "mw-matlab" = [ "x-scheme-handler/mw-matlab" ];

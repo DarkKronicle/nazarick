@@ -50,3 +50,24 @@ export def "locate" [
             | rename -c { column0: package, column1: size, column2: type, column3: path } 
     }
 }
+
+# Convert a nixos-option output into a toml object. May not work with all, expects -r flag
+export def "parse-options" [] {
+    $in | ansi strip 
+        | str replace -ram '«(error[\s\S]*?)»' $"'''(char newline)$1(char newline)'''" 
+        | str replace -ram '(^\s+\{[\s\S]*?\}$)' $'"""(char newline)$1(char newline)""",'
+        | str replace -ma ';$' '' 
+        | str replace -ram '<(.*)>$' '"<$1>"'
+        | str replace -ram '^(".+")$' '$1,' 
+        | str replace -ram '^\s+«(.*)»' '"$1",' 
+        | str replace -ra '«(.*)»' '"$1"' 
+        | str replace -ram '\snull$' '"null"' | from toml
+}
+
+# Grab options from current configuration. Not all may work, but things like `nazarick`, `nixpkgs`, `xdg` do.
+# So good for a quick check. Prefixes like `system` may take a *very* long time.
+export def "options" [
+    prefix: string # Prefix for options. Some of these can take a *long time*.
+] {
+  nixos-options -r $prefix | parse-options
+}

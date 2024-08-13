@@ -25,6 +25,7 @@ in
 
     hardware.uinput.enable = true;
 
+    # TODO: move this
     # for ags
     services.upower.enable = true;
     services.gvfs.enable = true;

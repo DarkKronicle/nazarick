@@ -69,7 +69,8 @@ in
     };
 
     service = {
-      spotifyd = enablePersonalComputer;
+      # Spotify removed username/password auth. Librespot is adding oauth support soon
+      # spotifyd = enablePersonalComputer;
       playerctl = enablePersonalComputer;
       easyeffects = enablePersonalComputer;
       kdeconnect = enablePersonalComputer;
