@@ -59,7 +59,39 @@ in
       catppuccin-cursors.mochaMauve
     ];
 
-    programs.wlogout.enable = true;
+    programs.wlogout = {
+      enable = true;
+      layout = [
+        {
+          "label" = "lock";
+          "action" = "swaylock";
+          "text" = "Lock";
+        }
+        {
+          "label" = "logout";
+          "action" = "swaymsg exit";
+          "text" = "Logout";
+        }
+        {
+          "label" = "shutdown";
+          "action" = "systemctl poweroff";
+          "text" = "Shutdown";
+          "keybind" = "s";
+        }
+        {
+          "label" = "suspend";
+          "action" = "systemctl suspend";
+          "text" = "Suspend";
+          "keybind" = "u";
+        }
+        {
+          "label" = "reboot";
+          "action" = "systemctl reboot";
+          "text" = "Reboot";
+          "keybind" = "r";
+        }
+      ];
+    };
 
     # Make it so icons are nice and small
     xdg.configFile."dolphinrc" = {

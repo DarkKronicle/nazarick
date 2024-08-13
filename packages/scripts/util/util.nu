@@ -1,3 +1,7 @@
+export def follow-which []: {
+    $in | follow-symlink-chain $in.path.0
+}
+
   # Credit https://github.com/amtoine
   # https://discord.com/channels/601130461678272522/615253963645911060/1267171213718061167
 export def follow-symlink-chain [file: path]: [ nothing -> list<path> ] {
