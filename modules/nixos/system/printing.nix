@@ -20,8 +20,8 @@ in
     services.printing = {
       enable = true;
       drivers = with pkgs; [
-        hplip
-        # hplipWithPlugin # - proprietary
+        # hplip
+        hplipWithPlugin # - proprietary
       ];
     };
     # Auto-discover printers

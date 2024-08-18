@@ -18,6 +18,15 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = with pkgs; [ (texlive.combine { inherit (texlive) scheme-medium circuitikz; }) ];
+    home.packages = with pkgs; [
+      (texlive.combine {
+        inherit (texlive)
+          scheme-medium
+          circuitikz
+          standalone
+          svn-prov
+          ;
+      })
+    ];
   };
 }
