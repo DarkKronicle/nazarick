@@ -24,7 +24,8 @@ in
     programs.steam = {
       enable = true;
     };
-    programs.steam.gamescopeSession.enable = true;
+    # Enables a full session you can log into. I don't really think it's necessary in my situation.
+    # programs.steam.gamescopeSession.enable = true;
     programs.gamemode = {
       enable = true;
       enableRenice = true;

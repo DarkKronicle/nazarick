@@ -181,6 +181,7 @@ in
 
         ".cache/mozilla"
         ".cache/yazi"
+        ".cache/spotifyd"
         ".cache/newsboat"
         ".local/share/newsboat"
 
