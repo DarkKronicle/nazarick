@@ -17,7 +17,14 @@ let
     let
       pkgs-args = {
         inherit system;
-        config.allowUnfree = true;
+        config = {
+          allowUnfree = true;
+          permittedInsecurePackages = [
+            # Nheko https://github.com/Nheko-Reborn/nheko/issues/1786
+            # TODO: remove
+            "olm-3.2.16"
+          ];
+        };
       };
 
       mysecrets = import (mylib.relativeToRoot "secrets/create-secrets.nix") {
@@ -37,6 +44,7 @@ let
 
       # use unstable branch for some packages to get the latest updates
       pkgs-unstable = import inputs.nixpkgs-unstable pkgs-args;
+      pkgs-unstable-small = import inputs.nixpkgs-unstable-small pkgs-args;
 
       pkgs-stable = import inputs.nixpkgs-stable pkgs-args;
 
@@ -58,6 +66,7 @@ let
         inputs
         pkgs-stable
         pkgs-unstable
+        pkgs-unstable-small
         mysecrets
         ;
 
@@ -65,6 +74,7 @@ let
         inherit
           pkgs-unstable
           pkgs-stable
+          pkgs-unstable-small
           system
           inputs
           lib

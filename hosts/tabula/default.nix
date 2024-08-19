@@ -13,7 +13,15 @@ in
 
   config = {
 
-    nixpkgs.config.allowUnfree = true;
+    nixpkgs.config = {
+      allowUnfree = true;
+      permittedInsecurePackages = [
+        # Nheko https://github.com/Nheko-Reborn/nheko/issues/1786
+        # TODO: Also move this config somewhere somewhat centralized
+        # TODO: remove
+        "olm-3.2.16"
+      ];
+    };
 
     boot.kernelPackages = pkgs.linuxPackages_zen;
     boot.initrd.systemd.enable = true;

@@ -7,6 +7,7 @@
   pkgs,
   pkgs-stable,
   pkgs-unstable,
+  pkgs-unstable-small,
   ...
 }:
 lib.forEach (mylib.scanPaths ./.) (
@@ -20,6 +21,7 @@ lib.forEach (mylib.scanPaths ./.) (
       pkgs
       pkgs-stable
       pkgs-unstable
+      pkgs-unstable-small
       ;
   }
 )

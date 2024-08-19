@@ -29,7 +29,12 @@ let
       mylib
       system
       ;
-    inherit (specialArgs) pkgs-stable pkgs-unstable mypkgs;
+    inherit (specialArgs)
+      pkgs-stable
+      pkgs-unstable
+      pkgs-unstable-small
+      mypkgs
+      ;
     pkgs = nixpkgs;
   };
 in

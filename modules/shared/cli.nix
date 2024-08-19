@@ -17,7 +17,8 @@
   acpi
   ouch
   gfshare
-  compsize
+  # TODO: add back
+  # compsize
   gtrash
   dust
   neovim
