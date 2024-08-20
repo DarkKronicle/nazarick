@@ -22,8 +22,8 @@ let
 
       # Set up credentials by yourself
       # https://github.com/Spotifyd/spotifyd/issues/1293A
-      cache_dir = "/home/${config.home.username}/.cache/spotifyd";
-      username_cmd = "${pkgs.nushell}/bin/nu 'open /home/${config.home.username}/.cache/spotifyd/credentials.json | get username'";
+      cache_path = "/home/${config.home.username}/.cache/spotifyd";
+      username_cmd = "${pkgs.nushell}/bin/nu -c 'open /home/${config.home.username}/.cache/spotifyd/credentials.json | get username'";
       use_mpris = true;
       dbus_type = "session";
       initial_volume = "80";

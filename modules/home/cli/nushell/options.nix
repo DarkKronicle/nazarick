@@ -57,8 +57,7 @@ let
   # TODO: make this config option, also make sure to have de-duplication
   plugins = [
     "${mypkgs.nushell_plugin_explore}/bin/nu_plugin_explore"
-    # TODO: when rust 1.80 makes it's to nixpkgs uncomment this.
-    # "${mypkgs.nushell_plugin_skim}/bin/nu_plugin_skim"
+    "${mypkgs.nushell_plugin_skim}/bin/nu_plugin_skim"
   ];
 in
 {
