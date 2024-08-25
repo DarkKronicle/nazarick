@@ -25,6 +25,7 @@ in
 
     home.packages = ([
       mypkgs.scripts.nux
+      mypkgs.scripts.swu
       mypkgs.scripts.cache
       mypkgs.scripts.util
     ]);

@@ -14,35 +14,13 @@ let
 
   cfg = config.nazarick.service.kanata;
 
-  workspaceHelper =
-    let
-      requiredPackages = with pkgs; [
-        swayfx
-        nushell
-      ];
-    in
-    pkgs.stdenv.mkDerivation {
-      pname = "workspace_helper";
-      version = "latest";
-      src = ./workspace_helper.nu;
-      nativeBuildInputs = [ pkgs.makeWrapper ];
-      phases = [ "installPhase" ];
-      buildInputs = requiredPackages;
-      installPhase = ''
-        mkdir -p $out/bin
-        cp $src $out/bin/workspace_helper
-        chmod +x $out/bin/workspace_helper
-        wrapProgram $out/bin/workspace_helper --prefix PATH : ${lib.makeBinPath requiredPackages}
-      '';
-    };
-
   tofiApp = pkgs.writeScriptBin "tofi_app" ''
     pkill tofi || nu -c "tofi-drun | swaymsg exec -- ...(\$in | str trim | split row ' ')"
   '';
 
   packages = [
     pkgs.swayfx
-    workspaceHelper
+    mypkgs.scripts.swu
     tofiApp
   ];
 
@@ -78,7 +56,6 @@ in
   config = mkIf cfg.enable {
     home.packages = with mypkgs; [
       kanata
-      workspaceHelper
       tofiApp
     ];
 

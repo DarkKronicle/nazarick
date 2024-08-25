@@ -157,6 +157,8 @@ in
         ".local/share/zoxide"
         ".local/share/direnv"
 
+        ".nuget" # Certified dotnet moment
+
         ".config/nordvpn"
         ".config/borg"
         ".config/kdeconnect"

@@ -77,7 +77,7 @@ let
               mkdir -p $(dirname "$scriptBin")
               cat <<EOT >> $scriptUnwrappedBin
               #!/usr/bin/env sh 
-              nu -c "use $scriptTarget; \$*"
+              nu -c "use $scriptTarget; ${script.name} \$*"
               EOT
 
               chmod +x $scriptUnwrappedBin

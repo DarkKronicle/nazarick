@@ -391,22 +391,22 @@ danger-enable-cmd yes
 
 (deftemplate ws-goto (o1 w1 o2 w2) 
     (switch 
-        ((input virtual sw-meta1)) (cmd-log none error workspace_helper goto $o1 $w1) break
-        () (cmd-log none error workspace_helper goto $o2 $w2) break
+        ((input virtual sw-meta1)) (cmd-log none error swu goto $o1 $w1) break
+        () (cmd-log none error swu goto $o2 $w2) break
     )
 )
 
 (deftemplate ws-move (o1 w1 o2 w2) 
     (switch 
-        ((input virtual sw-meta1)) (cmd-log none error workspace_helper move-container $o1 $w1) break
-        () (cmd-log none error workspace_helper move-container $o2 $w2) break
+        ((input virtual sw-meta1)) (cmd-log none error swu move-container $o1 $w1) break
+        () (cmd-log none error swu move-container $o2 $w2) break
     )
 )
 
 (deftemplate ws-swap (o1 w1 o2 w2) 
     (switch 
-        ((input virtual sw-meta1)) (cmd-log none error workspace_helper swap $o1 $w1) break
-        () (cmd-log none error workspace_helper swap $o2 $w2) break
+        ((input virtual sw-meta1)) (cmd-log none error swu swap $o1 $w1) break
+        () (cmd-log none error swu swap $o2 $w2) break
     )
 )
 
@@ -488,7 +488,7 @@ danger-enable-cmd yes
     (    2   4) (cmd-log none error swaymsg fullscreen toggle)
     (0   2    ) (t! meta1-fork (cmd-log none error swaymsg floating toggle) (cmd-log none error swaymsg focus mode_toggle))
     (  1      ) (switch
-      ((input virtual sw-meta1)) (cmd-log none error workspace_helper move-to-scratchpad) break
+      ((input virtual sw-meta1)) (cmd-log none error swu move-to-scratchpad) break
       () (cmd-log none error swaymsg scratchpad show) break
     )
 )

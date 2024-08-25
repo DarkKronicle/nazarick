@@ -14,19 +14,19 @@ def "merge deep" [] {
     $result
 }
 
-def "sorted-displays" [] {
+export def "sorted-displays" [] {
     let outputs = swaymsg -t get_outputs | from json
     let x_pos = $outputs | each {|x| { $x.name: $x.rect.x }} | merge deep | sort -v
     $x_pos | transpose | get column0
 }
 
-def "tree find" [input, block, columns = [ 'nodes' 'floating_nodes' ]] {
-    if (do $block $input) {
+export def "tree find" [input, filter: closure, columns = [ 'nodes' 'floating_nodes' ]] {
+    if (do $filter $input) {
         return $input
     } 
     for column in $columns {
         for $node in ($input | get $column) {
-            let val = tree find $node $block
+            let val = tree find $node $filter
             if ($val != null) {
                 return $val
             }
@@ -35,8 +35,50 @@ def "tree find" [input, block, columns = [ 'nodes' 'floating_nodes' ]] {
     return null
 }
 
+def "listen-for" [filter: list, condition: closure, --duration(-d): duration = 30sec  ] {
+    timeout (($duration | into int) / 1000000000) swaymsg -t subscribe ($filter | to json) -m 
+    | from json --objects | skip until  $condition | try { first }
+}
+
+export def "kitty-start-scratch" [] {
+    start-in-scratchpad "swaymsg 'exec sleep 0.2 && kitty'" "kitty" "[con_id=|CON|] blur enable"
+}
+
+# TODO: this is ultra ugly
+export def "start-in-scratchpad" [cmd: string, app_id: string, extra?: string] {
+    let marks = swaymsg -t get_marks
+
+    sh -c $cmd
+
+    try {
+        swaymsg $"mark --replace current"
+    }
+    let event = listen-for ["window"] {|x| $x.change == new and $x.container.app_id == $app_id}
+    swaymsg $"[con_id=($event.container.id)] mark --replace tomove"
+    if "scratch" in $marks {
+        # DOn't ask me why 3 scratchpad shows
+        swaymsg 'scratchpad show; [con_mark="tomove"] focus; move container to mark scratch; scratchpad show; unmark tomove; '
+        try {
+            swaymsg '[con_mark="current"] focus; unmark current'
+        }
+        if ($extra | is-not-empty) {
+            swaymsg ($extra | str replace -a "|CON|" ($event.container.id | into string))
+        }
+        return
+    }
+
+    swaymsg $'[con_id=($event.container.id)] focus; splith; layout tabbed; focus parent; mark --replace scratch; move scratchpad; unmark tomove;'
+    try {
+        swaymsg '[con_mark="current"] focus; unmark current'
+    }
+    if ($extra | is-not-empty) {
+        swaymsg ($extra | str replace -a "|CON|" ($event.container.id | into string))
+    }
+
+}
+
 # Fancy scratchpad that enforces tabbed layout
-def "main move-to-scratchpad" [] {
+export def "move-to-scratchpad" [] {
     # Check if the scratchpad tabbed layout exists
     let marks = swaymsg -t get_marks
 
@@ -59,7 +101,7 @@ def "main move-to-scratchpad" [] {
     return
 }
 
-def "main display" [order: int] {
+export def "display" [order: int] {
     let prio = [ 'HDMI-A-1' 'eDP-1' ]
     mut outputs = sorted-displays
     mut i = 0
@@ -80,7 +122,7 @@ def "main display" [order: int] {
     return ($outputs | get $target)
 }
 
-def "main sorted-prio" [] {
+export def "sorted-prio" [] {
     let prio = [ 'HDMI-A-1' 'eDP-1' ]
     mut outputs = sorted-displays
     mut final = []
@@ -94,8 +136,8 @@ def "main sorted-prio" [] {
     ($final | append $outputs)
 }
 
-def "main init" [] {
-    let outputs = main sorted-prio
+export def "init" [] {
+    let outputs = sorted-prio
     mut i = 0;
     for $display in $outputs {
         swaymsg $"workspace ($i)1 output ($display); workspace ($i)1"
@@ -105,8 +147,8 @@ def "main init" [] {
 }
 
 # Move a window to another workspace
-def "main move-container" [output: int, workspace: string] {
-    let display = main display $output
+export def "move-container" [output: int, workspace: string] {
+    let display = display $output
     if $display == null {
         return
     }
@@ -125,7 +167,7 @@ def "main move-container" [output: int, workspace: string] {
 # Swap workspace with another one that may or may not exist. Will keep focus
 # On current one
 # Cannot swap with the current one (doesn't make sense, needs to be able to create a new one)
-def "main swap" [output: int, workspace: string] {
+export def "swap" [output: int, workspace: string] {
     let reserved = "-";
     let workspaces = swaymsg -t get_workspaces | from json
     let current = $workspaces | filter {|w| $w | get focused } | get 0
@@ -134,7 +176,7 @@ def "main swap" [output: int, workspace: string] {
         return
     }
     let target = $workspaces | filter {|w| ($w | get name) == $workspace } | get 0?
-    let display = main display $output
+    let display = display $output
     let target_display = if ($target != null) { 
         $target | get output
     } else {
@@ -169,12 +211,9 @@ def "main swap" [output: int, workspace: string] {
     return null
 }
 
-def "main goto" [output: int, workspace: string] {
-    let display = main display $output
+export def "goto" [output: int, workspace: string] {
+    let display = display $output
     swaymsg $"workspace ($workspace) output ($display); workspace ($workspace)"
     return null
 }
 
-def "main" [] {
-    error make { msg: "Please provide an argument" }
-}
