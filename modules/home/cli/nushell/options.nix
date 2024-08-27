@@ -56,7 +56,7 @@ let
 
   # TODO: make this config option, also make sure to have de-duplication
   plugins = [
-    "${mypkgs.nushell_plugin_explore}/bin/nu_plugin_explore"
+    # "${mypkgs.nushell_plugin_explore}/bin/nu_plugin_explore"
     "${mypkgs.nushell_plugin_skim}/bin/nu_plugin_skim"
   ];
 in
@@ -179,7 +179,12 @@ in
       # The main issue is that these variables will be set correctly on the graphical session,
       # but when a shell is created things get jank (it sources /etc/profile) (I think)
       # this fixes it :)
-      environmentVariables = config.home.sessionVariables;
+      environmentVariables = lib.listToAttrs (
+        lib.mapAttrsToList (key: var: {
+          name = key;
+          value = ''r####'${var}'####'';
+        }) config.home.sessionVariables
+      );
     };
   };
 }

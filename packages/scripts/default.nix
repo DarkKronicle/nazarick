@@ -47,10 +47,15 @@ let
       enableParallelBuilding = true;
       passAsFile = "scriptContent";
       nativeBuildInputs = [ pkgs.makeWrapper ];
+      # Notes:
+      # - We create target-reserved to prevent infinite recursion
+
+      # TODO: Hide .*-unwrapped from build. Symlink seems kinda mid here tho, tho would work
       buildPhase = ''
         runHook preBuild
 
         scriptTarget=$out/share/nushell/modules/${script.name}.nu
+        scriptUnwrappedTarget=$out/bin/.${script.name}-target-reserved.nu
         scriptUnwrappedBin=$out/bin/.${script.name}-unwrapped
         scriptBin=$out/bin/${script.name}
         scriptNuSource=$out/share/nushell/vendor/autoload/${script.name}
@@ -75,9 +80,11 @@ let
           if script.createBin then
             ''
               mkdir -p $(dirname "$scriptBin")
+              cp "${modifiedSource}" "$scriptUnwrappedTarget"
+
               cat <<EOT >> $scriptUnwrappedBin
               #!/usr/bin/env sh 
-              nu -c "use $scriptTarget; ${script.name} \$*"
+              nu -c "use $scriptUnwrappedTarget; .${script.name}-target-reserved \$*"
               EOT
 
               chmod +x $scriptUnwrappedBin

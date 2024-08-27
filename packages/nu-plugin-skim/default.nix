@@ -14,8 +14,8 @@ rustPlatform.buildRustPackage {
   src = fetchFromGitHub {
     owner = "idanarye";
     repo = "nu_plugin_skim";
-    rev = "v0.4.1";
-    hash = "sha256-H6VudFya3PXfw7N4rZIuwwcyuAY8esZCCFR/0Hl5oAA=";
+    rev = "v0.5.0";
+    hash = "sha256-ohukYXmXL2HQol+tOjlwGSD5CKEloaj463BGBdvTElI=";
   };
-  cargoHash = "sha256-kpxE321TaubhI7aJcQtcEv9tdWXpJHEMqYODo0adG6I=";
+  cargoHash = "sha256-1bswk6uPCz5azBncMyi4fcMfvxsAk+qD3Brv6gWv/eg=";
 }

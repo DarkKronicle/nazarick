@@ -46,6 +46,7 @@ in
     nazarick.cli.nushell.alias = {
       "icat" = "kitten icat";
       "zz" = "systemd-inhibit sleep infinity";
+      "grasp-heart" = "systemctl poweroff";
     };
 
     programs.ssh.addKeysToAgent = "yes";
