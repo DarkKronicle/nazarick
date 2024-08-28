@@ -3,6 +3,7 @@
   config,
   mylib,
   pkgs,
+  myvars,
   ...
 }:
 
@@ -39,14 +40,36 @@ in
         "Thumbs.db"
       ];
       extraConfig = {
-        credential.helper = [
-          "cache --timeout 60000"
-          "oauth"
-        ];
+        # credential.helper = [
+        # "cache --timeout 60000"
+        # "oauth"
+        # ];
+        core.sshCommand = "ssh -i ~/.ssh/id_tabula";
         init = {
           defaultBranch = "main";
         };
       };
+      includes = [
+        {
+          condition = "hasconfig:remote.*.url:git@gitlab.com/DarkKronicle/nix-sops.git";
+          contents = {
+            core.sshCommand = "ssh -i ~/.ssh/id_nazarick";
+          };
+        }
+        {
+          condition = myvars.personal-git.condition;
+          contents = {
+            core.sshCommand = "ssh -i ${myvars.personal-git.ssh}";
+            contents = {
+              name = myvars.personal-git.name;
+              email = myvars.personal-git.email;
+            };
+            commit = {
+              gpgSign = false;
+            };
+          };
+        }
+      ];
       signing = {
         key = "D07B541F73FBBA18D11B2F63D7592266239CD59C";
         signByDefault = true;
