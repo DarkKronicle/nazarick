@@ -65,79 +65,139 @@ in
         "Alt+k" = "add sub-pos -1";
       };
 
-      config = {
-        profile = "gpu-hq";
-        gpu-api = "vulkan";
-        vo = "gpu-next";
-        keep-open = "yes";
-        force-window = "immediate";
-        autofit = "70%";
-        force-seekable = "yes";
-        screenshot-template = "%F - [%P] (%#01n)";
-        save-position-on-quit = "yes";
-        reset-on-next-file = "audio-delay,mute,pause,speed,sub-delay,video-aspect-override,video-pan-x,video-pan-y,video-rotate,video-zoom,volume";
-        input-ipc-server = "/tmp/kamite-mpvsocket";
-        # for uosc
-        osd-bar = "no";
-        border = "no";
+      config =
+        let
+          sub-font = "Noto Sans CJK JP";
+        in
+        {
+          profile = "gpu-hq";
+          gpu-api = "vulkan";
+          vo = "gpu-next";
+          keep-open = "yes";
+          force-window = "immediate";
+          autofit = "70%";
+          force-seekable = "yes";
+          screenshot-template = "%F - [%P] (%#01n)";
+          save-position-on-quit = "yes";
+          reset-on-next-file = "audio-delay,mute,pause,speed,sub-delay,video-aspect-override,video-pan-x,video-pan-y,video-rotate,video-zoom,volume";
+          input-ipc-server = "/tmp/kamite-mpvsocket";
+          # for uosc
+          osd-bar = "no";
+          border = "no";
 
-        # ytdl
+          # ytdl
 
-        ytdl-format = ''bestvideo[height<=?1080]+bestaudio/best'';
-        ytdl-raw-options = ''write-sub=,write-auto-sub=,sub-langs="ja,jp,jpn,en.*"'';
+          ytdl-format = ''bestvideo[height<=?1080]+bestaudio/best'';
+          ytdl-raw-options = ''write-sub=,write-auto-sub=,sub-langs="ja,jp,jpn,en.*"'';
 
-        scale = "ewa_lanczos";
-        scale-blur = 0.981251;
-        dscale = "mitchell";
-        cscale = "spline36";
+          scale = "ewa_lanczos";
+          scale-blur = 0.981251;
+          dscale = "mitchell";
+          cscale = "spline36";
 
-        dither-depth = "auto";
-        dither = "fruit";
+          dither-depth = "auto";
+          dither = "fruit";
 
-        deband = "yes";
-        deband-iterations = 4;
-        deband-threshold = 48;
-        deband-range = 24;
-        deband-grain = 16;
+          deband = "yes";
+          deband-iterations = 4;
+          deband-threshold = 48;
+          deband-range = 24;
+          deband-grain = 16;
 
-        scale-antiring = 0.7;
-        dscale-antiring = 0.7;
-        cscale-antiring = 0.7;
+          scale-antiring = 0.7;
+          dscale-antiring = 0.7;
+          cscale-antiring = 0.7;
 
-        # Audio normalization, can be weird
-        # af=acompressor
-        # af=lavfi=[loudnorm=i=-14.0:lra=13.0:tp=-1.0]
+          # Audio normalization, can be weird
+          # af=acompressor
+          # af=lavfi=[loudnorm=i=-14.0:lra=13.0:tp=-1.0]
 
-        # Make audio louder
-        af = "lavfi=[acompressor=4]";
+          # Make audio louder
+          af = "lavfi=[acompressor=4]";
 
-        #
-        # Subtitle settings
-        # 
-        # Show subs, guess on what subs, prioritize japanese, try to fix timings, make subs a bit bigger
-        sub-visibility = "yes";
-        sub-auto = "fuzzy";
-        alang = "jpn,ja,jp,eng,en";
-        slang = "jpn,ja,jp,eng,en";
-        audio-file-auto = "fuzzy";
-        sub-fix-timing = "yes";
-        autofit-larger = "100%x100%";
-        geometry = "50%:50%";
+          #
+          # Subtitle settings
+          # 
+          # Show subs, guess on what subs, prioritize japanese, try to fix timings, make subs a bit bigger
+          sub-visibility = "yes";
+          sub-auto = "fuzzy";
+          alang = "jpn,ja,jp,eng,en";
+          slang = "jpn,ja,jp,eng,en";
+          audio-file-auto = "fuzzy";
+          sub-fix-timing = "yes";
+          autofit-larger = "100%x100%";
+          geometry = "50%:50%";
 
-        # Sub appearance
-        sub-font = "'Noto Sans CJK JP'";
-        sub-border-size = 3;
-        sub-back-color = "#88000000";
-        # sub-shadow-offset="1"
-        sub-font-size = 75;
-        sub-scale-by-window = "no";
-        secondary-sub-visibility = "no";
+          # Sub appearance
+          inherit sub-font;
+          sub-border-size = 3;
+          sub-back-color = "#88000000";
+          # sub-shadow-offset="1"
+          sub-font-size = 75;
+          sub-scale-by-window = "no";
+          secondary-sub-visibility = "no";
 
-        # Oh my gosh please, .ass stop taking over my fonts.
-        sub-ass-scale-with-window = "no";
-        sub-ass-override = "yes";
-        sub-ass = "no";
-      };
+          # Oh my gosh please, .ass stop taking over my fonts.
+          # sub-ass-scale-with-window = "no";
+          # sub-ass-override = "yes";
+          # sub-ass = "no"; # Deprecated, use sub-ass-override = "strip";
+
+          sub-ass-scale-with-window = "no";
+          sub-ass-style-overrides-append =
+            let
+              # Overrides the default subs to look good. Will try not to touch
+              # like signs, op or other specialty tracks
+
+              # Spec:
+              # http://www.tcax.org/docs/ass-specs.htm
+
+              dialogueStyles = [
+                "default"
+                "Default"
+                "DEFAULT"
+                "speech"
+                "Speech"
+                "SPEECH"
+                "dialogue"
+                "Dialogue"
+                "DIALOGUE"
+              ];
+
+              altStyles = [
+                "default - alt"
+                "Default - Alt"
+                "DEFAULT - ALT"
+                "alt"
+                "Alt"
+                "ALT"
+              ];
+            in
+            lib.flatten (
+              (lib.forEach dialogueStyles (style: [
+                "${style}.Borderstyle=4"
+                "${style}.BackColour=&H88000000"
+                "${style}.Fontname=${sub-font}"
+                "${style}.PrimaryColour=&H00FFFFFF"
+                "${style}.OutlineColour=&H00000000"
+                "${style}.Bold=0"
+                "${style}.Italic=0"
+                "${style}.FontSize=75"
+                "${style}.Shadow=0"
+                "${style}.Outline=3"
+              ]))
+              ++ (lib.forEach altStyles (style: [
+                # We won't change colors here, just in case
+                "${style}.Borderstyle=4"
+                "${style}.BackColour=&H88000000"
+                "${style}.Fontname=${sub-font}"
+                "${style}.Bold=0"
+                "${style}.Italic=0"
+                "${style}.FontSize=75"
+                "${style}.Shadow=0"
+                "${style}.Outline=3"
+              ]))
+            );
+        };
       profiles = {
         "no-shaders" = {
           glsl-shaders-clr = "";
