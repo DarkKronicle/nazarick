@@ -151,50 +151,292 @@ in
               # Spec:
               # http://www.tcax.org/docs/ass-specs.htm
 
+              # I have to add more as time goes on :(
+              # Just use mkvinfo, then mkvextract tracks
+
               dialogueStyles = [
-                "default"
                 "Default"
-                "DEFAULT"
-                "speech"
+                "DefaultTop"
+                "Default Top"
+
+                "Main"
+                "MainTop"
+                "Main Top"
+
                 "Speech"
-                "SPEECH"
-                "dialogue"
+                "SpeechTop"
+                "Speech Top"
+
                 "Dialogue"
-                "DIALOGUE"
+                "DialogueTop"
+                "Dialogue Top"
+
+                "Flashback"
+                "FlashbackTop"
+                "Flashback Top"
+              ];
+
+              italicStyles = [
+                "Default Italic"
+                "Default Italic Top"
+                "DefaultItalic"
+                "DefaultItalicTop"
+
+                "Main Italic"
+                "Main Italic Top"
+                "MainItalic"
+                "MainItalicTop"
+
+                "Dialogue Italic"
+                "DialogueItalic"
+                "Dialogue Italic Top"
+                "DialogueItalicTop"
+
+                "FlashbackItalic"
+                "Flashback Italic"
+                "Flashback Italic Top"
+                "FlashbackItalicTop"
+
+                "Speech Italic"
+                "SpeechItalic"
+                "SpeechItalicTop"
+                "Speech Italic Top"
+
+                "Default Italics"
+                "Default Italics Top"
+                "DefaultItalics"
+                "DefaultItalicsTop"
+
+                "Main Italics"
+                "Main Italics Top"
+                "MainItalics"
+                "MainItalicsTop"
+
+                "Dialogue Italics"
+                "DialogueItalics"
+                "Dialogue Italics Top"
+                "DialogueItalicsTop"
+
+                "FlashbackItalics"
+                "Flashback Italics"
+                "Flashback Italics Top"
+                "FlashbackItalicsTop"
+
+                "Speech Italics"
+                "SpeechItalics"
+                "SpeechItalicsTop"
+                "Speech Italics Top"
+              ];
+
+              boldStyles = [
+                "Default Bold"
+                "Default Bold Top"
+                "DefaultBold"
+                "DefaultBoldTop"
+
+                "Main Bold"
+                "Main Bold Top"
+                "MainBold"
+                "MainBoldTop"
+
+                "Dialogue Bold"
+                "Dialogue Bold Top"
+                "DialogueBold"
+                "DialogueBoldTop"
+
+                "Flashback Bold"
+                "Flashback Bold"
+                "Flashback Bold Top"
+                "FlashbackBoldTop"
+
+                "Speech Bold"
+                "SpeechBold"
+                "SpeechBoldTop"
+                "Speech Bold Top"
+              ];
+
+              italicBoldStyles = [
+                "Default Italic Bold"
+                "Default Italic Bold Top"
+                "DefaultItalicBold"
+                "DefaultItalicBoldTop"
+
+                "Dialogue Italic Bold"
+                "DialogueItalicBold"
+                "Dialogue Italic Bold Top"
+                "DialogueItalicBoldTop"
+
+                "FlashbackItalicBold"
+                "Flashback Italic Bold"
+                "Flashback Italic Bold Top"
+                "FlashbackItalicBoldTop"
+
+                "Speech Italic Bold"
+                "SpeechItalicBold"
+                "SpeechItalicBoldTop"
+                "Speech Italic Bold Top"
+
+                "Default Bold Italic"
+                "Default Bold Italic Top"
+                "DefaultBoldItalic"
+                "DefaultBoldItalicTop"
+
+                "Dialogue Bold Italic"
+                "Dialogue Bold Italic Top"
+                "DialogueBoldItalic"
+                "DialogueBoldItalicTop"
+
+                "FlashbackBoldItalic"
+                "Flashback Bold Italic"
+                "Flashback Bold Italic Top"
+                "FlashbackBoldItalicTop"
+
+                "Speech Bold Italic"
+                "SpeechBoldItalic"
+                "SpeechBoldItalicTop"
+                "Speech Bold Italic Top"
+
+                "Default Italics Bold"
+                "Default Italics Bold Top"
+                "DefaultItalicsBold"
+                "DefaultItalicsBoldTop"
+
+                "Dialogue Italics Bold"
+                "DialogueItalicsBold"
+                "Dialogue Italics Bold Top"
+                "DialogueItalicsBoldTop"
+
+                "FlashbackItalicsBold"
+                "Flashback Italics Bold"
+                "Flashback Italics Bold Top"
+                "FlashbackItalicsBoldTop"
+
+                "Speech Italics Bold"
+                "SpeechItalicsBold"
+                "SpeechItalicsBoldTop"
+                "Speech Italics Bold Top"
+
+                "Default Bold Italics"
+                "Default Bold Italics Top"
+                "DefaultBoldItalics"
+                "DefaultBoldItalicsTop"
+
+                "Dialogue Bold Italics"
+                "Dialogue Bold Italics Top"
+                "DialogueBoldItalics"
+                "DialogueBoldItalicsTop"
+
+                "FlashbackBoldItalics"
+                "Flashback Bold Italics"
+                "Flashback Bold Italics Top"
+                "FlashbackBoldItalicsTop"
+
+                "Speech Bold Italics"
+                "SpeechBoldItalics"
+                "SpeechBoldItalicsTop"
+                "Speech Bold Italics Top"
               ];
 
               altStyles = [
-                "default - alt"
-                "Default - Alt"
-                "DEFAULT - ALT"
-                "alt"
                 "Alt"
-                "ALT"
+
+                "Default - Alt"
+                "Default Alt"
+                "Alt Default"
+                "DefaultAlt"
+
+                "Main - Alt"
+                "MainAlt"
+                "Main Alt"
+                "Alt Main"
+
+                "Speech - Alt"
+                "SpeechAlt"
+                "Speech Alt"
+                "Alt Speech"
+
+                "Flashback - Alt"
+                "FlashbackAlt"
+                "Flashback Alt"
+                "Alt Flashback"
+
+                "Dialogue - Alt"
+                "DialogueAlt"
+                "Dialogue Alt"
+                "Alt Dialogue"
               ];
+
+              outlineThickness = "3";
+              fontScale = "1.2";
+              # I think the first is reverse alpha. Then it's BRG I think
+              primaryColour = "00FFFFFF";
+              backColour = "88000000";
+              outlineColour = "00000000";
             in
             lib.flatten (
               (lib.forEach dialogueStyles (style: [
                 "${style}.Borderstyle=4"
-                "${style}.BackColour=&H88000000"
+                "${style}.PrimayColour=&H${primaryColour}"
                 "${style}.Fontname=${sub-font}"
-                "${style}.PrimaryColour=&H00FFFFFF"
-                "${style}.OutlineColour=&H00000000"
+                "${style}.BackColour=&H${backColour}"
+                "${style}.OutlineColour=&H${outlineColour}"
                 "${style}.Bold=0"
                 "${style}.Italic=0"
-                "${style}.FontSize=75"
                 "${style}.Shadow=0"
-                "${style}.Outline=3"
+                "${style}.Outline=${outlineThickness}"
+                "${style}.ScaleX=${fontScale}"
+                "${style}.ScaleY=${fontScale}"
+              ]))
+              ++ (lib.forEach italicStyles (style: [
+                "${style}.Borderstyle=4"
+                "${style}.BackColour=&H${backColour}"
+                "${style}.Fontname=${sub-font}"
+                "${style}.PrimaryColour=&H${primaryColour}"
+                "${style}.OutlineColour=&H${outlineColour}"
+                "${style}.Bold=0"
+                "${style}.Italic=-1"
+                "${style}.Shadow=0"
+                "${style}.Outline=${outlineThickness}"
+                "${style}.ScaleX=${fontScale}"
+                "${style}.ScaleY=${fontScale}"
+              ]))
+              ++ (lib.forEach boldStyles (style: [
+                "${style}.Borderstyle=4"
+                "${style}.BackColour=&H${backColour}"
+                "${style}.Fontname=${sub-font}"
+                "${style}.PrimaryColour=&H${primaryColour}"
+                "${style}.OutlineColour=&H${outlineColour}"
+                "${style}.Bold=-1"
+                "${style}.Italic=0"
+                "${style}.Shadow=0"
+                "${style}.Outline=${outlineThickness}"
+                "${style}.ScaleX=${fontScale}"
+                "${style}.ScaleY=${fontScale}"
+              ]))
+              ++ (lib.forEach italicBoldStyles (style: [
+                "${style}.Borderstyle=4"
+                "${style}.BackColour=&H${backColour}"
+                "${style}.OutlineColour=&H${outlineColour}"
+                "${style}.Fontname=${sub-font}"
+                "${style}.PrimaryColour=&H${primaryColour}"
+                "${style}.Bold=-1"
+                "${style}.Italic=-1"
+                "${style}.Shadow=0"
+                "${style}.Outline=${outlineThickness}"
+                "${style}.ScaleX=${fontScale}"
+                "${style}.ScaleY=${fontScale}"
               ]))
               ++ (lib.forEach altStyles (style: [
                 # We won't change colors here, just in case
                 "${style}.Borderstyle=4"
-                "${style}.BackColour=&H88000000"
+                "${style}.BackColour=&H${backColour}"
                 "${style}.Fontname=${sub-font}"
                 "${style}.Bold=0"
                 "${style}.Italic=0"
-                "${style}.FontSize=75"
                 "${style}.Shadow=0"
                 "${style}.Outline=3"
+                "${style}.ScaleX=${fontScale}"
+                "${style}.ScaleY=${fontScale}"
               ]))
             );
         };
