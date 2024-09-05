@@ -22,6 +22,7 @@ in
       audio.enable = lib.mkOverride 500 true;
       bluetooth.enable = lib.mkOverride 500 true;
       printing.enable = lib.mkOverride 500 true;
+      tablet.enable = lib.mkOverride 500 true;
     })
     (lib.mkIf cfg.common {
       # boot.enable = lib.mkOverride 450 true;

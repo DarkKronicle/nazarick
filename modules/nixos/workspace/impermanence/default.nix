@@ -170,6 +170,8 @@ in
         ".config/kded5"
         ".config/kded6"
 
+        ".config/OpenTabletDriver"
+
         ".config/kraxarn"
 
         ".config/autostart" # cursed things here

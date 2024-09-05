@@ -58,7 +58,7 @@ let
         scriptUnwrappedTarget=$out/bin/.${script.name}-target-reserved.nu
         scriptUnwrappedBin=$out/bin/.${script.name}-unwrapped
         scriptBin=$out/bin/${script.name}
-        scriptNuSource=$out/share/nushell/vendor/autoload/${script.name}
+        scriptNuSource=$out/share/nushell/vendor/autoload/${script.name}.nu
 
         mkdir -p $(dirname "$scriptTarget")
         mkdir -p $(dirname "$scriptNuSource")
