@@ -44,7 +44,7 @@ def "inner-compress" [files: list<path>, output: path] {
     }
 
     if $name =~ '\.tar\.zst(?:d)?$' {
-        return (tar c ...$files | zstd -o $file)
+        return (tar c ...$files | zstd -o $output)
     }
 
     if $name =~ '\.tar\.xz$' {
@@ -99,15 +99,15 @@ def "inner-compress" [files: list<path>, output: path] {
     }
 
     if $name =~ '\.xz$' {
-        return (xz $file --stdout | save $output)
+        return (xz .$files --stdout | save $output)
     }
     
     if $name =~ '\.lz(?:ma)?$' {
-        return (xz $file --format=lzma --stdout | save $output)
+        return (xz ...$files --format=lzma --stdout | save $output)
     }
 
     if $name =~ '\.zst(?:d)?$' {
-        return (zstd $file -o $output)
+        return (zstd ...$files -o $output)
     }
 
     error make {
