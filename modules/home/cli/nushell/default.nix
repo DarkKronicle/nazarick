@@ -28,6 +28,7 @@ in
       mypkgs.scripts.swu
       mypkgs.scripts.cache
       mypkgs.scripts.util
+      mypkgs.scripts.xpress
     ]);
 
     nazarick.cli.nushell.source = [
