@@ -23,13 +23,14 @@ in
 
   config = mkIf cfg.enable {
 
-    home.packages = ([
+    home.packages = [
       mypkgs.scripts.nux
       mypkgs.scripts.swu
       mypkgs.scripts.cache
       mypkgs.scripts.util
       mypkgs.scripts.xpress
-    ]);
+      mypkgs.scripts.crypt
+    ];
 
     nazarick.cli.nushell.source = [
       "${pkgs.nu_scripts}/share/nu_scripts/custom-completions/man/man-completions.nu"

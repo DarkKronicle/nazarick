@@ -2,7 +2,7 @@
   config,
   lib,
   mylib,
-  mypkgs,
+  pkgs,
   ...
 }:
 let
@@ -27,21 +27,21 @@ in
           groups = [ "wheel" ];
           commands = [
             {
-              command = "${mypkgs.tomb}/bin/tomb close";
+              command = "${pkgs.tomb}/bin/tomb close";
               options = [
                 "NOPASSWD"
                 "SETENV"
               ];
             }
             {
-              command = "${mypkgs.tomb}/bin/tomb slam";
+              command = "${pkgs.tomb}/bin/tomb slam";
               options = [
                 "NOPASSWD"
                 "SETENV"
               ];
             }
             {
-              command = "${mypkgs.tomb}/bin/tomb list";
+              command = "${pkgs.tomb}/bin/tomb list";
               options = [
                 "NOPASSWD"
                 "SETENV"

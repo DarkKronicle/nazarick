@@ -43,6 +43,7 @@ in
         panels = enabled;
       };
       fcitx = enabled;
+      mars = enabled;
     };
 
     cli = {
@@ -63,7 +64,6 @@ in
         useKittyProtocol = lib.mkDefault isPersonalComputer;
       };
       pager = enabled;
-      security = enabled;
       tex = enablePersonalComputer;
       rust = enablePersonalComputer;
     };

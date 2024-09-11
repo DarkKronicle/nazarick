@@ -32,5 +32,5 @@
   usbutils
   inxi
   file
+  tomb
 ])
-++ (with mypkgs; [ tomb ])
