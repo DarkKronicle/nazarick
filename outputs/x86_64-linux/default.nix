@@ -23,7 +23,7 @@ let
     );
     packages =
       (lib.attrsets.mergeAttrsList (map (it: it.packages or { }) dataWithoutPaths))
-      // (import ../../packages (package-args // args // { pkgs = package-args.pkgs-stable; }));
+      // (import ../../packages (package-args // args // { pkgs = package-args.pkgs-unstable; }));
   };
 in
 outputs

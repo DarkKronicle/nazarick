@@ -7,6 +7,7 @@
   pkgs-stable,
   pkgs-unstable,
   mysecrets,
+  extra-pkgs,
   ...
 }:
 let
@@ -23,6 +24,7 @@ let
       pkgs-unstable
       mysecrets
       mylib
+      extra-pkgs
       ;
   };
   scriptFiles = mylib.scanPaths ./.;

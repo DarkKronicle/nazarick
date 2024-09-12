@@ -4,6 +4,7 @@
   config,
   pkgs,
   inputs,
+  system,
   ...
 }:
 
@@ -21,6 +22,6 @@ in
   config = mkIf cfg.enable {
     home.sessionVariables.EDITOR = "nvim-cats";
 
-    home.packages = [ inputs.nvim-cats.packages.x86_64-linux.nvim-cats ];
+    home.packages = [ inputs.nvim-cats.packages.${system}.nvim-cats ];
   };
 }

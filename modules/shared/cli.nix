@@ -34,3 +34,4 @@
   file
   tomb
 ])
+++ [ mypkgs.tlock ]

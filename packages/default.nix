@@ -47,6 +47,8 @@ let
         pkgs-unstable
         mysecrets
         ;
+
+      extra-pkgs = mainPackages;
     }
     // args
   );

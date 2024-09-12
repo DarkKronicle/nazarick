@@ -10,26 +10,60 @@ def pub-identities [] {
     (ls /mnt/tomb/tombs/age/*.pub | get name )
 }
 
-export def "passphrase" [num: int = 3] {
+# Generates a passphrase meant for a one-time code
+# Strings together a few random words with `-`
+export def "passphrase" [
+    num: int = 3             # number of words in passphrase
+] none -> string {
     crypt-env {
         diceware --no-caps -d "-" -n $num
     }
 }
 
-export def "send" [file: path, --code-length: int = 3, --force-relay] {
+# Send a file or data through wormhole
+#
+# You can pipe in data, but should then specify --ext to declare
+# what type you are sending
+export def "send" [
+    file?: path,             # File to send
+    --code-length: int = 3,  # Length of password
+    --force-relay            # Force relay with wormhole (doesn't share your IP with peer)
+    --ext: string = "txt",   # Sets file extension type. File must not be declared.
+] any -> none {
+    let piped = $in
     crypt-env {
+        mut tmpd = false;
+        mut realfile = $file
+        if ($file | is-empty) {
+            $tmpd = true;
+            $realfile = (mktemp -t $"wormhole.XXXXXX.($ext)")
+            if ($piped | is-empty) {
+                error make {
+                    msg: "Input file and piped data cannot both be empty!"
+                }
+            }
+            $piped | save -f $realfile
+        }
         print $"Sending ($file)"
         let code = passphrase $code_length
         print $"Code: ($code)"
         if $force_relay {
-            wormhole-rs send $file --code $code --force-relay | print
+            wormhole-rs send $realfile --code $code --force-relay | print
         } else {
-            wormhole-rs send $file --code $code | print
+            wormhole-rs send $realfile --code $code | print
         }
     }
 }
 
-export def "receive" [code?: string, --force-relay, --out-dir: path] {
+# Receive a file from wormhole
+#
+# The output file will be in a temp directory. Returns the received file unless discard is specified.
+export def "receive" [
+    code?: string,     # Wormhole code (will ask for input if not provided)
+    --force-relay,     # Force relay with wormhole (doesn't share your IP with peer)
+    --out-dir: path    # output directory for the file
+    --discard(-d)      # open file and return that instead of the got file
+] string? string? -> path? {
     let code = if ($code | is-empty) {
         let val = $in
         if ($val | is-empty) {
@@ -57,54 +91,30 @@ export def "receive" [code?: string, --force-relay, --out-dir: path] {
         } else {
             wormhole-rs receive $code --out-dir $dir
         })
-        return (ls -a $dir | get 0 | each {|x| $x.name | path expand})
-    }
-}
-
-export def "send-text" [text?: string, --code-length: int = 3, --force-relay] {
-    let text = if ($text | is-empty) {
-        $in
-    } else {
-        $text
-    }
-    let file = (mktemp -t wormhole-text.XXXXXX.txt)
-    $in | save -f $file
-
-    if $force_relay {
-        send $file --code-length $code_length --force-relay
-    } else {
-        send $file --code-length $code_length
-    }
-
-    rm -p $file
-}
-
-export def "receive-text" [code?: string, --force-relay] {
-    let code = if ($code | is-empty) {
-        let val = $in
-        if ($val | is-empty) {
-            input "Enter code: " | str trim
+        let file = (ls -a $dir | get 0 | each {|x| $x.name | path expand})
+        if $discard {
+            let content = open -r $file
+            rm -p $file
+            return $content
         } else {
-            $val
+            return $file
         }
-    } else {
-        $code
     }
-
-    let dir = (mktemp -d -t wormhole-receive.XXXXXX)
-
-    let file = if ($force_relay) {
-        receive $code --out-dir $dir
-    } else {
-        receive $code --force-relay --out-dir $dir
-    }
-    let content = open -r $file
-    rm -rp $dir
-    return $content
 }
 
-export def "receive-encrypted" [--identity: path, --super-paranoid: path@pub-identities] {
-    if ($super_paranoid | is-not-empty) {
+# Recieve encrypted data through wormhole.
+#
+# Specify your private identity if the payload has been encrypted on it
+#
+# Specify senders public identity to create a key pair and encrypt it first
+#
+# Specify no identity to create keys and do an initial key exchange
+export def "receive-encrypted" [
+    --identity(-i): path,                                  # your private key to decrypt data
+    --super-paranoid-sender-pub(-s): path@pub-identities,  # sender's public key for super paranoid mode
+    --discard(-d)                                          # Return file contents and delete the file
+] {
+    if ($super_paranoid_sender_pub | is-not-empty) {
         if ($identity | is-not-empty) {
             error make {
                 msg: "If super-paranoid, there can't be an identity!"
@@ -118,7 +128,7 @@ export def "receive-encrypted" [--identity: path, --super-paranoid: path@pub-ide
         let pubkey = do { age-keygen -o $key } | complete | get stderr | split row ':' | get 1 | str trim
         $pubkey | save -f ($keydir | path join "key.pub.age")
 
-        $pubkey | age --recipients-file $super_paranoid --output $encpubkey
+        $pubkey | age --recipients-file $super_paranoid_sender_pub --output $encpubkey
 
         send $encpubkey
         print ""
@@ -129,9 +139,14 @@ export def "receive-encrypted" [--identity: path, --super-paranoid: path@pub-ide
         let code = input "Enter code: " | str trim
         let file = receive $code
         let decdir = mktemp -t -d decrypted.XXXXXX
-        let decfile = $decdir | path join ($file | path basename)
-        age --decrypt --identity $key --output $decfile $file
+        let decfile = $decdir | path join ($file | path basename | str replace "encrypted" "decrypted")
+        let decrypted = age --decrypt --identity $key $file
         rm -rp $keydir
+        rm -p $file
+        if $discard {
+            return $decrypted
+        }
+        $decrypted | save -f $decfile
         return $decfile
     } else if ($identity | is-empty) {
         let keydir = (mktemp -d -t key.XXXXXX)
@@ -140,7 +155,7 @@ export def "receive-encrypted" [--identity: path, --super-paranoid: path@pub-ide
         let pubkey = do { age-keygen -o $key } | complete | get stderr | split row ':' | get 1 | str trim
         $pubkey | save -f ($keydir | path join "key.pub.age")
 
-        $pubkey | send-text
+        $pubkey | send
         print ""
         print ""
         print $"Check that these hashes are the same: ($pubkey | hash sha256)"
@@ -149,28 +164,57 @@ export def "receive-encrypted" [--identity: path, --super-paranoid: path@pub-ide
         let code = input "Enter code: " | str trim
         let file = receive $code
         let decdir = mktemp -t -d decrypted.XXXXXX
-        let decfile = $decdir | path join ($file | path basename)
-        age --decrypt --identity $key --output $decfile $file
+        let decfile = $decdir | path join ($file | path basename | str replace "encrypted" "decrypted")
+        let decrypted = age --decrypt --identity $key $file
         rm -rp $keydir
         rm -p $file
+        if $discard {
+            return $decrypted
+        }
+        $decrypted | save -f $decfile
         return $decfile
     } else {
         let code = input "Enter code: " | str trim
         let file = receive $code
         print $"Received ($file)"
         let decdir = mktemp -t -d decrypted.XXXXXX
-        let decfile = $decdir | path join ($file | path basename)
-        age --decrypt --identity $identity --output $decfile $file
+        let decfile = $decdir | path join ($file | path basename | str replace "encrypted" "decrypted")
+        let decrypted = age --decrypt --identity $identity $file
+        if $discard {
+            return $decrypted
+        }
         rm -p $file
+        $decrypted | save -f $decfile
         return $decfile
     }
 }
 
-export def "send-encrypted" [--identity: path@pub-identities, --super-paranoid: path] {
-    let tosend = $in
-    if ($super_paranoid | is-not-empty) {
+# Send encrypted data through wormhole. Can either be a specified path or piped data.
+#
+# Specify recipient to encrypt with their public key
+#
+# Specify your private key for super paranoid to decrypt received key
+#
+# Specify no encrypt data with received public key from wormhole
+export def "send-encrypted" [
+    file?: path,                         # File to send. Will use piped in data if not specified
+    --recipient: path@pub-identities,    # Public identity for the recipient
+    --super-paranoid-priv-key: path,     # Private identity for super paranoid mode
+    --ext: string = "txt"                # extension for file
+] any -> none {
+    let tosend = if ($file | is-empty) {
+        if ($in | is-empty) {
+            error make {
+                msg: "No input and no file specified"
+            }
+        }
+        $in
+    } else {
+        $file
+    }
+    if ($super_paranoid_priv_key | is-not-empty) {
         # This is a lot like normal no identity, but the keys are encrypted with a known keypair
-        if ($identity | is-not-empty) {
+        if ($recipient | is-not-empty) {
             error make {
                 msg: "If super-paranoid, there can't be an identity!"
             }
@@ -178,7 +222,7 @@ export def "send-encrypted" [--identity: path@pub-identities, --super-paranoid: 
         let code = input "Enter code: " | str trim
         let file = receive $code
 
-        let pubkey = age --decrypt --identity $super_paranoid $file
+        let pubkey = age --decrypt --recipient $super_paranoid_priv_key $file
 
         print ""
         print ""
@@ -186,29 +230,29 @@ export def "send-encrypted" [--identity: path@pub-identities, --super-paranoid: 
         input "Hit enter when ready"
 
         # Pubkey sent successfully, now send the encrypted message
-        let encfile = (mktemp -t encrypted-text.XXXXXX)
+        let encfile = (mktemp -t $"encrypted.XXXXXX.($ext)")
         $tosend | age --recipient $pubkey --output $encfile
 
         send $encfile
         rm -p $encfile
-    } else if ($identity | is-empty) {
+    } else if ($recipient | is-empty) {
         let code = input "Enter code: " | str trim
-        let pubkey = receive-text $code
+        let pubkey = receive -d $code
         print ""
         print ""
         print $"Check that these hashes are the same: ($pubkey | hash sha256)"
         input "Hit enter when ready"
 
         # Pubkey sent successfully, now send the encrypted message
-        let encfile = (mktemp -t encrypted-text.XXXXXX)
+        let encfile = (mktemp -t $"encrypted.XXXXXX.($ext)")
         $tosend | age --recipient $pubkey --output $encfile
 
         send $encfile
         rm -p $encfile
     } else {
         # Simplest of the options, known identity so just encrypt and yolo
-        let encfile = (mktemp -t encrypted-text.XXXXXX)
-        $tosend | age --recipients-file $identity --output $encfile
+        let encfile = (mktemp -t $"encrypted.XXXXXX.($ext)")
+        $tosend | age --recipients-file $recipient --output $encfile
 
         send $encfile
         rm -p $encfile
@@ -216,23 +260,30 @@ export def "send-encrypted" [--identity: path@pub-identities, --super-paranoid: 
 
 }
 
-export def "receive-text-encrypted" [--identity: path, --super-paranoid: path@pub-identities] {
-    let file = receive-encrypted --identity $identity --super-paranoid $super_paranoid
-    let content = open -r $file
-    rm -p $file
-    return $content
-}
-
+# Helper to quickly encrypt piped in data with age
 export def "encrypt" [
-    recipient: path@pub-identities,
-] {
+    recipient: path@pub-identities, # Recipient's public key
+] any -> any {
     $in | age --recipients-file $recipient
 }
 
+# Helper to quickly encrypt piped in data with age
 export def "decrypt" [
-    identity: path,
-] {
+    identity: path, # Your private key
+] any -> any {
     $in | age --decrypt --identity $identity
+}
+
+# Helper to quickly encrypt piped in data with tlock
+export def "time-encrypt" [
+    time: string
+] {
+    $in | tle -e -D $time
+}
+
+# Helper to quickly deecrypt piped in data with tlock
+export def "time-decrypt" [] {
+    $in | tle -d 
 }
 
 def mountpoint [] {

@@ -6,6 +6,9 @@ def "packaged" [code: closure] {
     }
 }
 
+let zstdlvl = 15
+let xzlvl = 8
+
 def "inner-compress" [files: list<path>, output: path] {
     let name = $output | path basename
     let stem = $output | path parse | get stem
@@ -44,15 +47,15 @@ def "inner-compress" [files: list<path>, output: path] {
     }
 
     if $name =~ '\.tar\.zst(?:d)?$' {
-        return (tar c ...$files | zstd -o $output)
+        return (tar c ...$files | zstd $"-($zstdlvl)" -o $output)
     }
 
     if $name =~ '\.tar\.xz$' {
-        return (tar c ...$files | xz --stdout | save $output)
+        return (tar c ...$files | xz $"-($xzlvl)" --stdout | save $output)
     }
 
     if $name =~ '\.tar\.lz(?:ma)?$' {
-        return (tar c ...$files | xz --format=lzma --stdout | save $output)
+        return (tar c ...$files | xz $"-($xzlvl)" --format=lzma --stdout | save $output)
     }
 
     if $name =~ '\.tar\.\w+$' {
@@ -99,7 +102,7 @@ def "inner-compress" [files: list<path>, output: path] {
     }
 
     if $name =~ '\.xz$' {
-        return (xz .$files --stdout | save $output)
+        return (xz .$files $"-($xzlvl)" --stdout | save $output)
     }
     
     if $name =~ '\.lz(?:ma)?$' {
@@ -107,7 +110,7 @@ def "inner-compress" [files: list<path>, output: path] {
     }
 
     if $name =~ '\.zst(?:d)?$' {
-        return (zstd ...$files -o $output)
+        return (zstd ...$files $"-($zstdlvl)" -o $output)
     }
 
     error make {
@@ -205,7 +208,7 @@ def "inner-decompress" [file: path, --directory(-d): path] {
     }
 
     if $name =~ '\.zst(?:d)?$' {
-        return (zstd --decompress $file --output-dir-mirror $directory)
+        return (zstd $"-($zstdlvl)" --decompress $file --output-dir-mirror $directory)
     }
 
     if $name =~ '\.zip$' {
@@ -222,9 +225,10 @@ def "inner-decompress" [file: path, --directory(-d): path] {
 
 }
 
-export def "compress" [files: list<path>, output: path] {
+export def "compress" [output: path, ...files: glob] {
+    let resolvedFiles = $files | par-each { |x| glob $x } | flatten
     packaged {
-        inner-compress $files $output
+        inner-compress $resolvedFiles $output
     }
 }
 
