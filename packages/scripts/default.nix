@@ -42,7 +42,7 @@ let
 
     in
     pkgs.stdenvNoCC.mkDerivation {
-      name = script.name;
+      name = "script-" + script.name;
       dontUnpack = true;
       enableParallelBuilding = true;
       passAsFile = "scriptContent";
@@ -112,7 +112,7 @@ let
       } // (import packageFile extra-inputs);
     in
     {
-      name = scriptLoaded.name;
+      name = "script-" + scriptLoaded.name;
       value = nuScriptToPkg scriptLoaded;
     };
 

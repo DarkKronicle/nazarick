@@ -20,7 +20,7 @@ let
 
   packages = [
     pkgs.swayfx
-    mypkgs.scripts.swu
+    mypkgs.script-swu
     tofiApp
   ];
 

@@ -5,13 +5,16 @@
   extra-cmake-modules,
   kdecoration,
   plasma-workspace,
-  qtbase,
   fetchurl,
   lib,
 }:
 
 mkKdeDerivation {
-  meta.license = lib.licenses.gpl3;
+  meta = {
+    license = lib.licenses.gpl3;
+    description = "A fork of Breeze";
+  };
+
   pname = "lightly-qt6";
   version = "0.4.1";
 

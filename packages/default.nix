@@ -51,4 +51,4 @@ let
     // args
   );
 in
-mainPackages // { inherit scripts; }
+mainPackages // scripts

@@ -24,12 +24,12 @@ in
   config = mkIf cfg.enable {
 
     home.packages = [
-      mypkgs.scripts.nux
-      mypkgs.scripts.swu
-      mypkgs.scripts.cache
-      mypkgs.scripts.util
-      mypkgs.scripts.xpress
-      mypkgs.scripts.crypt
+      mypkgs.script-nux
+      mypkgs.script-swu
+      mypkgs.script-cache
+      mypkgs.script-util
+      mypkgs.script-xpress
+      mypkgs.script-crypt
     ];
 
     nazarick.cli.nushell.source = [
