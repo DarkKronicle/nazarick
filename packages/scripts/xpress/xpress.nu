@@ -6,8 +6,8 @@ def "packaged" [code: closure] {
     }
 }
 
-let zstdlvl = 15
-let xzlvl = 8
+const zstdlvl = 15
+const xzlvl = 8
 
 def "inner-compress" [files: list<path>, output: path] {
     let name = $output | path basename
@@ -102,7 +102,7 @@ def "inner-compress" [files: list<path>, output: path] {
     }
 
     if $name =~ '\.xz$' {
-        return (xz .$files $"-($xzlvl)" --stdout | save $output)
+        return (xz ...$files $"-($xzlvl)" --stdout | save $output)
     }
     
     if $name =~ '\.lz(?:ma)?$' {
