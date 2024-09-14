@@ -93,6 +93,12 @@ stdenv.mkDerivation {
       '')
     )}
 
+    # https://stackoverflow.com/questions/3856747/check-whether-a-certain-file-type-extension-exists-in-directory
+    myarray=(`find $out/share/wallpapers -maxdepth 1 -name "*.png"`)
+    if [ ''${#myarray[@]} -gt 0 ]; then
+      ${pkgs.oxipng}/bin/oxipng --strip all -o 4 --alpha $out/share/wallpapers/*.png
+    fi
+
     nu -c "glob converted-* | each {|folder| if ((\$folder | path type) == "dir") { rm -rp \$folder }}"
 
     runHook postBuild

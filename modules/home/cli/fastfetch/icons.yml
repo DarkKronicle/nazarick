@@ -149,4 +149,74 @@
   - weaboo
   square: true
   resolution: 200x200
+- src:
+    url: https://avatarfiles.alphacoders.com/125/125049.png
+    name: emilia_cry_1.png
+    sha256: 1lib5xk71dp51zly4911zcq03h604g1cvfy90blkzql5cnhm8c3x
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://avatarfiles.alphacoders.com/125/125895.jpg
+    name: emilia_crazy.jpg
+    sha256: 0awa98ih12628gs7lcd212s2w0dwpkil2jib065fxlhwpprxi0fd
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://avatarfiles.alphacoders.com/122/122257.png
+    name: subaru.png
+    sha256: 0ql9xg0ga6iq70wbv0w8w2igwdcf8sqnwncyijvrvhl4x16v40wp
+  square: true
+  resolution: 200x200
+- src:
+    url: https://avatarfiles.alphacoders.com/323/323074.jpg
+    name: sotella.jpg
+    sha256: 1xfbyqm56gdc0mjylgr9zp3bzy1dj0rxd6lxa8yi780n1k9x6ljk
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://avatarfiles.alphacoders.com/328/328255.png
+    name: ram.png
+    sha256: 1hdd4iq8g69hc30w5cbsmy28bq13y33xb5y5a5632kqfqpv6n4fw
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://avatarfiles.alphacoders.com/345/345130.jpg
+    name: echidna.jpg
+    sha256: 15s88ng61ql8xa2kbmrxkk9s1gfaww7kmnlyvi4461n9cg2ffmlx
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://avatarfiles.alphacoders.com/364/364805.png
+    name: emilia_peace.png
+    sha256: 1n9h1pjq1mdfi55ak5i0n65fx5mzriw4cyy682cjzjrgb68ga7s2
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://images8.alphacoders.com/105/1059694.jpg
+    name: emilia_smol.jpg
+    sha256: 0q8sgd44pl4b91lqyyk7hga3961fg78969ki828715z9yal6qkyn
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://images2.alphacoders.com/739/739723.png
+    name: emilia_cry_2.png
+    sha256: 03hwyangzjvcnxhllkw457qpgb4pbgz2gz0sawb5n1p1kzy90pn8
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
 

@@ -576,43 +576,43 @@
   - weaboo
 - src:
     url: https://w.wallhaven.cc/full/rr/wallhaven-rrxz57.jpg
-    name: cyberpunk_sad1
+    name: cyberpunk_sad1.jpg
     sha256: 0632gn0rr47gs10abhazsv15clwmjffm415wsaaahdhbbh3ygn0n
   tags:
   - weaboo
 - src:
     url: https://w.wallhaven.cc/full/p9/wallhaven-p973dj.png
-    name: cyberpunk_sad2
+    name: cyberpunk_sad2.png
     sha256: 00585kaaql0njq7fd34wy5j32pjih47y94x9jgc7pnhxyrd3yy0g
   tags:
   - weaboo
 - src:
     url: https://w.wallhaven.cc/full/ex/wallhaven-exzrmw.png
-    name: cyberpunk_rows
+    name: cyberpunk_rows.png
     sha256: 0wfk3r6nsp8ajac9lwxpkw3zp52sah4z9l9cbjil4p92nwf6zk0k
   tags:
   - weaboo
 - src:
     url: https://images2.alphacoders.com/694/thumb-1920-694069.png
-    name: cowboy_background
+    name: cowboy_background.png
     sha256: 14gxz6dizxbymqlk98ry4r11nyzqpxyqfjy0i089jdykai0r3zyl
 - src:
     url: https://images3.alphacoders.com/739/thumb-1920-739456.png
-    name: mob_lines
+    name: mob_lines.png
     sha256: 0nqpc4wslqzb93pcnsqpax9m4vswqaa745a3lpq8z1c5rkfadhfl
 - src:
     url: https://picfiles.alphacoders.com/245/245628.jpg
-    name: mob_stuff
+    name: mob_stuff.jpg
     sha256: 0k5y0f9a6vi4zby67m2w8ls8js8jwqv3hnr94zm352vs45asl2m2
 - src:
     url: https://picfiles.alphacoders.com/245/245629.jpg
-    name: mob_collage
+    name: mob_collage.jpg
     sha256: 1ymq8x3cy89hk6nqacpgvpb77h07xyx4lv8c24irldfqfj8l0c3x
   tags:
   - weaboo
 - src:
     url: https://images8.alphacoders.com/754/thumb-1920-754327.png
-    name: mob_scray_lines
+    name: mob_scray_lines.png
     sha256: 0fmydywy5mxm5p0a2ydsb2afjzclbxf0xbknh7w4gqfgzybh6ydd
 - src:
     url: https://w.wallhaven.cc/full/yx/wallhaven-yxve2x.jpg
@@ -626,33 +626,81 @@
   - mocha
 - src:
     url: https://w.wallhaven.cc/full/o5/wallhaven-o52l8m.jpg
-    name: majoras_winter
+    name: majoras_winter.jpg
     sha256: 0qxisw5qy68c7w2dm5lijbl6q5fzgsd79bzbwr7c86gyhkyycglp
 - src:
     url: https://w.wallhaven.cc/full/gp/wallhaven-gp29gl.jpg
-    name: mastersword
+    name: mastersword.jpg
     sha256: 0f23r1pzwfrf3zzdsi4ikqw91y51rb3qc4ijs5kn9pc3yhrhm7yi
 - src:
     url: https://w.wallhaven.cc/full/jx/wallhaven-jxvk7q.jpg
-    name: kakariko
+    name: kakariko.jpg
     sha256: 0p8nl3y6fk9va2z7dynn1isprba7wbalp52kkpamp4gdpq6n05z4
 - src:
     url: https://w.wallhaven.cc/full/y8/wallhaven-y88oxg.jpg
-    name: link_forest
+    name: link_forest.jpg
     sha256: 0vb4gspwx9w2z5s919ix6ffkk6vl8n9xwa7fa53ikp4wj18np5pr
 - src:
     url: https://w.wallhaven.cc/full/5d/wallhaven-5dodx5.png
-    name: zelda_link_hugging
+    name: zelda_link_hugging.png
     sha256: 01nh00f5f36camc12q43qv8kskg3q9pwqxjhx6avv0g65inqgkp1
 - src:
     url: https://w.wallhaven.cc/full/xl/wallhaven-xllvgl.jpg
-    name: shaltear_walking
+    name: shaltear_walking.jpg
     sha256: 0pi3j3xff8swi80asmiw4571i09v8n009zshmy5dj7mz4pvfr4j8
   tags:
   - weaboo
 - src:
     url: https://w.wallhaven.cc/full/o3/wallhaven-o3rv7m.png
-    name: shaltear_crazy
+    name: shaltear_crazy.png
     sha256: 1dp91c3rc2ad1y9naq1p799295sbryd97lg3smjxy3fx6xq7hykg
+  tags:
+  - weaboo
+- src:
+    url: https://images3.alphacoders.com/893/893790.png
+    name: shaltear_dogmen.png
+    sha256: 0x7nbqxld17dqxi6dhgxsi2l5ls9785lxvkvscdjk8srxf9rr6vj
+  tags:
+  - weaboo
+- src:
+    url: https://images2.alphacoders.com/111/1115851.png
+    name: renner_paint.png
+    sha256: 05nkinwp0mavx60ddhss64zz8qpniiyc2hypmy7nxp5j5pkkbcaz
+- src:
+    url: https://images6.alphacoders.com/135/1358879.png
+    name: albedo_elegance.png
+    sha256: 1s7slfjw15ybyb2xq7n3n9bqvxxjd6gxv0w41igsrxx37d638w2i
+- src:
+    url: https://images3.alphacoders.com/113/1137027.png
+    name: rezero-witches.png
+    sha256: 0r809plnpdnc44xw139ciq0v8ppjmgiz8iggklc1nplqzy9sfxg5
+  tags:
+  - weaboo
+- src:
+    url: https://images5.alphacoders.com/738/738629.jpg
+    name: rem_rain_jpg
+    sha256: 1gbplqyav7xfmk5azxvjaknsg914fg3wrqvaqppg2fk0gnznh4iq
+  tags:
+  - weaboo
+- src:
+    url: https://images2.alphacoders.com/745/745101.jpg
+    name: puck_crazy.jpg
+    sha256: 1a2jnzdp2jl88c18p7fbrkl89ms1vx6mw0k730xk3n99mxnbl4mr
+- src:
+    url: https://images7.alphacoders.com/737/thumb-1920-737927.png
+    name: emelia_window.jpg
+    sha256: 1m2d06f8amfknrwqvwfpkssxavkxl3iwn97vpk2pyf9009lyb78l
+  tags:
+  - weaboo
+- src:
+    url: https://images2.alphacoders.com/849/849117.png
+    name: emelia_window2.png
+    sha256: 1jqh1akwz48m6xq63wmh2q7bwz875d3lqbiribif9g0s7bgp10w0
+  tags:
+  - weaboo
+- src:
+    url: https://images6.alphacoders.com/975/975929.png
+    name: satella.png
+    sha256: 0140m7zq8j7cjyhyagjay7r8yqaywsp8a9kvjgwq4p3xwgdd161w
   tags:
   - weaboo
