@@ -6,8 +6,29 @@ def crypt-env [code: closure] {
     }
 }
 
-def pub-identities [] {
-    (ls /mnt/tomb/tombs/age/*.pub | get name )
+def age-key-dir [] -> path {
+    let dir = $env.CRYPT_AGE_DIR?
+    if ($dir | is-empty) {
+        return "/mnt/tomb/tombs/age"
+    }
+    return $dir
+}
+
+def tomb-dir [] -> path {
+    let dir = $env.CRYPT_TOMB_DIR?
+    if ($dir | is-empty) {
+        return "/mnt/tomb/tombs"
+    } 
+    # Expand to get rid of trailing /
+    return ($dir | path expand)
+}
+
+def pub-age-identities [] {
+    glob $"(age-key-dir)/age-*.pub" | append (glob age-*.pub) | uniq
+}
+
+def private-age-identities [] {
+    glob $"(tomb-dir)/age-*" --exclude [ '*.*' ] | append (glob *) | uniq
 }
 
 # Generates a passphrase meant for a one-time code
@@ -110,9 +131,9 @@ export def "receive" [
 #
 # Specify no identity to create keys and do an initial key exchange
 export def "receive-encrypted" [
-    --identity(-i): path,                                  # your private key to decrypt data
-    --super-paranoid-sender-pub(-s): path@pub-identities,  # sender's public key for super paranoid mode
-    --discard(-d)                                          # Return file contents and delete the file
+    --identity(-i): path@private-age-identities,               # your private key to decrypt data
+    --super-paranoid-sender-pub(-s): path@pub-age-identities,  # sender's public key for super paranoid mode
+    --discard(-d)                                              # Return file contents and delete the file
 ] {
     if ($super_paranoid_sender_pub | is-not-empty) {
         if ($identity | is-not-empty) {
@@ -197,10 +218,10 @@ export def "receive-encrypted" [
 #
 # Specify no encrypt data with received public key from wormhole
 export def "send-encrypted" [
-    file?: path,                         # File to send. Will use piped in data if not specified
-    --recipient: path@pub-identities,    # Public identity for the recipient
-    --super-paranoid-priv-key: path,     # Private identity for super paranoid mode
-    --ext: string = "txt"                # extension for file
+    file?: path,                             # File to send. Will use piped in data if not specified
+    --recipient: path@pub-age-identities,    # Public identity for the recipient
+    --super-paranoid-priv-key: path@private-age-identities,         # Private identity for super paranoid mode
+    --ext: string = "txt"                    # extension for file
 ] any -> none {
     let tosend = if ($file | is-empty) {
         if ($in | is-empty) {
@@ -262,23 +283,35 @@ export def "send-encrypted" [
 
 # Helper to quickly encrypt piped in data with age
 export def "encrypt" [
-    recipient: path@pub-identities, # Recipient's public key
+    recipient: path@pub-age-identities, # Recipient's public key
+    --armor(-a) # PEM encode
 ] any -> any {
-    $in | age --recipients-file $recipient
+    if $armor {
+        $in | age -a --recipients-file $recipient
+    } else {
+        $in | age --recipients-file $recipient
+    }
 }
 
 # Helper to quickly encrypt piped in data with age
 export def "decrypt" [
-    identity: path, # Your private key
+    identity: path@private-age-identities # Your private key
 ] any -> any {
     $in | age --decrypt --identity $identity
 }
 
 # Helper to quickly encrypt piped in data with tlock
 export def "time-encrypt" [
-    time: string
+    time: duration,         # Time to unencrypt
+    --armor(-a)             # PEM encode
 ] {
-    $in | tle -e -D $time
+    let inside = $in
+    let secs = $time | format duration sec | split row " " | get 0
+    if $armor {
+        $inside | tle -a -e -D $"($secs)s"
+    } else {
+        $inside | tle -e -D $"($secs)s"
+    }
 }
 
 # Helper to quickly deecrypt piped in data with tlock
@@ -288,9 +321,9 @@ export def "time-decrypt" [] {
 
 def mountpoint [] {
     crypt-env {
-        let cmd = (which tomb | get path.0 | readlink $in)
+        # let cmd = (which tomb | get path.0 | readlink $in)
         let uniq_mounts = (do { 
-            sudo --preserve-env $cmd list 
+            sudo --preserve-env tomb list 
         } | complete | get stderr | split row (char newline) | each {
                 |x| $x | parse -r `^tomb\s+\.\s+\[(?P<tomb>\w+)\]` 
             } | filter {|x| ($x | length) != 0} | each { 
@@ -305,11 +338,11 @@ export def "close" [
     tomb?: string@mountpoint # Tomb to close
 ] {
     crypt-env {
-        let cmd = (which tomb | get path.0 | readlink $in)
+        # let cmd = (which tomb | get path.0 | readlink $in)
         if ($tomb | is-empty) {
-            sudo --preserve-env $cmd close
+            sudo --preserve-env tomb close
         } else {
-            sudo --preserve-env $cmd close $tomb
+            sudo --preserve-env tomb close $tomb
         }
     }
 }
@@ -318,47 +351,31 @@ export def "close" [
 # This is sudo, so it *will* succeed
 export def "slam" [] {
     crypt-env {
-        let cmd = (which tomb | get path.0 | readlink $in)
-        sudo --preserve-env $cmd slam
+        # let cmd = (which tomb | get path.0 | readlink $in)
+        sudo --preserve-env tomb slam
     }
 }
 
 def discovered-tombs [] {
-    (ls /mnt/tomb/tombs/*.tomb | each {|x| $x.name | path basename })
+    glob $"(tomb-dir)/*.tomb" | append (glob *.tomb) | uniq
 }
 
 def discovered-keys [] {
-    (ls /mnt/tomb/tombs/*.key | each {|x| $x.name | path basename })
+    glob $"(tomb-dir)/*.key" | append (glob *.key) | uniq
 }
 
 # Open up a tomb use predefined standards
 export def "unseal" [
-    key?: string@discovered-keys, # The key name in $TOMBS_LOCATION (autocomplete uses default tomb location)
-    tomb?: string@discovered-tombs, # The tomb name in $TOMBS_LOCATION (autocomplete uses default tomb location)
-    --tomb-path(-T): path, # Direct path to tomb
-    --key-path(-K): path, # Direct path to tomb key
+    key: path@discovered-keys, # The key name in $TOMBS_LOCATION (autocomplete uses default tomb location)
+    tomb: path@discovered-tombs, # The tomb name in $TOMBS_LOCATION (autocomplete uses default tomb location)
     --tombs-location(-L): path = '/mnt/tomb/tombs', # The location to search for tombs and keys
     --mnt-point(-M): path # The mount point for the tomb, defaults to $TOMBS_LOCATION/../<name>
     --no-force, # Don't open if swap is on
     --options(-o): list<string> = [ "rw" "nodev" "noatime" "compress=zstd:5" ] # Options to mount with
 ] {
     crypt-env {
-        let key_location = if ($key | is-not-empty) {
-            glob $"([$tombs_location $key] | path join)*.key" | get 0
-        } else {
-            if ($key_path | is-empty) {
-                error make { msg: "Key path cannot be empty if key is" }
-            }
-            $key_path
-        }
-        let tomb_location = if ($tomb | is-not-empty) {
-            glob $"([$tombs_location $tomb] | path join)*.tomb" | get 0
-        } else {
-            if ($tomb_path | is-empty) {
-                error make { msg: "Tomb path cannot be empty if tomb is" }
-            }
-            $tomb_path
-        }
+        let key_location = $key
+        let tomb_location = $tomb
         if (not ($key_location | path exists)) {
             error make {
                 msg: $"No key found at ($key_location)"
@@ -378,11 +395,11 @@ export def "unseal" [
         mkdir $tomb_mount
         # This protects files within the tomb
         chmod 700 $tomb_mount
-        let cmd = (which tomb | get path.0 | readlink $in)
+        # let cmd = (which tomb | get path.0 | readlink $in)
         if ($no_force) {
-            ^$cmd open -k $key_location $tomb_location $tomb_mount -o ...$options
+            tomb open -k $key_location $tomb_location $tomb_mount -o ...$options
         } else {
-            ^$cmd open -k $key_location $tomb_location $tomb_mount -f -o ...$options
+            tomb open -k $key_location $tomb_location $tomb_mount -f -o ...$options
         }
     }
 }
