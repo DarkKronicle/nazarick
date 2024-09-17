@@ -57,7 +57,63 @@ in
         vesktop = {
           executable = "${pkgs.vesktop}/bin/vesktop";
           profile = "${pkgs.firejail}/etc/firejail/discord.profile";
-          extraArgs = [ ''--whitelist=''${HOME}/.config/vesktop'' ];
+          extraArgs = [
+            ''--whitelist=''${HOME}/.config/vesktop''
+            # Open files and urls
+            "--dbus-user.talk=org.freedesktop.portal.OpenURI.*"
+            "--dbus-user.talk=org.freedesktop.portal.Desktop"
+          ];
+        };
+        # nheko = {
+        # executable = "${pkgs.nheko}/bin/nheko";
+        # profile = "${pkgs.firejail}/etc/firejail/nheko.profile";
+        # extraArgs = [
+        # ''--dbus-user.talk=org.freedesktop.Notifications''
+        # # Open files and urls
+        # "--dbus-user.talk=org.freedesktop.portal.OpenURI.*" 
+        # "--dbus-user.talk=org.freedesktop.portal.Desktop"
+        # ];
+        # };
+        # okular = {
+        # executable = "${pkgs.okular}/bin/okular";
+        # profile = "${pkgs.firejail}/etc/firejail/okular.profile";
+        # };
+        # FIX: dolphin also wrapped
+
+        # dolphin = {
+        # executable = "${pkgs.dolphin}/bin/dolphin";
+        # profile = "${pkgs.firejail}/etc/firejail/dolphin.profile";
+        # };
+        gimp = {
+          executable = "${pkgs.gimp}/bin/gimp";
+          profile = "${pkgs.firejail}/etc/firejail/gimp.profile";
+        };
+        krita = {
+          executable = "${config.nazarick.app.krita.package}/bin/krita";
+          profile = "${pkgs.firejail}/etc/firejail/krita.profile";
+          extraArgs = [
+            ''--noblacklist=''${HOME}/.config/krita'' # Custom wrapped location
+          ];
+        };
+        # libreoffice = {
+        # executable = "${pkgs.libreoffice-qt}/bin/libreoffice";
+        # profile = "${pkgs.firejail}/etc/firejail/libreoffice.profile";
+        # };
+        mumble = {
+          executable = "${pkgs.mumble}/bin/mumble";
+          profile = "${pkgs.firejail}/etc/firejail/mumble.profile";
+        };
+        # ark = {
+        # executable = "${pkgs.kdePackages.ark}/bin/ark";
+        # profile = "${pkgs.firejail}/etc/firejail/ark.profile";
+        # };
+        mpv = {
+          executable = "${config.programs.mpv.package}/bin/mpv";
+          profile = "${pkgs.firejail}/etc/firejail/mpv.profile";
+          extraArgs = [
+            ''--include=${pkgs.firejail}/etc/firejail/allow-bin-sh.inc''
+            "--dbus-user.talk=org.mpris.MediaPlayer2.*"
+          ];
         };
       };
     };

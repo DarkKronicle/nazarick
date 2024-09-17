@@ -93,7 +93,6 @@ in
       with pkgs;
       [
         # TODO: move this
-        devenv
         skim
       ]
     );

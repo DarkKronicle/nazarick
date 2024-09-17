@@ -23,7 +23,7 @@ in
       enable = true;
       extraPackages = with pkgs; [
         upower
-        gnome.gnome-bluetooth
+        gnome-bluetooth
         gvfs
         libdbusmenu-gtk3
         sass

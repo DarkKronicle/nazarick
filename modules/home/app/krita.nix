@@ -28,11 +28,16 @@ in
 {
   options.nazarick.app.krita = {
     enable = lib.mkEnableOption "krita";
+
+    package = lib.mkOption {
+      type = lib.types.package;
+      default = kritaWrapped;
+    };
   };
 
   config = lib.mkIf cfg.enable {
     home.packages = [
-      kritaWrapped
+      cfg.package
     ];
   };
 
