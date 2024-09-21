@@ -16,23 +16,17 @@ let
       #!/usr/bin/env nu
 
       def makemd [website: string] {
-        let file = mktemp -t newsboat-XXXXXX
-        let html = $file + ".html"
-        let md = $file + ".md"
+        let html = [ "${cache-dir}" ($md5 + ".html") ] | path join
+        let md = [ "${cache-dir}" ($md5 + ".md") ] | path join
         (${python3}/bin/python3 -m readability.readability -u $website) | save -f $html
         ${pkgs.pandoc}/bin/pandoc $html --from html --to markdown_strict -o $md
-        let content = (open $md)
-        rm -fp $html
-        rm -fp $md
-        $content
       }
 
       def getfile [website: string] {
         mkdir ${cache-dir}
         let md5 = $website | hash md5
-        let file = [ "${cache-dir}" ($md5 + ".md") ] | path join
         if (not ($file | path exists)) {
-          (makemd $website) | save -f $file
+          makemd $website
         }
         return $file
       }
@@ -88,8 +82,8 @@ in
         bind-key o open
         bind-key ENTER open-in-browser-and-mark-read
 
-        macro y set browser "mpv %u" ; open-in-browser ; set browser "${mdExecutable} %u"
-        macro f set browser "firefox %u" ; open-in-browser ; set browser "${mdExecutable} %u"
+        macro y set browser "mpv %u" ; open-in-browser-and-mark-read ; set browser "${mdExecutable} %u"
+        macro f set browser "firefox %u" ; open-in-browser-and-mark-read ; set browser "${mdExecutable} %u"
       '';
     };
   };
