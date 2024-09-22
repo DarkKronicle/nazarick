@@ -6,42 +6,6 @@
 }:
 let
   cfg = config.nazarick.tui.newsboat;
-  mdReader =
-    let
-      python3 = pkgs.python3.withPackages (ps: [ ps.readability-lxml ]);
-      cache-dir = "~/.cache/newsboat";
-    in
-    # nu
-    ''
-      #!/usr/bin/env nu
-
-      def makemd [website: string] {
-        let html = [ "${cache-dir}" ($md5 + ".html") ] | path join
-        let md = [ "${cache-dir}" ($md5 + ".md") ] | path join
-        (${python3}/bin/python3 -m readability.readability -u $website) | save -f $html
-        ${pkgs.pandoc}/bin/pandoc $html --from html --to markdown_strict -o $md
-      }
-
-      def getfile [website: string] {
-        mkdir ${cache-dir}
-        let md5 = $website | hash md5
-        if (not ($file | path exists)) {
-          makemd $website
-        }
-        return $file
-      }
-
-      def main [website: string] {
-        let file = getfile $website
-        ${pkgs.md-tui}/bin/mdt ($file | path expand)
-      }
-    '';
-
-  mdExecutable = pkgs.writeTextFile {
-    name = "md-browser.nu";
-    executable = true;
-    text = mdReader;
-  };
 
   catppuccin = pkgs.fetchFromGitHub {
     owner = "catppuccin";
@@ -58,7 +22,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.newsboat = {
       enable = true;
-      browser = ''"${mdExecutable} %u"'';
+      browser = ''"w3m %u"'';
       autoReload = true;
       extraConfig = ''
         include ${catppuccin}/themes/dark
@@ -82,8 +46,8 @@ in
         bind-key o open
         bind-key ENTER open-in-browser-and-mark-read
 
-        macro y set browser "mpv %u" ; open-in-browser-and-mark-read ; set browser "${mdExecutable} %u"
-        macro f set browser "firefox %u" ; open-in-browser-and-mark-read ; set browser "${mdExecutable} %u"
+        macro y set browser "mpv %u" ; open-in-browser-and-mark-read ; set browser "w3m %u"
+        macro f set browser "firefox %u" ; open-in-browser-and-mark-read ; set browser "w3m %u"
       '';
     };
   };

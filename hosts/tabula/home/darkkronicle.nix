@@ -43,6 +43,7 @@ in
 
     tui = {
       newsboat = enabled;
+      w3m = enabled;
     };
 
     service = {

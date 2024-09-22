@@ -169,6 +169,7 @@ in
         ".config/kdedefaults"
         ".config/kded5"
         ".config/kded6"
+        ".config/w3m" # just some cached stuff
 
         ".config/OpenTabletDriver"
 
