@@ -21,6 +21,15 @@ let
           --set W3M_DIR "/home/${config.home.username}/.config/w3m"
       '';
     };
+
+  configSub = pkgs.substitute {
+    src = ./config;
+    substitutions = [
+      "--replace-fail"
+      "@KITTEN@"
+      "${pkgs.kitty}/bin/kitten"
+    ];
+  };
 in
 {
 
@@ -36,7 +45,7 @@ in
 
     xdg.configFile."w3m/config" = {
       enable = true;
-      source = ./config;
+      source = configSub;
     };
 
     xdg.configFile."w3m/keymap" = {

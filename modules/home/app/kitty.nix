@@ -30,9 +30,9 @@ in
       enable = true;
       theme = "Catppuccin-Mocha";
       settings = {
-        font_family = "CaskaydiaCove";
-        italic_font = "Operator-caskabold";
-        bold_italic_font = "Operator-caskabold";
+        font_family = "CaskaydiaCove Nerd Font";
+        italic_font = "family='CaskaydiaCove Nerd Font' style='Italic' features=+ss01"; # +ss01 is cursive
+        bold_italic_font = "family='CaskaydiaCove Nerd Font' style='Bold Italic' features=+ss01";
         tab_bar_edge = "bottom";
         tab_bar_style = "powerline";
         tab_powerline_style = "slanted";
@@ -40,7 +40,7 @@ in
         tab_title_max_length = 20;
         listen_on = "unix:/tmp/mykitty";
 
-        background_opacity = "0.75";
+        background_opacity = "0.60";
         cursor_blink_interval = 0;
 
         # font_size = "11.3";

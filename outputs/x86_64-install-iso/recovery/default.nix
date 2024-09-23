@@ -10,6 +10,7 @@
 let
   inherit (mylib) enabled;
 in
+#               enabled
 {
 
   imports = [ ./specialisation.nix ];
@@ -17,7 +18,6 @@ in
   environment.systemPackages =
     (with pkgs; [
       neovim
-      nazarick.operator-caska
       borgbackup
       ntfs3g
       gparted
@@ -39,7 +39,6 @@ in
       compsize
     ])
     ++ (with mypkgs; [
-      operator-caska
       tomb
     ]);
 

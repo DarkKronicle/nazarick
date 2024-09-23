@@ -41,14 +41,14 @@ keymap G NULL
 keymap g NULL
 keymap [ NULL
 keymap ] NULL
-keymap TAB NULL
+# keymap TAB NULL
 keymap C-u NULL
 keymap ESC-TAB NULL
-keymap ^[[Z NULL
+# keymap ^[[Z NULL # shift tab
 keymap ESC-m NULL
 keymap u NULL
 keymap C-r NULL
-keymap C-j NULL
+# keymap C-j NULL # Enter I guess?
 keymap C-m NULL
 keymap C-t NULL
 keymap ESC-C-j NULL
@@ -151,6 +151,9 @@ keymap F LIST_MENU
 
 keymap R COMMAND "READ_SHELL 'readable $W3M_URL 2> /dev/null 1> /tmp/readable.html' ; LOAD /tmp/readable.html"
 
+# copy url to clipboard
+keymap yy EXTERN 'printf %s | wl-copy'
+
 # Undo
 keymap C-r REDO
 
@@ -187,6 +190,7 @@ keymap :downloads DOWNLOAD_LIST
 keymap :h HISTORY
 keymap :q EXIT
 keymap C-q EXIT
+keymap Q EXIT
 keymap :settings OPTIONS
 
 # Useful commands
@@ -197,3 +201,6 @@ keymap a ADD_BOOKMARK
 keymap :b VIEW_BOOKMARK
 
 keymap zz CENTER_V
+
+keymap i STOP_IMAGE
+keymap I DISPLAY_IMAGE

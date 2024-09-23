@@ -37,7 +37,7 @@ max_load_image 4
 ext_image_viewer 1
 image_scale 100
 inline_img_protocol 4
-imgdisplay kitty
+imgdisplay @KITTEN@ icat 2>/dev/null
 image_map_list 1
 fold_line 0
 show_lnum 0

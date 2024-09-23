@@ -19,13 +19,24 @@ in
   };
 
   config = mkIf cfg.enable {
-    environment.systemPackages = (with mypkgs; [ operator-caska ]) ++ (with pkgs; [ font-manager ]);
+    environment.systemPackages = with pkgs; [ font-manager ];
     fonts = {
       packages = with pkgs; [
         (nerdfonts.override {
           fonts = [
             "CascadiaCode"
-            "IosevkaTerm"
+            "FantasqueSansMono"
+            "Cousine"
+            "ComicShannsMono"
+            "FiraCode"
+            "Go-Mono"
+            "Hack"
+            "JetBrainsMono"
+            "Monaspace"
+            "Monofur"
+            "Noto"
+            "Tinos"
+            "UbuntuSans"
           ];
         })
         inter
@@ -40,7 +51,14 @@ in
         recursive
         vistafonts # Windows stuff
         twitter-color-emoji
-        mypkgs.operator-caska
+        azeret-mono
+        overpass
+        victor-mono
+        paratype-pt-mono
+        paratype-pt-sans
+        paratype-pt-serif
+        monaspace
+        cascadia-code
       ];
       fontconfig = {
         enable = true;
