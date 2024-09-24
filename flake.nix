@@ -26,7 +26,9 @@
     # System functionality and utilities
     # --------------------
 
-    impermanence.url = "github:nix-community/impermanence";
+    # impermanence.url = "github:nix-community/impermanence";
+    # NOTE: PR #172 broke evaluation, this just pins this in the meanwhile https://github.com/nix-community/impermanence/issues/215
+    impermanence.url = "github:nix-community/impermanence/63f4d0443e32b0dd7189001ee1894066765d18a5";
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.0.tar.gz";
