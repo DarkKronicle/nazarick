@@ -111,7 +111,6 @@ $env.config = {
     vi_normal: underscore # block, underscore, line, blink_block, blink_underscore, blink_line (underscore is the default)
   }
   color_config: (black-metal-immortal)
-  use_grid_icons: true
   footer_mode: "25"
   float_precision: 2
   use_ansi_coloring: true

@@ -52,6 +52,7 @@ let
     ++ (with custom-addons; [
       better-canvas
       hide-youtube-shorts
+      better-history-ng
     ]);
 in
 {
