@@ -68,6 +68,7 @@ in
     persist = mkOpt attrs { } "Files and directories to persist in the home";
     keepPersist = mkOpt attrs { } "Files and directories to persist in the home";
     transientPersist = mkOpt attrs { } "Files and directories to persist in the home";
+    ephemeralPersist = mkOpt attrs { } "Files and directories to persist in the home";
   };
 
   config = mkIf cfg.enable {
@@ -108,5 +109,6 @@ in
     environment.persistence."/persist/system" = lib.mkAliasDefinitions options.environment.persist;
     environment.persistence."/persist/keep" = lib.mkAliasDefinitions options.environment.keepPersist;
     environment.persistence."/persist/transient" = lib.mkAliasDefinitions options.environment.transientPersist;
+    environment.persistence."/persist/ephemeral" = lib.mkAliasDefinitions options.environment.ephemeralPersist;
   };
 }

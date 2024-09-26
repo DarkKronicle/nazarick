@@ -65,7 +65,7 @@ in
       };
       system = {
         boot.grub.enable = true;
-        boot.plymouth.enable = true;
+        boot.plymouth.enable = false;
         common = true;
         desktop = true;
         cleanup = enabled;

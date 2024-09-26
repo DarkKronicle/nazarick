@@ -143,14 +143,11 @@ in
         ".vim"
 
         # non-nix store apps
-        ".applications/matlab"
-        ".MathWorks"
         ".matlab"
         ".MATLABConnector"
         ".cache/mkWindowsApp"
 
         ".mozilla"
-        ".local/share/Steam"
         ".local/share/vulkan"
 
         ".local/share/Trash"
@@ -186,7 +183,6 @@ in
 
         ".cache/mozilla"
         ".cache/yazi"
-        ".cache/spotifyd"
         ".cache/newsboat"
         ".local/share/newsboat"
 
@@ -212,7 +208,6 @@ in
         ".pki"
         ".putty"
 
-        ".steam"
         ".thunderbird"
 
         ".config/nheko"
@@ -243,6 +238,18 @@ in
         ".cache/systemsettings" # doubt
         ".cache/tealdeer"
         ".cache/zoxide"
+      ];
+    };
+
+    # This is mainly for large, very volatile stuff, that I really do not care at all about
+    # and would be of no use having time travel capabilities.
+    environment.ephemeralPersist.users.darkkronicle = {
+      directories = [
+        ".steam"
+        ".local/share/Steam"
+        ".cache/spotifyd"
+        ".applications/matlab"
+        ".MathWorks"
       ];
     };
   };

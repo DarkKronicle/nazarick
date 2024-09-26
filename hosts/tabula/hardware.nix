@@ -71,11 +71,44 @@
     ];
   };
 
-  fileSystems."/persist" = {
+  fileSystems."/persist/system" = {
     device = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";
     fsType = "btrfs";
     options = [
-      "subvol=@persist"
+      "subvol=@system"
+      "compress=zstd"
+      "noatime"
+    ];
+    neededForBoot = true;
+  };
+
+  fileSystems."/persist/keep" = {
+    device = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";
+    fsType = "btrfs";
+    options = [
+      "subvol=@keep"
+      "compress=zstd"
+      "noatime"
+    ];
+    neededForBoot = true;
+  };
+
+  fileSystems."/persist/transient" = {
+    device = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";
+    fsType = "btrfs";
+    options = [
+      "subvol=@transient"
+      "compress=zstd"
+      "noatime"
+    ];
+    neededForBoot = true;
+  };
+
+  fileSystems."/persist/ephemeral" = {
+    device = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";
+    fsType = "btrfs";
+    options = [
+      "subvol=@ephemeral"
       "compress=zstd"
       "noatime"
     ];
