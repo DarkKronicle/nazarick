@@ -78,6 +78,13 @@ in
           nvidiaBusId = "PCI:1:0:0";
           intelBusId = "PCI:0:2:0";
         };
+        btrbk = {
+          enable = true;
+          subvolume = {
+            "@keep" = { };
+            "@transient" = { };
+          };
+        };
       };
       network = {
         dnscrypt = enabled;

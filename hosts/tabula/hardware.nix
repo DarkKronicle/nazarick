@@ -115,6 +115,15 @@
     neededForBoot = true;
   };
 
+  fileSystems."/btr" = {
+    device = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";
+    fsType = "btrfs";
+    options = [
+      "subvolid=5"
+      "noatime" # never access time
+    ];
+  };
+
   fileSystems."/mnt/tomb" = {
     device = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";
     fsType = "btrfs";
