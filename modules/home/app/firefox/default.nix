@@ -146,6 +146,9 @@ in
           # extensions = extensions;
 
           settings = {
+            "browser.low_commit_space_threshold_percent" = 30; # When 70% of system memory is used, start unloading
+            "browser.tabs.unloadOnLowMemory" = true;
+            "browser.tabs.min_inactive_duration_before_unload" = 1000 * 60 * 5; # 5 minutes before a tab can be unloaded
             "browser.tabs.inTitlebar" = 0; # Window border shadow (this turns it off) https://bugzilla.mozilla.org/show_bug.cgi?id=1765171
 
             "reader.parse-on-load.force-enabled" = true; # Reader mode always available

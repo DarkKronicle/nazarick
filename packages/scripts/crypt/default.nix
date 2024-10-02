@@ -7,7 +7,6 @@
     (with pkgs; [
       age
       wormhole-rs
-      picocrypt-cli
       diceware
       tomb
     ])
