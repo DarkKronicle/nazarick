@@ -57,7 +57,7 @@ let
   # TODO: make this config option, also make sure to have de-duplication
   plugins = [
     # "${mypkgs.nushell_plugin_explore}/bin/nu_plugin_explore"
-    "${mypkgs.nushell_plugin_skim}/bin/nu_plugin_skim"
+    # "${mypkgs.nushell_plugin_skim}/bin/nu_plugin_skim"
   ];
 in
 {
