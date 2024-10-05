@@ -47,7 +47,7 @@ def "main build" [--update, --pull, --flake: string = ".", --plain, --hostname: 
         if ($update) {
             $flags = ($flags | append "--update")
             let url = "git+ssh://git@gitlab.com/DarkKronicle/nix-sops.git"
-            let locked = (nix eval --impure --expr $"let content = builtins.fetchGit { url = \"($url)\"; }; noOut = builtins.removeAttrs content [ \"outPath\" ]; in noOut // { \"out\" = content.outPath; }" --json) | from json
+            let locked = (nix eval --impure --expr $"let content = builtins.fetchGit { url = \"($url)\"; }; noOut = builtins.removeAttrs content [ \"outPath\" ]; in noOut // { \"out\" = content.outPath; }" --json --refresh) | from json
             let hash = (nix-hash --type sha256 ($locked | get out))
             ({url: ($url), rev: ($locked | get rev), sha256: ($hash)} | to json | save -f secrets/secrets.lock)
         }

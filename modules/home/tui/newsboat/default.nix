@@ -20,6 +20,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
+    sops.secrets."miniflux/password" = { };
+
     programs.newsboat = {
       enable = true;
       browser = ''"w3m %u"'';
@@ -48,6 +50,11 @@ in
 
         macro y set browser "mpv %u" ; open-in-browser-and-mark-read ; set browser "w3m %u"
         macro f set browser "firefox %u" ; open-in-browser-and-mark-read ; set browser "w3m %u"
+
+        urls-source "miniflux"
+        miniflux-url "https://flux.darkkronicle.com/"
+        miniflux-login "darkkronicle"
+        miniflux-passwordfile ${config.sops.secrets."miniflux/password".path}
       '';
     };
   };
