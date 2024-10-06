@@ -53,6 +53,7 @@ in
       kdePackages.qt6ct
       kdePackages.ark
       kdePackages.okular
+      kdePackages.phonon-vlc
       kdePackages.ffmpegthumbs
       kdePackages.kimageformats
       kdePackages.print-manager

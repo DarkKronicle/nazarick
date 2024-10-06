@@ -39,7 +39,7 @@ let
         ''
           r#'
           #! ${pkgs.runtimeShell} -e
-          exec /run/wrappers/bin/firejail ${args} -- ${builtins.toString opts.executable} $@
+          exec /run/wrappers/bin/firejail ${args} -- ${builtins.toString opts.executable} "$@"
           '# | str trim | save $"($env.out)/bin/${command}"
           chmod 0755 $"($env.out)/bin/${command}"
           ${lib.optionalString (opts.desktop != null) ''
