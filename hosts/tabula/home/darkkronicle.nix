@@ -48,6 +48,7 @@ in
 
     service = {
       kanata.enable = true;
+      logrotate.enable = true;
     };
 
     security.firejail = enabled;
