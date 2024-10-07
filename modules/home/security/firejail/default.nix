@@ -112,7 +112,10 @@ in
           profile = "${pkgs.firejail}/etc/firejail/mpv.profile";
           extraArgs = [
             ''--include=${pkgs.firejail}/etc/firejail/allow-bin-sh.inc''
+            "--dbus-user=filter"
             "--dbus-user.talk=org.mpris.MediaPlayer2.*"
+            "--dbus-user.own=org.mpris.MediaPlayer2.mpv"
+            "--ignore=dbus-user none"
           ];
         };
       };
