@@ -111,6 +111,10 @@ in
           # InstallEnterpriseRoots does not work on linux
           "Install" = [ "${mylib.mkCA pkgs}/rootCA.pem" ];
         };
+
+        DisablePocket = true;
+        DisableTelemetry = true;
+        DisableFeedbackCommands = true;
       };
 
       profiles = {
