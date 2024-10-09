@@ -160,6 +160,12 @@ in
           # extensions = extensions;
 
           settings = {
+            # Good-bye weather
+            "browser.newtabpage.activity-stream.feeds.weatherfeed" = false;
+            "browser.newtabpage.activity-stream.showWeather" = false;
+            "browser.newtabpage.activity-stream.system.showWeather" = false;
+            "browser.newtabpage.activity-stream.weather.locationSearchEnabled" = false;
+
             "browser.low_commit_space_threshold_percent" = 30; # When 70% of system memory is used, start unloading
             "browser.tabs.unloadOnLowMemory" = true;
             "browser.tabs.min_inactive_duration_before_unload" = 1000 * 60 * 5; # 5 minutes before a tab can be unloaded
