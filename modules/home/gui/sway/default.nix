@@ -116,6 +116,7 @@ in
       (with pkgs; [
         kdePackages.qqc2-desktop-style # https://discuss.kde.org/t/broken-kde-connect-theme/18451/5
         kdePackages.plasma-integration
+        kdePackages.gwenview
         lxqt.pavucontrol-qt
         swayosd # Graphical volume controls
         blueman

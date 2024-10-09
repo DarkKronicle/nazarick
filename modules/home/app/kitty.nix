@@ -28,7 +28,7 @@ in
     programs.kitty = {
       package = pkgs.kitty;
       enable = true;
-      theme = "Catppuccin-Mocha";
+      themeFile = "Catppuccin-Mocha";
       settings = {
         font_family = "CaskaydiaCove Nerd Font";
         italic_font = "family='CaskaydiaCove Nerd Font' style='Italic' features=+ss01"; # +ss01 is cursive

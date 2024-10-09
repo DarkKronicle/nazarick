@@ -58,6 +58,7 @@ let
   plugins = [
     # "${mypkgs.nushell_plugin_explore}/bin/nu_plugin_explore"
     # "${mypkgs.nushell_plugin_skim}/bin/nu_plugin_skim"
+    "${pkgs.nushellPlugins.polars}/bin/nu_plugin_polars"
   ];
 in
 {

@@ -124,8 +124,22 @@ in
 
           search = {
             force = true;
-            default = "SearXNG";
+            default = "kagi";
             engines = {
+              "kagi" = {
+                definedAliases = [ "@k" ];
+                urls = [
+                  {
+                    template = "https://kagi.com/search";
+                    params = [
+                      {
+                        name = "q";
+                        value = "{searchTerms}";
+                      }
+                    ];
+                  }
+                ];
+              };
               "SearXNG" = {
                 definedAliases = [ "@sx" ];
                 urls = [
