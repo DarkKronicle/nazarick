@@ -275,6 +275,33 @@ in
             "security.dialog_enable_delay" = 1000;
             "extensions.webcompat.enable_shims" = true;
             "extensions.webcompat-reporter.enabled" = false;
+
+            # https://github.com/yokoffing/Betterfox/blob/main/user.js
+            "gfx.canvas.accelerated.cache-items" = 4096;
+            "gfx.canvas.accelerated.cache-size" = 512;
+            "gfx.content.skia-font-cache-size" = 20;
+            "browser.cache.jsbc_compression_level" = 3;
+
+            "network.dns.disablePrefetch" = true;
+            "network.dns.disablePrefetchFromHTTPS" = true;
+            "network.prefetch-next" = false;
+            "network.predictor.enabled" = false;
+            "network.predictor.enable-prefetch" = false;
+
+            "security.ssl.treat_unsafe_negotiation_as_broken" = true;
+            "browser.xul.error_pages.expert_bad_cert" = true;
+            "browser.privatebrowsing.forceMediaMemoryCache" = true;
+
+            # Reject if cookie banner is one button
+            "cookiebanners.service.mode" = 1;
+            "cookiebanners.service.mode.privateBrowsing" = 1;
+
+            # Remove fullscreen delay
+            "full-screen-api.transition-duration.enter" = "0 0"; # default=200 200
+            "full-screen-api.transition-duration.leave" = "0 0"; # default=200 200
+
+            "full-screen-api.warning.delay" = -1; # default=500
+            "full-screen-api.warning.timeout" = 0; # default=3000
           };
         };
       };
