@@ -1,3 +1,20 @@
+const show_columns =  {
+    strings: [ Result Id Description AccessSELinuxContext LoadState ActiveState SubState FreezerState FragmentPath SourcePath UnitFileState UnitFilePreset Unit OnSuccessJobMode OnFailureJobMode JobTimeoutAction JobTimeoutRebootArgument Job LoadError StartLimitAction FailureAction SuccessAction RebootArgument CollectMode Type ExitType Restart RestartMode PIDFile NotifyAccess TimeoutStartFailureMode TimeoutStopFailureMode BusName FileDescriptorStorePreserve StatusText ReloadResult CleanResult USBFunctionDescriptors USBFunctionStrings OOMPolicy Slice ControlGroup DelegateSubgroup DevicePolicy ManagedOOMSwap ManagedOOMMemoryPressure ManagedOOMPreference MemoryPressureWatch WorkingDirectory RootDirectory RootImage RootHashPath RootHashSignaturePath RootVerity StandardInput StandardInputFileDescriptorName StandardOutput StandardOutputFileDescriptorName StandardError StandardErrorFileDescriptorName TTYPath SyslogIdentifier LogNamespace User Group PAMName ProtectHome ProtectSystem UtmpIdentifier UtmpMode Personality RuntimeDirectoryPreserve KeyringMode ProtectProc ProcSubset NetworkNamespacePath IPCNamespacePath RootImagePolicy MountImagePolicy ExtensionImagePolicy KillMode UMask RuntimeDirectoryMode StateDirectoryMode CacheDirectoryMode LogsDirectoryMode ConfigurationDirectoryMode Conditions Asserts ActivationDetails TimersMonotonic TimersCalendar RestartPreventExitStatus RestartForceExitStatus SuccessExitStatus OpenFile ExecCondition ExecConditionEx ExecStartPre ExecStartPreEx ExecStart ExecStartEx ExecStartPost ExecStartPostEx ExecReload ExecReloadEx ExecStop ExecStopEx ExecStopPost ExecStopPostEx IODeviceWeight IOReadBandwidthMax IOWriteBandwidthMax IOReadIOPSMax IOWriteIOPSMax BlockIODeviceWeight BlockIOReadBandwidth BlockIOWriteBandwidth DeviceAllow IPAddressAllow IPAddressDeny BPFProgram SocketBindAllow SocketBindDeny RestrictNetworkInterfaces NFTSet EnvironmentFiles RootImageOptions ExtensionImages MountImages LogExtraFields LogFilterPatterns SetCredential SetCredentialEncrypted LoadCredential LoadCredentialEncrypted SELinuxContext AppArmorProfile SmackProcessLabel SystemCallLog RestrictAddressFamilies RuntimeDirectorySymlink StateDirectorySymlink CacheDirectorySymlink LogsDirectorySymlink RestrictFileSystems BindPaths BindReadOnlyPaths TemporaryFileSystem ExecStopPre BindIPv6Only BindToDevice SocketUser SocketGroup Timestamping TCPCongestion SmackLabel SmackLabelIPIn SmackLabelIPOut FileDescriptorName DirectoryMode SocketMode Listen Symlinks Version Features Architecture Tainted DefaultStandardOutput DefaultStandardError SystemState DefaultMemoryPressureWatch DefaultOOMPolicy CtrlAltDelBurstAction LogLevel LogTarget SysFSPath Where What Options SloppyOptions ExecMount ExecActivate ]
+    bools: [ CanStart CanStop CanReload CanIsolate CanFreeze StopWhenUnneeded RefuseManualStart RefuseManualStop AllowIsolate DefaultDependencies SurviveFinalKillSignal IgnoreOnIsolate NeedDaemonReload ConditionResult AssertResult Transient Perpetual OnClockChange OnTimezoneChange FixedRandomDelay Persistent WakeSystem RemainAfterElapse RootDirectoryStartOnly RemainAfterExit GuessMainPID Delegate CPUAccounting IOAccounting BlockIOAccounting MemoryAccounting MemoryZSwapWriteback TasksAccounting IPAccounting CoredumpReceive RootEphemeral CPUAffinityFromNUMA CPUSchedulingResetOnFork NonBlocking TTYReset TTYVHangup TTYVTDisallocate SyslogLevelPrefix DynamicUser SetLoginEnvironment RemoveIPC PrivateTmp PrivateDevices ProtectClock ProtectKernelTunables ProtectKernelModules ProtectKernelLogs ProtectControlGroups PrivateNetwork PrivateUsers PrivateMounts PrivateIPC SameProcessGroup IgnoreSIGPIPE NoNewPrivileges LockPersonality MemoryDenyWriteExecute RestrictRealtime RestrictSUIDSGID MountAPIVFS ProtectHostname MemoryKSM SendSIGKILL SendSIGHUP RestrictNamespaces Accept FlushPending Writable KeepAlive NoDelay FreeBind Transparent Broadcast PassCredentials PassFileDescriptorsToExec PassSecurity PassPacketInfo RemoveOnStop ReusePort MakeDirectory ConfirmSpawn ShowStatus DefaultCPUAccounting DefaultBlockIOAccounting DefaultIOAccounting DefaultIPAccounting DefaultMemoryAccounting DefaultTasksAccounting LazyUnmount ForceUnmount ReadWriteOnly ServiceWatchdogs ]
+    filesizes: [ MemoryPeak MemoryCurrent IOReadBytes IOWriteBytes DefaultMemoryLow DefaultStartupMemoryLow MemorySwapCurrent MemorySwapPeak MemoryZSwapCurrent MemoryAvailable EffectiveMemoryMax EffectiveMemoryHigh DefaultMemoryMin MemoryMin MemoryLow MemoryHigh MemoryLow StartupMemoryHigh MemoryMax StartupMemoryMax MemorySwapMax StartupMemorySwapMax MemoryZSwapMax StartupMemoryZSwapMax MemoryLimit IPIngressBytes IPEgressBytes IOReadBytes IOWriteBytes ]
+    durations: [ RestartUSec RestartMaxDelayUSec RestartUSecNext TimeoutStartUSec TimeoutStopUSec TimeoutAbortUSec RuntimeMaxUSec RuntimeRandomizedExtraUSec WatchdogUSec CPUQuotaPerSecUSec CPUQuotaPeriodUSec IODeviceLatencyTargetUSec MemoryPressureThresholdUSec LogRateLimitIntervalUSec TimeoutCleanUSec RandomizedDelayUSec AccuracyUSec LastTriggerUSec StartLimitIntervalUSec JobTimeoutUSec JobRunningTimeoutUSec TimeoutUSec KeepAliveTimeUSec KeepAliveIntervalUSec DeferAcceptUSec TriggerLimitIntervalUSec PollLimitIntervalUSec DefaultTimerAccuracyUSec DefaultTimeoutStartUSec DefaultTimeoutStopUSec DefaultTimeoutAbortUSec DefaultDeviceTimeoutUSec DefaultRestartUSec DefaultStartLimitIntervalUSec DefaultMemoryPressureThresholdUSec RuntimeWatchdogUSec RuntimeWatchdogPreUSec RebootWatchdogUSec KExecWatchdogUSec ]
+    nsec: [ CPUUsageNSec TimerSlackNSec ]
+    simple_lists: [ After Wants WantedBy Before Conflicts Requires RequiredBy RequiresMountsFor WantsMountsFor SystemCallFilter CapabilityBoundingSet Names Following Requisite RequisiteOf PartOf BindsTo BoundBy UpheldBy ConsistsOf ConflictedBy OnSuccess OnSuccessOf OnFailure OnFailureOf Upholds Triggers TriggeredBy PropagatesReloadTo ReloadPropagatedFrom PropagatesStopTo StopPropagatedFrom JoinsNamespaceOf SliceOf Documentation DropInPaths CanClean Markers Refs DelegateControllers IPIngressFilterPath IPEgressFilterPath DisableControllers Environment PassEnvironment UnsetEnvironment ExtensionDirectories ImportCredential SupplementaryGroups ReadWritePaths ReadOnlyPaths InaccessiblePaths ExecPaths NoExecPaths ExecSearchPath SystemCallArchitectures RuntimeDirectory StateDirectory CacheDirectory LogsDirectory ConfigurationDirectory AmbientCapabilities UnitPath Paths ]
+    timestamps: [ StateChangeTimestamp InactiveExitTimestamp ActiveEnterTimestamp ActiveExitTimestamp InactiveEnterTimestamp ConditionTimestamp AssertTimestamp WatchdogTimestamp ExecMainStartTimestamp ExecMainExitTimestamp ExecMainHandoffTimestamp NextElapseUSecRealtime NextElapseUSecMonotonic LastTriggerUSecMonotonic UserspaceTimestamp FinishTimestamp GeneratorsStartTimestamp GeneratorsFinishTimestamp UnitsLoadStartTimestamp UnitsLoadFinishTimestamp ]
+    ints: [ SystemCallErrorNumber RestartKillSignal FinalKillSignal WatchdogSignal MainPID KillSignal StartLimitBurst LogLevelMax SyslogFacility SyslogLevel SyslogPriority OOMScoreAdjust ControlPID FileDescriptorStoreMax NFileDescriptorStore StatusErrno UID GID NRestarts ReloadSignal ExecMainCode ExecMainStatus ControlGroupId EffectiveMemoryNodes TasksCurrent EffectiveTasksMax TasksMax ManagedOOMMemoryPressureLimit Nice IOSchedulingPriority CPUSchedulingPolicy CPUSchedulingPriority LogRateLimitBurst SecureBits ExecMainPID IOSchedulingClass CPUWeight StartupCPUShares StartupCPUWeight RestartSteps WatchdogTimestampMonotonic ExecMainStartTimestampMonotonic ExecMainExitTimestampMonotonic ExecMainHandoffTimestampMonotonic LimitCPU LimitCPUSoft LimitFSIZE LimitFSIZESoft LimitDATA LimitDATASoft LimitSTACK LimitSTACKSoft LimitCORE LimitCORESoft LimitRSS LimitRSSSoft LimitNOFILE LimitNOFILESoft LimitAS LimitASSoft LimitNPROC LimitNPROCSoft LimitMEMLOCK LimitMEMLOCKSoft LimitLOCKS LimitLOCKSSoft LimitSIGPENDING LimitSIGPENDINGSoft LimitMSGQUEUE LimitMSGQUEUESoft LimitNICE LimitNICESoft LimitRTPRIO LimitRTPRIOSoft LimitRTTIME LimitRTTIMESoft IPIngressPackets IPEgressPackets IOReadOperations IOWriteOperations StateChangeTimestampMonotonic InactiveExitTimestampMonotonic ActiveEnterTimestampMonotonic ActiveExitTimestampMonotonic InactiveEnterTimestampMonotonic ConditionTimestampMonotonic AssertTimestampMonotonic CPUShares IOWeight StartupIOWeight BlockIOWeight StartupBlockIOWeight StartupMemoryLow CoredumpFilter MountFlags  FailureActionExitStatus SuccessActionExitStatus NUMAPolicy TTYRows TTYColumns ReceiveBuffer SendBuffer Priority IPTOS IPTTL Mark SocketProtocol Backlog KeepAliveProbes MaxConnections MaxConnectionsPerSource NConnections NAccepted NRefused TriggerLimitBurst PollLimitBurst MessageQueueMaxMessages MessageQueueMessageSize PipeSize FirmwareTimestampMonotonic LoaderTimestampMonotonic KernelTimestampMonotonic InitRDTimestampMonotonic UserspaceTimestampMonotonic FinishTimestampMonotonic ShutdownStartTimestampMonotonic SecurityStartTimestampMonotonic SecurityFinishTimestampMonotonic GeneratorsStartTimestampMonotonic GeneratorsFinishTimestampMonotonic UnitsLoadStartTimestampMonotonic UnitsLoadFinishTimestampMonotonic UnitsLoadTimestampMonotonic InitRDSecurityStartTimestampMonotonic InitRDSecurityFinishTimestampMonotonic InitRDGeneratorsStartTimestampMonotonic InitRDGeneratorsFinishTimestampMonotonic InitRDUnitsLoadStartTimestampMonotonic InitRDUnitsLoadFinishTimestampMonotonic WatchdogLastPingTimestampMonotonic DefaultLimitCPU DefaultLimitCPUSoft DefaultLimitFSIZE DefaultLimitFSIZESoft DefaultLimitDATA DefaultLimitDATASoft DefaultLimitSTACK DefaultLimitSTACKSoft DefaultLimitCORE DefaultLimitCORESoft DefaultLimitRSS DefaultLimitRSSSoft DefaultLimitNOFILE DefaultLimitNOFILESoft DefaultLimitAS DefaultLimitASSoft DefaultLimitNPROC DefaultLimitNPROCSoft DefaultLimitMEMLOCK DefaultLimitMEMLOCKSoft DefaultLimitLOCKS DefaultLimitLOCKSSoft DefaultLimitSIGPENDING DefaultLimitSIGPENDINGSoft DefaultLimitMSGQUEUE DefaultLimitMSGQUEUESoft DefaultLimitNICE DefaultLimitNICESoft DefaultLimitRTPRIO DefaultLimitRTPRIOSoft DefaultLimitRTTIME DefaultLimitRTTIMESoft DefaultTasksMax NNames NFailedUnits NJobs NInstalledJobs NFailedJobs DefaultStartLimitBurst SoftRebootsCount DefaultOOMScoreAdjust ]
+    floats: [ Progress ]
+    binary: [ InvocationID EffectiveCPUs AllowedCPUs StartupAllowedCPUs AllowedMemoryNodes StartupAllowedMemoryNodes RootHash RootHashSignature CPUAffinity NUMAMask StandardInputData ]
+}
+
+export def 'typed-columns' [] {
+    $show_columns
+}
+
 def stl-env [code: closure] {
     with-env {
         PATH: ($env.PATH | prepend @NIX_PATH_PREPEND@)
@@ -110,11 +127,16 @@ def "get-best-match" [name: string, is_user: bool] {
     } | get unit
 }
 
-def "inner-show" [name: string, user: bool] {
-    do-sysctl $user show --no-pager -- $name
-        | lines | split column '=' -n 2 
-        | table-to-record column1 column2 
-        | convert-show
+def "inner-show" [name: list<string>, user: bool] {
+    do-sysctl $user show --no-pager -- ...$name
+        | split row ((char newline) + (char newline))
+        | par-each {
+            lines | split column '=' -n 2 
+            | table-to-record column1 column2 
+            | convert-show
+            | upsert "Context" (if $user { "user" } else { "system" })
+            | upsert "Unit" {|x| $x | get Names? | get 0? }
+        }
 }
 
 export def "show" [
@@ -130,9 +152,42 @@ export def "show" [
     if ($unit_name | is-empty) {
         error make { msg: "Unit not found" }
     }
-    inner-show $unit_name $is_user
+    inner-show [ $unit_name ] $is_user | get 0
 }
 
+export def "manager" [] {
+    inner-show [] false
+}
+
+export def "show-table" [] {
+    let units = $in
+    let columns = $units | columns
+    if (("unit" not-in $columns) or ("context" not-in $columns)) {
+        error make { msg: "Missing unit or context in record" }
+    }
+    let grouped = $units | group-by context
+    # There's a weird manager object
+    let systemunits = $grouped | get system? | get unit?
+    let userunits = $grouped | get system? | get unit?
+    let system = if ($systemunits | is-empty) {
+        # Or else we will get the *manager*
+        []
+    } else {
+        inner-show $systemunits false
+    }
+
+    let user = if ($userunits | is-empty) {
+        # Or else we will get the *manager*
+        []
+    } else {
+        inner-show $systemunits true
+    }
+    let user = inner-show ([] | append ($grouped | get user? | get unit?)) true
+    $user | append $system
+}
+
+# Converts systemd duration strings into something nushell can parse.
+# This probably still has issues and will need to be added to.
 def "systemd-into-duration" [] {
     let x = $in
     if ($x == "infinity") {
@@ -155,11 +210,16 @@ def "systemd-into-duration" [] {
     }
 }
 
+# Utility function to check common systemctl "null" formats
+# if it's not null, run the closure
 def "null-if-infinity" [else: closure] {
     if ($in == "infinity") {
         return null
     }
     if ($in == "[not set]") {
+        return null
+    }
+    if ($in == "n/a") {
         return null
     }
     if ($in == "[no data]") {
@@ -168,59 +228,46 @@ def "null-if-infinity" [else: closure] {
     do $else $in
 }
 
+# Utility function to parse show result
 def "convert-show" [] {
+    # This function really sucks because there is no type information with the show command
     mut details = $in
-    let timestamps = $in | columns | where $it =~ 'Timestamp$'
-    let filesizes = [
-        MemoryPeak MemoryCurrent IOReadBytes IOWriteBytes DefaultMemoryLow
-        DefaultStartupMemoryLow MemorySwapCurrent MemorySwapPeak
-        MemoryZSwapCurrent
-        MemoryAvailable
-        EffectiveMemoryMax
-        EffectiveMemoryHigh
-        DefaultMemoryMin MemoryMin MemoryLow
-        MemoryHigh MemoryLow StartupMemoryHigh MemoryMax StartupMemoryMax
-        MemorySwapMax StartupMemorySwapMax
-        MemoryZSwapMax StartupMemoryZSwapMax
-        MemoryLimit
-    ] | append ($details | columns | where $it =~ 'Bytes$')
 
-    let durations = [
-    ] | append ($details | columns | where $it =~ 'USec')
+    # Columns that should be converted to timestamps
+    let timestamps = $show_columns | get timestamps
 
-    let nsec = [
-    ] | append ($details | columns | where $it =~ 'NSec$')
+    # Columns that should be converted to file sizes
+    let filesizes = $show_columns | get filesizes
 
-    let simple_lists = [
-        After Wants WantedBy Before Conflicts Requires RequiredBy RequiresMountsFor
-        WantsMountsFor SystemCallFilter CapabilityBoundingSet
-    ] 
+    # Columns that should be converted to durations
+    let durations = $show_columns | get durations
 
-    let ints = [
-        SystemCallErrorNumber RestartKillSignal FinalKillSignal WatchdogSignal
-        MainPID KillSignal StartLimitBurst LogLevelMax SyslogFacility SyslogLevel SyslogPriority
-        OOMScoreAdjust ControlPID FileDescriptorStoreMax NFileDescriptorStore StatusErrno UID GID NRestarts
-        ReloadSignal ExecMainCode ExecMainStatus
-        ControlGroupId EffectiveMemoryNodes TasksCurrent EffectiveTasksMax TasksMax ManagedOOMMemoryPressureLimit
-        Nice
-        IOSchedulingPriority CPUSchedulingPolicy CPUSchedulingPriority LogRateLimitBurst
-        SecureBits ExecMainPID IOSchedulingClass CPUWeight StartupCPUShares StartupCPUWeight RestartSteps
-    ] | append ($details | columns | where $it =~ 'Monotonic$') 
-            | append ($details | columns | where $it =~ '^Limit')
-            | append ($details | columns | where $it =~ 'Packets$')
-            | append ($details | columns | where $it =~ 'Operations$')
-            | where $it != TimersMonotonic
+    # Columns are nanoseconds
+    let nsec = $show_columns | get nsec
+
+    # Columns that should be converted to space separated lists
+    let simple_lists = $show_columns | get simple_lists
+
+    # Columns that are integers
+    let ints = $show_columns | get ints
+
+    let bools = $show_columns | get bools
+
+    let binary = $show_columns | get binary
+
+    let floats = $show_columns | get floats
 
     for col in $timestamps {
         if (($col in $details) and ($details | get $col | is-not-empty)) {
+            # The weird str split and drop is to remove timezone. nushell
+            # displays an error, and as far as I can tell you can't remove the message
             $details = $details | update $col { split row ' ' | drop 1 | str join ' ' | into datetime }
         }
     }
 
     for col in $filesizes {
         if (($col in $details) and ($details | get $col | is-not-empty)) {
-            $details = $details | update $col { null-if-infinity {|x| 
-                $x | into filesize }}
+            $details = $details | update $col { null-if-infinity {|x| $x | into filesize }}
         }
     }
 
@@ -242,19 +289,23 @@ def "convert-show" [] {
         }
     }
 
-    $details = ($details | transpose one two | each {|x| 
-        if (($x.two | describe -n) != "string") {
-            $x
-        } else {
-            if ($x.two == "no") {
-                {one: $x.one, two: false }
-            } else if ($x.two == "yes") {
-                {one: $x.one, two: true }
-            } else {
-                $x
-            }
+    for col in $floats {
+        if (($col in $details) and ($details | get $col | is-not-empty)) {
+            $details = $details | update $col { null-if-infinity {|x| $x | into float } }
         }
-    } | table-to-record one two)
+    }
+
+    for col in $bools {
+        if (($col in $details) and ($details | get $col | is-not-empty)) {
+            $details = $details | update $col { $in == "yes" }
+        }
+    }
+
+    for col in $binary {
+        if (($col in $details) and ($details | get $col | is-not-empty)) {
+            $details = $details | update $col { null-if-infinity {|x| $x | into binary } }
+        }
+    }
 
     for col in $simple_lists {
         if (($col in $details) and ($details | get $col | is-not-empty)) {
@@ -269,6 +320,9 @@ def "convert-show" [] {
     $details
 }
 
+# Display current status of a unit. 
+#
+# This is a condensed version of `show`
 export def "status" [
     unit: string@autocomplete-any, 
     --user(-u), 
@@ -343,7 +397,7 @@ export def "list-jobs" [
         let system = inner-list-jobs false | insert context "system"
         return ($system | append $user)
     }
-    inner-list-jobs $user | insert context (if $user { "user" } else { "system" })
+    inner-list-job $user | insert context (if $user { "user" } else { "system" })
 }
 
 def "inner-list-automounts" [user: bool] {
@@ -363,10 +417,6 @@ export def "list-automounts" [
         return ($system | append $user)
     }
     inner-list-automounts $user | insert context (if $user { "user" } else { "system" })
-}
-
-def "check-sudo" [] {
-    (do { sudo -vn } | complete | get exit_code) == 0
 }
 
 export def "logs" [
@@ -389,15 +439,18 @@ export def "logs" [
     } else {
         journalctl -u $unit_name --lines $lines --no-pager --boot 0 | lines
     }
-    $content | split column ': ' -n 2 | update column1 { split column $" ($hostname) " time context | update time { into datetime } } | flatten | flatten | rename time context message
+    $content | split column ': ' -n 2 
+        | update column1 { split column $" ($hostname) " time context 
+        | update time { into datetime } } | flatten | flatten | rename time context message
 }
 
-export def "restart" [
-    unit: string@autocomplete-any, 
-    --user(-u), 
-    --context(-c): string # derive where to took from context
-    --sudo-anyways(-s) # prompt for sudo if it makes sense, not prompting if there's a cached session
-] {
+# Utility function to see if there is a current sudo session
+def "check-sudo" [] {
+    (do { sudo -vn } | complete | get exit_code) == 0
+}
+
+# Utility function to run an action on a unit, prompting for sudo if needed
+def "run-action" [action: string, unit: string, user: bool, sudo_anyways: bool, context?: string] {
     if ($user and ($context | is-not-empty)) {
         error make { msg: "Cannot combine user and context" }
     }
@@ -415,9 +468,20 @@ export def "restart" [
         }
     }
     if $is_user {
-        systemctl --user restart -- $unit_name
+        systemctl --user $action -- $unit_name
     } else {
-        sudo systemctl restart -- $unit_name
+        sudo systemctl $action -- $unit_name
+    }
+}
+
+export def "restart" [
+    unit: string@autocomplete-any, 
+    --user(-u), 
+    --context(-c): string # derive where to took from context
+    --sudo-anyways(-s) # prompt for sudo if it makes sense, not prompting if there's a cached session
+] {
+    stl-env {
+        run-action "restart" $unit $user $sudo_anyways $context
     }
 }
 
@@ -427,26 +491,8 @@ export def "start" [
     --context(-c): string # derive where to took from context
     --sudo-anyways(-s) # prompt for sudo if it makes sense, not prompting if there's a cached session
 ] {
-    if ($user and ($context | is-not-empty)) {
-        error make { msg: "Cannot combine user and context" }
-    }
-    let is_user = $user or ($context == "user")
-    let unit_name = get-best-match $unit $is_user
-    if ($unit_name | is-empty) {
-        error make { msg: "Unit not found" }
-    }
-    # Need to run sudo, don't implicitly do it, and we have a session
-    if ((not $is_user) and (not $sudo_anyways) and (check-sudo)) {
-        # Expire sudo (just so you're forced a prompt)
-        print "Going to run sudo and there's a cached session, continue? (pass -s to remove this message)"
-        if ((input "y/n: ") != "y") {
-            return
-        }
-    }
-    if $is_user {
-        systemctl --user start -- $unit_name
-    } else {
-        sudo systemctl start -- $unit_name
+    stl-env {
+        run-action "start" $unit $user $sudo_anyways $context
     }
 }
 
@@ -456,26 +502,8 @@ export def "stop" [
     --context(-c): string # derive where to took from context
     --sudo-anyways(-s) # prompt for sudo if it makes sense, not prompting if there's a cached session
 ] {
-    if ($user and ($context | is-not-empty)) {
-        error make { msg: "Cannot combine user and context" }
-    }
-    let is_user = $user or ($context == "user")
-    let unit_name = get-best-match $unit $is_user
-    if ($unit_name | is-empty) {
-        error make { msg: "Unit not found" }
-    }
-    # Need to run sudo, don't implicitly do it, and we have a session
-    if ((not $is_user) and (not $sudo_anyways) and (check-sudo)) {
-        # Expire sudo (just so you're forced a prompt)
-        print "Going to run sudo and there's a cached session, continue? (pass -s to remove this message)"
-        if ((input "y/n: ") != "y") {
-            return
-        }
-    }
-    if $is_user {
-        systemctl --user stop -- $unit_name
-    } else {
-        sudo systemctl stop -- $unit_name
+    stl-env {
+        run-action "stop" $unit $user $sudo_anyways $context
     }
 }
 
@@ -485,26 +513,8 @@ export def "reload" [
     --context(-c): string # derive where to took from context
     --sudo-anyways(-s) # prompt for sudo if it makes sense, not prompting if there's a cached session
 ] {
-    if ($user and ($context | is-not-empty)) {
-        error make { msg: "Cannot combine user and context" }
-    }
-    let is_user = $user or ($context == "user")
-    let unit_name = get-best-match $unit $is_user
-    if ($unit_name | is-empty) {
-        error make { msg: "Unit not found" }
-    }
-    # Need to run sudo, don't implicitly do it, and we have a session
-    if ((not $is_user) and (not $sudo_anyways) and (check-sudo)) {
-        # Expire sudo (just so you're forced a prompt)
-        print "Going to run sudo and there's a cached session, continue? (pass -s to remove this message)"
-        if ((input "y/n: ") != "y") {
-            return
-        }
-    }
-    if $is_user {
-        systemctl --user reload -- $unit_name
-    } else {
-        sudo systemctl reload -- $unit_name
+    stl-env {
+        run-action "reload" $unit $user $sudo_anyways $context
     }
 }
 
@@ -514,26 +524,8 @@ export def "freeze" [
     --context(-c): string # derive where to took from context
     --sudo-anyways(-s) # prompt for sudo if it makes sense, not prompting if there's a cached session
 ] {
-    if ($user and ($context | is-not-empty)) {
-        error make { msg: "Cannot combine user and context" }
-    }
-    let is_user = $user or ($context == "user")
-    let unit_name = get-best-match $unit $is_user
-    if ($unit_name | is-empty) {
-        error make { msg: "Unit not found" }
-    }
-    # Need to run sudo, don't implicitly do it, and we have a session
-    if ((not $is_user) and (not $sudo_anyways) and (check-sudo)) {
-        # Expire sudo (just so you're forced a prompt)
-        print "Going to run sudo and there's a cached session, continue? (pass -s to remove this message)"
-        if ((input "y/n: ") != "y") {
-            return
-        }
-    }
-    if $is_user {
-        systemctl --user freeze -- $unit_name
-    } else {
-        sudo systemctl freeze -- $unit_name
+    stl-env {
+        run-action "freeze" $unit $user $sudo_anyways $context
     }
 }
 
@@ -543,25 +535,7 @@ export def "thaw" [
     --context(-c): string # derive where to took from context
     --sudo-anyways(-s) # prompt for sudo if it makes sense, not prompting if there's a cached session
 ] {
-    if ($user and ($context | is-not-empty)) {
-        error make { msg: "Cannot combine user and context" }
-    }
-    let is_user = $user or ($context == "user")
-    let unit_name = get-best-match $unit $is_user
-    if ($unit_name | is-empty) {
-        error make { msg: "Unit not found" }
-    }
-    # Need to run sudo, don't implicitly do it, and we have a session
-    if ((not $is_user) and (not $sudo_anyways) and (check-sudo)) {
-        # Expire sudo (just so you're forced a prompt)
-        print "Going to run sudo and there's a cached session, continue? (pass -s to remove this message)"
-        if ((input "y/n: ") != "y") {
-            return
-        }
-    }
-    if $is_user {
-        systemctl --user thaw -- $unit_name
-    } else {
-        sudo systemctl thaw -- $unit_name
+    stl-env {
+        run-action "thaw" $unit $user $sudo_anyways $context
     }
 }
