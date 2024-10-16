@@ -50,15 +50,17 @@ def "autocomplete-any" [] {
 }
 
 export def "list-units" [--user(-u), --all(-a)] {
-    if ($all and $user) {
-        error make { msg: "Cannot combine user and all" }
+    stl-env {
+        if ($all and $user) {
+            error make { msg: "Cannot combine user and all" }
+        }
+        if ($all) {
+            let user = inner-list-units true | insert context "user"
+            let system = inner-list-units false | insert context "system"
+            return ($system | append $user)
+        }
+        inner-list-units $user | insert context (if $user { "user" } else { "system" })
     }
-    if ($all) {
-        let user = inner-list-units true | insert context "user"
-        let system = inner-list-units false | insert context "system"
-        return ($system | append $user)
-    }
-    inner-list-units $user | insert context (if $user { "user" } else { "system" })
 }
 
 def "inner-list-timers" [user: bool] {
@@ -100,15 +102,17 @@ def "inner-list-timers" [user: bool] {
 }
 
 export def "list-timers" [--user(-u), --all(-a)] {
-    if ($all and $user) {
-        error make { msg: "Cannot combine user and all" }
+    stl-env {
+        if ($all and $user) {
+            error make { msg: "Cannot combine user and all" }
+        }
+        if ($all) {
+            let user = inner-list-timers true | insert context "user"
+            let system = inner-list-timers false | insert context "system"
+            return ($system | append $user)
+        }
+        inner-list-timers $user | insert context (if $user { "user" } else { "system" })
     }
-    if ($all) {
-        let user = inner-list-timers true | insert context "user"
-        let system = inner-list-timers false | insert context "system"
-        return ($system | append $user)
-    }
-    inner-list-timers $user | insert context (if $user { "user" } else { "system" })
 }
 
 def "get-best-match" [name: string, is_user: bool] {
@@ -144,46 +148,52 @@ export def "show" [
     --user(-u), 
     --context(-c): string # derive where to took from context
 ] {
-    if ($user and ($context | is-not-empty)) {
-        error make { msg: "Cannot combine user and context" }
+    stl-env {
+        if ($user and ($context | is-not-empty)) {
+            error make { msg: "Cannot combine user and context" }
+        }
+        let is_user = $user or ($context == "user")
+        let unit_name = get-best-match $unit $is_user
+        if ($unit_name | is-empty) {
+            error make { msg: "Unit not found" }
+        }
+        inner-show [ $unit_name ] $is_user | get 0
     }
-    let is_user = $user or ($context == "user")
-    let unit_name = get-best-match $unit $is_user
-    if ($unit_name | is-empty) {
-        error make { msg: "Unit not found" }
-    }
-    inner-show [ $unit_name ] $is_user | get 0
 }
 
 export def "manager" [] {
-    inner-show [] false
+    stl-env {
+        inner-show [] false
+    }
 }
 
 export def "show-table" [] {
     let units = $in
-    let columns = $units | columns
-    if (("unit" not-in $columns) or ("context" not-in $columns)) {
-        error make { msg: "Missing unit or context in record" }
-    }
-    let grouped = $units | group-by context
-    # There's a weird manager object
-    let systemunits = $grouped | get system? | get unit?
-    let userunits = $grouped | get system? | get unit?
-    let system = if ($systemunits | is-empty) {
-        # Or else we will get the *manager*
-        []
-    } else {
-        inner-show $systemunits false
-    }
+    stl-env {
+        let columns = $units | columns
+        if (("unit" not-in $columns) or ("context" not-in $columns)) {
+            error make { msg: "Missing unit or context in record" }
+        }
+        let grouped = $units | group-by context
+        # There's a weird manager object
+        let systemunits = $grouped | get system? | get unit?
+        let userunits = $grouped | get system? | get unit?
+        let system = if ($systemunits | is-empty) {
+            # Or else we will get the *manager*
+            []
+        } else {
+            inner-show $systemunits false
+        }
 
-    let user = if ($userunits | is-empty) {
-        # Or else we will get the *manager*
-        []
-    } else {
-        inner-show $systemunits true
+        let user = if ($userunits | is-empty) {
+            # Or else we will get the *manager*
+            []
+        } else {
+            inner-show $systemunits true
+        }
+        let user = inner-show ([] | append ($grouped | get user? | get unit?)) true
+        $user | append $system
     }
-    let user = inner-show ([] | append ($grouped | get user? | get unit?)) true
-    $user | append $system
 }
 
 # Converts systemd duration strings into something nushell can parse.
@@ -328,19 +338,21 @@ export def "status" [
     --user(-u), 
     --context(-c): string # derive where to took from context
 ] {
-    if ($user and ($context | is-not-empty)) {
-        error make { msg: "Cannot combine user and context" }
+    stl-env {
+        if ($user and ($context | is-not-empty)) {
+            error make { msg: "Cannot combine user and context" }
+        }
+        let is_user = $user or ($context == "user")
+        let unit_name = get-best-match $unit $is_user
+        if ($unit_name | is-empty) {
+            error make { msg: "Unit not found" }
+        }
+        inner-show [ $unit_name ] $is_user | select --ignore-errors ...[
+            ActiveState SubState LoadState Names Description Type Restart MainPID NRestarts 
+            ExecMainStartTimestamp StateChangeTimestamp MemoryCurrent MemoryPeak MemorySwapCurrent MemorySwapPeak 
+            CPUUsageNSec LoadState IOReadBytes IOWriteBytes
+        ]
     }
-    let is_user = $user or ($context == "user")
-    let unit_name = get-best-match $unit $is_user
-    if ($unit_name | is-empty) {
-        error make { msg: "Unit not found" }
-    }
-    inner-show $unit_name $is_user | select --ignore-errors ...[
-        ActiveState SubState LoadState Names Description Type Restart MainPID NRestarts 
-        ExecMainStartTimestamp StateChangeTimestamp MemoryCurrent MemoryPeak MemorySwapCurrent MemorySwapPeak 
-        CPUUsageNSec LoadState IOReadBytes IOWriteBytes
-    ]
 }
 
 def "inner-list-sockets" [user: bool] {
@@ -351,15 +363,17 @@ export def "list-sockets" [
     --user(-u),
     --all(-a)
 ] {
-    if ($all and $user) {
-        error make { msg: "Cannot combine user and all" }
+    stl-env {
+        if ($all and $user) {
+            error make { msg: "Cannot combine user and all" }
+        }
+        if ($all) {
+            let user = inner-list-sockets true | insert context "user"
+            let system = inner-list-sockets false | insert context "system"
+            return ($system | append $user)
+        }
+        inner-list-sockets $user | insert context (if $user { "user" } else { "system" })
     }
-    if ($all) {
-        let user = inner-list-sockets true | insert context "user"
-        let system = inner-list-sockets false | insert context "system"
-        return ($system | append $user)
-    }
-    inner-list-sockets $user | insert context (if $user { "user" } else { "system" })
 }
 
 def "inner-list-paths" [user: bool] {
@@ -370,15 +384,17 @@ export def "list-paths" [
     --user(-u),
     --all(-a)
 ] {
-    if ($all and $user) {
-        error make { msg: "Cannot combine user and all" }
+    stl-env {
+        if ($all and $user) {
+            error make { msg: "Cannot combine user and all" }
+        }
+        if ($all) {
+            let user = inner-list-paths true | insert context "user"
+            let system = inner-list-paths false | insert context "system"
+            return ($system | append $user)
+        }
+        inner-list-paths $user | insert context (if $user { "user" } else { "system" })
     }
-    if ($all) {
-        let user = inner-list-paths true | insert context "user"
-        let system = inner-list-paths false | insert context "system"
-        return ($system | append $user)
-    }
-    inner-list-paths $user | insert context (if $user { "user" } else { "system" })
 }
 
 def "inner-list-jobs" [user: bool] {
@@ -389,15 +405,17 @@ export def "list-jobs" [
     --user(-u),
     --all(-a)
 ] {
-    if ($all and $user) {
-        error make { msg: "Cannot combine user and all" }
+    stl-env {
+        if ($all and $user) {
+            error make { msg: "Cannot combine user and all" }
+        }
+        if ($all) {
+            let user = inner-list-jobs true | insert context "user"
+            let system = inner-list-jobs false | insert context "system"
+            return ($system | append $user)
+        }
+        inner-list-job $user | insert context (if $user { "user" } else { "system" })
     }
-    if ($all) {
-        let user = inner-list-jobs true | insert context "user"
-        let system = inner-list-jobs false | insert context "system"
-        return ($system | append $user)
-    }
-    inner-list-job $user | insert context (if $user { "user" } else { "system" })
 }
 
 def "inner-list-automounts" [user: bool] {
@@ -408,15 +426,17 @@ export def "list-automounts" [
     --user(-u),
     --all(-a)
 ] {
-    if ($all and $user) {
-        error make { msg: "Cannot combine user and all" }
+    stl-env {
+        if ($all and $user) {
+            error make { msg: "Cannot combine user and all" }
+        }
+        if ($all) {
+            let user = inner-list-automounts true | insert context "user"
+            let system = inner-list-automounts false | insert context "system"
+            return ($system | append $user)
+        }
+        inner-list-automounts $user | insert context (if $user { "user" } else { "system" })
     }
-    if ($all) {
-        let user = inner-list-automounts true | insert context "user"
-        let system = inner-list-automounts false | insert context "system"
-        return ($system | append $user)
-    }
-    inner-list-automounts $user | insert context (if $user { "user" } else { "system" })
 }
 
 export def "logs" [
@@ -425,23 +445,25 @@ export def "logs" [
     --context(-c): string # derive where to took from context
     --lines(-l): int = 50
 ] {
-    if ($user and ($context | is-not-empty)) {
-        error make { msg: "Cannot combine user and context" }
+    stl-env {
+        if ($user and ($context | is-not-empty)) {
+            error make { msg: "Cannot combine user and context" }
+        }
+        let is_user = $user or ($context == "user")
+        let unit_name = get-best-match $unit $is_user
+        if ($unit_name | is-empty) {
+            error make { msg: "Unit not found" }
+        }
+        let hostname = uname | get nodename
+        let content = if ($is_user) {
+            journalctl --user -u $unit_name --no-pager --boot 0 --lines $lines | lines
+        } else {
+                journalctl -u $unit_name --lines $lines --no-pager --boot 0 | lines
+            }
+        $content | split column ': ' -n 2 
+            | update column1 { split column $" ($hostname) " time context 
+            | update time { into datetime } } | flatten | flatten | rename time context message
     }
-    let is_user = $user or ($context == "user")
-    let unit_name = get-best-match $unit $is_user
-    if ($unit_name | is-empty) {
-        error make { msg: "Unit not found" }
-    }
-    let hostname = uname | get nodename
-    let content = if ($is_user) {
-        journalctl --user -u $unit_name --no-pager --boot 0 --lines $lines | lines
-    } else {
-        journalctl -u $unit_name --lines $lines --no-pager --boot 0 | lines
-    }
-    $content | split column ': ' -n 2 
-        | update column1 { split column $" ($hostname) " time context 
-        | update time { into datetime } } | flatten | flatten | rename time context message
 }
 
 # Utility function to see if there is a current sudo session

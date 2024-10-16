@@ -1,0 +1,14 @@
+diff --git a/src/clean.rs b/src/clean.rs
+index 50518a7..84d34b4 100644
+--- a/src/clean.rs
++++ b/src/clean.rs
+@@ -91,7 +91,7 @@ impl NHRunnable for interface::CleanMode {
+         }
+ 
+         // Query gcroots
+-        let filename_tests = [r".*/.direnv/.*", r".*result.*"];
++        let filename_tests = [r"^/tmp/nh-.*/result$"];
+         let regexes = filename_tests
+             .into_iter()
+             .map(Regex::new)
+
