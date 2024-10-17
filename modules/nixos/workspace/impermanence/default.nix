@@ -238,6 +238,8 @@ in
         ".cache/systemsettings" # doubt
         ".cache/tealdeer"
         ".cache/zoxide"
+
+        ".cache/spotify-player"
       ];
     };
 

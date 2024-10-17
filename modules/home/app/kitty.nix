@@ -4,6 +4,7 @@
   pkgs,
   inputs,
   mylib,
+  system,
   ...
 }:
 
@@ -14,6 +15,32 @@ let
   cfg = config.nazarick.app.kitty;
   oldVersion = lib.version == "24.05pre-git";
   themeOpt = if oldVersion then "theme" else "themeFile";
+
+  kittyScrollback = pkgs.fetchFromGitHub {
+    owner = "mikesmithgh";
+    repo = "kitty-scrollback.nvim";
+    rev = "d51725a6b71d65dd9df83ddc07903de2fb2736ee";
+    hash = "sha256-K2etlw89afHYR791keUF5+BBRybfp2mKaVYWigEXczs=";
+  };
+
+  kittyScrollbackSubstituted = pkgs.substitute {
+    src = "${kittyScrollback}/python/kitty_scrollback_nvim.py";
+    substitutions = [
+      "--replace-fail"
+      "which('nvim')"
+      "which('nvim-cats')"
+    ];
+  };
+
+  kittyScrollbackPython = pkgs.stdenvNoCC.mkDerivation {
+    name = "kitty_scrollback_nvim.py";
+    dontUnpack = true;
+    enableParallelBuilding = true;
+    installPhase = ''
+      mkdir -p $out/python
+      cp ${kittyScrollbackSubstituted} $out/python/kitty_scrollback_nvim.py
+    '';
+  };
 in
 {
   options.nazarick.app.kitty = {
@@ -58,6 +85,17 @@ in
         "alt+x" = "close_tab";
       };
       "${themeOpt}" = "Catppuccin-Mocha";
+      extraConfig = ''
+        # kitty-scrollback.nvim Kitten alias
+        action_alias kitty_scrollback_nvim kitten ${kittyScrollbackPython}/python/kitty_scrollback_nvim.py
+
+        # Browse scrollback buffer in nvim
+        map kitty_mod+h kitty_scrollback_nvim
+        # Browse output of the last shell command in nvim
+        map kitty_mod+g kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
+        # Show clicked command output in nvim
+        mouse_map ctrl+shift+right press ungrabbed combine : mouse_select_command_output : kitty_scrollback_nvim --config ksb_builtin_last_visited_cmd_output
+      '';
     };
   };
 }
