@@ -10,6 +10,5 @@
   source = ./stl.nu;
   dependencies = [
     pkgs.systemd
-    pkgs.sudo
   ];
 }
