@@ -364,6 +364,7 @@ danger-enable-cmd yes
     ds (layer-while-held sway-ds)
     dw (layer-while-held sway-dw)
     sd (layer-while-held sway-sd)
+    dm (layer-while-held sway-mouse)
 
     sw-lft (cmd-log none error swaymsg focus left)
     sw-rght (cmd-log none error swaymsg focus right)
@@ -521,7 +522,7 @@ danger-enable-cmd yes
 (deflayer sway
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
-	_    XX  XX (multi (on-press press-virtualkey dsway) (on-release release-virtualkey dsway)) XX  XX XX XX XX XX XX  XX  (cmd-log none error swaymsg exec kitty)
+	_    XX  XX (multi (on-press press-virtualkey dsway) (on-release release-virtualkey dsway)) XX  XX XX XX XX XX XX  (cmd-log none error swaymsg "exec pkill warpd; exec sleep 0.01 && warpd --oneshot --hint") (cmd-log none error swaymsg exec kitty)
 	_    XX  XX  XX  XX  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX
 	_    _   _      _    _      _    _
 )
@@ -530,7 +531,7 @@ danger-enable-cmd yes
 (deflayer sway-d
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
 	_    _  @dw  _  _  _  _  @w1 @w2 @w3 @w4  _  _  _
-	_    _  @ds  _  _  _  @sw-lft @sw-down @sw-up @sw-rght @sw-meta  _  _
+	_    @dm  @ds  _  _  _  @sw-lft @sw-down @sw-up @sw-rght @sw-meta  _  _
 	@sw-meta    _  _  _  _  _  _  _  _  _  _  _
 	_    _   _      _    _      _    _
 )
@@ -587,5 +588,25 @@ danger-enable-cmd yes
 	_    _  _  _  _  _  _  _  XX  XX  XX  _  _  _
 	_    _  _  _  _  _  @sw-lft @sw-down @sw-up @sw-rght _  _  _
 	_    _  _  _  _  _  _  XX  XX  XX  XX  _
+	_    _   _      _    _      _    _
+)
+
+(defalias
+    ms-up (movemouse-accel-up 2 2000 1 5)
+    ms-dwn (movemouse-accel-down 2 2000 1 5)
+    ms-lft (movemouse-accel-left 2 2000 1 5)
+    ms-rght (movemouse-accel-right 2 2000 1 5)
+
+    scroll-up (mwheel-up 100 120)
+    scroll-down (mwheel-down 100 120)
+    scroll-lft (mwheel-left 100 120)
+    scroll-rght (mwheel-right 100 120)
+)
+
+(deflayer sway-mouse
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  @scroll-down  @scroll-up  @scroll-lft  @scroll-rght  _  _  _
+	_    _  _ mrgt  mlft  _  @ms-lft @ms-dwn @ms-up @ms-rght _  _  _
+	_    _  _  _  _  _  _  mlft  mmid  mrgt  XX  _
 	_    _   _      _    _      _    _
 )

@@ -4,7 +4,6 @@
   mylib,
   config,
   ...
-
 }:
 let
   cfg = config.nazarick.gui.swww;

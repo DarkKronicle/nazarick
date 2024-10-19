@@ -885,6 +885,7 @@
         "plugins-cutlass-nvim": "plugins-cutlass-nvim",
         "plugins-fold-cycle-nvim": "plugins-fold-cycle-nvim",
         "plugins-heirline-components-nvim": "plugins-heirline-components-nvim",
+        "plugins-kitty-scrollback-nvim": "plugins-kitty-scrollback-nvim",
         "plugins-luasnip-snippets": "plugins-luasnip-snippets",
         "plugins-mini-animate": "plugins-mini-animate",
         "plugins-mini-hipatterns": "plugins-mini-hipatterns",
@@ -897,11 +898,11 @@
         "plugins-yazi-nvim": "plugins-yazi-nvim"
       },
       "locked": {
-        "lastModified": 1729128758,
-        "narHash": "sha256-8T/mnUZxgGWMPalfqxIv0cdJV2Pb62lKbH3uxtvpC5s=",
+        "lastModified": 1729177031,
+        "narHash": "sha256-cJXKSjl95H9RU0oLwQCWga/CMVrJM1+6Y/fbvgkHtCI=",
         "owner": "DarkKronicle",
         "repo": "nvim-dotfiles",
-        "rev": "1f91c7191809e67648d10b65e1f37da800aa7606",
+        "rev": "0c80df8f6e274b68191971eced941ef62cd0fb62",
         "type": "github"
       },
       "original": {
@@ -1010,6 +1011,22 @@
       "original": {
         "owner": "Zeioth",
         "repo": "heirline-components.nvim",
+        "type": "github"
+      }
+    },
+    "plugins-kitty-scrollback-nvim": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1727489810,
+        "narHash": "sha256-K2etlw89afHYR791keUF5+BBRybfp2mKaVYWigEXczs=",
+        "owner": "mikesmithgh",
+        "repo": "kitty-scrollback.nvim",
+        "rev": "d51725a6b71d65dd9df83ddc07903de2fb2736ee",
+        "type": "github"
+      },
+      "original": {
+        "owner": "mikesmithgh",
+        "repo": "kitty-scrollback.nvim",
         "type": "github"
       }
     },

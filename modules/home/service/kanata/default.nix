@@ -22,6 +22,7 @@ let
     pkgs.swayfx
     mypkgs.script-swu
     tofiApp
+    pkgs.warpd
   ];
 
   mkKanataService =

@@ -48,6 +48,7 @@ let
       canvasblocker
       adaptive-tab-bar-colour
       lovely-forks # Shows forks on github projects
+      catppuccin-gh-file-explorer
     ])
     ++ (with custom-addons; [
       better-canvas

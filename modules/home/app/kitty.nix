@@ -39,6 +39,9 @@ let
     installPhase = ''
       mkdir -p $out/python
       cp ${kittyScrollbackSubstituted} $out/python/kitty_scrollback_nvim.py
+      cp ${kittyScrollback}/python/loading.py $out/python/loading.py
+      cp ${kittyScrollback}/python/kitty_scroll_prompt.py $out/python/kitty_scroll_prompt.py
+      cp ${kittyScrollback}/python/kitty_debug_config.py $out/python/kitty_debug_config.py
     '';
   };
 in

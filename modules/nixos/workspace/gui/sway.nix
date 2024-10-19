@@ -72,6 +72,7 @@ in
       kdePackages.qtwayland
       qt5.qtwayland
       networkmanagerapplet
+      warpd
     ];
 
     # Majority of stuff is configured in home manager land
