@@ -25,6 +25,13 @@ let
     sha256 = "sha256-DX77qLtDktv077YksxnrSoqa8O0ujJF2NH36GkENaXI=";
   };
 
+  catppuccinTridactyl = pkgs.fetchFromGitHub {
+    owner = "lonepie";
+    repo = "catppuccin-tridactyl";
+    rev = "a77c65f7ab5946b37361ae935d2192a9a714f960";
+    hash = "sha256-LjLMq7vUwDdxgpdP9ClRae+gN11IPc+XMsx8/+bwUy4=";
+  };
+
   extensions =
     (with inputs.firefox-addons.packages.${pkgs.system}; [
       bitwarden
@@ -67,6 +74,11 @@ in
     xdg.configFile."tridactyl/tridactylrc" = {
       enable = true;
       source = ./tridactylrc;
+    };
+
+    xdg.configFile."tridactyl/themes/catppuccin" = {
+      enable = true;
+      source = "${catppuccinTridactyl}/catppuccin.css";
     };
 
     programs.firefox = {

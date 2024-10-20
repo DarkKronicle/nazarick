@@ -4,7 +4,6 @@ sanitize tridactyllocal tridactylsync
 
 set newtab about:blank
 set modeindicator false
-colors midnight
 set smoothscroll true
 set allowautofocus true
 set completions.Tab.statusstylepretty true
@@ -57,5 +56,23 @@ set searchurls.gh https://github.com/search?q=%s
 " this will send through sway so that GPU acceleration isn't blocked bc of
 " firejail
 alias mpvvideo composite get_current_url | js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet(`swaymsg exec mpv ${url}`))
+alias js -p tri.excmds.shellescape(JS_ARG).then(url => tri.excmds.exclaim_quiet(`swaymsg exec mpv ${url}`))
 
-bind 'mv hint -W mpvvideo
+bind ;m hint -W mpvvideogo
+bind gm mpvvideo
+
+bind ;I hint -I
+" Focus an element
+bind ;f hint -; 
+bind ;qb hint -qb 
+
+set hintchars 5432167890
+set hintfiltermode vimperator-reflow
+set hintnames short
+set hintuppercase false
+
+" See other file for where this gets saved
+colourscheme catppuccin
+tabmove << tabmove -1
+tabmove << tabmove +1
+bind ' gobble 1 markjump
