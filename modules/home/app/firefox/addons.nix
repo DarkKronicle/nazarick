@@ -24,16 +24,4 @@
       platforms = lib.platforms.all;
     };
   };
-  hide-youtube-shorts = buildFirefoxXpiAddon rec {
-    pname = "hide-youtube-shorts";
-    version = "1.7.4";
-    addonId = "{88ebde3a-4581-4c6b-8019-2a05a9e3e938}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4222807/hide_youtube_shorts-${version}.xpi";
-    sha256 = "083x96y69s297cygrc9xgqqlh1ks16mp57m2n9jmzh1nmxqk8nq2";
-    meta = {
-      homepage = "https://github.com/Vulpelo/hide-youtube-shorts";
-      license = lib.licenses.gpl3Plus;
-      platforms = lib.platforms.all;
-    };
-  };
 }

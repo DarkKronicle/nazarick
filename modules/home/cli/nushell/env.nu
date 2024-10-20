@@ -36,7 +36,7 @@ $env.NU_PLUGIN_DIRS = [
 ]
 
 $env.FZF_DEFAULT_COMMAND = ("fd . " + $env.HOME)
-$env.FZF_CTRL_T_COMMAND= $env.FZF_DEFAULT_COMMAND
+$env.FZF_CTRL_T_COMMAND = $env.FZF_DEFAULT_COMMAND
 $env.FZF_ALT_C_COMMAND = ("fd -t d . " + $env.HOME)
 
 $env.MANROFFOPT = "-c"

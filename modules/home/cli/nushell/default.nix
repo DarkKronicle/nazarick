@@ -43,7 +43,7 @@ in
 
     programs.nushell.extraConfig = ''
       use ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/nuenv/hook.nu [ "nuenv allow", "nuenv disallow" ]
-      $env.config.hooks.env_change.PWD = (use ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/nuenv/hook.nu; hook setup)
+      $env.config.hooks.env_change = $env.config.hooks.env_change | upsert PWD ([(use ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/nuenv/hook.nu; hook setup)] | append ($env.config.hooks | get PWD?))
     '';
 
     nazarick.cli.nushell.alias = {

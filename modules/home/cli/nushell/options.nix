@@ -182,7 +182,7 @@ in
       environmentVariables = lib.listToAttrs (
         lib.mapAttrsToList (key: var: {
           name = key;
-          value = ''r####'${var}'####'';
+          value = var;
         }) config.home.sessionVariables
       );
     };

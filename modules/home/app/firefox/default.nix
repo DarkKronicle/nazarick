@@ -56,10 +56,10 @@ let
       adaptive-tab-bar-colour
       lovely-forks # Shows forks on github projects
       catppuccin-gh-file-explorer
+      remove-youtube-s-suggestions
     ])
     ++ (with custom-addons; [
       better-canvas
-      hide-youtube-shorts
       better-history-ng
     ]);
 in
@@ -76,7 +76,7 @@ in
       source = ./tridactylrc;
     };
 
-    xdg.configFile."tridactyl/themes/catppuccin" = {
+    xdg.configFile."tridactyl/themes/catppuccin.css" = {
       enable = true;
       source = "${catppuccinTridactyl}/catppuccin.css";
     };

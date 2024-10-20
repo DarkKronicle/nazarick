@@ -111,7 +111,7 @@ $env.config = {
     vi_normal: underscore # block, underscore, line, blink_block, blink_underscore, blink_line (underscore is the default)
   }
   color_config: (black-metal-immortal)
-  footer_mode: "25"
+  footer_mode: 25
   float_precision: 2
   use_ansi_coloring: true
   bracketed_paste: true
@@ -130,6 +130,9 @@ $env.config = {
   hooks: {
     display_output: {||
       if (term size).columns >= 100 { table -e } else { table }
+    }
+    env_change: {
+        PWD: []
     }
   }
 
