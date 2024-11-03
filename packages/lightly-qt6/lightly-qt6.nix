@@ -21,10 +21,9 @@ mkKdeDerivation {
   src = fetchFromGitHub {
     owner = "Bali10050";
     repo = "Lightly";
-    rev = "459466f7a845d0f98a82796418d8ebb03b7e5cbd";
-    hash = "sha256-n4w6uMnBWNPwVE3vjTHGbzU9M6XgRafddkdxA7SafgQ=";
+    rev = "c281ad6705e9eec471ebcd5099131ea50d27c1ec";
+    hash = "sha256-cBICf6DGg6s7vbqJZ/zo09Wjkvm/ztQCDB8XLoXL7S8=";
   };
-
   # Prevent conflict between qt6 and qt5
   postInstall = ''
     mv $out/share/kstyle/themes/lightly.themerc $out/share/kstyle/themes/lightly6.themerc

@@ -26,7 +26,7 @@ in
     qt = {
       enable = true;
       # style.package = mypkgs.lightly-qt6;
-      # style.name = "Lightly";
+      style.name = "Lightly";
       platformTheme.name = "qtct";
     };
 
@@ -58,7 +58,6 @@ in
       kdePackages.ffmpegthumbs
       kdePackages.kimageformats
       kdePackages.print-manager
-      kdePackages.breeze
       catppuccin-cursors.mochaMauve
     ];
 

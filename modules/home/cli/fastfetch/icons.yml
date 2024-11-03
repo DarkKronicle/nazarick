@@ -1,14 +1,30 @@
 # Cool script to bulk get sha's.
 # wl-paste | from yaml | each {|x| mut y = $x; $y.src.sha256 = (nix-prefetch-url $x.src.url --name $x.src.name | str trim); $y } | to yaml | wl-copy
 # Just make sure to cpoy starting at source
-- src:
-    url: https://static.zerochan.net/Albedo.%28Overlord%29.full.3362466.png
-    name: albedo_chibi.png
-    sha256: 11ipqd3d327rjgzcc2i5pvlm72kyrbm9rsbsx9jik8m1h41gagjn
-  tags:
-  - weaboo
-  square: true
-  resolution: 200x200
+# - src:
+    # url: https://static.zerochan.net/Albedo.%28Overlord%29.full.3362466.png
+    # name: albedo_chibi.png
+    # sha256: 11ipqd3d327rjgzcc2i5pvlm72kyrbm9rsbsx9jik8m1h41gagjn
+  # tags:
+  # - weaboo
+  # square: true
+  # resolution: 200x200
+# - src:
+    # url: https://s1.zerochan.net/Shalltear.Bloodfallen.600.2670092.jpg
+    # name: shalltear_red.jpg
+    # sha256: 0ll86cacd2awgmmvsl6vd1dcf9pdxwqkjvg5snjppmxhsldgh145
+  # tags:
+  # - weaboo
+  # square: true
+  # resolution: 200x200
+# - src:
+    # url: https://s1.zerochan.net/Shalltear.Bloodfallen.600.2670092.jpg
+    # name: shalltear_red.jpg
+    # sha256: 0ll86cacd2awgmmvsl6vd1dcf9pdxwqkjvg5snjppmxhsldgh145
+  # tags:
+  # - weaboo
+  # square: true
+  # resolution: 200x200
 - src:
     url: https://i.redd.it/30zzwgt7zro81.png
     name: albedo_tea.png
@@ -69,22 +85,6 @@
     url: https://i.pinimg.com/736x/42/6d/4e/426d4e5c56be0c512416f32eaad415d5.jpg
     name: frieren_sketch.jpg
     sha256: 120bj92xrc4fx5nmd6yrrg4ybmzk849nxh5jxgzz931ijqf6silx
-  tags:
-  - weaboo
-  square: true
-  resolution: 200x200
-- src:
-    url: https://static.zerochan.net/Frieren.full.4010745.jpg
-    name: frieren_stars.jpg
-    sha256: 18sc1vc0q3662xkdnbimzkip7iz59y18gximbh506d2nzdd88n3j
-  tags:
-  - weaboo
-  square: true
-  resolution: 200x200
-- src:
-    url: https://s1.zerochan.net/Shalltear.Bloodfallen.600.2670092.jpg
-    name: shalltear_red.jpg
-    sha256: 0ll86cacd2awgmmvsl6vd1dcf9pdxwqkjvg5snjppmxhsldgh145
   tags:
   - weaboo
   square: true
