@@ -704,3 +704,55 @@
     sha256: 0140m7zq8j7cjyhyagjay7r8yqaywsp8a9kvjgwq4p3xwgdd161w
   tags:
   - weaboo
+- src:
+    url: https://images4.alphacoders.com/136/thumb-1920-1369866.png
+    name: totoro.png
+    sha256: 1kqhnq53iq43lqr8a7ad77v2zficql9zxk7g95lq4y8bg8l3yi4m
+- src:
+    url: https://images4.alphacoders.com/138/thumb-1920-1380437.png
+    name: fullmetal-brothers.png
+    sha256: 0qhwgk4g6n1l2s7wlws4hspzayhawkqxlllwmph65b1g388kmlpw
+- src:
+    url: https://images.squarespace-cdn.com/content/v1/55c2f43ce4b03bd87a1006e9/1677647034632-WUCNK33JO1RR1A3BWFI6/JINX.jpg
+    name: high-contrast-jinx.jpg
+    sha256: 0zf2xzb8k30nfplfj2g6cvnz6dr2mkv0gypmxzk09c3dbi3fc8jc
+  themes:
+  - mocha
+  tags:
+  - weaboo
+- src:
+    url: https://w.wallhaven.cc/full/lm/wallhaven-lm7lmp.jpg
+    name: fullmetal-armor.jpg
+    sha256: 0gqczdvd7df93ishkz7szam3n798a5aiiskldy8g081f96w137ih
+# - src:
+  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Full-Metal-Alchemist/Toxic-City/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/fma2-1920x1200.jpg
+  # name: fullmetal-toxic.jpg
+  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+  # themes:
+# - mocha
+# - src:
+  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Princess-Mononoke/Midnight-Spirits/1920x1080/8feedfd25c9532909790bb6b1e2ecf0f/mononoke2-1920x1080.jpg
+  # name: mononoke-spirts.jpg
+  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+# - src:
+  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Takeshi-Okazaki-Artworks/Face-Paint/1920x1080/8feedfd25c9532909790bb6b1e2ecf0f/takeshiOkazaki2-1920x1080.jpg
+  # name: face-paint.jpg
+  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+# - src:
+  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Princess-Mononoke/Forest-Spirit/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/mononoke1-1920x1200.jpg
+  # name: mononoke-forest-spirit.jpg
+  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+# - src:
+  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Cowboy-Bebop/Vincent-Volaju/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/bebop6-1920x1200.jpg
+  # name: bebop-jaded.png
+  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+  # themes:
+# - mocha
+# - src:
+  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Ponyo-on-the-Cliff-by-the-Sea/Brothers-and-Sisters-of-the-Ocean/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/ponyo1-1920x1200.jpg
+  # name: ponyo-jaded.jpg
+  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+# - src:
+  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Cowboy-Bebop/Red-Session-Blues/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/bebop5-1920x1200.jpg
+  # name: bebop-wall.jpg
+  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63

@@ -39,6 +39,7 @@ in
       ))
       ++ (lib.optionals cfg.misc ([
         pkgs.yt-dlp
+        pkgs.taskwarrior3
         (mypkgs.tomato-c.override {
           # Home manager simlinks mpv configs, so this forces a fresh config.
           # This is mainly an issue with sounds because it pulls up a window in my config

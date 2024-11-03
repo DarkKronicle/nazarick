@@ -25,7 +25,8 @@ in
     # INFO: This will probably *not* set your system level environment variables, so make sure to do system stuff.
     qt = {
       enable = true;
-      style.package = mypkgs.lightly-qt6;
+      # style.package = mypkgs.lightly-qt6;
+      # style.name = "Lightly";
       platformTheme.name = "qtct";
     };
 
@@ -57,6 +58,7 @@ in
       kdePackages.ffmpegthumbs
       kdePackages.kimageformats
       kdePackages.print-manager
+      kdePackages.breeze
       catppuccin-cursors.mochaMauve
     ];
 

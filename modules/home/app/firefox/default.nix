@@ -52,7 +52,6 @@ let
       violentmonkey
       yomitan
       no-pdf-download
-      canvasblocker
       adaptive-tab-bar-colour
       lovely-forks # Shows forks on github projects
       catppuccin-gh-file-explorer
@@ -210,10 +209,15 @@ in
               "sync.services.mozilla.com"
             ];
 
+            "geo.provider.use_geoclue" = false;
+
             "privacy.resistFingerprinting.letterboxing" = true;
             "webgl.disabled" = true;
 
             "dom.private-attribution.submission.enabled" = false; # Could be cool eventually, but no incentive for websites to actually use this
+            "dom.disable_window_move_resize" = true;
+            "browser.uitour.enabled" = false;
+            "devtools.debugger.remote-enabled" = false;
 
             "middlemouse.paste" = false; # Disable paste on middle mouse button
 
@@ -272,8 +276,25 @@ in
             "browser.link.open_newwindow" = 3; # May cause issues
             "browser.link.open_newwindow.restriction" = 0;
 
+            "browser.safebrowsing.downloads.remote.enabled" = false;
+            "network.file.disable_unc_paths" = false;
+            "network.gio.supported-protocols" = "";
+
+            "browser.formfill.enable" = false;
+            "signon.autofillForms" = false;
+            "signon.formlessCapture.enabled" = false;
+
+            "network.auth.subresource-http-auth-allow" = 1;
+
             "permissions.default.camera" = 0;
             "permissions.default.microphone" = 0;
+            "permissions.manager.defaultsUrl" = "";
+            "webchannel.allowObject.urlWhitelist" = "";
+
+            "pdfjs.disabled" = false;
+            "pdfjs.enableScripting" = false;
+            "browser.contentanalysis.enabled" = false;
+            "browser.contentanalysis.default_result" = 0;
 
             # dnscrypt-proxy2 baybee
             "network.trr.uri" = "https://127.0.0.1:3000/dns-query";
@@ -305,9 +326,18 @@ in
             "browser.xul.error_pages.expert_bad_cert" = true;
             "browser.privatebrowsing.forceMediaMemoryCache" = true;
 
+            "media.memory_cache_max_size" = 65536;
+
+            "security.OCSP.enabled" = 1;
+            "security.OCSP.require" = true;
+            "security.cert_pinning.enforcement_level" = 2;
+
             # Reject if cookie banner is one button
             "cookiebanners.service.mode" = 1;
             "cookiebanners.service.mode.privateBrowsing" = 1;
+
+            "media.peerconnection.ice.proxy_only_if_behind_proxy" = true;
+            "media.peerconnection.ice.default_address_only" = true;
 
             # Remove fullscreen delay
             "full-screen-api.transition-duration.enter" = "0 0"; # default=200 200

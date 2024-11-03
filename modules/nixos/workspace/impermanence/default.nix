@@ -60,7 +60,9 @@ in
         # System configuration
         "nazarick"
 
-        ".config/nvim"
+        ".task"
+        ".config/task"
+
         ".local/share/atuin"
         ".local/share/Anki2"
         ".config/filezilla"

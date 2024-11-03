@@ -266,6 +266,9 @@ def --env borger [command: closure] {
     }
 }
 
-# TODO: add this back
-# plugin use explore
-# alias ex = nu_plugin_explore
+plugin use regex
+plugin use skim
+plugin use dbus
+
+alias tkk = overlay use tk
+alias tko = overlay hide tk

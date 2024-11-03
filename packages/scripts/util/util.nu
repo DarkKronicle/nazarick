@@ -71,3 +71,40 @@ export def "sys-usage" [
     } | flatten | sort-by -r $sort
 }
 
+
+# https://discord.com/channels/601130461678272522/615253963645911060/1299204614498816040
+# Creates a tree of processes from the ps command.
+#
+# Any table can be piped in, so long as every row has a `pid` and `ppid` column.
+# If there is no input, then the standard `ps` is invoked.
+export def "ps-tree" [
+  --root-pids (-p): list<int> # root of process tree
+]: [
+  table -> table,
+] {
+  mut procs = $in
+
+  # get a snapshot to use to build the whole tree as it was at the time of this call
+  if $procs == null {
+    $procs = ps
+  }
+
+  let procs = $procs
+
+  let roots = if $root_pids == null {
+    $procs | where ppid? == null or ppid not-in $procs.pid
+  } else {
+    $procs | where pid in $root_pids
+  }
+
+  $roots
+  | insert children {|proc|
+    $procs
+    | where ppid == $proc.pid
+    | each {|child|
+      $procs
+      | ps-tree -p [$child.pid]
+      | get 0
+    }
+  }
+}

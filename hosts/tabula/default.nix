@@ -26,6 +26,9 @@ in
     boot.kernelPackages = pkgs.linuxPackages_zen;
     boot.initrd.systemd.enable = true;
 
+    # TODO: move this
+    hardware.usb-modeswitch.enable = true;
+
     networking.hostName = "tabula";
     time.timeZone = "America/Denver";
 

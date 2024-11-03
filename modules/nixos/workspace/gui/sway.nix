@@ -96,5 +96,9 @@ in
 
     services.displayManager.sessionPackages = [ sessionPkg ];
 
+    environment.pathsToLink = [
+      "/share/nushell"
+    ];
+
   };
 }
