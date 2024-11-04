@@ -17,12 +17,12 @@ let
     inherit (inputs.firefox-addons.lib.${pkgs.system}) buildFirefoxXpiAddon;
   };
 
-  firefox-cascade = pkgs.fetchFromGitHub {
-    name = "firefox-cascade";
-    owner = "DarkKronicle";
-    repo = "cascade";
-    rev = "994edba071341b4afa9483512d320696ea10c0a6";
-    sha256 = "sha256-DX77qLtDktv077YksxnrSoqa8O0ujJF2NH36GkENaXI=";
+  firefox-potatofox = pkgs.fetchFromGitea {
+    domain = "codeberg.org";
+    owner = "awwpotato";
+    repo = "potatofox";
+    rev = "aefcbb2f2cadada84415a00031ae82f82c197461";
+    hash = "sha256-b32sJxzEV4napqIWNNEOlHXUQzaZVBmx/jSUBOxzPjw=";
   };
 
   catppuccinTridactyl = pkgs.fetchFromGitHub {
@@ -56,6 +56,7 @@ let
       lovely-forks # Shows forks on github projects
       catppuccin-gh-file-explorer
       remove-youtube-s-suggestions
+      userchrome-toggle-extended
     ])
     ++ (with custom-addons; [
       better-canvas
@@ -135,7 +136,7 @@ in
           name = "main";
           isDefault = true;
           userChrome = mkIf cfg.userCss ''
-            @import "${firefox-cascade}/chrome/userChrome.css";
+            @import "${firefox-potatofox}/chrome/userChrome.css";
           '';
 
           search = {
@@ -176,6 +177,15 @@ in
           # extensions = extensions;
 
           settings = {
+
+            # potato
+            "uc.tweak.translucency" = true;
+            "uc.tweak.sidebar.wide" = true;
+            "uc.tweak.urlbar.not-floating" = true;
+            "uc.tweak.no-custom-icons" = true;
+
+            "browser.uidensity" = 1;
+
             # Good-bye weather
             "browser.newtabpage.activity-stream.feeds.weatherfeed" = false;
             "browser.newtabpage.activity-stream.showWeather" = false;
