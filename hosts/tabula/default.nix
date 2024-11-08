@@ -98,6 +98,10 @@ in
         };
         nordvpn = enabled;
       };
+      service = {
+        tinyproxy = enabled;
+
+      };
       workspace = {
         common = enabled;
         impermanence = enabled;

@@ -57,6 +57,10 @@ let
       catppuccin-gh-file-explorer
       remove-youtube-s-suggestions
       userchrome-toggle-extended
+      terms-of-service-didnt-read
+      decentraleyes
+      foxyproxy-standard
+      multi-account-containers
     ])
     ++ (with custom-addons; [
       better-canvas
@@ -147,7 +151,7 @@ in
                 definedAliases = [ "@k" ];
                 urls = [
                   {
-                    template = "https://kagi.com/search";
+                    template = "https://kagi.com/html/search";
                     params = [
                       {
                         name = "q";
@@ -339,7 +343,8 @@ in
             "media.memory_cache_max_size" = 65536;
 
             "security.OCSP.enabled" = 1;
-            "security.OCSP.require" = true;
+            # Currently breaks with some proxy configurations
+            "security.OCSP.require" = false;
             "security.cert_pinning.enforcement_level" = 2;
 
             # Reject if cookie banner is one button
