@@ -99,8 +99,7 @@ in
         nordvpn = enabled;
       };
       service = {
-        tinyproxy = enabled;
-
+        microsocks = enabled;
       };
       workspace = {
         common = enabled;

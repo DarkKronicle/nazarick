@@ -72,6 +72,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    firefox-arkenfox = {
+      url = "github:dwarfmaster/arkenfox-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     blocklist = {
       url = "github:StevenBlack/hosts?dir=alternates/gambling-porn";
       flake = false;
