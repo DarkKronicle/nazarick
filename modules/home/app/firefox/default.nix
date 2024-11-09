@@ -34,33 +34,46 @@ let
 
   extensions =
     (with inputs.firefox-addons.packages.${pkgs.system}; [
-      bitwarden
+      # UI and functionality extensions
+      sidebery
+      userchrome-toggle-extended
+      tridactyl
+      adaptive-tab-bar-colour # *needed* if using letterboxing
+      no-pdf-download
+
+      # NOTE: probably fingerprintable, but I like good looking websites
+      stylus
       darkreader
+
+      # Github
+      lovely-forks # Shows forks on github projects
+      refined-github
+      catppuccin-gh-file-explorer
+
+      # TODO: Move away?
+      bitwarden
+
+      # website "privacy" and tweaks
       dearrow
       jump-cutter
-      libredirect
-      privacy-badger
       redirector
-      refined-github
-      sidebery
-      smart-referer # DRM protection may break on stuff (crunchyroll), make sure to disable it for that website
       sponsorblock
-      stylus
+      libredirect
+      remove-youtube-s-suggestions # removes a bunch from youtube which is nice
+
+      # Privacy ones
+      ublock-origin # extremely good. Don't need noscript or other blocking extensions because of this
+      localcdn # discouraged on arkenfox github. I just don't think it'll hurt here
+      smart-referer # certain websites need this, so get ready to blacklist them. (similar about:config setting)
+      foxyproxy-standard # proxy through VPN for most things
+
+      # creates a new container for each new website. arkenfox somewhat discourages this because they're "unnecessary" with their settings.
+      # I am not clearing cookies on close, so I really like this middle ground. I could whitelist a bunch of stuff, but in
+      # personal containers I'm not too worried about being tracked because I'm logged into a lot.
       temporary-containers
-      tridactyl # This has a beta option
-      ublock-origin
-      violentmonkey
-      yomitan
-      no-pdf-download
-      adaptive-tab-bar-colour
-      lovely-forks # Shows forks on github projects
-      catppuccin-gh-file-explorer
-      remove-youtube-s-suggestions
-      userchrome-toggle-extended
+
       terms-of-service-didnt-read
-      decentraleyes
-      foxyproxy-standard
-      multi-account-containers
+      yomitan
     ])
     ++ (with custom-addons; [
       better-canvas
