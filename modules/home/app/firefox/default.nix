@@ -331,6 +331,8 @@ in
               "4502"."privacy.window.maxInnerHeight".enable = false;
               # Tho keep letterboxing
               "4504"."privacy.resistFingerprinting.letterboxing".enable = true;
+              "4506"."privacy.spoof_english".value = 2; # enabled
+              "4520"."webgl.disabled".enable = true;
             };
             # Disk avoidance, application data isolation, eyeballs
             "5000" = {
