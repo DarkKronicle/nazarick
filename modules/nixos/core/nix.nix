@@ -45,7 +45,6 @@ in
         nurl
         nixos-option-wrapped
         nix-tree
-        nix-init
       ])
       ++ [ mypkgs.naz ];
 

@@ -74,7 +74,6 @@ in
 
     environment.systemPackages = with pkgs; [
       protonup
-      inputs.mint.packages.${system}.mint
       techmino
     ];
   };

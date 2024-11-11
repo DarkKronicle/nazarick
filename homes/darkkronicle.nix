@@ -102,7 +102,8 @@ in
       spotify.spotify-qt = enabled;
       game = {
         protonup = enabled;
-        mint = enabled;
+        # TODO: mint is not installed because of issues
+        # mint = enabled;
         minecraft = enabled;
       };
     };
