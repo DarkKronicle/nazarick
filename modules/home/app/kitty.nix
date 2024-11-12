@@ -46,8 +46,20 @@ let
   };
 in
 {
-  options.nazarick.app.kitty = {
-    enable = mkEnableOption "Kitty";
+  options = {
+    nazarick.app.kitty = {
+      enable = mkEnableOption "Kitty";
+    };
+    programs.kitty =
+      if oldVersion then
+        {
+          themeFile = lib.mkOption {
+            type = lib.types.str;
+            default = "";
+          };
+        }
+      else
+        { };
   };
 
   config = mkIf cfg.enable {
