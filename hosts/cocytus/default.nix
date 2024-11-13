@@ -87,6 +87,7 @@ in
         };
       };
       service = {
+        netmaker = enabled;
         borg = {
           enable = true;
           restrictPath = "/mnt/demiurge/borg";

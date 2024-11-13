@@ -13,7 +13,7 @@ let
   inherit (mylib) mkOpt enabled;
 
   cfg = config.nazarick.app.kitty;
-  oldVersion = builtins.trace lib.version (lib.version == "24.05pre-git");
+  oldVersion = lib.hasPrefix "24.05" lib.version;
   themeOpt = if oldVersion then "theme" else "themeFile";
 
   kittyScrollback = pkgs.fetchFromGitHub {
