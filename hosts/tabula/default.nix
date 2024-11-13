@@ -99,6 +99,7 @@ in
         nordvpn = enabled;
       };
       service = {
+        netmaker = enabled;
         microsocks = enabled;
       };
       workspace = {
