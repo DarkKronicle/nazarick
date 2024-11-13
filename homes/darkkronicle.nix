@@ -58,7 +58,7 @@ in
         userEmail = "darkkronicle@gmail.com";
         userName = "DarkKronicle";
       };
-      jujutsu = enabled;
+      # jujutsu = enabled;
       nushell = {
         enable = lib.mkDefault true;
         useKittyProtocol = lib.mkDefault isPersonalComputer;
