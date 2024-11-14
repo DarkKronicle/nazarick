@@ -27,6 +27,8 @@ in
       syntaxHighlighting.enable = true;
     };
 
+    services.netbird.enable = true;
+
     nazarick.users = {
       mutableUsers = true;
 
@@ -87,7 +89,6 @@ in
         };
       };
       service = {
-        netmaker = enabled;
         borg = {
           enable = true;
           restrictPath = "/mnt/demiurge/borg";

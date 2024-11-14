@@ -36,6 +36,8 @@ in
 
     hardware.uinput.enable = true;
 
+    services.netbird.enable = true;
+
     # TODO: move this
     # for ags
     services.upower.enable = true;
@@ -99,7 +101,6 @@ in
         nordvpn = enabled;
       };
       service = {
-        netmaker = enabled;
         microsocks = enabled;
       };
       workspace = {

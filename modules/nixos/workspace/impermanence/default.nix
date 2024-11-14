@@ -45,6 +45,7 @@ in
         "/var/lib/nordvpn"
         "/root" # SSH keys + borg stuff, may not be needed anymore
         "/tmp" # Auto deletes regardless
+        "/etc/netclient"
       ];
     };
 
