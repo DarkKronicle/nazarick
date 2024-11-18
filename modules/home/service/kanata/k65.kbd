@@ -480,7 +480,7 @@ danger-enable-cmd yes
     (0        ) (cmd-log none error swaymsg exec tofi_app)
     (      3  ) (cmd-log none error swaymsg workspace back_and_forth)
     (  1 2    ) (cmd-log none error swaymsg kill)
-    (  1   3  ) (t! meta1-fork (cmd-log none error swaymsg exec swaylock) (cmd-log none error swaymsg exec wlogout))
+    (  1   3  ) (t! meta1-fork (cmd-log none error swaymsg exec "swaylock && keepassxc --lock") (cmd-log none error swaymsg exec wlogout))
     (    2    ) (t! meta1-fork (cmd-log none error swaymsg splith) (cmd-log none error swaymsg splitv))
     (    2 3  ) (cmd-log none error swaymsg split none)
     (        4) (cmd-log none error swaymsg layout toggle split)

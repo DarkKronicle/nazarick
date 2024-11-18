@@ -66,7 +66,7 @@ in
       layout = [
         {
           "label" = "lock";
-          "action" = "swaylock";
+          "action" = "swaylock && ${pkgs.keepassxc}/bin/keepassxc --lock";
           "text" = "Lock";
         }
         {

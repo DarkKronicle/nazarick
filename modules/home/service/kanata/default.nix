@@ -23,6 +23,7 @@ let
     mypkgs.script-swu
     tofiApp
     pkgs.warpd
+    pkgs.keepassxc
   ];
 
   mkKanataService =

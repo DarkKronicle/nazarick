@@ -33,6 +33,8 @@ in
         "/var/lib/nixos"
         "/var/lib/sops-nix"
 
+        "/var/lib/netbird"
+
         # System state that isn't declarative
         "/var/lib/cups"
         "/var/cache/cups"
@@ -45,7 +47,6 @@ in
         "/var/lib/nordvpn"
         "/root" # SSH keys + borg stuff, may not be needed anymore
         "/tmp" # Auto deletes regardless
-        "/etc/netclient"
       ];
     };
 
@@ -143,12 +144,13 @@ in
         "Downloads"
         ".local/state/mpv/watch_later"
         ".cache/thumbnails"
-        ".vim"
 
         # non-nix store apps
         ".matlab"
         ".MATLABConnector"
         ".cache/mkWindowsApp"
+
+        ".local/state/syncthing"
 
         ".mozilla"
         ".local/share/vulkan"
@@ -181,6 +183,7 @@ in
         ".local/share/qBittorrent"
 
         ".config/fcitx5"
+        ".config/keepassxc"
 
         ".config/ags" # TODO: REMOVE ME
 

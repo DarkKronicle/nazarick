@@ -71,6 +71,7 @@ in
     service = {
       spotifyd = enablePersonalComputer;
       playerctl = enablePersonalComputer;
+      syncthing = enablePersonalComputer;
       easyeffects = enablePersonalComputer;
       kdeconnect = enablePersonalComputer;
     };
