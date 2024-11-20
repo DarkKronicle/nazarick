@@ -26,17 +26,21 @@ def check_ready [wifi: string] {
 
 # Actually backing up
 
-def "backup-borg" [exclude: path, prefix: string, ...paths: path] {
+def "backup-borg" [prefix: string, --exclude: path, ...paths: path] {
     let backup_name = ('::' + $prefix + '-{now:%Y-%m-%d_%H:%M}')
-    let args = [
+    let args = ([
         '-p',
-        '--exclude-from',
-        $exclude,
+        (if ($exclude | is-empty) { [] } else {
+            [
+                '--exclude-from',
+                $exclude,
+            ]
+        })
         '--compression',
         'zstd,10',
         $backup_name,
         ...$paths
-    ]
+    ] | flatten)
     borg create ...$args
 }
 
@@ -48,7 +52,12 @@ def "backup-borg-default" [repo: string, password: string, exclude: path] {
     let persist = [
       "/persist/keep"
     ]
-    backup-borg $exclude 'all' ...$persist
+    let secret = [
+      "/home/darkkronicle/Documents/syncthing/keepass"
+      "/home/darkkronicle/Documents/tomb"
+    ]
+    backup-borg 'all' --exclude $exclude ...$persist
+    backup-borg 'secret' ...$secret
 }
 
 def cpu-snapshot [] {

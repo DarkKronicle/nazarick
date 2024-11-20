@@ -4,3 +4,5 @@
 */dist
 */result
 */discord/Cache
+*/tomb
+*/keepass

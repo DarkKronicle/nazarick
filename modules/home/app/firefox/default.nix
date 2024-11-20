@@ -50,8 +50,7 @@ let
       refined-github
       catppuccin-gh-file-explorer
 
-      # TODO: Move away?
-      bitwarden
+      keepassxc-browser
 
       # website "privacy" and tweaks
       dearrow
@@ -105,6 +104,7 @@ in
       nativeMessagingHosts = with pkgs; [
         kdePackages.plasma-browser-integration
         tridactyl-native
+        keepassxc
       ];
 
       policies = {
@@ -350,6 +350,10 @@ in
             # Disk avoidance, application data isolation, eyeballs
             "5000" = {
               enable = true;
+              "5003"."signon.rememberSignons" = {
+                enable = true;
+                value = false;
+              };
               "5017"."extensions.formautofill.addresses.enabled".enable = true; # value = false
               "5017"."extensions.formautofill.creditCards.enabled".enable = true; # value = false
               # Make search explicit

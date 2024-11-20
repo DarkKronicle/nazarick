@@ -27,6 +27,9 @@ in
             # "--browser-allow-drm=yes"
             ''--ignore=noexec ''${HOME}''
             ''--ignore=noexec ''${RUNUSER}''
+            ''--noblacklist=''${RUNUSER}/app''
+            ''--mkdir=''${RUNUSER}/app/org.keepassxc.KeePassXC''
+            ''--whitelist=''${RUNUSER}/app/org.keepassxc.KeePassXC''
             ''--whitelist=''${HOME}/.config/tridactyl''
             "--dbus-user.own=org.mpris.MediaPlayer2.plasma-browser-integration"
             "--dbus-user.talk=org.kde.JobViewServer"

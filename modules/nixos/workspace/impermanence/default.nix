@@ -184,6 +184,7 @@ in
 
         ".config/fcitx5"
         ".config/keepassxc"
+        ".cache/keepassxc"
 
         ".config/ags" # TODO: REMOVE ME
 
