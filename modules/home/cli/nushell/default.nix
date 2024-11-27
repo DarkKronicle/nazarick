@@ -31,6 +31,8 @@ in
       mypkgs.script-xpress
       mypkgs.script-crypt
       mypkgs.script-stl
+
+      pkgs.devenv
     ];
 
     nazarick.cli.nushell.source = [
