@@ -11,10 +11,10 @@ rustPlatform.buildRustPackage {
   src = fetchFromGitHub {
     owner = "fdncred";
     repo = "nu_plugin_regex";
-    rev = "316e0a3aacd3fdbaaa055e7bdd7447365fabc636";
-    hash = "sha256-Kub2OFMMb93+9PaK2tM5HDrB8vmSQVO/NjaBLpzlOt4=";
+    rev = "ff5ae1081ee602af8e83fe8560e9aecf2fcdeffc";
+    hash = "sha256-HhUuBLLYwPkIktDaFEm02NOvf1QiPuNCvVk49FMo/jU=";
   };
-  cargoHash = "sha256-gZQA4ozE52PBs/Dkqj2+FiwQIdT8dBrWNCju9DJ+Qw8=";
+  cargoHash = "sha256-n9FnYofUvZSpLin9CJRBgN0oVPQgepE807WtdHIPHRQ=";
 
   version = "latest";
 }
