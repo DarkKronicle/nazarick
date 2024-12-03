@@ -58,7 +58,7 @@ let
   # TODO: make this config option, also make sure to have de-duplication
   plugins = [
     # "${mypkgs.nushell_plugin_explore}/bin/nu_plugin_explore"
-    "${mypkgs.nushell_plugin_regex}/bin/nu_plugin_regex"
+    # "${mypkgs.nushell_plugin_regex}/bin/nu_plugin_regex"
     "${pkgs-unstable.nushellPlugins.skim}/bin/nu_plugin_skim"
     "${pkgs-unstable.nushellPlugins.dbus}/bin/nu_plugin_dbus"
     "${pkgs-unstable.nushellPlugins.polars}/bin/nu_plugin_polars"
