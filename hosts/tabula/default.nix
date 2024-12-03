@@ -52,6 +52,7 @@ in
           "networkmanager"
           "uinput" # TODO: remove
           "input" # TODO: remove
+          "adbusers"
         ];
         uid = 1000;
         extraOptions = {
@@ -59,6 +60,8 @@ in
         };
       };
     };
+
+    programs.adb.enable = true;
 
     nazarick = {
       core = {

@@ -16,6 +16,16 @@ in
 {
   options.nazarick.workspace.service.jellyfin = {
     enable = mkEnableOption "Jellyfin";
+    startAfter = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+      description = "Units to start after";
+    };
+    bindsTo = lib.mkOption {
+      type = lib.types.listOf lib.types.str;
+      default = [ ];
+      description = "Units to bind to after";
+    };
   };
 
   config = mkIf cfg.enable {
@@ -27,5 +37,8 @@ in
       enable = true;
       openFirewall = true;
     };
+
+    systemd.services.jellyfin.after = cfg.startAfter;
+    systemd.services.jellyfin.bindsTo = cfg.bindsTo;
   };
 }

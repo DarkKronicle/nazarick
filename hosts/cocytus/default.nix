@@ -85,7 +85,11 @@ in
       workspace = {
         cli.common = enabled;
         service = {
-          jellyfin = enabled;
+          jellyfin = {
+            enable = true;
+            startAfter = [ "mnt-demiurge.mount" ];
+            bindsTo = [ "mnt-demiurge.mount" ];
+          };
         };
       };
       service = {
