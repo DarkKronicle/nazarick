@@ -19,11 +19,6 @@ in
   };
 
   config = mkIf cfg.enable {
-    nixpkgs.config.permittedInsecurePackages = [
-      # Nheko https://github.com/Nheko-Reborn/nheko/issues/1786
-      # TODO: remove
-      "olm-3.2.16"
-    ];
     home.packages = [ pkgs.nheko ];
   };
 }
