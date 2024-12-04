@@ -266,7 +266,6 @@ def --env borger [command: closure] {
     }
 }
 
-plugin use regex
 plugin use skim
 plugin use dbus
 
