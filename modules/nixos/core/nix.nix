@@ -114,7 +114,7 @@ in
         };
       }
       (lib.mkIf cfg.update-registry {
-        # FIXME: 
+        # FIXME:
         # This needs to be different bc of nixpkgs, if using stable it breaks things
         registry = lib.mapAttrs (_: v: { flake = v; }) inputs;
         nixPath = lib.mapAttrsToList (key: value: "${key}=${value.to.path}") config.nix.registry;

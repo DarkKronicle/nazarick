@@ -46,7 +46,7 @@ in
     nazarick.users.extraGroups = [ "video" ];
     programs.light.enable = true;
 
-    # Don't love gnome stuff, but works well enough here. Another option is keepassxs, 
+    # Don't love gnome stuff, but works well enough here. Another option is keepassxs,
     # that won't autostart
 
     # Doesn't work well with sddm I think

@@ -117,7 +117,7 @@ in
 
           #
           # Subtitle settings
-          # 
+          #
           # Show subs, guess on what subs, prioritize japanese, try to fix timings, make subs a bit bigger
           sub-visibility = "yes";
           sub-auto = "fuzzy";

@@ -72,7 +72,7 @@ let
       temporary-containers
 
       terms-of-service-didnt-read
-      yomitan
+      # yomitan
     ])
     ++ (with custom-addons; [
       better-canvas
@@ -281,7 +281,7 @@ in
             # CONTAINERS
             "1700".enable = true;
             # PLUGINS / MEDIA / WEBRTC
-            # Will have some breakage on video conference sites, but again, use another temp browser 
+            # Will have some breakage on video conference sites, but again, use another temp browser
             "2000".enable = true;
             # DOM
             "2400".enable = true;
@@ -294,7 +294,7 @@ in
 
               "2654"."browser.download.always_ask_before_handling_new_types".value = false;
 
-              # Extensions are managed by system, so they can be wherever 
+              # Extensions are managed by system, so they can be wherever
               "2660"."extensions.enabledScopes" = {
                 enable = true;
                 value = 31;

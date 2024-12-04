@@ -1,4 +1,4 @@
-# This handles sway config, but NixOS sway module handles installing sway. 
+# This handles sway config, but NixOS sway module handles installing sway.
 {
   config,
   lib,

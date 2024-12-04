@@ -9,7 +9,7 @@
 # Source for this is found on https://animecards.site/minefromanime/
 # I could not find any mention of a license, and since the file is hosted
 # on mega.nz I couldn't think of a good way to package it.
-# So I put it on my private repo to not have to distribute it and 
+# So I put it on my private repo to not have to distribute it and
 # so I wouldn't be violating someone's copyright.
 # Maybe in the future I'll write my own from scratch.
 

@@ -10,7 +10,7 @@
 let
   cfg = config.programs.firejail;
 
-  # Why do this weirdo nu stuff? Well because bash is super annoying and I really dislike bash 
+  # Why do this weirdo nu stuff? Well because bash is super annoying and I really dislike bash
   # When passing in extra arguments like `--noexec=${HOME}`, that would get evaluated in the cat
   # body.
   nuScript = ''

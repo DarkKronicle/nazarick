@@ -22,23 +22,19 @@ in
     environment.systemPackages = with pkgs; [ font-manager ];
     fonts = {
       packages = with pkgs; [
-        (nerdfonts.override {
-          fonts = [
-            "CascadiaCode"
-            "FantasqueSansMono"
-            "Cousine"
-            "ComicShannsMono"
-            "FiraCode"
-            "Go-Mono"
-            "Hack"
-            "JetBrainsMono"
-            "Monaspace"
-            "Monofur"
-            "Noto"
-            "Tinos"
-            "UbuntuSans"
-          ];
-        })
+        nerd-fonts.caskaydia-cove
+        nerd-fonts.fantasque-sans-mono
+        nerd-fonts.cousine
+        nerd-fonts.comic-shanns-mono
+        nerd-fonts.fira-code
+        nerd-fonts.go-mono
+        nerd-fonts.hack
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.monaspace
+        nerd-fonts.monofur
+        nerd-fonts.noto
+        nerd-fonts.tinos
+        nerd-fonts.ubuntu-sans
         inter
         noto-fonts
         noto-fonts-emoji

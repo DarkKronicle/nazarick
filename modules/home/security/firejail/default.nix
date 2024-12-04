@@ -73,7 +73,7 @@ in
         # extraArgs = [
         # ''--dbus-user.talk=org.freedesktop.Notifications''
         # # Open files and urls
-        # "--dbus-user.talk=org.freedesktop.portal.OpenURI.*" 
+        # "--dbus-user.talk=org.freedesktop.portal.OpenURI.*"
         # "--dbus-user.talk=org.freedesktop.portal.Desktop"
         # ];
         # };
