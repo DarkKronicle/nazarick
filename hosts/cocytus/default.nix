@@ -79,7 +79,7 @@ in
         };
         nordvpn = {
           enable = true;
-          autoMeshnetRestart = true;
+          autoMeshnetRestart = false;
         };
       };
       workspace = {
