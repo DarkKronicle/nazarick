@@ -13,8 +13,6 @@ let
   inherit (mylib) mkOpt enabled;
 
   cfg = config.nazarick.app.kitty;
-  oldVersion = lib.hasPrefix "24.05" lib.version;
-  themeOpt = if oldVersion then "theme" else "themeFile";
 
   kittyScrollback = pkgs.fetchFromGitHub {
     owner = "mikesmithgh";
@@ -87,7 +85,7 @@ in
         "alt+h" = "previous_tab";
         "alt+x" = "close_tab";
       };
-      "${themeOpt}" = "Catppuccin-Mocha";
+      themeFile = "Catppuccin-Mocha";
       extraConfig = ''
         # kitty-scrollback.nvim Kitten alias
         action_alias kitty_scrollback_nvim kitten ${kittyScrollbackPython}/python/kitty_scrollback_nvim.py

@@ -24,7 +24,7 @@ in
       {
         services.xserver.videoDrivers = [ "nvidia" ];
 
-        hardware.${if (config.system.nixos.release == "24.05") then "opengl" else "graphics"} = {
+        hardware.graphics = {
           enable = true;
           extraPackages = with pkgs; [
             vulkan-loader
