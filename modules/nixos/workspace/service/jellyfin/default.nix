@@ -38,7 +38,10 @@ in
       openFirewall = true;
     };
 
-    systemd.services.jellyfin.after = cfg.startAfter;
-    systemd.services.jellyfin.bindsTo = cfg.bindsTo;
+    systemd.services.jellyfin = {
+      after = cfg.startAfter;
+      bindsTo = cfg.bindsTo;
+      serviceConfig.SupplementaryGroups = [ "media" ];
+    };
   };
 }

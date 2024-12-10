@@ -33,13 +33,19 @@ in
       mutableUsers = true;
 
       user."darkkronicle" = {
-        extraGroups = [ "wheel" ];
+        extraGroups = [
+          "wheel"
+          "media"
+        ];
         uid = 1000;
       };
       user."${myvars.user.user2.name}" = {
         homeManagerFileName = "user2.nix";
 
-        extraGroups = [ "wheel" ];
+        extraGroups = [
+          "wheel"
+          "media"
+        ];
         uid = 1001;
 
         shell = pkgs.zsh;
