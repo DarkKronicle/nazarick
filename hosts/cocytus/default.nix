@@ -29,6 +29,8 @@ in
 
     services.netbird.enable = true;
 
+    users.groups.media = { };
+
     nazarick.users = {
       mutableUsers = true;
 
