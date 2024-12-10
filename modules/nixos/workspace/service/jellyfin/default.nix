@@ -41,7 +41,7 @@ in
     systemd.services.jellyfin = {
       after = cfg.startAfter;
       bindsTo = cfg.bindsTo;
-      serviceConfig.SupplementaryGroups = [ "media" ];
+      serviceConfig.SupplementaryGroups = "media";
     };
   };
 }
