@@ -58,7 +58,8 @@ in
 
       bindings = {
         "h" = "cycle deband";
-        "F5" = ''script-message-to skipsilence enable no-osd; apply-profile skipsilence-default; show-text "skipsilence profile: default"'';
+        "F5" =
+          ''script-message-to skipsilence enable no-osd; apply-profile skipsilence-default; show-text "skipsilence profile: default"'';
         "Alt+l" = "add sub-scale +0.1";
         "Alt+h" = "add sub-scale -0.1";
         "Alt+j" = "add sub-pos +1";

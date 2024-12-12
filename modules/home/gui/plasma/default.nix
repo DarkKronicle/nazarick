@@ -126,7 +126,8 @@ in
           "kdeglobals"."WM"."inactiveBackground".value = "17,17,27";
           "kdeglobals"."WM"."inactiveBlend".value = "166,173,200";
           "kdeglobals"."WM"."inactiveForeground".value = "166,173,200";
-          "kwinrc"."Wayland"."InputMethod\x5b$e\x5d".value = "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
+          "kwinrc"."Wayland"."InputMethod\x5b$e\x5d".value =
+            "/run/current-system/sw/share/applications/org.fcitx.Fcitx5.desktop";
           "dolphinrc"."DetailsMode"."PreviewSize".value = 16;
           "dolphinrc"."KFileDialog Settings"."Places Icons Auto-resize".value = false;
           "dolphinrc"."KFileDialog Settings"."Places Icons Static Size".value = 22;
@@ -135,7 +136,8 @@ in
           "kcminputrc"."Libinput/7805/11446/ROCCAT ROCCAT Kone XP Air Dongle"."PointerAccelerationProfile".value =
             1;
           "kcminputrc"."Mouse"."X11LibInputXAccelProfileFlat".value = true;
-          "kcminputrc"."Tmp"."update_info".value = "delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize";
+          "kcminputrc"."Tmp"."update_info".value =
+            "delete_cursor_old_default_size.upd:DeleteCursorOldDefaultSize";
           "plasma-localerc"."Formats"."LANG".value = "en_US.UTF-8";
           "systemsettingsrc"."KFileDialog Settings"."detailViewIconSize".value = 16;
           "plasmanotifyrc"."Notifications"."PopupPosition".value = "BottomRight";

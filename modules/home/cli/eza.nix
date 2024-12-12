@@ -14,7 +14,8 @@ in
       "xi" = "eza --icons";
       "x" = "eza --icons -l -b -h --no-user --no-permissions --group-directories-first";
       "xl" = "eza --icons -l -b -h --group-directories-first --group";
-      "xm" = "eza --icons -l -b -h --no-user --no-permissions --group-directories-first --sort modified --reverse";
+      "xm" =
+        "eza --icons -l -b -h --no-user --no-permissions --group-directories-first --sort modified --reverse";
     };
   };
 
