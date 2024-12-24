@@ -19,14 +19,13 @@ in
 
   config = mkIf cfg.enable {
 
-    programs.thunderbird = {
+    services.flatpak = {
       enable = true;
-      package = pkgs.betterbird;
-      profiles = {
-        "main" = {
-          isDefault = true;
-        };
-      };
+      update.auto.enable = true;
+      packages = [
+        "eu.betterbird.Betterbird"
+      ];
     };
+
   };
 }

@@ -159,6 +159,9 @@ in
         ".local/share/zoxide"
         ".local/share/direnv"
 
+        ".local/share/flatpak"
+        ".var"
+
         ".nuget" # Certified dotnet moment
 
         ".config/nordvpn"
@@ -214,8 +217,6 @@ in
 
         ".pki"
         ".putty"
-
-        ".thunderbird"
 
         ".config/nheko"
         ".local/share/nheko"

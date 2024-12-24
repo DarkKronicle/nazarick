@@ -19,6 +19,7 @@ let
             inputs.nix-index-database.hmModules.nix-index
             inputs.sops-nix.homeManagerModules.sops
             inputs.firefox-arkenfox.hmModules.arkenfox
+            inputs.nix-flatpak.homeManagerModules.nix-flatpak
           ];
         }
       ]

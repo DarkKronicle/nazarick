@@ -94,7 +94,7 @@ in
       };
       firefox = enabled;
       kitty = enabled;
-      # thunderbird = enabled; # TODO: Maybre reanble?
+      thunderbird = enabled;
       mpv = enabled;
       anki = {
         enable = lib.mkDefault true;

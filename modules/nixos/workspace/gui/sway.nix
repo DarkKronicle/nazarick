@@ -100,5 +100,7 @@ in
       "/share/nushell"
     ];
 
+    services.flatpak.enable = true;
+
   };
 }

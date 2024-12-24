@@ -27,8 +27,7 @@
     # --------------------
 
     # impermanence.url = "github:nix-community/impermanence";
-    # NOTE: PR #172 broke evaluation, this just pins this in the meanwhile https://github.com/nix-community/impermanence/issues/215
-    impermanence.url = "github:nix-community/impermanence/63f4d0443e32b0dd7189001ee1894066765d18a5";
+    impermanence.url = "github:nix-community/impermanence";
 
     lix-module = {
       url = "https://git.lix.systems/lix-project/nixos-module/archive/2.91.1-1.tar.gz";
@@ -55,6 +54,11 @@
 
     nix-index-database = {
       url = "github:nix-community/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak?ref=latest";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
