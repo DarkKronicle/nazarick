@@ -74,14 +74,6 @@
   square: true
   resolution: 200x200
 - src:
-    url: https://digwallpapers.com/wallpapers/full/c/5/4/63760-2560x1440-overlord-background-image-desktop-hd.jpg
-    name: albedo_feathers.jpg
-    sha256: 0qcyf9hggi7zl8cn193y86a0fgq8z2p68pcnz124fq72m1b9ki09
-  tags:
-  - weaboo
-  square: true
-  resolution: 200x200
-- src:
     url: https://i.pinimg.com/736x/42/6d/4e/426d4e5c56be0c512416f32eaad415d5.jpg
     name: frieren_sketch.jpg
     sha256: 120bj92xrc4fx5nmd6yrrg4ybmzk849nxh5jxgzz931ijqf6silx
