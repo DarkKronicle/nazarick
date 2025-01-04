@@ -72,7 +72,7 @@ let
       temporary-containers
 
       terms-of-service-didnt-read
-      # yomitan
+      yomitan
     ])
     ++ (with custom-addons; [
       better-canvas

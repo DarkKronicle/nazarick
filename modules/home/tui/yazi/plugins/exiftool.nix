@@ -13,12 +13,12 @@ in
 
   package = stdenv.mkDerivation {
     pname = name;
-    version = "2024-04-23";
+    version = "2025-01-03";
     src = fetchFromGitHub {
       owner = "Sonico98";
       repo = "exifaudio.yazi";
-      rev = "94329ead8b3a6d3faa2d4975930a3d0378980c7a";
-      hash = "sha256-jz6fVtcLHw9lsxFWECbuxE7tEBttE08Fl4oJSTifaEc=";
+      rev = "d7946141c87a23dcc6fb3b2730a287faf3154593";
+      hash = "sha256-nXBxPG6PVi5vstvVMn8dtnelfCa329CTIOCdXruOxT4=";
     }; # Patch with the actual binary
     installPhase = ''
       runHook preInstall

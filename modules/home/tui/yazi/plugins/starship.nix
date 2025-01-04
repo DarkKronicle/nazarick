@@ -14,14 +14,13 @@ in
 
   package = stdenv.mkDerivation {
     pname = name;
-    version = "2024-04-23";
+    version = "2025-01-03";
     src = fetchFromGitHub {
       owner = "Rolv-Apneseth";
       repo = "starship.yazi";
-      rev = "6197e4cca4caed0121654079151632f6abcdcae9";
-      hash = "sha256-oHoBq7BESjGeKsaBnDt0TXV78ggGCdYndLpcwwQ8Zts=";
+      rev = "9c37d37099455a44343f4b491d56debf97435a0e";
+      hash = "sha256-wESy7lFWan/jTYgtKGQ3lfK69SnDZ+kDx4K1NfY4xf4=";
     };
-
     # Patch with the actual binary
     installPhase = ''
       runHook preInstall

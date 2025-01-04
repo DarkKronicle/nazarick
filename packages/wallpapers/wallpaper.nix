@@ -99,7 +99,8 @@ stdenv.mkDerivation {
       ${pkgs.oxipng}/bin/oxipng --strip all -o 4 --alpha $out/share/wallpapers/*.png
     fi
 
-    nu -c "glob converted-* | each {|folder| if ((\$folder | path type) == "dir") { rm -rp \$folder }}"
+    # assign variable because there is issue displaying the table to stdout
+    nu -c "let tmp = (glob converted-* | each {|folder| if ((\$folder | path type) == "dir") { rm -rp \$folder }})"
 
     runHook postBuild
   '';

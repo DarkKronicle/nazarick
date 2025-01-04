@@ -13,12 +13,12 @@ in
 
   package = stdenv.mkDerivation {
     pname = name;
-    version = "2024-04-23";
+    version = "2025-01-03";
     src = fetchFromGitHub {
       owner = "Reledia";
       repo = "hexyl.yazi";
-      rev = "1c6007c96af97704b4ebb877a8385fc034f8b44a";
-      hash = "sha256-/quz3xaCS0NxOdnGLz1wutbDiXp2Yr2TRAZF9XVJzdk=";
+      rev = "39d3d4e23ad7cec8888f648ddf55af4386950ce7";
+      hash = "sha256-nsnnL3GluKk/p1dQZTZ/RwQPlAmTBu9mQzHz1g7K0Ww=";
     };
     # Patch with the actual binary
     installPhase = ''

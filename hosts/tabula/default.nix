@@ -90,6 +90,7 @@ in
           enable = true;
           kdeconnect = true;
           nordvpn = true;
+          syncthing = true;
         };
         nordvpn = enabled;
       };

@@ -32,6 +32,10 @@ in
         vesktop.enable = lib.mkOverride 500 true;
         nheko.enable = lib.mkOverride 500 true;
       };
+
+      home.packages = [
+        pkgs.signal-desktop
+      ];
     })
     (lib.mkIf cfg.design {
       nazarick.app = {

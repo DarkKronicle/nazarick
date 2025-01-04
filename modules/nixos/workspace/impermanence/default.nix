@@ -176,6 +176,8 @@ in
         ".config/kded6"
         ".config/w3m" # just some cached stuff
 
+        ".config/signal"
+
         ".config/OpenTabletDriver"
 
         ".config/kraxarn"

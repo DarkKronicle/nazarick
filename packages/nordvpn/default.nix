@@ -3,7 +3,7 @@
 {
   autoPatchelfHook,
   buildFHSEnvChroot ? false,
-  buildFHSUserEnv ? false,
+  buildFHSEnv ? false,
   dpkg,
   fetchurl,
   lib,
@@ -22,8 +22,7 @@
 let
   pname = "nordvpn";
   version = "3.17.2";
-  buildEnv =
-    if builtins.typeOf buildFHSEnvChroot == "set" then buildFHSEnvChroot else buildFHSUserEnv;
+  buildEnv = if builtins.typeOf buildFHSEnvChroot == "set" then buildFHSEnvChroot else buildFHSEnv;
 
   nordVPNBase = stdenv.mkDerivation {
     inherit pname version;

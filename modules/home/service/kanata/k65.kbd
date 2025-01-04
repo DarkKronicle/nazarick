@@ -700,7 +700,7 @@ danger-enable-cmd yes
 	esc  (chord hd_t w) (chord hd_t f) (chord hd_t m) (chord hd_t p) @hd_magic_v  /  .  '  S--  j ;  ]  XX
 	x (chord hd_m r) (chord hd_m s)  (chord hd_m n)  (chord hd_m t) @hd_magic_b  , @a_mod @e_mod @i_mod @h_mod  ' '  ret
 	@ead (chord hd_b c) (chord hd_b l)  (chord hd_b d) (chord hd_b g) - -  u  o  y  @hd_magic_k  ' rsft
-	esc  1  2  (one-shot 500 (layer-while-held handsdown-upper)) (tap-dance 1000 ((one-shot 500 (layer-while-held handsdown-symbol)) @hd-sym-toggle)) 5  spc  bspc  8  9  0  bspc
+	esc  1  2  (one-shot 100 (layer-while-held handsdown-extend)) (tap-dance 1000 ((one-shot 500 (layer-while-held handsdown-symbol)) @hd-sym-toggle)) 5  spc  bspc  8  9  0  bspc
 	lctl met lalt   XX  ralt   menu rctrl
 )
 
@@ -731,6 +731,13 @@ danger-enable-cmd yes
 	_    _   _      _    _      _    _
 )
 
+(deflayer handsdown-extend
+	_    _  _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  lft  down up rght  _  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _   _      _    _      _    _
+)
 
 ;; (defsrc
 ;; 	esc  1  2  3  4  5  6  7  8  9  0  -  =  bspc
