@@ -18,7 +18,7 @@ export def --env "main" [
     --no-return(-r),           # Don't return the result after it's computed (prevents duplicate output if tee is on)
     --max-session-cache = 10,  # Max results stored in nushell session
     --max-saved-cache = 100,   # Max results stored in cache files
-] nothing -> any { 
+]: nothing -> any { 
     mut extra = []
     if ($pwd) {
         $extra = ($extra | append ("PWD: " + $env.PWD))

@@ -6,7 +6,7 @@ def crypt-env [code: closure] {
     }
 }
 
-def age-key-dir [] -> path {
+def age-key-dir []: nothing -> path {
     let dir = $env.CRYPT_AGE_DIR?
     if ($dir | is-empty) {
         return "/mnt/tomb/tombs/age"
@@ -14,7 +14,7 @@ def age-key-dir [] -> path {
     return $dir
 }
 
-def tomb-dir [] -> path {
+def tomb-dir []: nothing -> path {
     let dir = $env.CRYPT_TOMB_DIR?
     if ($dir | is-empty) {
         return "/mnt/tomb/tombs"
@@ -35,7 +35,7 @@ def private-age-identities [] {
 # Strings together a few random words with `-`
 export def "passphrase" [
     num: int = 3             # number of words in passphrase
-] none -> string {
+]: nothing -> string {
     crypt-env {
         diceware --no-caps -d "-" -n $num
     }
@@ -50,7 +50,7 @@ export def "send" [
     --code-length: int = 3,  # Length of password
     --force-relay            # Force relay with wormhole (doesn't share your IP with peer)
     --ext: string = "txt",   # Sets file extension type. File must not be declared.
-] any -> none {
+]: any -> nothing {
     let piped = $in
     crypt-env {
         mut tmpd = false;
@@ -84,7 +84,7 @@ export def "receive" [
     --force-relay,     # Force relay with wormhole (doesn't share your IP with peer)
     --out-dir: path    # output directory for the file
     --discard(-d)      # open file and return that instead of the got file
-] string? string? -> path? {
+]: string -> path {
     let code = if ($code | is-empty) {
         let val = $in
         if ($val | is-empty) {
@@ -222,7 +222,7 @@ export def "send-encrypted" [
     --recipient: path@pub-age-identities,    # Public identity for the recipient
     --super-paranoid-priv-key: path@private-age-identities,         # Private identity for super paranoid mode
     --ext: string = "txt"                    # extension for file
-] any -> none {
+]: any -> nothing {
     let tosend = if ($file | is-empty) {
         if ($in | is-empty) {
             error make {
@@ -285,7 +285,7 @@ export def "send-encrypted" [
 export def "encrypt" [
     recipient: path@pub-age-identities, # Recipient's public key
     --armor(-a) # PEM encode
-] any -> any {
+]: any -> any {
     if $armor {
         $in | age -a --recipients-file $recipient
     } else {
@@ -296,7 +296,7 @@ export def "encrypt" [
 # Helper to quickly encrypt piped in data with age
 export def "decrypt" [
     identity: path@private-age-identities # Your private key
-] any -> any {
+]: any -> any {
     $in | age --decrypt --identity $identity
 }
 

@@ -1,4 +1,4 @@
-export def follow-which []: {
+export def follow-which [] {
     $in | follow-symlink-chain $in.path.0
 }
 

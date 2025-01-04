@@ -267,7 +267,6 @@ def --env borger [command: closure] {
 }
 
 plugin use skim
-plugin use dbus
 
 alias tkk = overlay use tk
 alias tko = overlay hide tk
