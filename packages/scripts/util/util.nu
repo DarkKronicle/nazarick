@@ -1,3 +1,11 @@
+def util-env [code: closure] {
+    with-env {
+        PATH: ($env.PATH | prepend @NIX_PATH_PREPEND@)
+    } {
+        do $code
+    }
+}
+
 export def follow-which [] {
     $in | follow-symlink-chain $in.path.0
 }
@@ -108,3 +116,15 @@ export def "ps-tree" [
     }
   }
 }
+
+export def "quick-compress" [--in-type: string = "png", --quality(-q) = 85] {
+    let image = $in
+    util-env {
+        let orig_fs = $image | bytes length | into filesize
+        let final = $image | magick $"($in_type):-" -sampling-factor 4:2:0 -strip -quality $"($quality)%" jpg:-
+        let final_fs = $final | bytes length | into filesize
+        print $"Original: ($orig_fs) - Final: ($final_fs)"
+        return $final
+    }
+}
+

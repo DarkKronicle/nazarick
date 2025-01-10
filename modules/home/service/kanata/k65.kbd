@@ -66,6 +66,10 @@ danger-enable-cmd yes
 )
 
 ;; blank layout
+;; 14
+;; 14
+;; 13
+;; 12
 #|
 (
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
@@ -232,10 +236,13 @@ danger-enable-cmd yes
 (defalias
     dw (layer-while-held sway-dw)
 
-    sw-lft (cmd-log none error swaymsg focus left)
-    sw-rght (cmd-log none error swaymsg focus right)
-    sw-up (t! meta1-fork (cmd-log none error swaymsg focus parent) (cmd-log none error swaymsg focus up))
-    sw-down (t! meta1-fork (cmd-log none error swaymsg focus child) (cmd-log none error swaymsg focus down))
+    sw-lft (t! meta1-fork (cmd-log none error sway-overfocus group-lw group-uw) (cmd-log none error sway-overfocus split-lt float-lt output-ls))
+    sw-rght (t! meta1-fork (cmd-log none error sway-overfocus group-rw group-dw) (cmd-log none error sway-overfocus split-rt float-rt output-rs))
+    sw-up (t! meta1-fork (cmd-log none error swaymsg focus parent) (cmd-log none error sway-overfocus split-ut float-ut output-us))
+    sw-down (t! meta1-fork (cmd-log none error swaymsg focus child) (cmd-log none error sway-overfocus split-dt float-dt output-ds))
+    
+    ;; sw-up (t! meta1-fork (cmd-log none error sway-overfocus group-uw) (cmd-log none error sway-overfocus split-ut float-ut output-us))
+    ;; sw-down (t! meta1-fork (cmd-log none error sway-overfocus group-dw) (cmd-log none error sway-overfocus split-dt float-dt output-ds))
 
     sw-meta (multi
         (on-press press-virtualkey sw-meta1)
@@ -392,11 +399,28 @@ danger-enable-cmd yes
 	_    _   _      _    _      _    _
 )
 
+(deflayer handsdown-sway
+	_    XX  @dw  XX  XX  XX  XX  @w1  @w2  @w3  @w4  XX  XX  XX
+	_    XX  XX XX (layer-while-held handsdown-sway-dw) XX @sw-lft @sw-down @sw-up @sw-rght @sw-meta  (cmd-log none error swaymsg "exec pkill warpd; exec sleep 0.01 && warpd --oneshot --hint") (cmd-log none error swaymsg exec kitty) XX
+	@sw-meta     XX  XX  (layer-while-held handsdown-sway-c)  (layer-while-held handsdown-sway-mouse)  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX XX
+	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX 
+	_    _   _      _    _      _    _
+)
+
+
 
 (deflayer sway-c
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
 	_    _  _  _  _  _  _  @ws1  @ws2  @ws3  @ws4  _  _  _
 	_    _  _  _  _  _  @swap-left @swap-down @swap-up @swap-right _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _   _      _    _      _    _
+)
+
+(deflayer handsdown-sway-c
+	_    _  _  _  _  _  _  @ws1  @ws2  @ws3  @ws4  _  _  _
+	_    _  _  _  _  _  @swap-left @swap-down @swap-up @swap-right _  _  _ _
+	_    _  _  _  _  _  _  _  _  _  _  _ _
 	_    _  _  _  _  _  _  _  _  _  _  _
 	_    _   _      _    _      _    _
 )
@@ -417,6 +441,14 @@ danger-enable-cmd yes
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
 	_    _  _  _  _  _  _  @wm1  @wm2  @wm3  @wm4  _  _  _
 	_    _  _  _  _  _  (t! resize shrink width $nsize $bsize) (t! resize shrink height $nsize $bsize) (t! resize grow height $nsize $bsize) (t! resize grow width $nsize $bsize)  _  _  _
+	_    _  _  _  _  _  _  _  _  _  _  _
+	_    _   _      _    _      _    _
+)
+
+(deflayer handsdown-sway-dw
+	_    _  _  _  _  _  _  @wm1  @wm2  @wm3  @wm4  _  _  _
+	_    _  _  _  _  _  (t! resize shrink width $nsize $bsize) (t! resize shrink height $nsize $bsize) (t! resize grow height $nsize $bsize) (t! resize grow width $nsize $bsize)  _  _  _ _
+	_    _  _  _  _  _  _  _  _  _  _  _ _
 	_    _  _  _  _  _  _  _  _  _  _  _
 	_    _   _      _    _      _    _
 )
@@ -457,6 +489,14 @@ danger-enable-cmd yes
 	_    _  _  _  _  _  _  @scroll-down  @scroll-up  @scroll-lft  @scroll-rght  _  _  _
 	_    _  _ mrgt  mlft  _  @ms-lft @ms-dwn @ms-up @ms-rght _  _  _
 	_    _  _  _  _  _  _  mlft  mmid  mrgt  XX  _
+	_    _   _      _    _      _    _
+)
+
+(deflayer handsdown-sway-mouse
+	_    _  _  _  _  _  @scroll-down  @scroll-up  @scroll-lft  @scroll-rght  _  _  _
+	_    _  _ mrgt  mlft  _ _  @ms-lft @ms-dwn @ms-up @ms-rght _  _  _
+	_    _  _  _  _  _  _  mlft  mmid  mrgt  XX  _ _
+	_    _  _  _  _  _  _  _  _  _  _  _  _
 	_    _   _      _    _      _    _
 )
 
@@ -520,10 +560,12 @@ danger-enable-cmd yes
 ;; 
 
 (defvar adaptive-timeout 80)
+(defvar long-adaptive-timeout 120)
 (defvar mod-timeout 200)
 (defvar mod-cooldown 100)
 (defvar shift-cooldown 40)
-(defvar combo-timeout 35)
+;; (defvar combo-timeout 35)
+(defvar combo-timeout 50)
 
 (defalias
   hd-rel (release-layer handsdown-upper)
@@ -602,7 +644,7 @@ danger-enable-cmd yes
   )
 
   hd_magic_t (switch
-    ((key-timing 1 gt $adaptive-timeout)) t break
+    ((key-timing 1 gt $long-adaptive-timeout)) t break
 
     ((key-history g 1)) (macro h t) break
     ((key-history b 1)) l break
@@ -763,7 +805,7 @@ danger-enable-cmd yes
 (defchords hd_b $combo-timeout
   (c)           c 
   (l)           l 
-  (c l)         (layer-while-held sway)
+  (c l)         (layer-while-held handsdown-sway)
   (d)           @hd_magic_d
   (g)           @hd_magic_g
   (d g)         (macro g h)

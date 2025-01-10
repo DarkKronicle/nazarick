@@ -33,5 +33,7 @@
   inxi
   file
   tomb
+  qrencode
+  imagemagick
 ])
 ++ [ mypkgs.tlock ]

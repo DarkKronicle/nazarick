@@ -60,6 +60,8 @@ in
         "h" = "cycle deband";
         "F5" =
           ''script-message-to skipsilence enable no-osd; apply-profile skipsilence-default; show-text "skipsilence profile: default"'';
+        "F6" =
+          ''script-message-to skipsilence enable no-osd; apply-profile skipsilence-patient; show-text "skipsilence profile: patient"'';
         "Alt+l" = "add sub-scale +0.1";
         "Alt+h" = "add sub-scale -0.1";
         "Alt+j" = "add sub-pos +1";
@@ -456,7 +458,30 @@ in
             "skipsilence-speed_max=4"
             "skipsilence-speed_updateinterval=0.2"
             "skipsilence-startdelay=0.05"
+            "lookahead=1.0"
+            "filter_persistent=yes"
+            "af-add=scaletempo2"
           ];
+        };
+        # Used for things like live streams where they could be large pauses
+        "skipsilence-patient" = {
+          script-opts-append = [
+            "skipsilence-ramp_constant=1.25"
+            "skipsilence-ramp_factor=3"
+            "skipsilence-ramp_exponent=0.9"
+            "skipsilence-speed_max=4"
+            "skipsilence-speed_updateinterval=0.05"
+            "skipsilence-startdelay=0"
+            "skipsilence-threshold_duration=1"
+            "lookahead=1.0"
+            "filter_persistent=yes"
+            "af-add=scaletempo2"
+          ];
+        };
+        "auto-skipsilence-videosync" = {
+          profile-cond = ''get("user-data/skipsilence/enabled")'';
+          profile-restore = "copy-equal";
+          video-sync = "audio";
         };
         "interpolate-shaders" = {
           glsl-shaders-toggle = [ "${cflPrediction}/CfL_Prediction.glsl" ];

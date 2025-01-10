@@ -71,6 +71,7 @@ in
 
         background_opacity = "0.60";
         cursor_blink_interval = 0;
+        cursor_trail = 1;
 
         # font_size = "11.3";
 

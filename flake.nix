@@ -68,7 +68,8 @@
 
     nvim-cats = {
       url = "github:DarkKronicle/nvim-dotfiles";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # Make sure nvim never breaks without my consent
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     firefox-addons = {

@@ -43,6 +43,7 @@ in
           "uinput" # TODO: remove
           "input" # TODO: remove
           "adbusers"
+          "dialout"
         ];
         uid = 1000;
         extraOptions = {

@@ -24,6 +24,7 @@ let
     tofiApp
     pkgs.warpd
     pkgs.keepassxc
+    pkgs.sway-overfocus
   ];
 
   mkKanataService =

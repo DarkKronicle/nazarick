@@ -270,3 +270,7 @@ plugin use skim
 
 alias tkk = overlay use tk
 alias tko = overlay hide tk
+
+def --env "cdtmp" [prefix: string = "scratch"] {
+    cd (mktemp -d -t $"($prefix).XXXXXX")
+}

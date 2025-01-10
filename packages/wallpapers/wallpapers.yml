@@ -670,6 +670,8 @@
     url: https://images6.alphacoders.com/135/1358879.png
     name: albedo_elegance.png
     sha256: 1s7slfjw15ybyb2xq7n3n9bqvxxjd6gxv0w41igsrxx37d638w2i
+  tags:
+  - weaboo
 - src:
     url: https://images3.alphacoders.com/113/1137027.png
     name: rezero-witches.png

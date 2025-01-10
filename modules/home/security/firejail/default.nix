@@ -8,6 +8,13 @@
 let
   inherit (lib) mkEnableOption mkIf;
   cfg = config.nazarick.security.firejail;
+
+  firejail-nightly = pkgs.fetchFromGitHub {
+    owner = "netblue30";
+    repo = "firejail";
+    rev = "92137f808758cacbd91f876b895ffa681fa79aa0";
+    hash = "sha256-JrdPgjxlbKDWShZGg8pLZWmJW0UBnk12tNy0GbjOGpU=";
+  };
 in
 {
   options.nazarick.security.firejail = {
@@ -112,12 +119,14 @@ in
         # };
         mpv = {
           executable = "${config.programs.mpv.package}/bin/mpv";
-          profile = "${pkgs.firejail}/etc/firejail/mpv.profile";
+          profile = "${firejail-nightly}/etc/profile-m-z/mpv.profile";
           extraArgs = [
             ''--include=${pkgs.firejail}/etc/firejail/allow-bin-sh.inc''
             "--dbus-user=filter"
             "--dbus-user.talk=org.mpris.MediaPlayer2.*"
             "--dbus-user.own=org.mpris.MediaPlayer2.mpv"
+            "--private-bin=bash,chmod,echo,ps,socat,tail,uname"
+            "--ignore=noexec /tmp"
             "--ignore=dbus-user none"
           ];
         };

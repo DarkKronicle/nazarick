@@ -139,6 +139,9 @@
     "d /mnt/tomb 0775 root users -"
     "d /mnt/tomb/tombs 0775 root users -"
     "H /mnt/tomb/tombs - - - - +C" # Nocow by default
+    "d /mnt/user 0775 root users -"
+
+    "d /mnt/aelius/media/youtube/tmp - - - 5d"
   ];
 
   fileSystems."/boot" = {

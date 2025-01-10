@@ -250,6 +250,8 @@ in
         ".cache/zoxide"
 
         ".cache/spotify-player"
+
+        ".local/share/Eagle"
       ];
     };
 

@@ -43,7 +43,7 @@ in
         panels = enabled;
       };
       fcitx = enabled;
-      mars = enabled;
+      school = enabled;
     };
 
     cli = {
