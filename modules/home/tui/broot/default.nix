@@ -152,6 +152,10 @@ in
             key = "q";
             internal = ":quit";
           }
+          {
+            key = "o";
+            internal = ":panel_right";
+          }
           # { # Sadly does not work, no way to set input right now I guess, should maybe make an issue
           # key = ":";
           # cmd = ":mode_input;:";

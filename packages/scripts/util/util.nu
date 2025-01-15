@@ -128,3 +128,48 @@ export def "quick-compress" [--in-type: string = "png", --quality(-q) = 85] {
     }
 }
 
+export def --wrapped "yt-down" [url: string, --audio-only(-x), --video-size: int = 1080, --archive(-a): path, --keep-annoyances(-k), ...rest] {
+    mut extra = []
+    if ($archive | is-not-empty) {
+        $extra = ($extra | append [ "--download-archive" $archive ])
+    }
+    if (not $keep_annoyances) {
+        $extra = ($extra | append [ "--sponsorblock-remove" "sponsor,preview,interaction" ])
+    }
+    let name = if (not $audio_only) {
+        (yt-dlp $url 
+            -f $"bestvideo[height<=?($video_size)]+bestaudio/bestvideo[height<=?($video_size)]*+bestaudio/best"
+            --write-subs --sub-langs 'en.*,ja' --write-auto-subs --embed-subs 
+            --embed-metadata 
+            --sponsorblock-mark all 
+            --compat-options no-keep-subs 
+            --convert-subs srt 
+            --merge-output-format mkv
+            --remux-video mkv 
+            --print "after_move:%(filepath)s" 
+            --no-simulate 
+            --color always 
+            --quiet --progress 
+            --restrict-filenames
+            --no-overwrites
+            ...$extra
+            ...$rest
+            | tee { print }
+        )
+    } else {
+        (yt-dlp $url
+            -x
+            -f bestaudio
+            --print "after_move:%(filepath)s" 
+            --no-simulate 
+            --color always
+            --quiet --progress
+            --restrict-filenames
+            --no-overwrites
+            ...$extra
+            ...$rest
+            | tee { print }
+        )
+    }
+    return $name
+}

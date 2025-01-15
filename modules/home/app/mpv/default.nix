@@ -111,6 +111,11 @@ in
           dscale-antiring = 0.7;
           cscale-antiring = 0.7;
 
+          # uosc options
+
+          # There's an "ad" type, but gets really annoying when you download all sponsorblock settings
+          script-opts = ''uosc-chapter_ranges="openings:30abf964,endings:30abf964"'';
+
           # Audio normalization, can be weird
           # af=acompressor
           # af=lavfi=[loudnorm=i=-14.0:lra=13.0:tp=-1.0]
@@ -135,6 +140,7 @@ in
           inherit sub-font;
           sub-border-size = 3;
           sub-back-color = "#88000000";
+          sub-border-style = "background-box";
           # sub-shadow-offset="1"
           sub-font-size = 75;
           sub-scale-by-window = "no";

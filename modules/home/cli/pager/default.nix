@@ -44,7 +44,7 @@ in
     home.sessionVariables = {
       PAGER = ''ov'';
       SYSTEMD_PAGERSECURE = ''true'';
-      MANPAGER = ''ov --section-delimiter '^[^\\s]' --section-header'';
+      MANPAGER = ''ov --section-delimiter '^[^\s]' --section-header'';
     };
   };
 }

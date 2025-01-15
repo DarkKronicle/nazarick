@@ -50,6 +50,15 @@
     bypassWorkqueues = true;
   };
 
+  fileSystems."/tmpfs" = {
+    device = "none";
+    fsType = "tmpfs";
+    options = [
+      "size=3G"
+      "mode=777"
+    ];
+  };
+
   fileSystems."/home" = {
     device = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";
     fsType = "btrfs";

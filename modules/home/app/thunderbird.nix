@@ -24,6 +24,7 @@ in
       update.auto.enable = true;
       packages = [
         "eu.betterbird.Betterbird"
+        "com.usebottles.bottles"
       ];
     };
 

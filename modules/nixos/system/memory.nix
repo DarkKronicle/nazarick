@@ -35,8 +35,10 @@ in
           ];
         in
         [
-          "--prefer \"^(${catPatterns preferPatterns})$\""
-          "--avoid \"^(${catPatterns avoidPatterns})$\""
+          "--prefer"
+          "^(${catPatterns preferPatterns})$"
+          "--avoid"
+          "^(${catPatterns avoidPatterns})$"
         ];
     };
   };
