@@ -2,9 +2,9 @@
 
 > The world is all yours
 
-![plasma-rice](doc/rice_desktop.png)
+![plasma-rice](doc/rice.png)
 
-> My plasma rice. (The tiling is done manually for this screenshot)
+> My swayfx rice
 
 Named after the Great Tomb of Nazarick from Overlord (very good show).
 
@@ -21,11 +21,10 @@ configuration didn't feel as much as a black box, and I wanted fine grained cont
 Nix has infected my brain and I've gone a bit insane at declaratively specifying configurations.
 
 This config features most notably:
-- Plasma configuration - panels, wallpapers (with applying effects), lockscreen, widgets, etc.
 - mpv - plugins, keybinds, shaders, etc.
-- Recovery iso has literally everything (including specialisations!)
 - Neovim config with lua [here](https://github.com/DarkKronicle/nvim-dotfiles)
-- nushell - custom completions (currently WIP)
+- nushell - custom completions and scripts
+- gorgeous sway config
 
 For some of the more complicated modules I've written a small blog post over at my [garden](https://garden.darkkronicle.com/),
 so maybe give that a check. It also has my basic install instructions.
