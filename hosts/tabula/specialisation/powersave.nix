@@ -19,13 +19,7 @@ in
       forEachUser (username: {
         ${username}.nazarick = {
           service.spotifyd.enable = lib.mkForce false;
-
           app.mpv.enable = lib.mkForce false;
-
-          gui.sway.enable = true;
-          gui.ags.enable = true;
-          gui.qt.enable = true;
-          gui.plasma.enable = lib.mkForce false;
         };
       })
     );
@@ -44,14 +38,7 @@ in
       };
       workspace.gui = {
         steam.enable = lib.mkForce false;
-        sway.enable = lib.mkForce true;
-        sddm = {
-          enable = true;
-          defaultSession = "sway";
-        };
-        plasma.enable = lib.mkForce false;
       };
-      system.boot.plymouth.enable = lib.mkForce false; # Give me at least some good debug info
     };
   };
 }

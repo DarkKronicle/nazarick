@@ -15,7 +15,6 @@ let
       [
         {
           home-manager.sharedModules = [
-            inputs.plasma-manager.homeManagerModules.plasma-manager # TODO: This needs to be installed even if not used bc of how I'm sourcing files
             inputs.nix-index-database.hmModules.nix-index
             inputs.sops-nix.homeManagerModules.sops
             inputs.firefox-arkenfox.hmModules.arkenfox

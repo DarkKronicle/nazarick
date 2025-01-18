@@ -36,12 +36,10 @@ in
     core.xdg = enablePersonalComputer;
     core.nix = enabled;
 
-    gui = lib.mkIf (isPersonalComputer) {
-      plasma = {
-        enable = lib.mkDefault true;
-        noBorders = lib.mkDefault true;
-        panels = enabled;
-      };
+    gui = lib.mkIf isPersonalComputer {
+      qt = enabled;
+      ags = enabled;
+      sway = enabled;
       fcitx = enabled;
       school = enabled;
     };

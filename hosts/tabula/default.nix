@@ -103,10 +103,14 @@ in
         impermanence = enabled;
         gui = {
           common = enabled;
-          plasma = enabled;
           steam = enabled;
           wine = enabled;
           fcitx = enabled;
+          sway = enabled;
+          sddm = {
+            enable = true;
+            defaultSession = "sway";
+          };
         };
         service = {
           borg = {

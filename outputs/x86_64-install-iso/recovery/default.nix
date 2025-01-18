@@ -53,8 +53,6 @@ in
     });
   '';
 
-  home-manager.sharedModules = with inputs; [ plasma-manager.homeManagerModules.plasma-manager ];
-
   # `install-iso` adds wireless support that
   # is incompatible with networkmanager.
   # networking.wireless.enable = mkForce false;
