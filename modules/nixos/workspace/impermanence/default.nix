@@ -65,6 +65,8 @@ in
         ".task"
         ".config/task"
 
+        "EAGLE"
+
         ".local/share/atuin"
         ".local/share/Anki2"
         ".config/filezilla"
@@ -96,6 +98,7 @@ in
         ".config/krita"
         ".local/share/krita"
         ".local/share/love" # Tetris
+        ".vim"
 
         # Keys
         {

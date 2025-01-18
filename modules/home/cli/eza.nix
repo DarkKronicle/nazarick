@@ -10,7 +10,7 @@ in
   config = lib.mkIf cfg.enable {
     programs.eza.enable = true;
     nazarick.cli.nushell.alias = {
-      "xt" = "eza -T -L=3 --icons";
+      # "xt" = "eza -T -L=3 --icons";
       "xi" = "eza --icons";
       "x" = "eza --icons -l -b -h --no-user --no-permissions --group-directories-first";
       "xl" = "eza --icons -l -b -h --group-directories-first --group";

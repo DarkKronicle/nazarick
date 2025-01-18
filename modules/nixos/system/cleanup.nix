@@ -24,7 +24,7 @@ in
 
         ${user}.rules = [
           "d /home/${user}/Downloads - - - 14d"
-          "d /home/${user}/.vim/undodir - - - 14d"
+          "d /home/${user}/.vim/undodir - - - 60d"
 
           "d /home/${user}/.cache/thumbnails/large - - - 7d"
           "d /home/${user}/.cache/thumbnails/normal - - - 7d"

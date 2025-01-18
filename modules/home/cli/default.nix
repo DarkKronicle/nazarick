@@ -25,6 +25,7 @@ in
 
     nazarick.cli.nushell.alias = {
       "wrm" = "wormhole-rs";
+      "xt" = "broot -c :pt --height ((term size).rows - 1) -H";
     };
 
     home.packages =

@@ -726,6 +726,80 @@
     url: https://w.wallhaven.cc/full/lm/wallhaven-lm7lmp.jpg
     name: fullmetal-armor.jpg
     sha256: 0gqczdvd7df93ishkz7szam3n798a5aiiskldy8g081f96w137ih
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/astronaut.jpg
+    name: astronaut.jpg
+    sha256: 0alrk1wmyb8463q650wx6dp19g4l7jii7ibky8n2hbi8645anqnz
+  themes:
+  - mocha
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/girl.jpg
+    name: aeshetic-girl.jpg
+    sha256: 1gyf19kzxpnp14zdna38jp36sxysds9q4b244lpfiv0cl84b3w16
+  themes:
+  - mocha
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/taza.png
+    name: cup.png
+    sha256: 1n7vf4ss8jsa2502apy3n93pv5brwyrmhv9r4mhgfaqxcg5x182b
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/ign_colorful.png
+    name: sand_color.jpg
+    sha256: 0wis8855cn7ia1s85mdmsdh978raass2xzvcjiihg54mfby2r326
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/fractal.png
+    name: paint_factal.png
+    sha256: 16y02y9iv7m8ggr9kb3ggjcjmbl747rmhjw3w8jsd23w6qh6bhz9
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/pink-katana.png
+    name: katana.png
+    sha256: 0fnghna1gfssmd6nq4vcgh1sck13ini25lwwcavwima9wqzwv4j7
+  themes:
+  - mocha
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/japan3.jpg
+    name: cherry.jpg
+    sha256: 18qi2k5drv248wyvncx3qwbmkdrmbw26h6690rgckaifx64pkfka
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/shiny-colors.png
+    name: shiny.png
+    sha256: 07ihb3352vfp5kw5f0rls9bzwxr6mrgflqh52mygh8bjck2hj3y3
+  themes:
+  - mocha
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/red-forest.jpg
+    name: forest.jpg
+    sha256: 1l6vn7liv12igxl22qw7gdqkpaz0k5bfa8gm3nb3n7j0yj56cd4k
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/swirls.png
+    name: swirls.png
+    sha256: 1d9ilyzwphx39q3gqf040ylbam3ff03a3020afy9nb0s3b2vlyfm
+  themes:
+  - mocha
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/em-rofi.webp
+    name: five-centi.webp
+    sha256: 1rvgqridv63xrk2s1w7016hckbkzcs8m5yx2zq0a0bz0lii794sj
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/pink-mecha.png
+    name: mecha.png
+    sha256: 01yc6sk9lxv5hmgacpkzwiipzxc3790fswv5rvzzk5vkj6d9592h
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/catpuccin_samurai.png
+    name: aesthetic-demon_slayer.jpg
+    sha256: 13dvpbzs38fsc3jf1xl1wq32dlj5y1gjkrwc8315r30r2davpf5g
+- src:
+    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/retro_market.png
+    name: market.png
+    sha256: 0xwkvc7k92z4yhqr9hx3zijr1hzqp3pwln9k70nxqcam2c46cm3r
+  themes:
+  - mocha
+- src:
+    url: https://w.wallhaven.cc/full/d5/wallhaven-d5668l.jpg
+    name: fullmetal-jaded.jpg
+    sha256: 1r526w7r97qabhi7zmrrygg1n2dnrlkqvm4z8wvrhgs2mk8b0sbr
+  themes:
+  - mocha
 # - src:
   # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Full-Metal-Alchemist/Toxic-City/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/fma2-1920x1200.jpg
   # name: fullmetal-toxic.jpg
