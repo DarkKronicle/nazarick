@@ -44,8 +44,8 @@ let
     # TODO: Make this a bit easier to add to
     substitutions = [
       "--replace-fail"
-      "@BLACK_IMORTAL@"
-      "${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/black-metal-immortal.nu"
+      "@THEME@"
+      "${pkgs.nu_scripts}/share/nu_scripts/themes/nu-themes/catppuccin-mocha.nu"
       "--replace-fail"
       "@TASK@"
       "${pkgs.nu_scripts}/share/nu_scripts/modules/background_task/task.nu"

@@ -211,4 +211,114 @@
   - weaboo
   square: true
   resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/_emilia_and_subaru___render__by_prettyxhell_dgi39xn.png
+    name: subaru_emilia.png
+    sha256: 1zbiqh8qy88zbirnmj00mvi5wk2bxvxz86y2sa8snqhr8hfs5pbq
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/_lucy___render__by_prettyxhell_dgglls2.png
+    name: lucy.png
+    sha256: 09p2ljhkr9anva8g9yz4nhfzhqfmf87mdf2bbf8rj4ja8hvvhlsm
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/_power___render__by_prettyxhell_dfgdd8e-414w-2x.png
+    name: power1.png
+    sha256: 041qar91fpq01v610xffkadnr674rd410dsggjnppwm01f0ixkqs
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/_power___render__by_prettyxhell_dggljt0.png
+    name: power2.png
+    sha256: 0vx0fmd387fvhnk9ry1z4gazlwb9k368s80p116limhzcszj51f9
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/_Qimang_jinx.jpg
+    name: jinx1.jpg
+    sha256: 15c7igkjhbk4pfz6q4x66wgmii1k70v5qysw9bn6f0dcv0v4i0dd
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/_Qimang_jinx2.jpg
+    name: jinx2.png
+    sha256: 12gpdp9aq7qi2kr77m5hg6m5vz14sfcs2kvqk1i4brax4k5l18sg
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/_satoru_gojo___render__by_prettyxhell_dfgier5.png
+    name: gojo1.png
+    sha256: 077q0g4shkj6xiww8d4m9c1hg3vf21ly2fg5sqsl171mfv4r9b9i
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/_power___render__by_prettyxhell_dggljt0.png
+    name: power6.png
+    sha256: 0vx0fmd387fvhnk9ry1z4gazlwb9k368s80p116limhzcszj51f9
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/_subaru_and_emilia___render__by_prettyxhell_dgh0yeh.png
+    name: subaru_emilia2.png
+    sha256: 0w7nzd7ac0c6iyg9kz5wagp85g003hsak6n0b6giz5dw73hdghhs
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/_subaru_and_emilia___render__by_prettyxhell_dgh0yw7.png
+    name: subaru_emilia3.png
+    sha256: 02fzr7vchdmbs827hsg4xhy4laajfqcqkashz7pp726ma8nn23b0
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/dandadan_by_datcravat_die3e0c.jpg
+    name: dandadan.jpg
+    sha256: 1s6c22cy4dja78sfw0p1grq9mdifnkprz1s1l0sznzc9kjqzhas9
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/okarun_by_ggabrielbf_dinlj2j.png
+    name: okarun.png
+    sha256: 0kwbvk091yi2jvq7ajbn01kjy6wsgvd1abrbigrrb7czhnlpjkh5
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/power___chainsaw_man_by_razon_neko_dhu1ucf.png
+    name: power3.png
+    sha256: 1q4iyn4i864bnc62q64v7xj998lgnh56fzfkqw5s2w3pnrcpmdkc
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: http://100.114.199.203:23231/pfp/qi-mang-ktl.jpg
+    name: jinx4.png
+    sha256: 0vx7p1jkb23can5f75g9929mh6h3wakhmqvpyx8l4s94zsbbimxr
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
 

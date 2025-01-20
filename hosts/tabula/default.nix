@@ -19,6 +19,10 @@ in
     # TODO: move this
     hardware.usb-modeswitch.enable = true;
 
+    environment.systemPackages = [
+      pkgs.cifs-utils
+    ];
+
     networking.hostName = "tabula";
     time.timeZone = "America/Denver";
 

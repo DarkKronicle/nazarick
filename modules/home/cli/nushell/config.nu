@@ -1,4 +1,4 @@
-use @BLACK_IMORTAL@
+use @THEME@
 use @TASK@
 
 # The default config record. This is where much of your global configuration is setup.
@@ -110,7 +110,7 @@ $env.config = {
     vi_insert: block # block, underscore, line , blink_block, blink_underscore, blink_line (block is the default)
     vi_normal: underscore # block, underscore, line, blink_block, blink_underscore, blink_line (underscore is the default)
   }
-  color_config: (black-metal-immortal)
+  color_config: (catppuccin-mocha)
   footer_mode: 25
   float_precision: 2
   use_ansi_coloring: true

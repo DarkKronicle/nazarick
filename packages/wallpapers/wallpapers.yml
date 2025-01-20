@@ -440,14 +440,6 @@
   - warm
   - weaboo
 - src:
-    url: https://images2.alphacoders.com/134/1342763.png
-    sha256: 0r91bd75fi25ykizhdisp48yknvrp1c4zcvmcfwfgapigadkgwbm
-    name: qnTQDoQNKxjpjKBk5jb5BpL6o.png
-  tags:
-  - jjk
-  - cool
-  - weaboo
-- src:
     url: https://images8.alphacoders.com/133/1331317.jpeg
     sha256: 1nff2rp1f27w6iqgppr3hn38h8sn7gvpkmw4a5nnrhqpyjc9d1di
     name: AZuoQUeXzZRr2yDwdMb2ce4nZ.jpeg
@@ -498,19 +490,6 @@
   - cool
   - simple
 - src:
-    url: https://images7.alphacoders.com/653/653687.png
-    sha256: 0cqkh7385hprbzwxgnclpfcvq8ysazc9rxf5xq4dg1flrrig81vr
-    name: 9rn3w7jcX9Wilvn4Th3V9bzoI.png
-  themes:
-  - mocha
-  tags:
-  - overlord
-  - shaltear
-  - weaboo
-  - simple
-  - black
-  - warm
-- src:
     url: https://preview.redd.it/y8ecf7lv1zn51.png?width=2048&format=png&auto=webp&s=3573b68ba76f66410caf2ea7ecc10e9150146edb
     sha256: sha256-yMRBMSXAYekTiteY82dYn1hzFmncasro/k2Oh+6Epc4=
     name: 9gHUEv7sawGyHnJIwVNsruwme.png
@@ -553,12 +532,6 @@
     url: https://pbs.twimg.com/media/DeHVMKIUQAASagm?format=jpg&name=large
     name: UpuBZ606HUZJ19U08vS7.jpg
     sha256: sha256-GXuojGqzq1pakPijOrvRdabWGBItILmGIkQUqJjErdw=
-  tags:
-  - weaboo
-- src:
-    url: https://raw.githubusercontent.com/ryan4yin/wallpapers/main/anime-girls_balloon_long-hair.jpg
-    name: anime_girls_balloon.jpg
-    sha256: 05azqn3v2rqkafxkasap9v4mjfkmdr3lmkw21s8z8ficdz1w3li2
   tags:
   - weaboo
 - src:
@@ -615,10 +588,6 @@
     name: mob_scray_lines.png
     sha256: 0fmydywy5mxm5p0a2ydsb2afjzclbxf0xbknh7w4gqfgzybh6ydd
 - src:
-    url: https://w.wallhaven.cc/full/yx/wallhaven-yxve2x.jpg
-    name: windwaker_dusk
-    sha256: 1wvg1mqs391wrvrd2vxwxv11lwz2fq4pmlgmz2p237k456v4gwxz
-- src:
     url: https://w.wallhaven.cc/full/57/wallhaven-577og5.jpg
     name: hateno.jpg
     sha256: 0s85213aymlazhg6si5157n26piasz6fh7qixswv3r6w3lrf3mdc
@@ -633,10 +602,6 @@
     name: mastersword.jpg
     sha256: 0f23r1pzwfrf3zzdsi4ikqw91y51rb3qc4ijs5kn9pc3yhrhm7yi
 - src:
-    url: https://w.wallhaven.cc/full/jx/wallhaven-jxvk7q.jpg
-    name: kakariko.jpg
-    sha256: 0p8nl3y6fk9va2z7dynn1isprba7wbalp52kkpamp4gdpq6n05z4
-- src:
     url: https://w.wallhaven.cc/full/y8/wallhaven-y88oxg.jpg
     name: link_forest.jpg
     sha256: 0vb4gspwx9w2z5s919ix6ffkk6vl8n9xwa7fa53ikp4wj18np5pr
@@ -644,18 +609,6 @@
     url: https://w.wallhaven.cc/full/5d/wallhaven-5dodx5.png
     name: zelda_link_hugging.png
     sha256: 01nh00f5f36camc12q43qv8kskg3q9pwqxjhx6avv0g65inqgkp1
-- src:
-    url: https://w.wallhaven.cc/full/xl/wallhaven-xllvgl.jpg
-    name: shaltear_walking.jpg
-    sha256: 0pi3j3xff8swi80asmiw4571i09v8n009zshmy5dj7mz4pvfr4j8
-  tags:
-  - weaboo
-- src:
-    url: https://w.wallhaven.cc/full/o3/wallhaven-o3rv7m.png
-    name: shaltear_crazy.png
-    sha256: 1dp91c3rc2ad1y9naq1p799295sbryd97lg3smjxy3fx6xq7hykg
-  tags:
-  - weaboo
 - src:
     url: https://images3.alphacoders.com/893/893790.png
     name: shaltear_dogmen.png
@@ -666,12 +619,6 @@
     url: https://images2.alphacoders.com/111/1115851.png
     name: renner_paint.png
     sha256: 05nkinwp0mavx60ddhss64zz8qpniiyc2hypmy7nxp5j5pkkbcaz
-- src:
-    url: https://images6.alphacoders.com/135/1358879.png
-    name: albedo_elegance.png
-    sha256: 1s7slfjw15ybyb2xq7n3n9bqvxxjd6gxv0w41igsrxx37d638w2i
-  tags:
-  - weaboo
 - src:
     url: https://images3.alphacoders.com/113/1137027.png
     name: rezero-witches.png
@@ -761,21 +708,9 @@
     name: cherry.jpg
     sha256: 18qi2k5drv248wyvncx3qwbmkdrmbw26h6690rgckaifx64pkfka
 - src:
-    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/shiny-colors.png
-    name: shiny.png
-    sha256: 07ihb3352vfp5kw5f0rls9bzwxr6mrgflqh52mygh8bjck2hj3y3
-  themes:
-  - mocha
-- src:
     url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/red-forest.jpg
     name: forest.jpg
     sha256: 1l6vn7liv12igxl22qw7gdqkpaz0k5bfa8gm3nb3n7j0yj56cd4k
-- src:
-    url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/swirls.png
-    name: swirls.png
-    sha256: 1d9ilyzwphx39q3gqf040ylbam3ff03a3020afy9nb0s3b2vlyfm
-  themes:
-  - mocha
 - src:
     url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/em-rofi.webp
     name: five-centi.webp
@@ -800,6 +735,173 @@
     sha256: 1r526w7r97qabhi7zmrrygg1n2dnrlkqvm4z8wvrhgs2mk8b0sbr
   themes:
   - mocha
+# deathtototoro / ao-ryn
+- src:
+    url: https://images3.alphacoders.com/138/1382378.png
+    name: ryn-momo.png
+    sha256: 1zv2bj6vi24l7zjpb1a78rf7fykl7wvkj1lpz18lglabhbf9qgvf
+  tags:
+  - weaboo
+- src:
+    url: https://images2.alphacoders.com/138/1382326.png
+    name: ryn-g.png
+    sha256: 0aj54ywmmdjf8d8fc67frs8d0vkypj7mfln95fd1vrdrnrgqvswa
+  tags:
+  - weaboo
+- src:
+    url: https://images.alphacoders.com/138/thumb-1920-1382324.png
+    name: dandadan.png
+    sha256: 1ahh9gia46qq1xbqbixllnimcqlbz28p0f2z0ng3kw5mia7rmq2g
+  tags:
+  - weaboo
+- src:
+    url: https://images2.alphacoders.com/138/thumb-1920-1383055.png
+    name: dandandan2.png
+    sha256: 1idx2bcgjny4byicb5nnlphc0n3j7kvyg5r726jc98yfk2imvw14
+  tags:
+  - weaboo
+- src:
+    url: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/intermediary/f/3e1fe6c2-fadd-4be2-bebf-9bb72e5773df/dbyzs7o-ba9e590d-fa1e-4cd1-af3d-7396f03f2d07.png/v1/fill/w_5100,h_2900,bl,q_100/overlord_the_albedo_wallpaper_by_deathtototoro_dbyzs7o-pre.jpg
+    name: albedo_totoro.jpg
+    sha256: 0j6jd6xg474fw7il21in6r9n4yqlc6r7gyf8vbmnm14rac7nfvgy
+  tags:
+  - weaboo
+- src:
+    url: http://100.114.199.203:23231/wall/ainz_ooal_gown_wallpaper_by_dinocozero_ddepg8l.jpg
+    name: ainz_more.jpg
+    sha256: 0cshyglbpfya8x1hahyp3ys2w70r636wf1i2hyfg0ckjianbasif
+  tags:
+  - weaboo
+- src:
+    url: http://100.114.199.203:23231/wall/demon_slayer___inosuke_hashibira_wallpaper_by_knotshoxtm_dex31ci.png
+    name: inosuke.png
+    sha256: 0i0xjrckyqlxdb6hpywlckvjmfcp21awki0cyn0y74k3n2m7wp6k
+  tags:
+  - weaboo
+- src:
+    url: http://100.114.199.203:23231/wall/paladin_of_pure_silver_by_horocca_dbj0tuq.jpg
+    name: touchme.jpg
+    sha256: 0gnxhd8z7yizzdrb23k7pv9k47nck3gkbsfki27wmrpp968crfcv
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/080/006/298/large/-aura-bloom.jpg
+    name: frieren-epic.jpg
+    sha256: 1j9k3a91dwm34fir40niff6gnsw34d413h6zsc8iagzn5m47r678
+  tags:
+  - weaboo
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/079/524/312/large/-the-castle33.jpg
+    name: frieren-epic2.jpg
+    sha256: 11ik9amarb7v9pcb460g40nc2k68ic0min723bmnc7am4nlrl6wp
+  tags:
+  - weaboo
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/030/571/010/large/-no-thank-you.jpg
+    name: girls-band-cry.jpg
+    sha256: 1b3rn7md7bqqgf91w3xdbqgjir5vcz0cvfimdbwmyf7ccqbsdsj3
+  tags:
+  - weaboo
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/020/412/702/large/qr-y-1.jpg
+    name: blossoms.jpg
+    sha256: 1vmncpy0djlqdmk03wz4vx2ir98rh4qrfi8jgrqk1v0rpk4kvx96
+  tags:
+  - weaboo
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/029/324/080/4k/darek-zabrocki-mg-tree-town1-003-final-darekzabrocki.jpg
+    name: mouse-guard1.jpg
+    sha256: 1pxmqacbaa6gyzkbfk0sz1mxid8l69zp8z5gvbmih3q95sznpbis
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/029/324/085/4k/darek-zabrocki-mg-ferndale5-008b-final-darekzabrocki.jpg
+    name: mouse-guard2.jpg
+    sha256: 1g6vx5ddflx0q6innizz724146p0nqr34incw0kgklw0aw047l8c
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/049/592/904/large/dannylailai-.jpg
+    name: totoro-dannylailai.jpg
+    sha256: 1p4j2a7jv3qarpfcjfnia3qsrnd2m188g0l94rk4i8wz5219hwj9
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/047/283/214/large/dannylailai-.jpg
+    name: cat.jpg
+    sha256: 1ygr48xkm6s8y9y2r8m91r84vhd8cjwawr58hlhlas4dz6lzdcgx
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/040/381/182/large/dannylailai-.jpg
+    name: kiki-dannylailai.jpg
+    sha256: 1fic5i1n5w3axr01pknpf6s8x1zh7884a2l9dwpi2n9j7yphf5hg
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/083/759/473/large/hongyu-yin-s5.jpg
+    name: spirited.jpg
+    sha256: 1sg84ixwjm23s3mkm84plwzxdyyh7zvdb0hy65911zqhwmpffr9c
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/081/837/817/large/ying-yi-final72px.jpg
+    name: tree.jpg
+    sha256: 0csqjnx9h4b2bn6rb0020hqx4b9c4y77j0740j0hxk4lp40461wp
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/010/965/155/4k/elijah-mcneal-station.jpg
+    name: station.jpg
+    sha256: 06w5d26h5n45cycl5845jr7wng6lxy4y7y3llfwp3589jv4wknih
+  theme:
+  - mocha
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/043/504/725/large/bo-chen-arcane-jinx-final-2k.jpg
+    name: jinx6.jpg
+    sha256: 1nz3g0k9njngdb7l3pad6yj16zqb933p4glkwxs39kbdp9kl1lmz
+  tags:
+  - weaboo
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/046/005/317/4k/anato-finnstark-anato-finnstark-anato-finnstark-web-petit-4.jpg
+    name: dragon.jpg
+    sha256: 1xkaz3g6lbk3gax93v2c7nrfgwjvql0ncs11asgv62n9zzc197fx
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/082/273/482/large/anato-finnstark-wzeb.jpg
+    name: vi5.jpg
+    sha256: 116k0z1ax4xq9mgrh8bj7hargxl3wlrslb81mkcdqlavi7z8h20h
+  tags:
+  - weaboo
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/048/041/655/large/daniel-oxford-howl-01.jpg
+    name: howls.jpg
+    sha256: 0xll1qa3ykyknm569qpnhy8xmq66njl63yrid27zd8xi55gjfp1n
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/048/698/984/large/daniel-oxford-daniel-oxford-botw-1.jpg
+    name: zelda8.jpg
+    sha256: 0f01vp8cbnk5f4gflmdadywn4j3jgasyijhbnlvzb4xkki1pcg5m
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/059/431/918/large/daniel-oxford-longboat-01.jpg
+    name: longboat.jpg
+    sha256: 05z9bbi65cnkvfxvqbljixy1gmiam3l0w36643292rnawilqw5wh
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/039/562/163/large/daniel-oxford-fieldwork-01.jpg
+    name: zelda2.jpg
+    sha256: 00gfi4168s3x5ijg3x5zsl2wf8iimzcqpnim4bk8v6c7y5ywdfj9
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/024/750/664/large/daniel-oxford-snow-kodama-01.jpg
+    name: snow-kodama.jpg
+    sha256: 0n69z7pkm48zkd1h131hxzcv5vr10lh3bv08qpf6mlcgxq57cqdl
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/030/655/250/large/jiangyuan-2020-9-9.jpg
+    name: kiki150.jpg
+    sha256: 014gvqlxnwzr1xbzicfp3qpg3bij6rv5imzmkpiq3lf0vdv3va13
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/025/563/925/large/stephen-zavala-rebel-camp-1-sz.jpg
+    name: starwars.jpg
+    sha256: 15bg081w8a24m3qhnj67rivih4vw585yl22x8gd4g2m7savb3s2d
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/082/345/269/large/r-s-jinx-1-1.jpg
+    name: jinx6.jpg
+    sha256: 13ikjjcm07pam3db6mlzgfacvsmvq910m5z0f9h77clja9h1wg7k
+  tags:
+  - weaboo
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/078/247/320/large/gui-yuan-87560809gy1hrgpqidw1ij21fi0nmnpd.jpg
+    name: kiki_even.jpg
+    sha256: 136mdfx18wlal778f2xgw10gxqj7s6ha3wddyikq6mfagvzrm4al
+  themes:
+  - mocha
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/052/282/110/large/bombongkor-2021-2-10-10-2.jpg
+    name: rem.jpg
+    sha256: 0vgj64ah3kjya4ivmk32mp941yy7j8z345d4d4rbpfljqd1r35gz
+  tags:
+  - weaboo
 # - src:
   # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Full-Metal-Alchemist/Toxic-City/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/fma2-1920x1200.jpg
   # name: fullmetal-toxic.jpg
