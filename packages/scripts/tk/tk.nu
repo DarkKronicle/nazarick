@@ -123,7 +123,7 @@ def "fix-due" [] {
     if ($due == null) {
         return
     }
-    let date = $due | date to-timezone (date now | date to-record | get timezone) | date to-record
+    let date = $due | date to-timezone (date now | into record | get timezone) | into record
     if ($date.hour > 6 or $date.second != 0 or $date.minute != 0) {
         return
     }
@@ -187,7 +187,7 @@ export def "group-recursive" [--key: string = "project", --split: closure, --joi
 }
 
 export def "display" [] {
-    $in | upsert ref {|x| $x | get project? | default ($x | get area?) } | select -i id due description ref urgency status tags | upsert-val tags { str join "," }
+    $in | upsert ref {|x| $x | get project? | default ($x | get area?) } | select -i id due description ref urgency status tags | upsert-val tags { str join "," } | update due { date to-timezone (date now | into record | get timezone) }
 }
 
 export def "detailed" [] {

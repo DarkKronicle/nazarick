@@ -35,5 +35,6 @@
   tomb
   qrencode
   imagemagick
+  brightnessctl
 ])
 ++ [ mypkgs.tlock ]

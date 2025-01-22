@@ -5,8 +5,8 @@
   ...
 }:
 {
-  name = "nux";
+  name = "tk";
   type = "nu";
-  source = ./nux.nu;
-  dependencies = [ inputs.nix-index-database.packages.${system}.nix-index-with-db ];
+  source = ./tk.nu;
+  dependencies = [ pkgs.taskwarrior ];
 }

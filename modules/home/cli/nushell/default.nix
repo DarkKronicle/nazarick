@@ -31,6 +31,7 @@ in
       mypkgs.script-xpress
       mypkgs.script-crypt
       mypkgs.script-stl
+      mypkgs.script-tk
 
       pkgs.devenv
     ];

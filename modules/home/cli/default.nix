@@ -36,6 +36,7 @@ in
           pipes-rs
           thokr
           typespeed
+          sssnake
         ]
       ))
       ++ (lib.optionals cfg.misc ([

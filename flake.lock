@@ -999,11 +999,11 @@
         "plugins-yazi-nvim": "plugins-yazi-nvim"
       },
       "locked": {
-        "lastModified": 1737148126,
-        "narHash": "sha256-/kR9EVXeBLEp6ZxqIiNgm/4Jho1hXv9g8ncvNHcaMsQ=",
+        "lastModified": 1737490478,
+        "narHash": "sha256-Kyj3xEe0nqvBy/kU9vklGeDbVOtv3c8lqv3JB3YK4cs=",
         "owner": "DarkKronicle",
         "repo": "nvim-dotfiles",
-        "rev": "fda500733c304f04537c1172442697c11e6aaea1",
+        "rev": "a1cda1367f336659292976c72d2bf21321a6dcd7",
         "type": "github"
       },
       "original": {

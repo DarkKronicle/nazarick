@@ -274,3 +274,7 @@ alias tko = overlay hide tk
 def --env "cdtmp" [prefix: string = "scratch"] {
     cd (mktemp -d -t $"($prefix).XXXXXX")
 }
+
+def --env "date natural-to-iso" [] {
+    $in | into datetime | format date "%+"
+}
