@@ -8,5 +8,5 @@
   name = "tk";
   type = "nu";
   source = ./tk.nu;
-  dependencies = [ pkgs.taskwarrior ];
+  dependencies = [ pkgs.taskwarrior3 ];
 }
