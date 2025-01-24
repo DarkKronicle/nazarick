@@ -26,7 +26,6 @@ in
 
   config = mkIf cfg.enable {
     sops.secrets."borg/repository" = { };
-    sops.secrets."borg/wifi" = { };
     sops.secrets."borg/password" = { };
     environment.systemPackages = with pkgs; [ borgbackup ];
 
@@ -50,9 +49,7 @@ in
       ];
       script = ''BORG_RSH="ssh -i ${cfg.sshFile}" HOME=/root ${./backup.nu} $(cat ${
         config.sops.secrets."borg/repository".path
-      }) $(cat ${config.sops.secrets."borg/password".path}) $(cat ${
-        config.sops.secrets."borg/wifi".path
-      }) ${./exclude.txt}'';
+      }) $(cat ${config.sops.secrets."borg/password".path}) ${./exclude.txt}'';
       serviceConfig = {
         Type = "oneshot";
       };

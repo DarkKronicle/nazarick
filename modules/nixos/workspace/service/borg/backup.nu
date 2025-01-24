@@ -1,31 +1,20 @@
 #!/usr/bin/env nu
 
 # Checks
-def backuped_today [backup_path: path] {
+def has-backup [backup_path: path] {
     if not ($backup_path | path exists) {
         return false
     }
-    let prev_date = (open $backup_path | into datetime | date to-table | reject hour minute second timezone nanosecond)
-    let now_date = (date now | date to-table | reject hour minute second timezone nanosecond)
+    let prev_date = (open $backup_path | into datetime | into record | reject hour minute second timezone nanosecond)
+    let now_date = (date now | into record | reject hour minute second timezone nanosecond)
     return ($prev_date == $now_date)
 }
 
-def update_file [backup_path: path] {
+def update-file [backup_path: path] {
     date now | save -f $backup_path
 }
 
-def check_ready [wifi: string] {
-    if not (($wifi + ' ') in (nmcli connection show --active)) {
-        return false
-    }
-    if not ('Status: Disconnected' in (nordvpn status)) {
-        return false
-    }
-    return true
-}
-
 # Actually backing up
-
 def "backup-borg" [prefix: string, --exclude: path, ...paths: path] {
     let backup_name = ('::' + $prefix + '-{now:%Y-%m-%d_%H:%M}')
     let args = ([
@@ -44,7 +33,6 @@ def "backup-borg" [prefix: string, --exclude: path, ...paths: path] {
     borg create ...$args
 }
 
-
 def "backup-borg-default" [repo: string, password: string, exclude: path] {
     $env.BORG_REPO = $repo
     $env.BORG_PASSPHRASE = $password
@@ -61,8 +49,8 @@ def "backup-borg-default" [repo: string, password: string, exclude: path] {
 }
 
 def cpu-snapshot [] {
-    let idle = top -bn1 | rg '%Cpu' | str trim | split row ':' | split row ',' | find 'id' | get 0 | str trim; 
-    (100 - (($idle | str substring ..(($idle | str length) - 3)) | into float))
+    # Averages cpu usage over about 8 seconds
+    1..5 | each { sleep 1sec; sys cpu -l | get cpu_usage | math avg } | math avg
 }
 
 def cpu-usage [] {
@@ -75,28 +63,30 @@ def cpu-usage [] {
     ($total / $amount)
 }
 
-def main [repo: string, password: string, wifi: string, --force, exclude: path] {
+def main [repo: string, password: string, --force, exclude: path] {
     let backup_path = '/home/darkkronicle/.borg/last_backup.txt'
+    mut check_count = 0
 
     while not $force {
-        if (backuped_today $backup_path) {
-            echo '[BACKUP] Backed up today: skipping'
+        if (has-backup $backup_path) {
+            print '[BACKUP] Backed up today: skipping'
             return
         }
-        if not (check_ready $wifi) {
-            echo "[BACKUP] Invalid connection: skipping"
-            return
+        if ($check_count > 6) {
+            print "[BACKUP] too much CPU usage, cancelling"
+            break
         }
         let cpu = (cpu-usage)
         if $cpu > 30 {
-            echo "[BACKUP] CPU usage too high, trying again in 5 minutes"
+            print "[BACKUP] CPU usage too high, trying again in 5 minutes"
             sleep 5min
         } else {
-            echo ("[BACKUP] CPU usage at " + ($cpu | into string))
+            print ("[BACKUP] CPU usage at " + ($cpu | into string))
             break
         }
+        $check_count += 1
     }
-    echo "[BACKUP] initiating backup"
+    print "[BACKUP] initiating backup"
     backup-borg-default $repo $password $exclude
-    update_file $backup_path
+    update-file $backup_path
 }

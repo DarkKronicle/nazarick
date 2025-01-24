@@ -561,3 +561,14 @@ export def "thaw" [
         run-action "thaw" $unit $user $sudo_anyways $context
     }
 }
+
+export def "quick-restart" [] {
+    try { plugin use skim }
+    list-units -a | where type == service | sk --format { get unit } --preview { get description } | restart $in.unit -c $in.context
+}
+
+export def "quick-select" [] {
+    try { plugin use skim }
+    list-units -a | where type == service | sk --format { get unit } --preview { get description }
+}
+

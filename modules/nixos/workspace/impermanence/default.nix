@@ -227,6 +227,10 @@ in
         ".local/share/nheko"
         ".cache/nheko"
 
+        ".config/iamb"
+        ".cache/iamb"
+        ".local/share/iamb"
+
         ".wifi"
         ".wine"
         ".codeium"

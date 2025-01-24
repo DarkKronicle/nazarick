@@ -37,6 +37,20 @@ let
         minsize 1M
     }
 
+    /home/${username}/.cache/iamb/logs/iamb-* {
+        weekly
+        missingok
+        rotate 4
+        copytruncate
+        compress
+        compresscmd ${pkgs.zstd}/bin/zstd
+        compressext .zst
+        compressoptions -T0 --long
+        uncompresscmd ${pkgs.zstd}/bin/unzstd
+        size 5M
+        minsize 1M
+    }
+
     /home/${username}/.cache/nvim/*log {
         weekly
         missingok

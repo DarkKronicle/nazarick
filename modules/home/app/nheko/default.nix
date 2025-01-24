@@ -19,6 +19,9 @@ in
   };
 
   config = mkIf cfg.enable {
-    home.packages = [ pkgs.nheko ];
+    home.packages = [
+      pkgs.nheko
+      pkgs.iamb
+    ];
   };
 }

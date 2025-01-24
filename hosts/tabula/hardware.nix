@@ -56,6 +56,7 @@
     options = [
       "size=3G"
       "mode=777"
+      "noswap"
     ];
   };
 

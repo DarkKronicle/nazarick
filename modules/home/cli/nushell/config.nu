@@ -255,7 +255,6 @@ def --env nvim [
 alias neovim = nvim
 alias v = nvim
 
-source ~/.config/nushell/scripts/dolphin.nu
 source ~/.config/nushell/completions/tldr.nu
 
 def --env borger [command: closure] {
@@ -278,3 +277,8 @@ def --env "cdtmp" [prefix: string = "scratch"] {
 def --env "date natural-to-iso" [] {
     $in | into datetime | format date "%+"
 }
+
+def --env "edit-today" [extension: string = "norg"] {
+    ^$env.EDITOR $"(date now | format date "%Y-%m-%d").($extension)"
+}
+

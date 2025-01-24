@@ -198,16 +198,75 @@ export def "detailed" [] {
     return $tasks
 }
 
-export def --wrapped "add" [...statement: string] {
+export def --wrapped "raw-add" [...statement: string] {
     ^task add ...$statement
     sleep 0.1sec
     show "+LATEST" | get 0 | fix-due
 }
 
-export def --wrapped "modify" [...statement: string] {
+export def --wrapped "add" [
+    tags: list<string>
+    --due(-d): any = null, 
+    --wait(-w): any = null, 
+    --type(-t): any = "act"
+    ...statement: string
+] {
+    mut extra_args = []
+    if ($due != null) {
+        let realdue = (if (($due | describe) == "date") {
+            $due
+        } else {
+            $due | into datetime
+        }) | format date "%+"
+        $extra_args = ($extra_args | append [ $"due:($realdue)" ])
+    }
+    if ($wait != null) {
+        let realdue = (if (($wait | describe) == "date") {
+            $wait
+        } else {
+            $wait | into datetime
+        }) | format date "%+"
+        $extra_args = ($extra_args | append [ $"wait:($realdue)" ])
+    }
+    if ($type != null) {
+        $extra_args = ($extra_args | append [ $"type:($type)" ])
+    }
+    if ($tags | is-not-empty) {
+        $extra_args = ($extra_args | append ($tags | par-each { |x| $"+($x)" }))
+    }
+    raw-add ...$statement ...$extra_args
+}
+
+export def --wrapped "raw-modify" [...statement: string] {
     let tasks = $in | get-tasks-uuids
     ^task ($tasks | str join " ") modify ...$statement
     show "+LATEST" | get 0 | fix-due
+}
+
+export def --wrapped "modify" [
+    --due(-d): any = null, 
+    --wait(-w): any = null, 
+    ...statement: string
+] {
+    let tasks = $in
+    mut extra_args = []
+    if ($due != null) {
+        let realdue = (if (($due | describe) == "date") {
+            $due
+        } else {
+            $due | into datetime
+        }) | format date "%+"
+        $extra_args = ($extra_args | append [ $"due:($realdue)" ])
+    }
+    if ($wait != null) {
+        let realdue = (if (($wait | describe) == "date") {
+            $wait
+        } else {
+            $wait | into datetime
+        }) | format date "%+"
+        $extra_args = ($extra_args | append [ $"wait:($realdue)" ])
+    }
+    $tasks | raw-modify ...$statement ...$extra_args
 }
 
 export def "done" [] {

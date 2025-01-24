@@ -37,6 +37,7 @@ in
           "d /home/${user}/.cache/pypoetry - - - 30d"
 
           "d /home/${user}/.local/state/mpv/watch_later - - - 14d"
+          "d /home/${user}/.cache/iamb/image_preview_downloads - - - 7d"
         ];
       })
     );
