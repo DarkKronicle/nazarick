@@ -30,13 +30,6 @@ in
 
     hardware.uinput.enable = true;
 
-    services.netbird = {
-      enable = true;
-      tunnels.wt0.environment = {
-        "NB_DNS_RESOLVER_ADDRESS" = "127.0.0.1:5053";
-      };
-    };
-
     # TODO: move this
     # for ags
     services.upower.enable = true;
@@ -106,6 +99,7 @@ in
       };
       service = {
         microsocks = enabled;
+        netbird = enabled;
       };
       workspace = {
         common = enabled;

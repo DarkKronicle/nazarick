@@ -9,7 +9,7 @@
 let
   forEachUser = mylib.forEachUser config;
   systemctlForUsersNu = cmd: ''
-    let users = ${pkgs.coreutils}/bin/who -q | split row (char newline) | drop 1
+    let users = ${pkgs.coreutils}/bin/who -q | split row -r '\s+'
     ${lib.concatStringsSep "\n" (
       forEachUser (user: ''
         if ($users | find -r '^${user}$' | is-not-empty) {
