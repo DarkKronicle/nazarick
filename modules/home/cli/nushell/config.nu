@@ -282,3 +282,15 @@ def --env "edit-today" [extension: string = "norg"] {
     ^$env.EDITOR $"(date now | format date "%Y-%m-%d").($extension)"
 }
 
+
+def --env netbird-detail [] {
+    mut data = netbird status --json | from json
+    $data.peers.details = ($data.peers.details 
+        | update lastWireguardHandshake { into datetime }
+        | update lastStatusUpdate { into datetime }
+        | update transferReceived { into filesize }
+        | update transferSent { into filesize }
+        | update latency { into duration }
+    )
+    return $data
+}

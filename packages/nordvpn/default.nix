@@ -15,13 +15,15 @@
   cacert,
   libxml2,
   libidn2,
+  libnl,
+  libcap_ng,
   zlib,
   wireguard-tools,
 }:
 
 let
   pname = "nordvpn";
-  version = "3.17.2";
+  version = "3.20.0";
   buildEnv = if builtins.typeOf buildFHSEnvChroot == "set" then buildFHSEnvChroot else buildFHSEnv;
 
   nordVPNBase = stdenv.mkDerivation {
@@ -29,12 +31,14 @@ let
 
     src = fetchurl {
       url = "https://repo.nordvpn.com/deb/nordvpn/debian/pool/main/n/nordvpn/nordvpn_${version}_amd64.deb";
-      hash = "sha256-xA56j3+aopLDQrHuZT6gKuUT2lmTW3BIpgBXCZOqsto=";
+      hash = "sha256-3/HSCTPt/1CprrpVD60Ga02Nz+vBwNBE1LEl+7z7ADs=";
     };
 
     buildInputs = [
       libxml2
       libidn2
+      libnl
+      libcap_ng
     ];
     nativeBuildInputs = [
       dpkg
