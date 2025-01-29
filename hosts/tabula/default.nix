@@ -35,6 +35,11 @@ in
     services.upower.enable = true;
     services.gvfs.enable = true;
 
+    services.udev.extraRules = ''
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", MODE="0666"
+      SUBSYSTEM=="usb_device", ATTRS{idVendor}=="0483", MODE="0666"
+    '';
+
     nazarick.users = {
       mutableUsers = false;
 

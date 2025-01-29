@@ -1,19 +1,5 @@
 #!/usr/bin/env nu
 
-# Checks
-def has-backup [backup_path: path] {
-    if not ($backup_path | path exists) {
-        return false
-    }
-    let prev_date = (open $backup_path | into datetime | into record | reject hour minute second timezone nanosecond)
-    let now_date = (date now | into record | reject hour minute second timezone nanosecond)
-    return ($prev_date == $now_date)
-}
-
-def update-file [backup_path: path] {
-    date now | save -f $backup_path
-}
-
 # Actually backing up
 def "backup-borg" [prefix: string, --exclude: path, ...paths: path] {
     let backup_name = ('::' + $prefix + '-{now:%Y-%m-%d_%H:%M}')
@@ -33,12 +19,12 @@ def "backup-borg" [prefix: string, --exclude: path, ...paths: path] {
     borg create ...$args
 }
 
-def "backup-borg-default" [repo: string, password: string, exclude: path] {
-    $env.BORG_REPO = $repo
-    $env.BORG_PASSPHRASE = $password
-
+def "backup-borg-default" [exclude: path] {
     let persist = [
       "/persist/keep"
+      "/mnt/fluder/3610"
+      "/mnt/fluder/3500"
+      "/mnt/fluder/3030"
     ]
     let secret = [
       "/home/darkkronicle/Documents/syncthing/keepass"
@@ -64,12 +50,15 @@ def cpu-usage [] {
 }
 
 def main [repo: string, password: string, --force, exclude: path] {
-    let backup_path = '/home/darkkronicle/.borg/last_backup.txt'
+    $env.BORG_REPO = $repo
+    $env.BORG_PASSPHRASE = $password
+
+    let last_backup = borg list --last 1 --json --glob all-* | from json | get archives.time.0 | into datetime
     mut check_count = 0
 
     while not $force {
-        if (has-backup $backup_path) {
-            print '[BACKUP] Backed up today: skipping'
+        if ((date now) - ($last_backup) < 6hr) {
+            print '[BACKUP] Backed up within the last 6 hours: skipping'
             return
         }
         if ($check_count > 6) {
@@ -87,6 +76,5 @@ def main [repo: string, password: string, --force, exclude: path] {
         $check_count += 1
     }
     print "[BACKUP] initiating backup"
-    backup-borg-default $repo $password $exclude
-    update-file $backup_path
+    backup-borg-default $exclude
 }

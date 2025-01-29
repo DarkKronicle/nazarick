@@ -321,4 +321,44 @@
   - weaboo
   square: true
   resolution: 200x200
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/050/968/618/large/yueko-spyfamily-yor-small.jpg
+    name: yor.jpg
+    sha256: 1i55c46mnr4mgql41rmn9w5338l3shkyfilmafklwwkpqb02mwmw
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/081/796/275/large/aleksandra-alekseeva-25-jinx3.jpg
+    name: jinx6.jpg
+    sha256: 1f71m6swld055rfhrm77p4xvj9qjxc68cxp1iyas6rf7qfcqwbck
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/070/697/506/large/zumi-draws-meimei9.jpg
+    name: meimei.jpg
+    sha256: 0klr1nqw0p9yn7wllv0b199cba86qwa3ql74lq7qxibhgdzbxlky
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/054/595/390/large/jack-wang-qq-20221005005056.jpg
+    name: cyberpunk_but_im_crying_so_hard.jpg
+    sha256: 12i06x23dyzawb2ifwh7jrkc9j2lb84gyx69jhx7qvfvd39anfxk
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://cdna.artstation.com/p/assets/images/images/081/420/536/large/sebijy-daily-painting-1871-ps.jpg
+    name: falin.jpg
+    sha256: 0jlphisa0hpl9znck2pccb95yf4ncrpvvjii369jvmfh02vdvjmj
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
 
