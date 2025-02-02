@@ -63,7 +63,7 @@ def main [repo: string, password: string, --force, exclude: path] {
         }
         if ($check_count > 6) {
             print "[BACKUP] too much CPU usage, cancelling"
-            break
+            return
         }
         let cpu = (cpu-usage)
         if $cpu > 30 {

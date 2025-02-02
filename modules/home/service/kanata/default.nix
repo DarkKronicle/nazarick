@@ -52,13 +52,13 @@ in
     enable = lib.mkEnableOption "kanata";
     package = lib.mkOption {
       type = lib.types.package;
-      default = mypkgs.kanata;
+      default = pkgs.kanata-with-cmd;
       description = "The package for kanata";
     };
   };
   config = mkIf cfg.enable {
-    home.packages = with mypkgs; [
-      kanata
+    home.packages = [
+      pkgs.kanata-with-cmd
       tofiApp
     ];
 

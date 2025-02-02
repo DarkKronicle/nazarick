@@ -4,7 +4,7 @@
 # This is important if you need DNS resolving for the current network connections
 # Captive portals are the main use
 def main [] {
-    plugin use explore
+    plugin use skim
 
     let readonly = ls -l /etc/resolv.conf | get 0.readonly
     let connections = nmcli con | split row (char newline)
@@ -26,7 +26,7 @@ def main [] {
 
     let connections = $connections
 
-    let chosen = ($connections | nu_plugin_explore).name
+    let chosen = ($connections | sk --format { get name } --preview { table -e }).name
     print $"Using dns servers for ($chosen)"
     let info = nmcli con show $chosen | split row (char newline)
     # Find all the dns servers, format them nicely, and get the value

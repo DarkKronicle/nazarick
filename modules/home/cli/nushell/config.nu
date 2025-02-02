@@ -294,3 +294,5 @@ def --env netbird-detail [] {
     )
     return $data
 }
+
+alias y = yy
