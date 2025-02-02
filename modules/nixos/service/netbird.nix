@@ -14,7 +14,6 @@ in
   config = lib.mkIf cfg.enable {
     services.netbird = {
       enable = true;
-      tunnels.wt0 = { };
     };
 
     systemd.services.netbird-wt0-restart = {
@@ -23,7 +22,7 @@ in
 
       description = "Restart netbird after suspend";
 
-      script = "systemctl restart netbird-wt0";
+      script = "systemctl restart netbird";
 
       serviceConfig = {
         Type = "oneshot";

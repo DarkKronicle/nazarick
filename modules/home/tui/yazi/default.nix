@@ -70,7 +70,7 @@ in
 
     programs.yazi = {
       enable = true;
-      enableNushellIntegration = true;
+      enableNushellIntegration = false;
       keymap = {
         manager.prepend_keymap = [
           {
