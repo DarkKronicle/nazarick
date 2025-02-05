@@ -9,6 +9,8 @@
       wormhole-rs
       diceware
       tomb
+      openssl
+      curl
     ])
     ++ (with extra-pkgs; [ tlock ]);
 }

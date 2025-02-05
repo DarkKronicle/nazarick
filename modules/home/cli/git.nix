@@ -56,8 +56,22 @@ in
             core.sshCommand = "ssh -i ~/.ssh/id_nazarick";
           };
         }
+        # TODO:make this better
         {
           condition = myvars.personal-git.condition;
+          contents = {
+            core.sshCommand = "ssh -i ${myvars.personal-git.ssh}";
+            contents = {
+              name = myvars.personal-git.name;
+              email = myvars.personal-git.email;
+            };
+            commit = {
+              gpgSign = false;
+            };
+          };
+        }
+        {
+          condition = myvars.personal-git.condition2;
           contents = {
             core.sshCommand = "ssh -i ${myvars.personal-git.ssh}";
             contents = {

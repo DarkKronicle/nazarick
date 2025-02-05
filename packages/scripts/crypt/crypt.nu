@@ -302,11 +302,20 @@ export def "decrypt" [
 
 # Helper to quickly encrypt piped in data with tlock
 export def "time-encrypt" [
-    time: duration,         # Time to unencrypt
+    time: any,              # Time to unencrypt (either datetime or duration)
     --armor(-a)             # PEM encode
 ] {
+
+    let time = (if (($time | describe) == "date") {
+        ($time - (date now))
+    } else if (($time | describe) == "string") {
+        (($time | into datetime) - (date now))
+    } else {
+        $time
+    })
+    print $"Available ($time + (date now))"
     let inside = $in
-    let secs = $time | format duration sec | split row " " | get 0
+    let secs = $time | into duration | format duration sec | split row " " | get 0 | into int
     if $armor {
         $inside | tle -a -e -D $"($secs)s"
     } else {
@@ -404,3 +413,59 @@ export def "unseal" [
     }
 }
 
+
+export def "timestamp" [--server(-s): string = "http://timestamp.digicert.com", --discard(-d)] {
+    let input = $in
+    crypt-env {
+        let folder = mktemp -t -d "timestamp.XXXXXX"
+        cd $folder
+        let data = do {
+            $input | openssl ts -query -data /dev/stdin -sha512 -cert -out tmp.tsq
+        } | complete 
+        if ($data.exit_code != 0) {
+            error make { msg: "Could not create verification!" }
+        }
+        curl --no-progress-meter -H "Content-Type: application/timestamp-query" --data-binary '@tmp.tsq' $server | save tmp.tsr
+        let data = do {
+            openssl ts -reply -in tmp.tsr -text
+        } | complete
+        if ($data.exit_code != 0) {
+            error make { msg: "Could not print information!" }
+        }
+        print $data.stdout
+        if ($discard) {
+            let data = open tmp.tsq | collect
+            cd -
+            rm -rp $folder
+            return $data
+        }
+        print $"(char newline)Testing verification..."
+        let timestamp = $input | timestamp-verify tmp.tsr
+
+        return {timestamp: $timestamp, file: ([$folder tmp.tsr] | path join)}
+    }
+}
+
+export def "timestamp-verify" [tsr: path] {
+    let input = $in
+    crypt-env {
+        let data = do {
+            $input | openssl ts -verify -in $tsr -data /dev/stdin -CAfile /etc/ssl/certs/ca-certificates.crt
+        } | complete 
+        if ($data.exit_code != 0) {
+            error make { msg: "Could not verify!" }
+        }
+        let data = do {
+            openssl ts -reply -in $tsr -text
+        } | complete
+        if ($data.exit_code != 0) {
+            error make { msg: "Could not parse timestamp" }
+        }
+        let timestamp = $data | get stdout | 
+            split row (char newline) | 
+            where $it =~ "^Time stamp: " | 
+            split row "Time stamp: " | get 1 | into datetime
+        print "Verified"
+        return $timestamp
+    }
+}
