@@ -76,7 +76,7 @@
 - src:
     url: https://i.pinimg.com/736x/42/6d/4e/426d4e5c56be0c512416f32eaad415d5.jpg
     name: frieren_sketch.jpg
-    sha256: 120bj92xrc4fx5nmd6yrrg4ybmzk849nxh5jxgzz931ijqf6silx
+    sha256: sha256-Px9/KUNMWd4HlZV0SQWh4ggWkRGxZGiE9RhYJE27W5k=
   tags:
   - weaboo
   square: true
@@ -324,7 +324,7 @@
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/050/968/618/large/yueko-spyfamily-yor-small.jpg
     name: yor.jpg
-    sha256: 1i55c46mnr4mgql41rmn9w5338l3shkyfilmafklwwkpqb02mwmw
+    sha256: 1pbyc051q5x5nz5p5nmrwchlvhwg4h0b68r6pfa1xjmkns1ym0ql
   tags:
   - weaboo
   square: true
@@ -332,7 +332,7 @@
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/081/796/275/large/aleksandra-alekseeva-25-jinx3.jpg
     name: jinx6.jpg
-    sha256: 1f71m6swld055rfhrm77p4xvj9qjxc68cxp1iyas6rf7qfcqwbck
+    sha256: 1i9af9gn3wb0c3cbgms442yr8jl7b7ds50q2ipqq9w8r1gn7hzb0
   tags:
   - weaboo
   square: true
