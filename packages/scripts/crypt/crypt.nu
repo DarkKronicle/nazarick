@@ -48,7 +48,8 @@ export def "passphrase" [
 export def "send" [
     file?: path,             # File to send
     --code-length: int = 3,  # Length of password
-    --force-relay            # Force relay with wormhole (doesn't share your IP with peer)
+    --force-relay(-R)        # Force relay with wormhole (doesn't share your IP with peer)
+    --force-direct(-D)       # Force direct with wormhole
     --ext: string = "txt",   # Sets file extension type. File must not be declared.
 ]: any -> nothing {
     let piped = $in
@@ -68,8 +69,13 @@ export def "send" [
         print $"Sending ($file)"
         let code = passphrase $code_length
         print $"Code: ($code)"
+        if (force_relay and $force_direct) {
+            error make { msg: "Cannot force relay and direct!" }
+        }
         if $force_relay {
             wormhole-rs send $realfile --code $code --force-relay | print
+        } else if $force_direct {
+            wormhole-rs send $realfile --code $code --force-direct | print
         } else {
             wormhole-rs send $realfile --code $code | print
         }
@@ -81,7 +87,8 @@ export def "send" [
 # The output file will be in a temp directory. Returns the received file unless discard is specified.
 export def "receive" [
     code?: string,     # Wormhole code (will ask for input if not provided)
-    --force-relay,     # Force relay with wormhole (doesn't share your IP with peer)
+    --force-relay(-R), # Force relay with wormhole (doesn't share your IP with peer)
+    --force-direct(-D),# Force direct with wormhole
     --out-dir: path    # output directory for the file
     --discard(-d)      # open file and return that instead of the got file
 ]: string -> path {
@@ -107,11 +114,16 @@ export def "receive" [
                 msg: $"The out dir needs to be empty to find received files! \(($dir))"
             }
         }
-        (if $force_relay {
+        if ($force_relay and $force_direct) {
+            error make { msg: "Cannot force relay and direct!" }
+        }
+        if $force_relay {
             wormhole-rs receive $code --out-dir $dir --force-relay
+        } else if ($force_direct) {
+            wormhole-rs receive $code --out-dir $dir --force-direct
         } else {
             wormhole-rs receive $code --out-dir $dir
-        })
+        }
         let file = (ls -a $dir | get 0 | each {|x| $x.name | path expand})
         if $discard {
             let content = open -r $file
@@ -133,7 +145,8 @@ export def "receive" [
 export def "receive-encrypted" [
     --identity(-i): path@private-age-identities,               # your private key to decrypt data
     --super-paranoid-sender-pub(-s): path@pub-age-identities,  # sender's public key for super paranoid mode
-    --discard(-d)                                              # Return file contents and delete the file
+    --discard(-d),                                             # Return file contents and delete the file
+    --force-direct(-D),
 ] {
     if ($super_paranoid_sender_pub | is-not-empty) {
         if ($identity | is-not-empty) {
@@ -151,14 +164,22 @@ export def "receive-encrypted" [
 
         $pubkey | age --recipients-file $super_paranoid_sender_pub --output $encpubkey
 
-        send $encpubkey
+        let file = if ($force_direct) {
+            send $encpubkey --force-direct
+        } else {
+            send $encpubkey
+        }
         print ""
         print ""
         print $"Check that these hashes are the same: ($pubkey | hash sha256)"
         input "Hit enter when ready"
 
         let code = input "Enter code: " | str trim
-        let file = receive $code
+        let file = if ($force_direct) {
+            receive $code --force-direct
+        } else {
+            receive $code
+        }
         let decdir = mktemp -t -d decrypted.XXXXXX
         let decfile = $decdir | path join ($file | path basename | str replace "encrypted" "decrypted")
         let decrypted = age --decrypt --identity $key $file
@@ -176,14 +197,22 @@ export def "receive-encrypted" [
         let pubkey = do { age-keygen -o $key } | complete | get stderr | split row ':' | get 1 | str trim
         $pubkey | save -f ($keydir | path join "key.pub.age")
 
-        $pubkey | send
+        if ($force_direct) {
+            $pubkey | send --force-direct
+        } else {
+            $pubkey | send
+        }
         print ""
         print ""
         print $"Check that these hashes are the same: ($pubkey | hash sha256)"
         input "Hit enter when ready"
 
         let code = input "Enter code: " | str trim
-        let file = receive $code
+        let file = if ($force_direct) {
+            receive $code --force-direct
+        } else {
+            receive $code
+        }
         let decdir = mktemp -t -d decrypted.XXXXXX
         let decfile = $decdir | path join ($file | path basename | str replace "encrypted" "decrypted")
         let decrypted = age --decrypt --identity $key $file
@@ -196,7 +225,11 @@ export def "receive-encrypted" [
         return $decfile
     } else {
         let code = input "Enter code: " | str trim
-        let file = receive $code
+        let file = if ($force_direct) {
+            receive $code --force-direct
+        } else {
+            receive $code
+        }
         print $"Received ($file)"
         let decdir = mktemp -t -d decrypted.XXXXXX
         let decfile = $decdir | path join ($file | path basename | str replace "encrypted" "decrypted")
@@ -222,6 +255,7 @@ export def "send-encrypted" [
     --recipient: path@pub-age-identities,    # Public identity for the recipient
     --super-paranoid-priv-key: path@private-age-identities,         # Private identity for super paranoid mode
     --ext: string = "txt"                    # extension for file
+    --force-direct(-D)
 ]: any -> nothing {
     let tosend = if ($file | is-empty) {
         if ($in | is-empty) {
@@ -241,7 +275,11 @@ export def "send-encrypted" [
             }
         }
         let code = input "Enter code: " | str trim
-        let file = receive $code
+        let file = if ($force_direct) {
+            receive $code --force-direct
+        } else {
+            receive $code
+        }
 
         let pubkey = age --decrypt --recipient $super_paranoid_priv_key $file
 
@@ -254,11 +292,19 @@ export def "send-encrypted" [
         let encfile = (mktemp -t $"encrypted.XXXXXX.($ext)")
         $tosend | age --recipient $pubkey --output $encfile
 
-        send $encfile
+        if ($force_direct) {
+            send $encfile --force-direct
+        } else {
+            send $encfile
+        }
         rm -p $encfile
     } else if ($recipient | is-empty) {
         let code = input "Enter code: " | str trim
-        let pubkey = receive -d $code
+        let pubkey = if ($force_direct) {
+            receive -d $code --force-direct
+        } else {
+            receive -d $code
+        }
         print ""
         print ""
         print $"Check that these hashes are the same: ($pubkey | hash sha256)"
@@ -268,14 +314,22 @@ export def "send-encrypted" [
         let encfile = (mktemp -t $"encrypted.XXXXXX.($ext)")
         $tosend | age --recipient $pubkey --output $encfile
 
-        send $encfile
+        if ($force_direct) {
+            send $encfile --force-direct
+        } else {
+            send $encfile
+        }
         rm -p $encfile
     } else {
         # Simplest of the options, known identity so just encrypt and yolo
         let encfile = (mktemp -t $"encrypted.XXXXXX.($ext)")
         $tosend | age --recipients-file $recipient --output $encfile
 
-        send $encfile
+        if ($force_direct) {
+            send $encfile --force-direct
+        } else {
+            send $encfile
+        }
         rm -p $encfile
     }
 
@@ -413,6 +467,10 @@ export def "unseal" [
     }
 }
 
+
+# Referenced from
+# https://github.com/makew0rld/rfcts
+# https://github.com/ysimonx/timestamping-server-with-digicert/
 
 export def "timestamp" [--server(-s): string = "http://timestamp.digicert.com", --discard(-d)] {
     let input = $in

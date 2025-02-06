@@ -36,5 +36,6 @@
   qrencode
   imagemagick
   brightnessctl
+  minisign
 ])
 ++ [ mypkgs.tlock ]
