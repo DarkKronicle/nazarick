@@ -6,14 +6,6 @@ def crypt-env [code: closure] {
     }
 }
 
-def age-key-dir []: nothing -> path {
-    let dir = $env.CRYPT_AGE_DIR?
-    if ($dir | is-empty) {
-        return "/mnt/tomb/tombs/age"
-    }
-    return $dir
-}
-
 def tomb-dir []: nothing -> path {
     let dir = $env.CRYPT_TOMB_DIR?
     if ($dir | is-empty) {
@@ -21,14 +13,6 @@ def tomb-dir []: nothing -> path {
     } 
     # Expand to get rid of trailing /
     return ($dir | path expand)
-}
-
-def pub-age-identities [] {
-    glob $"(age-key-dir)/age-*.pub" | append (glob age-*.pub) | uniq
-}
-
-def private-age-identities [] {
-    glob $"(tomb-dir)/age-*" --exclude [ '*.*' ] | append (glob *) | uniq
 }
 
 # Generates a passphrase meant for a one-time code
@@ -69,7 +53,7 @@ export def "send" [
         print $"Sending ($file)"
         let code = passphrase $code_length
         print $"Code: ($code)"
-        if (force_relay and $force_direct) {
+        if ($force_relay and $force_direct) {
             error make { msg: "Cannot force relay and direct!" }
         }
         if $force_relay {
@@ -143,8 +127,8 @@ export def "receive" [
 #
 # Specify no identity to create keys and do an initial key exchange
 export def "receive-encrypted" [
-    --identity(-i): path@private-age-identities,               # your private key to decrypt data
-    --super-paranoid-sender-pub(-s): path@pub-age-identities,  # sender's public key for super paranoid mode
+    --identity(-i): path,               # your private key to decrypt data
+    --super-paranoid-sender-pub(-s): path,  # sender's public key for super paranoid mode
     --discard(-d),                                             # Return file contents and delete the file
     --force-direct(-D),
 ] {
@@ -252,8 +236,8 @@ export def "receive-encrypted" [
 # Specify no encrypt data with received public key from wormhole
 export def "send-encrypted" [
     file?: path,                             # File to send. Will use piped in data if not specified
-    --recipient: path@pub-age-identities,    # Public identity for the recipient
-    --super-paranoid-priv-key: path@private-age-identities,         # Private identity for super paranoid mode
+    --recipient: path,    # Public identity for the recipient
+    --super-paranoid-priv-key: path,         # Private identity for super paranoid mode
     --ext: string = "txt"                    # extension for file
     --force-direct(-D)
 ]: any -> nothing {
@@ -337,7 +321,7 @@ export def "send-encrypted" [
 
 # Helper to quickly encrypt piped in data with age
 export def "encrypt" [
-    recipient: path@pub-age-identities, # Recipient's public key
+    recipient: path, # Recipient's public key
     --armor(-a) # PEM encode
 ]: any -> any {
     if $armor {
@@ -349,7 +333,7 @@ export def "encrypt" [
 
 # Helper to quickly encrypt piped in data with age
 export def "decrypt" [
-    identity: path@private-age-identities # Your private key
+    identity: path # Your private key
 ]: any -> any {
     $in | age --decrypt --identity $identity
 }

@@ -114,7 +114,7 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    nazarick.cli.nushell.source = [ "${broot-choose-file}/share/nushell/br-choose.nu" ];
+    # nazarick.cli.nushell.source = [ "${broot-choose-file}/share/nushell/br-choose.nu" ];
 
     programs.broot = {
       enable = true;

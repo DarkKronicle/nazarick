@@ -1,6 +1,16 @@
 use @THEME@
 use @TASK@
 
+def _yazi_select [] {
+    let tmp = (mktemp -t "yazi-select.XXXXX")
+    yazi --chooser-file $tmp
+    let file = (open $tmp) | str trim
+    if $file != "" {
+        commandline edit --insert $file
+    }
+    rm -fp $tmp
+}
+
 # The default config record. This is where much of your global configuration is setup.
 $env.config = {
   # true or false to enable or disable the welcome banner at startup
@@ -205,6 +215,13 @@ $env.config = {
         keycode: "char_/"
         mode: [emacs, vi_insert, vi_normal]
         event: { send: menu name: help_menu }
+    }
+    {
+        name: yazi_select
+        modifier: control
+        keycode: char_f
+        mode: [ emacs, vi_insert ]
+        event: { send: executehostcommand cmd: _yazi_select }
     }
   ]
 }
