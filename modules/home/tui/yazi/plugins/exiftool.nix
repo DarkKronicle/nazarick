@@ -6,7 +6,7 @@
   ...
 }:
 let
-  name = "exifaudio.yazi";
+  name = "exifaudio";
 in
 {
   name = name;
@@ -23,9 +23,9 @@ in
     installPhase = ''
       runHook preInstall
 
-      mkdir -p $out/share/yazi/plugins/${name}
-      cp -a $src/* $out/share/yazi/plugins/${name}
-      sed -i -e 's,Command("exiftool"),Command("${pkgs.exiftool}/bin/exiftool"),g' $out/share/yazi/plugins/${name}/init.lua
+      mkdir -p $out/share/yazi/plugins/${name}.yazi
+      cp -a $src/* $out/share/yazi/plugins/${name}.yazi
+      sed -i -e 's,Command("exiftool"),Command("${pkgs.exiftool}/bin/exiftool"),g' $out/share/yazi/plugins/${name}.yazi/init.lua
 
       runHook postInstall
     '';

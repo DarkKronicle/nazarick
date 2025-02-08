@@ -6,7 +6,7 @@
   ...
 }:
 let
-  name = "ouch.yazi";
+  name = "ouch";
 in
 {
   name = name;
@@ -25,9 +25,9 @@ in
     installPhase = ''
       runHook preInstall
 
-      mkdir -p $out/share/yazi/plugins/${name}
-      cp -a $src/* $out/share/yazi/plugins/${name}
-      sed -i -e 's,Command("ouch"),Command("${pkgs.ouch}/bin/ouch"),g' $out/share/yazi/plugins/${name}/init.lua
+      mkdir -p $out/share/yazi/plugins/${name}.yazi
+      cp -a $src/* $out/share/yazi/plugins/${name}.yazi
+      sed -i -e 's,Command("ouch"),Command("${pkgs.ouch}/bin/ouch"),g' $out/share/yazi/plugins/${name}.yazi/init.lua
 
       runHook postInstall
     '';

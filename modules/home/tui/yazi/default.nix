@@ -37,42 +37,32 @@ in
 
   config = mkIf cfg.enable {
 
-    # TODO: Use package override to declare yazi when it's fixed
-    xdg.configFile = lib.mkMerge (
-      (lib.forEach plugins (plugin: {
-        "yazi/plugins/${plugin.name}" = {
-          enable = true;
-          recursive = true;
-          source = "${plugin.package}/share/yazi/plugins/${plugin.name}";
-        };
-      }))
-      ++ [
-        {
-          "yazi/init.lua" = {
-            enable = true;
-            # This can probably be automatically concatenated with home manager, but /shrug. Good practice for me.
-            text = lib.concatStringsSep "\n" (
-              lib.forEach (builtins.filter (plugin: builtins.hasAttr "init_lua_text" plugin) plugins) (
-                plugin: plugin.init_lua_text
-              )
-            );
-          };
-        }
-        {
-          "yazi/flavors/catppuccin-mocha.yazi" = {
-            enable = true;
-            source = "${flavors}/catppuccin-mocha.yazi";
-            recursive = true;
-          };
-        }
-      ]
-    );
-
     programs.yazi = {
       enable = true;
       enableNushellIntegration = false;
+      flavors = {
+        "catppuccin-mocha" = "${flavors}/catppuccin-mocha.yazi";
+      };
+
+      initLua = lib.concatStringsSep "\n" (
+        lib.forEach (builtins.filter (plugin: builtins.hasAttr "init_lua_text" plugin) plugins) (
+          plugin: plugin.init_lua_text
+        )
+      );
+
+      plugins = lib.mkMerge (
+        lib.forEach plugins (plugin: {
+          "${plugin.name}" = "${plugin.package}/share/yazi/plugins/${plugin.name}.yazi";
+        })
+      );
+
       keymap = {
         manager.prepend_keymap = [
+          {
+            on = "!";
+            run = ''shell "$SHELL" --block'';
+            desc = "Open shell here";
+          }
           {
             on = [
               "<Space>"

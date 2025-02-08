@@ -6,7 +6,7 @@
   ...
 }:
 let
-  name = "hexyl.yazi";
+  name = "hexyl";
 in
 {
   name = name;
@@ -24,9 +24,10 @@ in
     installPhase = ''
       runHook preInstall
 
-      mkdir -p $out/share/yazi/plugins/${name}
-      cp -a $src/* $out/share/yazi/plugins/${name}
-      sed -i -e 's,Command("hexyl"),Command("${pkgs.hexyl}/bin/hexyl"),g' $out/share/yazi/plugins/${name}/init.lua
+      mkdir -p $out/share/yazi/plugins/${name}.yazi
+      cp -a $src/* $out/share/yazi/plugins/${name}.yazi
+      sed -i -e 's,Command("hexyl"),Command("${pkgs.hexyl}/bin/hexyl"),g' $out/share/yazi/plugins/${name}.yazi/init.lua
+      sed -i -e 's,self.file.cha.len,job.file.cha.len,g' $out/share/yazi/plugins/${name}.yazi/init.lua
 
       runHook postInstall
     '';
