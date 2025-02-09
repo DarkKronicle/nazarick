@@ -44,7 +44,7 @@ let
           chmod 0755 $"($env.out)/bin/${command}"
           ${lib.optionalString (opts.desktop != null) ''
             substitute ${opts.desktop} $"($env.out)/share/applications/(basename ${opts.desktop})" \
-              --replace ${opts.executable} $"(env.out)/bin/${command}"
+              --replace-warn ${opts.executable} $"(env.out)/bin/${command}"
           ''}
         ''
       ) cfg.wrappedBinaries

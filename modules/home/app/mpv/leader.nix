@@ -16,7 +16,7 @@ pkgs.mpvScripts.buildLua {
   '';
 
   postPatch = ''
-    substituteInPlace leader.lua --replace 'leader-here-please' '${leaderModule}'
+    substituteInPlace leader.lua --replace-fail 'leader-here-please' '${leaderModule}'
   '';
 
   meta = {

@@ -36,10 +36,10 @@ let
       modifiedSource = pkgs.substitute {
         src = script.source;
         substitutions = [
-          "--replace"
+          "--replace-quiet"
           "@NIX_PATH_PREPEND@"
           prepend
-        ];
+        ] ++ (script.substitutions or [ ]);
       };
 
     in

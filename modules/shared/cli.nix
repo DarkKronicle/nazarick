@@ -37,5 +37,6 @@
   imagemagick
   brightnessctl
   minisign
+  resvg
 ])
 ++ [ mypkgs.tlock ]

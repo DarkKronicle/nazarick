@@ -4,6 +4,8 @@
   lib,
   mypkgs,
   pkgs-unstable,
+  inputs,
+  system,
   ...
 }:
 let
@@ -52,6 +54,11 @@ let
       "--replace-fail"
       "@KITTY_PROTOCOL@"
       "${if cfg.useKittyProtocol then "true" else "false"}"
+      "--replace-fail"
+      "@NIX_SMALL_DB@"
+      (pkgs.linkFarm "nix-index-small-database" {
+        files = inputs.nix-index-database.packages.${system}.nix-index-small-database;
+      })
     ];
   };
 

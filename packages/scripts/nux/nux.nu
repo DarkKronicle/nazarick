@@ -17,9 +17,13 @@ export def "locate" [
     --no-group(-g), # print all matches, even if there is overlap
     --at-root(-R), # treat path as at root, so no sub directories
     --top-level(-T), # only show paths that show up in `nix-env -qa`
+    --small(-S), # use small database
 ] {
     nux-env {
+        mut args = []
+        mut small = $small;
         mut path = if ($bin and not ($path | str contains '/')) {
+            $small = true;
             $"/bin/($path)"
         } else {
             $path
@@ -29,7 +33,6 @@ export def "locate" [
         } else {
             $type
         }
-        mut args = []
         if ($type | is-not-empty) {
             $args = ($args | append ($type | each {|t| ["--type" $t]} | flatten))
         }
@@ -44,6 +47,10 @@ export def "locate" [
         }
         if ($bin or $top_level) {
             $args = ($args | append "--top-level")
+        }
+        if ($small) {
+            $args = ($args | append ["--db" "@NIX_SMALL_DB@"])
+
         }
         ^nix-locate ...$args $path 
             | detect columns --no-headers
