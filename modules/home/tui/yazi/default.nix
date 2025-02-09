@@ -28,6 +28,7 @@ let
     ./plugins/ouch.nix
     ./plugins/exiftool.nix
     ./plugins/broot.nix
+    ./plugins/bookmarks.nix
   ] readPlugin;
 in
 {
@@ -90,6 +91,33 @@ in
             on = [ "b" ];
             run = [ "plugin broot" ];
             desc = "Broot fuzzy find";
+          }
+          {
+            on = [ "m" ];
+            run = "plugin bookmarks --args=save";
+            desc = "Save current position as a bookmark";
+          }
+          {
+            on = [ "'" ];
+            run = "plugin bookmarks --args=jump";
+            desc = "Jump to a bookmark";
+          }
+          {
+            on = [
+              "B"
+              "d"
+            ];
+            run = "plugin bookmarks --args=delete";
+            desc = "Delete a bookmark";
+
+          }
+          {
+            on = [
+              "B"
+              "D"
+            ];
+            run = "plugin bookmarks --args=delete_all";
+            desc = "Delete all bookmarks";
           }
         ];
       };

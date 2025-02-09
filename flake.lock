@@ -993,17 +993,18 @@
         "plugins-neorg-extras": "plugins-neorg-extras",
         "plugins-neorg-interim-ls": "plugins-neorg-interim-ls",
         "plugins-neotest-dotnet": "plugins-neotest-dotnet",
+        "plugins-nvim-fundo": "plugins-nvim-fundo",
         "plugins-scrollEOF-nvim": "plugins-scrollEOF-nvim",
         "plugins-tiny-code-action-nvim": "plugins-tiny-code-action-nvim",
         "plugins-undotree": "plugins-undotree",
         "plugins-yazi-nvim": "plugins-yazi-nvim"
       },
       "locked": {
-        "lastModified": 1737490478,
-        "narHash": "sha256-Kyj3xEe0nqvBy/kU9vklGeDbVOtv3c8lqv3JB3YK4cs=",
+        "lastModified": 1739049534,
+        "narHash": "sha256-VQeV/syYNnNB69WT68mF0Lo7SwsJei4y2uDZwtJPMlw=",
         "owner": "DarkKronicle",
         "repo": "nvim-dotfiles",
-        "rev": "a1cda1367f336659292976c72d2bf21321a6dcd7",
+        "rev": "d51d8fe6fb72ab3d469545ec66d6d05642cca4ef",
         "type": "github"
       },
       "original": {
@@ -1201,6 +1202,22 @@
       "original": {
         "owner": "DarkKronicle",
         "repo": "neotest-dotnet",
+        "type": "github"
+      }
+    },
+    "plugins-nvim-fundo": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1715880105,
+        "narHash": "sha256-+YOLS6YqxAp5hBCzLrqUJ1aM/KTnWsmAhw6zRpK3HWk=",
+        "owner": "kevinhwang91",
+        "repo": "nvim-fundo",
+        "rev": "ac9c9372c4bf677721e24f144ef29d3a05c2b589",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kevinhwang91",
+        "repo": "nvim-fundo",
         "type": "github"
       }
     },

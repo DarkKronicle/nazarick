@@ -322,4 +322,14 @@ def --env yy [...args] {
   rm -fp $tmp
 }
 
+# String expand helper for conveience
+def "se" [input?: string] {
+    let input = if ($input | is-empty) {
+        $in
+    } else {
+        $input
+    }
+    $input | str expand
+}
+
 alias y = yy

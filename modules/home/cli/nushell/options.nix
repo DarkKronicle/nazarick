@@ -61,6 +61,9 @@ let
     # "${mypkgs.nushell_plugin_regex}/bin/nu_plugin_regex"
     "${pkgs-unstable.nushellPlugins.skim}/bin/nu_plugin_skim"
     # "${pkgs-unstable.nushellPlugins.dbus}/bin/nu_plugin_dbus"
+    "${mypkgs.nushell_plugin_hashes}/bin/nu_plugin_hashes"
+    "${mypkgs.nushell_plugin_json_path}/bin/nu_plugin_json_path"
+    "${mypkgs.nushell_plugin_plotters}/bin/nu_plugin_plotters"
     "${pkgs-unstable.nushellPlugins.polars}/bin/nu_plugin_polars"
   ];
 in

@@ -128,7 +128,10 @@ export def "quick-compress" [--in-type: string = "png", --quality(-q) = 85] {
     }
 }
 
-export def --wrapped "yt-down" [url: string, --audio-only(-x), --video-size: int = 1080, --archive(-a): path, --keep-annoyances(-k), ...rest] {
+export def --wrapped "yt-down" [url: string, --help(-h), --audio-only(-x), --video-size: int = 1080, --archive(-a): path, --keep-annoyances(-k), ...rest] {
+    if ($help) {
+        return (help yt-down);
+    }
     mut extra = []
     if ($archive | is-not-empty) {
         $extra = ($extra | append [ "--download-archive" $archive ])
@@ -171,5 +174,5 @@ export def --wrapped "yt-down" [url: string, --audio-only(-x), --video-size: int
             | tee { print }
         )
     }
-    return $name
+    return ($name | split row (ansi erase_line) | last | str trim)
 }

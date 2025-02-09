@@ -161,6 +161,7 @@ in
         ".local/share/Trash"
         ".local/share/zoxide"
         ".local/share/direnv"
+        ".local/state/yazi"
 
         ".local/share/flatpak"
         ".var"
