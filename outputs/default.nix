@@ -111,4 +111,13 @@ in
   );
 
   packages = forAllSystems (system: (allSystems.${system}.packages or { }));
+
+  formatter = forAllSystems (
+    system:
+    let
+      pkgs = nixpkgs.legacyPackages.${system};
+      treefmtEval = inputs.treefmt-nix.lib.evalModule pkgs ./treefmt.nix;
+    in
+    treefmtEval.config.build.wrapper
+  );
 }

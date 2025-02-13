@@ -15,13 +15,9 @@ def do_safely [code: closure] {
     }
 }
 
-def format [] {
-    nixfmt flake.nix outputs/ hosts/ lib/ modules/ overlays/ packages/ systems/ secrets/
-}
-
 def "main commit" [message: string, --noversion] {
     do_safely {
-        format
+        nix fmt
         git add .
         if (not $noversion)  {
             # Set pager here to less so that there is no confusion
@@ -37,7 +33,7 @@ def "main commit" [message: string, --noversion] {
 def "main build" [--update, --pull, --flake: string = ".", --plain, --hostname: string, --specialisation: string] {
     do_safely {
         git pull
-        format
+        nix fmt
         git add .
         mut flags = [
           "os"

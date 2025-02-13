@@ -2,35 +2,35 @@
 # wl-paste | from yaml | each {|x| mut y = $x; $y.src.sha256 = (nix-prefetch-url $x.src.url --name $x.src.name | str trim); $y } | to yaml | wl-copy
 # Just make sure to cpoy starting at source
 # - src:
-    # url: https://static.zerochan.net/Albedo.%28Overlord%29.full.3362466.png
-    # name: albedo_chibi.png
-    # sha256: 11ipqd3d327rjgzcc2i5pvlm72kyrbm9rsbsx9jik8m1h41gagjn
-  # tags:
-  # - weaboo
-  # square: true
-  # resolution: 200x200
+# url: https://static.zerochan.net/Albedo.%28Overlord%29.full.3362466.png
+# name: albedo_chibi.png
+# sha256: 11ipqd3d327rjgzcc2i5pvlm72kyrbm9rsbsx9jik8m1h41gagjn
+# tags:
+# - weaboo
+# square: true
+# resolution: 200x200
 # - src:
-    # url: https://s1.zerochan.net/Shalltear.Bloodfallen.600.2670092.jpg
-    # name: shalltear_red.jpg
-    # sha256: 0ll86cacd2awgmmvsl6vd1dcf9pdxwqkjvg5snjppmxhsldgh145
-  # tags:
-  # - weaboo
-  # square: true
-  # resolution: 200x200
+# url: https://s1.zerochan.net/Shalltear.Bloodfallen.600.2670092.jpg
+# name: shalltear_red.jpg
+# sha256: 0ll86cacd2awgmmvsl6vd1dcf9pdxwqkjvg5snjppmxhsldgh145
+# tags:
+# - weaboo
+# square: true
+# resolution: 200x200
 # - src:
-    # url: https://s1.zerochan.net/Shalltear.Bloodfallen.600.2670092.jpg
-    # name: shalltear_red.jpg
-    # sha256: 0ll86cacd2awgmmvsl6vd1dcf9pdxwqkjvg5snjppmxhsldgh145
-  # tags:
-  # - weaboo
-  # square: true
-  # resolution: 200x200
+# url: https://s1.zerochan.net/Shalltear.Bloodfallen.600.2670092.jpg
+# name: shalltear_red.jpg
+# sha256: 0ll86cacd2awgmmvsl6vd1dcf9pdxwqkjvg5snjppmxhsldgh145
+# tags:
+# - weaboo
+# square: true
+# resolution: 200x200
 - src:
     url: https://i.redd.it/30zzwgt7zro81.png
     name: albedo_tea.png
     sha256: 0lx062wnwvxk8iw8nnwp8994clx71ddfb6gjbycyhqxv6brbkw3f
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -38,7 +38,7 @@
     name: book_shalltear.png
     sha256: 14jpii0k285ma4hk97brblly3c0586r6fjymnij5lmgddr7nfvr2
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -46,7 +46,7 @@
     name: shalltear_dress.png
     sha256: 1d478d6dxzhfwsgcj6wfkw8scjfag6g82ribprcnvd9r645arbp7
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -54,7 +54,7 @@
     name: lupusreginabeta.png
     sha256: 1hyf568v3jdsl7abrkj38jmvja65jfkmxj8wmcr237ky2aqc87j2
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -62,7 +62,7 @@
     name: evileye.png
     sha256: 0w2y2jzqrizy5m9bndbbbgbcgxkgjdlx919hc3231acfdb0ik11q
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -70,7 +70,7 @@
     name: albedo_closeup.jpg
     sha256: 1ijqzmkc1lvr5i1fh3nzmhb5km38ynsq1pk8y1b7swxnrim5982d
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -78,7 +78,7 @@
     name: frieren_sketch.jpg
     sha256: sha256-Px9/KUNMWd4HlZV0SQWh4ggWkRGxZGiE9RhYJE27W5k=
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -86,7 +86,7 @@
     name: shalltear_eyes.jpg
     sha256: 17nv8jk9x3bim4dlasc4r1xlg43h9zw8wz6ddbwpkc52xbm6043p
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -94,7 +94,7 @@
     name: shalltear_flowers.jpg
     sha256: 0l44378gkl7rpjwqy1axcs1zf5dig5hav24ibb9m6ibdhy5a5nij
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -138,7 +138,7 @@
     name: bocchi_powers.jpg
     sha256: 0wfmzp4lczymy3fpx06695v4pfa3bppaagbwrprwlwddbg5y8l3q
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -146,7 +146,7 @@
     name: emilia_cry_1.png
     sha256: 1lib5xk71dp51zly4911zcq03h604g1cvfy90blkzql5cnhm8c3x
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -154,7 +154,7 @@
     name: emilia_crazy.jpg
     sha256: 0awa98ih12628gs7lcd212s2w0dwpkil2jib065fxlhwpprxi0fd
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -168,7 +168,7 @@
     name: sotella.jpg
     sha256: 1xfbyqm56gdc0mjylgr9zp3bzy1dj0rxd6lxa8yi780n1k9x6ljk
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -176,7 +176,7 @@
     name: ram.png
     sha256: 1hdd4iq8g69hc30w5cbsmy28bq13y33xb5y5a5632kqfqpv6n4fw
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -184,7 +184,7 @@
     name: echidna.jpg
     sha256: 15s88ng61ql8xa2kbmrxkk9s1gfaww7kmnlyvi4461n9cg2ffmlx
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -192,7 +192,7 @@
     name: emilia_peace.png
     sha256: 1n9h1pjq1mdfi55ak5i0n65fx5mzriw4cyy682cjzjrgb68ga7s2
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -200,7 +200,7 @@
     name: emilia_smol.jpg
     sha256: 0q8sgd44pl4b91lqyyk7hga3961fg78969ki828715z9yal6qkyn
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -208,7 +208,7 @@
     name: emilia_cry_2.png
     sha256: 03hwyangzjvcnxhllkw457qpgb4pbgz2gz0sawb5n1p1kzy90pn8
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -216,7 +216,7 @@
     name: subaru_emilia.png
     sha256: 1zbiqh8qy88zbirnmj00mvi5wk2bxvxz86y2sa8snqhr8hfs5pbq
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -224,7 +224,7 @@
     name: lucy.png
     sha256: 09p2ljhkr9anva8g9yz4nhfzhqfmf87mdf2bbf8rj4ja8hvvhlsm
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -232,7 +232,7 @@
     name: power1.png
     sha256: 041qar91fpq01v610xffkadnr674rd410dsggjnppwm01f0ixkqs
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -240,7 +240,7 @@
     name: power2.png
     sha256: 0vx0fmd387fvhnk9ry1z4gazlwb9k368s80p116limhzcszj51f9
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -248,7 +248,7 @@
     name: jinx1.jpg
     sha256: 15c7igkjhbk4pfz6q4x66wgmii1k70v5qysw9bn6f0dcv0v4i0dd
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -256,7 +256,7 @@
     name: jinx2.png
     sha256: 12gpdp9aq7qi2kr77m5hg6m5vz14sfcs2kvqk1i4brax4k5l18sg
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -270,7 +270,7 @@
     name: power6.png
     sha256: 0vx0fmd387fvhnk9ry1z4gazlwb9k368s80p116limhzcszj51f9
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -278,7 +278,7 @@
     name: subaru_emilia2.png
     sha256: 0w7nzd7ac0c6iyg9kz5wagp85g003hsak6n0b6giz5dw73hdghhs
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -286,7 +286,7 @@
     name: subaru_emilia3.png
     sha256: 02fzr7vchdmbs827hsg4xhy4laajfqcqkashz7pp726ma8nn23b0
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -294,7 +294,7 @@
     name: dandadan.jpg
     sha256: 1s6c22cy4dja78sfw0p1grq9mdifnkprz1s1l0sznzc9kjqzhas9
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -302,7 +302,7 @@
     name: okarun.png
     sha256: 0kwbvk091yi2jvq7ajbn01kjy6wsgvd1abrbigrrb7czhnlpjkh5
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -310,7 +310,7 @@
     name: power3.png
     sha256: 1q4iyn4i864bnc62q64v7xj998lgnh56fzfkqw5s2w3pnrcpmdkc
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -318,7 +318,7 @@
     name: jinx4.png
     sha256: 0vx7p1jkb23can5f75g9929mh6h3wakhmqvpyx8l4s94zsbbimxr
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -326,7 +326,7 @@
     name: yor.jpg
     sha256: 1pbyc051q5x5nz5p5nmrwchlvhwg4h0b68r6pfa1xjmkns1ym0ql
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -334,7 +334,7 @@
     name: jinx6.jpg
     sha256: 1i9af9gn3wb0c3cbgms442yr8jl7b7ds50q2ipqq9w8r1gn7hzb0
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -342,7 +342,7 @@
     name: meimei.jpg
     sha256: 0klr1nqw0p9yn7wllv0b199cba86qwa3ql74lq7qxibhgdzbxlky
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -350,7 +350,7 @@
     name: cyberpunk_but_im_crying_so_hard.jpg
     sha256: 12i06x23dyzawb2ifwh7jrkc9j2lb84gyx69jhx7qvfvd39anfxk
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -358,7 +358,7 @@
     name: falin.jpg
     sha256: 0jlphisa0hpl9znck2pccb95yf4ncrpvvjii369jvmfh02vdvjmj
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -366,7 +366,7 @@
     name: vi.jpg
     sha256: 1fyvsnipb7hciyyhd58l7czawdxhlwi76nrqmrhl604i4fqynzg9
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200
 - src:
@@ -374,6 +374,6 @@
     name: vi2.jpg
     sha256: 1gvnbvffjv705xi3b0pimg8zbfbddnyh3wckh4x22kcm45mzm2kf
   tags:
-  - weaboo
+    - weaboo
   square: true
   resolution: 200x200

@@ -9,26 +9,33 @@
   ...
 }:
 let
-  enabled = { enable = lib.mkDefault true; };
+  enabled = {
+    enable = lib.mkDefault true;
+  };
 
   systemType = myvars.system.type; # laptop, desktop, server
   isType = list: builtins.elem systemType list;
-  personalComputer = [ "laptop" "desktop" ];
+  personalComputer = [
+    "laptop"
+    "desktop"
+  ];
   isPersonalComputer = isType personalComputer;
-  enablePersonalComputer = { enable = lib.mkDefault isPersonalComputer; };
+  enablePersonalComputer = {
+    enable = lib.mkDefault isPersonalComputer;
+  };
 in
 {
   programs.ssh = {
     enable = true;
     # matchBlocks = {
-      # "gitlab.com" = {
-      # host = "gitlab.com";
-      # hostname = "gitlab.com";
-      # identityFile = [ "/home/darkkronicle/.ssh/id_nazarick" ];
-      # extraOptions = {
-      # PreferredAuthentications = "publickey";
-      # };
-      # };
+    # "gitlab.com" = {
+    # host = "gitlab.com";
+    # hostname = "gitlab.com";
+    # identityFile = [ "/home/darkkronicle/.ssh/id_nazarick" ];
+    # extraOptions = {
+    # PreferredAuthentications = "publickey";
+    # };
+    # };
     # };
   };
 

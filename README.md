@@ -15,12 +15,13 @@ and moved to a fully defined structure following closely [ryan4yin](https://gith
 gives me very fine grained control over my all my systems and variables, and I was able to learn a lot just setting it up. As I add more
 systems, I can put them on specific tracks and configurations.
 
-I can highly recommend snowfall lib as you are starting out (or even if you just want to simplify). I mainly moved away so my 
+I can highly recommend snowfall lib as you are starting out (or even if you just want to simplify). I mainly moved away so my
 configuration didn't feel as much as a black box, and I wanted fine grained control.
 
 Nix has infected my brain and I've gone a bit insane at declaratively specifying configurations.
 
 This config features most notably:
+
 - mpv - plugins, keybinds, shaders, etc.
 - Neovim config with lua [here](https://github.com/DarkKronicle/nvim-dotfiles)
 - nushell - custom completions and scripts
@@ -31,7 +32,8 @@ so maybe give that a check. It also has my basic install instructions.
 
 ## Credits and Inspiration
 
-I have looked at a *ton* of Nix configs for inspiration and implementations. Here they are (in no particular order):
+I have looked at a _ton_ of Nix configs for inspiration and implementations. Here they are (in no particular order):
+
 - [Jake Hamilton](https://github.com/jakehamilton/config) - Original snowfall repo I based mine off. Creator of snowfall.
 - [khaneliman](https://github.com/khaneliman/khanelinix) - The second snowfall repo I found. Cool stuff.
 - [LuisChDev](https://github.com/nix-community/nur-combined/blob/2c0f9f6f2b853efec50eb90218748c3da55e8df0/repos/LuisChDev/pkgs/nordvpn/default.nix#L88) - Original NordVPN package. Outdated at time of writing.

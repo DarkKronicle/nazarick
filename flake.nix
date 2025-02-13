@@ -22,6 +22,8 @@
       inputs.nixpkgs.follows = "nixpkgs-stable";
     };
 
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+
     # --------------------
     # System functionality and utilities
     # --------------------

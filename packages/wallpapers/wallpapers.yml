@@ -5,508 +5,508 @@
     sha256: 0bd4hckl9pd8qfkihwqb7ncghyadfqxgqqyqk0diha9gw338nhim
     name: XcHdkF2O5kiY4ODdLs5Zyzc5b.jpg
   tags:
-  - landscape
-  - ghibli
-  - spirited_away
-  - cool
+    - landscape
+    - ghibli
+    - spirited_away
+    - cool
 - src:
     url: https://picfiles.alphacoders.com/385/385726.jpg
     sha256: 0p4h1blkfjxmddkvx6qx32sq4vamvcpdrq983pxda9qyw79lrhq8
     name: fWz9kOCagyfIcYKIcUCCoRfmC.jpg
   tags:
-  - landscape
-  - ghibli
-  - spirited_away
-  - gray
-  - warm
+    - landscape
+    - ghibli
+    - spirited_away
+    - gray
+    - warm
 - src:
     url: https://artfiles.alphacoders.com/115/115215.jpg
     sha256: 1slpxm6rssrf85chf40cq1jzjav7xif20kg2w5phy95lsh2w1w8i
     name: 9Wn7inkIGXUvVVl2NP79RwRLM.jpg
   themes:
-  - mocha
+    - mocha
   tags:
-  - overlord
-  - closeup
-  - momonga
-  - simple
-  - black
-  - warm
+    - overlord
+    - closeup
+    - momonga
+    - simple
+    - black
+    - warm
 - src:
     url: https://picfiles.alphacoders.com/328/328916.png
     sha256: 0y6bg14ncw39329i4vmhch6ssxbfv8yqmla3gjyib09svszcqlcw
     name: 0qboq6mf2G1iAWoGnhw82jE5i.png
   tags:
-  - overlord
-  - albedo
-  - closeup
-  - weaboo
-  - grayscale
-  - warm
+    - overlord
+    - albedo
+    - closeup
+    - weaboo
+    - grayscale
+    - warm
 - src:
     url: https://images6.alphacoders.com/745/745182.png
     sha256: 0dcwwl9v1y61hpbcs56v5mm56qbx7rjgar6md9c2b94qai0s3wdz
     name: qDOk65egJesSB47JELk3jzEuE.png
   tags:
-  - killlakill
-  - ryuko
-  - white
-  - warm
-  - weaboo
+    - killlakill
+    - ryuko
+    - white
+    - warm
+    - weaboo
 - src:
     url: https://images8.alphacoders.com/562/562172.jpg
     sha256: 1xqrj33yxjnpcw4421jh7v184vw5i9606ijgykpslgz4ncw2z4fy
     name: su63AfDRNu6kNO9U4wUiHlrHO.jpg
   themes:
-  - none
-  - mocha
+    - none
+    - mocha
   tags:
-  - kill_la_kill
-  - landscape
-  - cool_art
-  - grayscale
-  - warm
+    - kill_la_kill
+    - landscape
+    - cool_art
+    - grayscale
+    - warm
 - src:
     url: https://images8.alphacoders.com/690/690636.jpg
     sha256: 13ddkqrkbqcsmqchcdjradm5qzslhpz9sh4rczbqjs7wcnqsc1zc
     name: cuQ1FTWUMryGUIR7FldmtNazo.jpg
   tags:
-  - landscape
-  - castle_in_the_sky
-  - cool
+    - landscape
+    - castle_in_the_sky
+    - cool
 - src:
     url: https://images4.alphacoders.com/690/690654.jpg
     sha256: 12asazag4hawvkw3v2ijbff4fj1c7wvcaha1xid6zafg0bxlml37
     name: lOcvhsVXjsMtX8BnYMnNGqo6b.jpg
   themes:
-  - mocha
+    - mocha
   tags:
-  - sky
-  - clouds
-  - castle_in_the_sky
-  - cool
+    - sky
+    - clouds
+    - castle_in_the_sky
+    - cool
 - src:
     url: https://images6.alphacoders.com/690/690652.jpg
     sha256: 0k4rxxs5kjik09jbhn9jinf55bbj413klrpr9fq4058pf3xgaqac
     name: iGUkcBbk7iSugADHloaHeTn00.jpg
   tags:
-  - sky
-  - clouds
-  - castle_in_the_sky
-  - cool
+    - sky
+    - clouds
+    - castle_in_the_sky
+    - cool
 - src:
     url: https://images8.alphacoders.com/690/690630.jpg
     sha256: 0990vyqrid2qjf47i26chsqhq7nqbb8v7l7i1kdfjzai1zqkk0id
     name: i3pVrQV6MynJgsYvQIbBZ58yo.jpg
   tags:
-  - landscape
-  - castle_in_the_sky
-  - cool
+    - landscape
+    - castle_in_the_sky
+    - cool
 - src:
     url: https://images5.alphacoders.com/736/736075.png
     sha256: 0h2lyx9xn8x7dj4bglgqlabkp8dvly1wgixhjq3id07vrid442y8
     name: bkKeXX0pPM6AJOE2d2d9Od8U9.png
   tags:
-  - rezero
-  - amelia
-  - landscape
-  - cool
-  - weaboo
+    - rezero
+    - amelia
+    - landscape
+    - cool
+    - weaboo
 - src:
     url: https://picfiles.alphacoders.com/535/535254.jpg
     sha256: 0p3ljj8jmahd3gq3nd2i1awxbjg00g3r4dvgm68m4l5fqr6k65vl
     name: ZMBAxCw78VyauSrTLqSK9MmRC.jpg
   tags:
-  - your_name
-  - city
-  - cool
+    - your_name
+    - city
+    - cool
 - src:
     url: https://images3.alphacoders.com/100/1006667.jpg
     sha256: 03sif6nn3l98669k8a9gxl39qc3m4h21jdi5c3fsmlwsxwzxdbzg
     name: MPTFNlmJv58IlBgGIQl9oGzFC.jpg
   tags:
-  - your_name
-  - city
-  - night
-  - cool
+    - your_name
+    - city
+    - night
+    - cool
 - src:
     url: https://images5.alphacoders.com/131/1311994.jpeg
     sha256: 0fpds17fad6myssfziqnnpbn55hm9n282csr1xbx4hx1ywigcrz0
     name: suxjvNiq1yIVHVhrIZgHkLCVE.jpeg
   tags:
-  - suzume
-  - cool
-  - water
+    - suzume
+    - cool
+    - water
 - src:
     url: https://images6.alphacoders.com/135/1358304.png
     sha256: 1ll05h3c00sb23yd37pnb0c14zrcqmzx2k5945n0bqa3zh97j320
     name: l34BKjumOKYD8kLirfqRVjZp5.png
   tags:
-  - suzume
-  - coolart
-  - cool
+    - suzume
+    - coolart
+    - cool
 - src:
     url: https://images5.alphacoders.com/131/1311993.jpeg
     sha256: 1gnh3x2zgv1gbpj9q5xad0z9799njhbp2iw58bb61cpb9vkvz48l
     name: 7elYOmFBslh80GfpPIaC0ejGs.jpeg
   tags:
-  - suzume
-  - water
-  - cool
-  - weaboo
+    - suzume
+    - water
+    - cool
+    - weaboo
 - src:
     url: https://images2.alphacoders.com/131/1319731.jpeg
     sha256: 0bs7nhycv8l5n42caz65j7i56r58k56q64iy24vajq13j0cdmhy1
     name: LewGV64dWfpK8ggLXsn07SdQs.jpeg
   tags:
-  - man
-  - sota
-  - cool_art
-  - suzume
-  - weaboo
+    - man
+    - sota
+    - cool_art
+    - suzume
+    - weaboo
 - src:
     url: https://images7.alphacoders.com/130/1309514.jpg
     sha256: 11k5xw5n40as44kgwkcyki7aq659yc36amv6nrq5ykg2crzvsah2
     name: 7wO8RGxvMJojNG7ePJIr4A4bl.jpg
   tags:
-  - cool_art
-  - suzume
-  - weaboo
+    - cool_art
+    - suzume
+    - weaboo
 - src:
     url: https://images7.alphacoders.com/973/973910.jpg
     sha256: 0jy34v7105bkhjhhblnl01zygs3c5i4fj6paf6kslbq4rfxi4vvg
     name: nYamiaLbarD9xtcIpiK4fISY0.jpg
   tags:
-  - princess_mononoke
-  - night
-  - dark
-  - cool
+    - princess_mononoke
+    - night
+    - dark
+    - cool
 - src:
     url: https://images8.alphacoders.com/903/903191.png
     sha256: 13a9fa0pim108wagf4rw2ayj5jnpahjijklh79vi7q9w6izbrdhw
     name: 8fm1BSSboHTIanBB97aQOYy5C.png
   tags:
-  - darling_in_the_franxx
-  - zeronine
-  - night
-  - cool
-  - weaboo
+    - darling_in_the_franxx
+    - zeronine
+    - night
+    - cool
+    - weaboo
 - src:
     url: https://images6.alphacoders.com/131/1313754.png
     sha256: 0xr5xwhhlhly94m3bm4q2hn0xq0z3cjcs8fs9mwqckkbs2mnkb9c
     name: LmEsdYmikqNE9LuiY2fvJVWf2.png
   tags:
-  - darling_in_the_franxx
-  - zeronine
-  - cool
-  - weaboo
+    - darling_in_the_franxx
+    - zeronine
+    - cool
+    - weaboo
 - src:
     url: https://images7.alphacoders.com/101/1012056.jpg
     sha256: 0w73lh1vwm0yrdik2kmkzdirjwlnv6vvwx6005ac5lxwijhr8nr9
     name: eW7V2eAACjxOi8WqpkgLJt67K.jpg
   tags:
-  - slime
-  - warm
-  - cool_art
-  - weaboo
+    - slime
+    - warm
+    - cool_art
+    - weaboo
 - src:
     url: https://images7.alphacoders.com/100/1001390.png
     sha256: 16v6bg00m9kwkpx1m4b4zv344hskkprfbkga9vy3a4za8hz3pq9v
     name: dIgH61oNdfod39KmkGHvXjLpv.png
   tags:
-  - slime
-  - rimuru
-  - simple
-  - cool
-  - weaboo
+    - slime
+    - rimuru
+    - simple
+    - cool
+    - weaboo
 - src:
     url: https://images8.alphacoders.com/114/1143202.jpg
     sha256: 0cyrb2wad4331z15jll5v6nm18jxxmqnf0rpv1ngx9z913wwlll9
     name: uv5bFiakTjPhXjSSlnuVWT8Id.jpg
   tags:
-  - slime
-  - rimuru
-  - simple
-  - cool
-  - cool_art
-  - weaboo
+    - slime
+    - rimuru
+    - simple
+    - cool
+    - cool_art
+    - weaboo
 - src:
     url: https://images.alphacoders.com/135/1350221.jpeg
     sha256: 14dkylfl700dp3y3fz9b3q8xbp2ypfnms30jsh6sg9hk8vr4j6i6
     name: cS5CWGLFGzyFtFcXclE8wCjbJ.jpeg
   tags:
-  - frieren
-  - cool
-  - cool_art
-  - weaboo
+    - frieren
+    - cool
+    - cool_art
+    - weaboo
 - src:
     url: https://images.alphacoders.com/133/1338277.png
     sha256: 1s5sg786wimbky29izjlrhpxvnkyr65zcj0qjhklplwq2ksx0fdg
     name: 1auEd4OkLaanpKAfdJGZjzV2z.png
   tags:
-  - frieren
-  - night
-  - cool
-  - weaboo
+    - frieren
+    - night
+    - cool
+    - weaboo
 - src:
     url: https://images6.alphacoders.com/104/1042578.png
     sha256: 0g7qm0508l9vdxgl0h9pf6sqyn3nb780az5hcf1znxfpfcx6n6lx
     name: tYTY1nIfitsLSgLfdM2GdC2eY.png
   themes:
-  - mocha
+    - mocha
   tags:
-  - demon_slayer
-  - shinobu
-  - weaboo
-  - night
-  - cool
+    - demon_slayer
+    - shinobu
+    - weaboo
+    - night
+    - cool
 - src:
     url: https://images.alphacoders.com/131/1319583.png
     sha256: 1pyry9jrf84n46s7x46airj6b9fgk1k689p4xzba6yvw5bz8cmni
     name: FCzsCUd7VvRIZYxZdBOM4EOvb.png
   themes:
-  - mocha
+    - mocha
   tags:
-  - demon_slayer
-  - black
-  - cool
-  - simple
+    - demon_slayer
+    - black
+    - cool
+    - simple
 - src:
     url: https://images6.alphacoders.com/132/1329849.jpeg
     sha256: 02v0x28z6wybf756w31ddhbvhz5p9yak2g8p7a9riy83dap7lqbl
     name: 1ofTqE6Rtmp314meJ5JUwjRw7.jpeg
   tags:
-  - demon_slayer
-  - black
-  - warm
-  - tanjiro
+    - demon_slayer
+    - black
+    - warm
+    - tanjiro
 - src:
     url: https://images2.alphacoders.com/134/1343620.png
     sha256: 13061kva7yzdv89xx1kbwv39blzy223wf1xvc3pfrknxc48m1ff7
     name: ODY0Dl6qbhsaAmd4p2M5WKIeK.png
   tags:
-  - demon_slayer
-  - dark
-  - cool
-  - tanjiro
+    - demon_slayer
+    - dark
+    - cool
+    - tanjiro
 - src:
     url: https://images7.alphacoders.com/110/1103867.png
     sha256: 1qdqryqgppxj6yqpx327i4vd57mfwi1fnl41fdawwl9sw69ljams
     name: 1FZMW2BhvofK665iyB15gFQyC.png
   tags:
-  - overlord
-  - albedo
-  - warm
-  - simple
-  - weaboo
+    - overlord
+    - albedo
+    - warm
+    - simple
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/l8/wallhaven-l8kkxr.jpg
     sha256: 16am2zvla1m10s5ngigpkjfllxy501hzfbz6afy8fnzwzanv9lqk
     name: VPgTp6Xpd6ghnc0gEPBRYpTsJ.jpg
   tags:
-  - bocchi
-  - cool_art
-  - warm
-  - weaboo
+    - bocchi
+    - cool_art
+    - warm
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/kx/wallhaven-kx8wx6.jpg
     sha256: 16w1kxafgk6mxy5saf8n60hg741d3v5rfd2hz0a9whyp5i77fh72
     name: VFc5ymASGUcuz2fLTJd0k6s3z.jpg
   themes:
-  - mocha
+    - mocha
   tags:
-  - bocchi
-  - dark
-  - cool
+    - bocchi
+    - dark
+    - cool
 - src:
     url: https://w.wallhaven.cc/full/5g/wallhaven-5gjxq7.jpg
     sha256: 1fxnays26yhbcc7dwfgv1zj5sf8jzsnvbvgk4xxc97v3qk3r1i3p
     name: 4b97ADND4nGuTVm0bB6NIjlJx.jpg
   tags:
-  - bocchi
-  - warm
-  - weaboo
+    - bocchi
+    - warm
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/l8/wallhaven-l8v6oy.jpg
     sha256: 0ncq4xzhivks71647g80x5gldp0brfw6hpjwwqakvsa3y9i8g8wa
     name: MSuwnl54BIxgjivrgPDNIzXxT.jpg
   tags:
-  - bocchi
-  - cool
-  - weaboo
+    - bocchi
+    - cool
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/yx/wallhaven-yx3dlx.jpg
     sha256: 015akyrl0yxq6586v6bdwwqapv1i3xpf10cdlx4h3a9ba0cr6hgh
     name: BWjQfhcCRMfatikv7HLRISOzB.jpg
   tags:
-  - bocchi
-  - cool
-  - weaboo
+    - bocchi
+    - cool
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/85/wallhaven-85o6mj.jpg
     sha256: 0a5lcv0w36cxkas5g80p1yfv8fxv5wv2r76cwy4x39dswj45yyzs
     name: 8UBkYk9yPsU8Uef2ot4U03wJB.jpg
   tags:
-  - bocchi
-  - warm
-  - weaboo
+    - bocchi
+    - warm
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/o5/wallhaven-o5v8pm.png
     sha256: 17myvfx26qz681wzi51qq6balsc3w73rxgphw361jycbch5zhx3w
     name: gmOkFccchmWMsDc4XQy9yepkm.png
   tags:
-  - bocchi
-  - cool
-  - weaboo
+    - bocchi
+    - cool
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/6d/wallhaven-6d1k6l.jpg
     sha256: 0icaxxmic7df2y48m0bnabl5l1nb32snhyrwwi3064hjkgm92643
     name: eQukNbAtStuPJndCnFyZ09WY7.jpg
   tags:
-  - bocchi
-  - warm
-  - weaboo
+    - bocchi
+    - warm
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/d6/wallhaven-d62erm.jpg
     sha256: 076dzdly156sa2ld75z1y41v94n97511gl8p6z97iminyr29m9my
     name: A9TlNpyiBoBIP7w29E7fatYFv.jpg
   themes:
-  - mocha
+    - mocha
   desc: frieren with a purple background, holding wand
   tags:
-  - frieren
-  - cool
-  - cool_art
-  - weaboo
+    - frieren
+    - cool
+    - cool_art
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/gp/wallhaven-gpl8d3.jpg
     sha256: 1a42nhykckgmn1163ar6rpnzrqpic4hlycmb36iccrf7w5agg5xp
     name: L15tPQxtjCVnkUO6OnXXeLb9X.jpg
   desc: frieren under a starry night by a tree
   tags:
-  - frieren
-  - cool
+    - frieren
+    - cool
 - src:
     url: https://w.wallhaven.cc/full/85/wallhaven-85prg1.jpg
     sha256: 1k82llhsgb8ylg090dznb5pj1r605azdw0rfxd2cryvwp29abs55
     name: BO0KyhaSbhs7snVsRlKpOmBMn.jpg
   desc: frieren and himmel laying in a field
   tags:
-  - frieren
-  - cool
-  - weaboo
+    - frieren
+    - cool
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/vq/wallhaven-vq3ykl.jpg
     sha256: 0i07v9rkwlsvvpy2lwgcd973a6znxdqwr8s35xy8wdvykrk52291
     name: keAMGNJ5EMHFizTqaTzfqhHyj.jpg
   desc: frieren a thousand years ago sitting by a tree
   tags:
-  - frieren
-  - cool
-  - cool_art
-  - weaboo
+    - frieren
+    - cool
+    - cool_art
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/2y/wallhaven-2yw1qx.jpg
     sha256: 1dhp2x0w2cdw54mniwil0wmcdwf88n2kvhbanrm56yp1ksih32gw
     name: W1weNSA1h6QKYNf1EOjc2gHcC.jpg
   desc: fern and frieren around a campfire
   themes:
-  - mocha
+    - mocha
   tags:
-  - frieren
-  - fern
-  - dark
-  - cool_art
-  - weaboo
+    - frieren
+    - fern
+    - dark
+    - cool_art
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/ox/wallhaven-oxg2qm.jpg
     sha256: 1yfbfrm7w4vprymlpjc6gjizdw52dwj6wk4cvvrnchml2dbsscji
     name: VmSr65zt2t7yV6mxvJxtN6qTR.jpg
   desc: celeste main background
   tags:
-  - celeste
-  - cool
-  - simple
+    - celeste
+    - cool
+    - simple
 - src:
     url: https://images2.alphacoders.com/128/1289635.jpg
     sha256: 1a6nw6r0aq25b37qm98ap2yz0mrf5681frq6vhbglrmh50136yrg
     name: ZhunejZAO654BnCvWT1aN1p0M.jpg
   desc: shinobu in front of a pink background
   themes:
-  - mocha
+    - mocha
   tags:
-  - demon_slayer
-  - shinobu
-  - warm
-  - weaboo
+    - demon_slayer
+    - shinobu
+    - warm
+    - weaboo
 - src:
     url: https://images8.alphacoders.com/133/1331317.jpeg
     sha256: 1nff2rp1f27w6iqgppr3hn38h8sn7gvpkmw4a5nnrhqpyjc9d1di
     name: AZuoQUeXzZRr2yDwdMb2ce4nZ.jpeg
   desc: gojo in a snowy forest
   themes:
-  - mocha
+    - mocha
   tags:
-  - jjk
-  - cool
-  - gojo
+    - jjk
+    - cool
+    - gojo
 - src:
     url: https://images.alphacoders.com/114/1142818.jpg
     sha256: 0f37dnp1y7slnkagvql89m4489b5hxd1ryzdy0v37ljnbv42s57a
     name: MlIWIx9XpzTovPxdYEXDy5wFF.jpg
   desc: sukuna standing over a city
   themes:
-  - mocha
+    - mocha
   tags:
-  - jjk
-  - sukuna
-  - city
+    - jjk
+    - sukuna
+    - city
 - src:
     url: https://images8.alphacoders.com/106/1061441.jpg
     sha256: 1h6prayxi8k4zd3pvh560fzkakr67q27jn0b8zrjimkvf44dil43
     name: lRfkNMs25ULTwjQvqpVVc5VB8.jpg
   themes:
-  - mocha
+    - mocha
   tags:
-  - shield_hero
-  - cool
-  - weaboo
+    - shield_hero
+    - cool
+    - weaboo
 - src:
     url: https://images6.alphacoders.com/112/1124802.jpg
     sha256: 0l3g7w5rjmkbwhmf3w5ybrh9xpzx90k418lad0wzkmkb4ggkgyw4
     name: IlvR9WeIzO4PcRsedj5rdDKdP.jpg
   tags:
-  - jjk
-  - cool
+    - jjk
+    - cool
 - src:
     url: https://images7.alphacoders.com/114/1143187.jpg
     sha256: 095qyqx774nndxh475i9cp0k4sl09fgwzygypgrswzdnkbh0bhk5
     name: MhVttjdedREzdeBAoCDl4nW5R.jpg
   desc: celeste main background
   themes:
-  - mocha
+    - mocha
   tags:
-  - celeste
-  - cool
-  - simple
+    - celeste
+    - cool
+    - simple
 - src:
     url: https://preview.redd.it/y8ecf7lv1zn51.png?width=2048&format=png&auto=webp&s=3573b68ba76f66410caf2ea7ecc10e9150146edb
     sha256: sha256-yMRBMSXAYekTiteY82dYn1hzFmncasro/k2Oh+6Epc4=
     name: 9gHUEv7sawGyHnJIwVNsruwme.png
   themes:
-  - mocha
+    - mocha
   tags:
-  - overlord
-  - dark
-  - simple
+    - overlord
+    - dark
+    - simple
 - src:
     url: https://w.wallhaven.cc/full/3z/wallhaven-3z85yy.jpg
     sha256: 0wmfr4dkz1vq88hhjsgvpwnj8f2mpdnqv4d54p5vkmyikk7k1p4l
     name: WSJWskAavVYgwuySBjZPqW3hK.jpg
   tags:
-  - nintendo
-  - weaboo
-  - zelda
+    - nintendo
+    - weaboo
+    - zelda
 # https://www.pixiv.net/en/users/12845810/artworks
 # https://cogecha.tumblr.com/
 - src:
@@ -514,57 +514,57 @@
     name: anime_girls_tea.jpg
     sha256: 1iqi6sii34xwr3a7mfqa6z5g5c9d92k7qla4jps3l51zzw9rik9g
   tags:
-  - weaboo
+    - weaboo
 # I don't *love* twitter, but hopefully this stays up
 - src:
     url: https://pbs.twimg.com/media/EDQ8xeBWkAAsoAh?format=jpg&name=4096x4096
     name: pwVvtDR5nX1eyCs8dEVX.jpg
     sha256: 0lvvwsqrn1frd39aj521sngh1l6g8lmn3nmz8p3aj31d5ywbv20r
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://pbs.twimg.com/media/Dak0QNaUQAApK97?format=jpg&name=large
     name: eoa8Qaff2vgmOL2JbxdC.jpg
     sha256: 18yiqq6f55hfyl7vn9qzf7vmgnp0qs4lh2w4c0v2v63ilrl9m1v9
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://pbs.twimg.com/media/DeHVMKIUQAASagm?format=jpg&name=large
     name: UpuBZ606HUZJ19U08vS7.jpg
     sha256: sha256-GXuojGqzq1pakPijOrvRdabWGBItILmGIkQUqJjErdw=
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://inkscape.org/gallery/item/49790/room_night.svg
     name: kde_room_night.png
     sha256: 0ylbdl6wykbj9wv44yligcpcw69nzs0v63csf8bymp5cngzkcwwg
   themes:
-  - mocha
+    - mocha
   svg: --dpi 10
 - src:
     url: https://w.wallhaven.cc/full/5g/wallhaven-5gpv25.jpg
     name: rain_pink.jpg
     sha256: 0kf19r7z4vhik7fx6wr6spn4cc15njxh4iabw7qa7q4nk7j41qhq
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/rr/wallhaven-rrxz57.jpg
     name: cyberpunk_sad1.jpg
     sha256: 0632gn0rr47gs10abhazsv15clwmjffm415wsaaahdhbbh3ygn0n
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/p9/wallhaven-p973dj.png
     name: cyberpunk_sad2.png
     sha256: 00585kaaql0njq7fd34wy5j32pjih47y94x9jgc7pnhxyrd3yy0g
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/ex/wallhaven-exzrmw.png
     name: cyberpunk_rows.png
     sha256: 0wfk3r6nsp8ajac9lwxpkw3zp52sah4z9l9cbjil4p92nwf6zk0k
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images2.alphacoders.com/694/thumb-1920-694069.png
     name: cowboy_background.png
@@ -582,7 +582,7 @@
     name: mob_collage.jpg
     sha256: 1ymq8x3cy89hk6nqacpgvpb77h07xyx4lv8c24irldfqfj8l0c3x
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images8.alphacoders.com/754/thumb-1920-754327.png
     name: mob_scray_lines.png
@@ -592,7 +592,7 @@
     name: hateno.jpg
     sha256: 0s85213aymlazhg6si5157n26piasz6fh7qixswv3r6w3lrf3mdc
   themes:
-  - mocha
+    - mocha
 - src:
     url: https://w.wallhaven.cc/full/o5/wallhaven-o52l8m.jpg
     name: majoras_winter.jpg
@@ -614,7 +614,7 @@
     name: shaltear_dogmen.png
     sha256: 0x7nbqxld17dqxi6dhgxsi2l5ls9785lxvkvscdjk8srxf9rr6vj
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images2.alphacoders.com/111/1115851.png
     name: renner_paint.png
@@ -624,13 +624,13 @@
     name: rezero-witches.png
     sha256: 0r809plnpdnc44xw139ciq0v8ppjmgiz8iggklc1nplqzy9sfxg5
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images5.alphacoders.com/738/738629.jpg
     name: rem_rain_jpg
     sha256: 1gbplqyav7xfmk5azxvjaknsg914fg3wrqvaqppg2fk0gnznh4iq
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images2.alphacoders.com/745/745101.jpg
     name: puck_crazy.jpg
@@ -640,19 +640,19 @@
     name: emelia_window.jpg
     sha256: 1m2d06f8amfknrwqvwfpkssxavkxl3iwn97vpk2pyf9009lyb78l
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images2.alphacoders.com/849/849117.png
     name: emelia_window2.png
     sha256: 1jqh1akwz48m6xq63wmh2q7bwz875d3lqbiribif9g0s7bgp10w0
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images6.alphacoders.com/975/975929.png
     name: satella.png
     sha256: 0140m7zq8j7cjyhyagjay7r8yqaywsp8a9kvjgwq4p3xwgdd161w
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images4.alphacoders.com/136/thumb-1920-1369866.png
     name: totoro.png
@@ -666,9 +666,9 @@
     name: high-contrast-jinx.jpg
     sha256: 0zf2xzb8k30nfplfj2g6cvnz6dr2mkv0gypmxzk09c3dbi3fc8jc
   themes:
-  - mocha
+    - mocha
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://w.wallhaven.cc/full/lm/wallhaven-lm7lmp.jpg
     name: fullmetal-armor.jpg
@@ -678,13 +678,13 @@
     name: astronaut.jpg
     sha256: 0alrk1wmyb8463q650wx6dp19g4l7jii7ibky8n2hbi8645anqnz
   themes:
-  - mocha
+    - mocha
 - src:
     url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/girl.jpg
     name: aeshetic-girl.jpg
     sha256: 1gyf19kzxpnp14zdna38jp36sxysds9q4b244lpfiv0cl84b3w16
   themes:
-  - mocha
+    - mocha
 - src:
     url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/taza.png
     name: cup.png
@@ -702,7 +702,7 @@
     name: katana.png
     sha256: 0fnghna1gfssmd6nq4vcgh1sck13ini25lwwcavwima9wqzwv4j7
   themes:
-  - mocha
+    - mocha
 - src:
     url: https://raw.githubusercontent.com/D3Ext/aesthetic-wallpapers/main/images/japan3.jpg
     name: cherry.jpg
@@ -728,56 +728,56 @@
     name: market.png
     sha256: 0xwkvc7k92z4yhqr9hx3zijr1hzqp3pwln9k70nxqcam2c46cm3r
   themes:
-  - mocha
+    - mocha
 - src:
     url: https://w.wallhaven.cc/full/d5/wallhaven-d5668l.jpg
     name: fullmetal-jaded.jpg
     sha256: 1r526w7r97qabhi7zmrrygg1n2dnrlkqvm4z8wvrhgs2mk8b0sbr
   themes:
-  - mocha
+    - mocha
 # deathtototoro / ao-ryn
 - src:
     url: https://images3.alphacoders.com/138/1382378.png
     name: ryn-momo.png
     sha256: 1zv2bj6vi24l7zjpb1a78rf7fykl7wvkj1lpz18lglabhbf9qgvf
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images2.alphacoders.com/138/1382326.png
     name: ryn-g.png
     sha256: 0aj54ywmmdjf8d8fc67frs8d0vkypj7mfln95fd1vrdrnrgqvswa
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images.alphacoders.com/138/thumb-1920-1382324.png
     name: dandadan.png
     sha256: 1ahh9gia46qq1xbqbixllnimcqlbz28p0f2z0ng3kw5mia7rmq2g
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images2.alphacoders.com/138/thumb-1920-1383055.png
     name: dandandan2.png
     sha256: 1idx2bcgjny4byicb5nnlphc0n3j7kvyg5r726jc98yfk2imvw14
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/intermediary/f/3e1fe6c2-fadd-4be2-bebf-9bb72e5773df/dbyzs7o-ba9e590d-fa1e-4cd1-af3d-7396f03f2d07.png/v1/fill/w_5100,h_2900,bl,q_100/overlord_the_albedo_wallpaper_by_deathtototoro_dbyzs7o-pre.jpg
     name: albedo_totoro.jpg
     sha256: 0j6jd6xg474fw7il21in6r9n4yqlc6r7gyf8vbmnm14rac7nfvgy
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: http://100.114.199.203:23231/wall/ainz_ooal_gown_wallpaper_by_dinocozero_ddepg8l.jpg
     name: ainz_more.jpg
     sha256: 0cshyglbpfya8x1hahyp3ys2w70r636wf1i2hyfg0ckjianbasif
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: http://100.114.199.203:23231/wall/demon_slayer___inosuke_hashibira_wallpaper_by_knotshoxtm_dex31ci.png
     name: inosuke.png
     sha256: 0i0xjrckyqlxdb6hpywlckvjmfcp21awki0cyn0y74k3n2m7wp6k
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: http://100.114.199.203:23231/wall/paladin_of_pure_silver_by_horocca_dbj0tuq.jpg
     name: touchme.jpg
@@ -787,25 +787,25 @@
     name: frieren-epic.jpg
     sha256: 1j9k3a91dwm34fir40niff6gnsw34d413h6zsc8iagzn5m47r678
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/079/524/312/large/-the-castle33.jpg
     name: frieren-epic2.jpg
     sha256: 11ik9amarb7v9pcb460g40nc2k68ic0min723bmnc7am4nlrl6wp
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/030/571/010/large/-no-thank-you.jpg
     name: girls-band-cry.jpg
     sha256: 1b3rn7md7bqqgf91w3xdbqgjir5vcz0cvfimdbwmyf7ccqbsdsj3
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/020/412/702/large/qr-y-1.jpg
     name: blossoms.jpg
     sha256: 1vmncpy0djlqdmk03wz4vx2ir98rh4qrfi8jgrqk1v0rpk4kvx96
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/029/324/080/4k/darek-zabrocki-mg-tree-town1-003-final-darekzabrocki.jpg
     name: mouse-guard1.jpg
@@ -839,13 +839,13 @@
     name: station.jpg
     sha256: 06w5d26h5n45cycl5845jr7wng6lxy4y7y3llfwp3589jv4wknih
   theme:
-  - mocha
+    - mocha
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/043/504/725/large/bo-chen-arcane-jinx-final-2k.jpg
     name: jinx6.jpg
     sha256: 1nz3g0k9njngdb7l3pad6yj16zqb933p4glkwxs39kbdp9kl1lmz
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/046/005/317/4k/anato-finnstark-anato-finnstark-anato-finnstark-web-petit-4.jpg
     name: dragon.jpg
@@ -855,7 +855,7 @@
     name: vi5.jpg
     sha256: 116k0z1ax4xq9mgrh8bj7hargxl3wlrslb81mkcdqlavi7z8h20h
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/048/041/655/large/daniel-oxford-howl-01.jpg
     name: howls.jpg
@@ -889,48 +889,48 @@
     name: jinx6.jpg
     sha256: 13ikjjcm07pam3db6mlzgfacvsmvq910m5z0f9h77clja9h1wg7k
   tags:
-  - weaboo
+    - weaboo
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/078/247/320/large/gui-yuan-87560809gy1hrgpqidw1ij21fi0nmnpd.jpg
     name: kiki_even.jpg
     sha256: 136mdfx18wlal778f2xgw10gxqj7s6ha3wddyikq6mfagvzrm4al
   themes:
-  - mocha
+    - mocha
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/052/282/110/large/bombongkor-2021-2-10-10-2.jpg
     name: rem.jpg
     sha256: 0vgj64ah3kjya4ivmk32mp941yy7j8z345d4d4rbpfljqd1r35gz
   tags:
-  - weaboo
+    - weaboo
 # - src:
-  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Full-Metal-Alchemist/Toxic-City/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/fma2-1920x1200.jpg
-  # name: fullmetal-toxic.jpg
-  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
-  # themes:
+# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Full-Metal-Alchemist/Toxic-City/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/fma2-1920x1200.jpg
+# name: fullmetal-toxic.jpg
+# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+# themes:
 # - mocha
 # - src:
-  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Princess-Mononoke/Midnight-Spirits/1920x1080/8feedfd25c9532909790bb6b1e2ecf0f/mononoke2-1920x1080.jpg
-  # name: mononoke-spirts.jpg
-  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Princess-Mononoke/Midnight-Spirits/1920x1080/8feedfd25c9532909790bb6b1e2ecf0f/mononoke2-1920x1080.jpg
+# name: mononoke-spirts.jpg
+# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
 # - src:
-  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Takeshi-Okazaki-Artworks/Face-Paint/1920x1080/8feedfd25c9532909790bb6b1e2ecf0f/takeshiOkazaki2-1920x1080.jpg
-  # name: face-paint.jpg
-  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Takeshi-Okazaki-Artworks/Face-Paint/1920x1080/8feedfd25c9532909790bb6b1e2ecf0f/takeshiOkazaki2-1920x1080.jpg
+# name: face-paint.jpg
+# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
 # - src:
-  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Princess-Mononoke/Forest-Spirit/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/mononoke1-1920x1200.jpg
-  # name: mononoke-forest-spirit.jpg
-  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Princess-Mononoke/Forest-Spirit/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/mononoke1-1920x1200.jpg
+# name: mononoke-forest-spirit.jpg
+# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
 # - src:
-  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Cowboy-Bebop/Vincent-Volaju/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/bebop6-1920x1200.jpg
-  # name: bebop-jaded.png
-  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
-  # themes:
+# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Cowboy-Bebop/Vincent-Volaju/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/bebop6-1920x1200.jpg
+# name: bebop-jaded.png
+# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+# themes:
 # - mocha
 # - src:
-  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Ponyo-on-the-Cliff-by-the-Sea/Brothers-and-Sisters-of-the-Ocean/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/ponyo1-1920x1200.jpg
-  # name: ponyo-jaded.jpg
-  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Ponyo-on-the-Cliff-by-the-Sea/Brothers-and-Sisters-of-the-Ocean/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/ponyo1-1920x1200.jpg
+# name: ponyo-jaded.jpg
+# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
 # - src:
-  # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Cowboy-Bebop/Red-Session-Blues/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/bebop5-1920x1200.jpg
-  # name: bebop-wall.jpg
-  # sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Cowboy-Bebop/Red-Session-Blues/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/bebop5-1920x1200.jpg
+# name: bebop-wall.jpg
+# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63

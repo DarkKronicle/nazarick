@@ -12,7 +12,6 @@ let
     (with pkgs; [
       nushell
       ripgrep
-      nixfmt-rfc-style
       git
       nix-output-monitor
       nix-prefetch-git

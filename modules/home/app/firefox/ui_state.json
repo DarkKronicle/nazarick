@@ -1,12 +1,7 @@
 {
-  "placements":
-  {
-    "widget-overflow-fixed-list":
-    [
-      "fxa-toolbar-menu-button"
-    ],
-    "unified-extensions-area":
-    [
+  "placements": {
+    "widget-overflow-fixed-list": ["fxa-toolbar-menu-button"],
+    "unified-extensions-area": [
       "sponsorblocker_ajay_app-browser-action",
       "dearrow_ajay_app-browser-action",
       "_aecec67f-0d10-4fa7-b7c7-609a2db280cf_-browser-action",
@@ -23,8 +18,7 @@
       "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action",
       "redirector_einaregilsson_com-browser-action"
     ],
-    "nav-bar":
-    [
+    "nav-bar": [
       "back-button",
       "forward-button",
       "stop-reload-button",
@@ -41,25 +35,16 @@
       "addon_darkreader_org-browser-action",
       "jump-cutter_example_com-browser-action"
     ],
-    "toolbar-menubar":
-    [
-      "menubar-items"
-    ],
-    "TabsToolbar":
-    [
+    "toolbar-menubar": ["menubar-items"],
+    "TabsToolbar": [
       "firefox-view-button",
       "tabbrowser-tabs",
       "new-tab-button",
-      "alltabs-button",
+      "alltabs-button"
     ],
-    "PersonalToolbar":
-    [
-      "import-button",
-      "personal-bookmarks"
-    ]
+    "PersonalToolbar": ["import-button", "personal-bookmarks"]
   },
-  "seen":
-  [
+  "seen": [
     "save-to-pocket-button",
     "developer-button",
     "_446900e4-71c2-419f-a6a7-df9c091e268b_-browser-action",
@@ -85,8 +70,7 @@
     "_7a7a4a92-a2a0-41d1-9fd7-1e92480d612d_-browser-action",
     "redirector_einaregilsson_com-browser-action"
   ],
-  "dirtyAreaCache":
-  [
+  "dirtyAreaCache": [
     "nav-bar",
     "PersonalToolbar",
     "unified-extensions-area",
