@@ -169,7 +169,7 @@ in
                 definedAliases = [ "@k" ];
                 urls = [
                   {
-                    template = "https://kagi.com/html/search";
+                    template = "https://kagi.com/search";
                     params = [
                       {
                         name = "q";

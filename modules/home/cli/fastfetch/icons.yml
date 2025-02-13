@@ -361,4 +361,19 @@
   - weaboo
   square: true
   resolution: 200x200
-
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/084/697/335/large/paul-kwon-zeronis-vi.jpg
+    name: vi.jpg
+    sha256: 1fyvsnipb7hciyyhd58l7czawdxhlwi76nrqmrhl604i4fqynzg9
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/080/456/107/large/nixri-vi-web.jpg
+    name: vi2.jpg
+    sha256: 1gvnbvffjv705xi3b0pimg8zbfbddnyh3wckh4x22kcm45mzm2kf
+  tags:
+  - weaboo
+  square: true
+  resolution: 200x200

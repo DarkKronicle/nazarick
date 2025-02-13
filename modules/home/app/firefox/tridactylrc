@@ -40,7 +40,7 @@ autocmd DocStart mail.google.com mode ignore
 autocmd DocStart monkeytype.com mode ignore
 
 
-set searchurls.k https://kagi.com/html/search?q=%s
+set searchurls.k https://kagi.com/search?q=%s
 set searchurls.sx https://etsi.me/search?q=%s
 " set searchurls.nh https://home-manager-options.extranix.com/?query=%s
 set searchurls.no https://searchix.alanpearce.eu/options/nixos/search?query=%s

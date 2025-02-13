@@ -54,7 +54,6 @@ export def follow-symlink-chain [file: path]: [ nothing -> list<path> ] {
 }
 
 export def "sys-usage" [
-    sort: string = "cpu",
     --amount(-a): int = 10,
     --poll(-p): int = 10,
     --sleep(-s): duration = 0.25sec,
@@ -67,7 +66,7 @@ export def "sys-usage" [
         if ($x != ($realpoll)) {
             sleep $sleep; 
         }
-        ps | sort-by -r $sort | where $it.pid != $nu.pid | first $amount
+        ps | sort-by -r "cpu" | where $it.pid != $nu.pid | first $amount
     } | flatten | group-by pid | transpose pid info | update info { |x|
     let info = $x | get info
     $info | first 
@@ -76,7 +75,7 @@ export def "sys-usage" [
         | update mem { ($info.mem | math sum) / $poll  }
         | update virtual { ($info.virtual | math sum) / $poll  }
         | update name { $info.name | uniq } | reject pid
-    } | flatten | sort-by -r $sort
+    } | flatten | sort-by -r "cpu"
 }
 
 

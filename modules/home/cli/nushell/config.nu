@@ -305,7 +305,7 @@ $env.config = {
 # and give me good completions
 
 # Run nvim that is declared in $env.EDITOR
-def --env nvim [
+def nvim [
     -d: list<path>, # diff mode
     -u: path, # use this config file
     --cmd: string, # run this command before anything
@@ -316,6 +316,7 @@ def --env nvim [
     --clean, # factory defaults
     ...paths: path
 ] {
+    let IN = $in
     mut args = [];
     if ($d | is-not-empty) {
         $args = ($args | append "-d" | append $d)
@@ -339,7 +340,7 @@ def --env nvim [
         $args = ($args | append "--clean")
     }
     $args = ($args | append $paths)
-    ^$env.EDITOR ...$args
+    $in | ^$env.EDITOR ...$args
 }
 
 alias neovim = nvim
@@ -364,25 +365,29 @@ def --env "cdtmp" [prefix: string = "scratch"] {
     cd (mktemp -d -t $"($prefix).XXXXXX")
 }
 
-def --env "date natural-to-iso" [] {
+def "date natural-to-iso" [] {
     $in | into datetime | format date "%+"
 }
 
-def --env "edit-today" [extension: string = "norg"] {
-    ^$env.EDITOR $"(date now | format date "%Y-%m-%d").($extension)"
+def "edit-today" [extension: string = "norg"] {
+   ^$env.EDITOR $"(date now | format date "%Y-%m-%d").($extension)"
 }
 
-
-def --env netbird-detail [] {
+def netbird-detail [] {
     mut data = netbird status --json | from json
     $data.peers.details = ($data.peers.details 
         | update lastWireguardHandshake { into datetime }
         | update lastStatusUpdate { into datetime }
+        | update lastStatusUpdate { if (($in | into record | get year) < 10) { null } else { $in } }
         | update transferReceived { into filesize }
         | update transferSent { into filesize }
         | update latency { into duration }
     )
     return $data
+}
+
+def netbird-peers [] {
+    netbird-detail | get peers.details | select fqdn netbirdIp status connectionType iceCandidateType iceCandidateEndpoint latency relayAddress lastWireguardHandshake
 }
 
 def --env yy [...args] {

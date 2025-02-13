@@ -54,6 +54,9 @@ in
         paratype-pt-serif
         monaspace
         cascadia-code
+
+        corefonts
+        vistafonts
       ];
       fontconfig = {
         enable = true;
