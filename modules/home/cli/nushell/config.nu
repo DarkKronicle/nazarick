@@ -379,6 +379,7 @@ def netbird-detail [] {
         | update lastWireguardHandshake { into datetime }
         | update lastStatusUpdate { into datetime }
         | update lastStatusUpdate { if (($in | into record | get year) < 10) { null } else { $in } }
+        | update lastWireguardHandshake { if (($in | into record | get year) < 10) { null } else { $in } }
         | update transferReceived { into filesize }
         | update transferSent { into filesize }
         | update latency { into duration }

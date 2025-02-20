@@ -40,8 +40,9 @@ def --wrapped do-sysctl [user: bool, ...$rest] {
 }
 
 def "inner-list-units" [user: bool] {
-    do-sysctl $user list-units --all --no-pager -o json
+    do-sysctl $user list-unit-files --all --no-pager -o json
         | from json
+        | rename -c { unit_file: unit }
         | insert type { $in.unit | split row '.' | last }
 }
 

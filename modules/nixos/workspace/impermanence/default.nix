@@ -260,6 +260,7 @@ in
         ".cache/spotify-player"
 
         ".local/share/Eagle"
+        ".config/aichat"
       ];
     };
 
@@ -272,6 +273,7 @@ in
         ".cache/spotifyd"
         ".applications/matlab"
         ".MathWorks"
+        ".ollama"
       ];
     };
   };
