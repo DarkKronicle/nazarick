@@ -76,7 +76,7 @@
 - src:
     url: https://i.pinimg.com/736x/42/6d/4e/426d4e5c56be0c512416f32eaad415d5.jpg
     name: frieren_sketch.jpg
-    sha256: sha256-Px9/KUNMWd4HlZV0SQWh4ggWkRGxZGiE9RhYJE27W5k=
+    sha256: 16avpd6j8n0qyn26hr5i268ic272l42ljx4mjl3xwnac8clpy7rz
   tags:
     - weaboo
   square: true
@@ -340,7 +340,7 @@
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/070/697/506/large/zumi-draws-meimei9.jpg
     name: meimei.jpg
-    sha256: 0klr1nqw0p9yn7wllv0b199cba86qwa3ql74lq7qxibhgdzbxlky
+    sha256: 15gfp26ccsyj7hq3r4xq1why9njr8ks0hanw99a1zp6ch2gmdndw
   tags:
     - weaboo
   square: true
@@ -364,7 +364,7 @@
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/084/697/335/large/paul-kwon-zeronis-vi.jpg
     name: vi.jpg
-    sha256: 1fyvsnipb7hciyyhd58l7czawdxhlwi76nrqmrhl604i4fqynzg9
+    sha256: 0l7461zgf1mz4svmzmhiv8mdm58cyb3b71x978kdyjaz3p0mfllv
   tags:
     - weaboo
   square: true

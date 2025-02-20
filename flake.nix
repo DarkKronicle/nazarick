@@ -82,6 +82,11 @@
       flake = false;
     };
 
+    darkly = {
+      url = "github:Bali10050/Darkly";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # --------------------
     # Specific applications
     # --------------------

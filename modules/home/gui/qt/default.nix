@@ -3,6 +3,7 @@
   lib,
   pkgs,
   mypkgs,
+  inputs,
   ...
 }:
 let
@@ -25,8 +26,11 @@ in
     # INFO: This will probably *not* set your system level environment variables, so make sure to do system stuff.
     qt = {
       enable = true;
-      # style.package = mypkgs.lightly-qt6;
-      style.name = "Lightly";
+      style.package = [
+        inputs.darkly.packages.${pkgs.system}.darkly-qt5
+        inputs.darkly.packages.${pkgs.system}.darkly-qt6
+      ];
+      style.name = "Darkly";
       platformTheme.name = "qtct";
     };
 
@@ -48,8 +52,6 @@ in
     home.sessionVariables.GTK2_RC_FILES = lib.mkForce "${config.home.homeDirectory}/.gtkrc-2.0";
 
     home.packages = with pkgs; [
-      mypkgs.lightly-qt6
-      lightly-boehs # For qt5
       fluent-icon-theme
       kdePackages.qt6ct
       kdePackages.ark
@@ -109,7 +111,6 @@ in
         [MainWindow]
         MenuBar=Disabled
         ToolBarsMovable=Disabled
-
       '';
 
     };
@@ -120,14 +121,22 @@ in
     # Quick and dirty way to get colors to apply for everything (including you, kdeconnect)
     # MVP this random forum post https://forum.endeavouros.com/t/getting-kdeconnect-to-use-kvantum-theme-outside-of-plasma/57717
 
+    # Fix color scheme :D
+    # https://github.com/NixOS/nixpkgs/issues/355602#issuecomment-2495539792
+
     xdg.configFile."kdeglobals" = {
       enable = true;
-      source = "${
-        pkgs.catppuccin-kde.override {
-          flavour = [ "mocha" ];
-          accents = [ "mauve" ];
-        }
-      }/share/color-schemes/CatppuccinMochaMauve.colors";
+      text =
+        ''
+          [UiSettings]
+          ColorScheme=*
+        ''
+        + (builtins.readFile "${
+          pkgs.catppuccin-kde.override {
+            flavour = [ "mocha" ];
+            accents = [ "mauve" ];
+          }
+        }/share/color-schemes/CatppuccinMochaMauve.colors");
     };
 
     xdg.configFile."qt5ct/colors/Catppuccin-Mocha.conf" = {

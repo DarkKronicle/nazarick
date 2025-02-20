@@ -149,7 +149,7 @@ in
 
       arkenfox = {
         enable = true;
-        version = "128.0";
+        version = "master";
       };
 
       profiles = {

@@ -25,6 +25,7 @@ unbind --mode=ex <C-c>
 bind s fillcmdline tabopen search
 bind S fillcmdline open search
 
+bind gp fillcmdline tabopen -c personal
 
 unbind <C-f>
 bind / fillcmdline find

@@ -62,7 +62,7 @@ export def "sys-usage" [
     if ($realpoll > 0) {
         print $"Polling ($poll) times over about ($poll * $sleep)..."
     }
-    0..($realpoll) | each { |x|
+    1..($realpoll) | each { |x|
         if ($x != ($realpoll)) {
             sleep $sleep; 
         }
