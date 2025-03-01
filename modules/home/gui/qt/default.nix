@@ -52,6 +52,7 @@ in
     home.sessionVariables.GTK2_RC_FILES = lib.mkForce "${config.home.homeDirectory}/.gtkrc-2.0";
 
     home.packages = with pkgs; [
+      inputs.darkly.packages.${pkgs.system}.darkly-qt6
       fluent-icon-theme
       kdePackages.qt6ct
       kdePackages.ark
@@ -111,6 +112,18 @@ in
         [MainWindow]
         MenuBar=Disabled
         ToolBarsMovable=Disabled
+      '';
+    };
+
+    xdg.configFile."darklyrc" = {
+      enable = true;
+      text = ''
+        [Style]
+        DolphinSidebarOpacity=80
+        MenuBarOpacity=80
+        MenuOpacity=80
+        TabDrawHighlight=true
+        ToolBarOpacity=80
       '';
 
     };

@@ -27,7 +27,6 @@ let
     '';
 
   fastFetchRandom = mylib.writeScript pkgs "fastfetch-icon" fastFetchRandomIconContent;
-
 in
 {
   options.nazarick.cli.fastfetch = {

@@ -42,17 +42,7 @@ in
       ++ (lib.optionals cfg.misc ([
         pkgs.yt-dlp
         pkgs.taskwarrior3
-        (mypkgs.tomato-c.override {
-          # Home manager simlinks mpv configs, so this forces a fresh config.
-          # This is mainly an issue with sounds because it pulls up a window in my config
-          mpv = pkgs.mpv-unwrapped.wrapper {
-            mpv = pkgs.mpv-unwrapped;
-            extraMakeWrapperArgs = [
-              "--add-flags"
-              "--config-dir=/home/${config.home.username}/.config/mpv2"
-            ];
-          };
-        })
+        inputs.timr.packages.${system}.timr
         inputs.faerber.packages.${system}.faerber
       ]));
 

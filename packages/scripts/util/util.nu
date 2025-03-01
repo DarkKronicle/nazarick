@@ -142,6 +142,7 @@ export def --wrapped "yt-down" [url: string, --help(-h), --audio-only(-x), --vid
         (yt-dlp $url 
             -f $"bestvideo[height<=?($video_size)]+bestaudio/bestvideo[height<=?($video_size)]*+bestaudio/best"
             --write-subs --sub-langs 'en.*,ja' --write-auto-subs --embed-subs 
+            --add-metadata
             --embed-metadata 
             --sponsorblock-mark all 
             --compat-options no-keep-subs 

@@ -55,6 +55,7 @@ in
         ++ (lib.optionals cfg.web [
           pkgs.brave
           pkgs.qbittorrent
+          pkgs.tor-browser
         ])
         ++ (lib.optionals cfg.school [
           pkgs.matlab

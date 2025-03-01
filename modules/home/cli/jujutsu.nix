@@ -29,6 +29,10 @@ in
         user = {
           name = cfg.userName;
           email = cfg.userEmail;
+          default-command = "log";
+        };
+        ui = {
+          paginate = "never";
         };
       };
     };

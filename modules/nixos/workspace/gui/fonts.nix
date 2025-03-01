@@ -57,6 +57,9 @@ in
 
         corefonts
         vistafonts
+
+        atkinson-hyperlegible
+        atkinson-monolegible
       ];
       fontconfig = {
         enable = true;

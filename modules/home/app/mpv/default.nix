@@ -114,7 +114,10 @@ in
           # uosc options
 
           # There's an "ad" type, but gets really annoying when you download all sponsorblock settings
-          script-opts = ''uosc-chapter_ranges="openings:30abf964,endings:30abf964"'';
+          script-opts = [
+            ''uosc-chapter_ranges="openings:30abf964,endings:30abf964,ads:99999920"''
+            ''uosc-top_bar=always''
+          ];
 
           # Audio normalization, can be weird
           # af=acompressor

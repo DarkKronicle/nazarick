@@ -1,4 +1,9 @@
-{ config, lib, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   cfg = config.nazarick.cli.eza;
 in
@@ -8,7 +13,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    programs.eza.enable = true;
+    home.packages = with pkgs; [
+      eza
+    ];
     nazarick.cli.nushell.alias = {
       # "xt" = "eza -T -L=3 --icons";
       "xi" = "eza --icons";

@@ -82,8 +82,9 @@
       flake = false;
     };
 
+    # TODO: probably move this off feature eventually
     darkly = {
-      url = "github:Bali10050/Darkly";
+      url = "github:Bali10050/Darkly/feature";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -116,6 +117,10 @@
     fenix = {
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    timr = {
+      url = "github:sectore/timr-tui";
     };
 
   };

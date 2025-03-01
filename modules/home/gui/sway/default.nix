@@ -25,21 +25,6 @@ let
       filterFunc = (wall: !(builtins.elem "weaboo" (wall.tags or [ ])));
     }
   }/share/wallpapers/school-wallpapers";
-
-  # Wrap dolphin to ensure that the file picker works
-  wrappedDolphin =
-    let
-      dolphin = pkgs.kdePackages.dolphin;
-    in
-    pkgs.symlinkJoin {
-      inherit (dolphin) name version;
-      paths = [ dolphin ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/dolphin \
-          --set XDG_MENU_PREFIX "plasma-"
-      '';
-    };
 in
 {
 
@@ -118,6 +103,7 @@ in
         kdePackages.qqc2-desktop-style # https://discuss.kde.org/t/broken-kde-connect-theme/18451/5
         kdePackages.plasma-integration
         kdePackages.gwenview
+        kdePackages.dolphin
         lxqt.pavucontrol-qt
         swayosd # Graphical volume controls
         blueman
@@ -132,7 +118,6 @@ in
       ])
       ++ [
         mypkgs.inhibit-bridge
-        wrappedDolphin
       ];
 
     services.kdeconnect = {

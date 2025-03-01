@@ -377,3 +377,27 @@
     - weaboo
   square: true
   resolution: 200x200
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/043/745/317/large/lucy-rose-e8s5c1juyauhbba.jpg
+    name: harrow.jpg
+    sha256: 1xw57kvpg4c91cj2hqlik3vnc0f4avz86lbglwjyvz6nijidjlxp
+  tags:
+    - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/043/745/315/large/lucy-rose-e8aa0uqviaa4jnq.jpg
+    name: gideon.jpg
+    sha256: 0hmyw7nbsacypr3glvmk4bq4p12bqsn9kn73nxqilfa78s45dzmh
+  tags:
+    - weaboo
+  square: true
+  resolution: 200x200
+- src:
+    url: https://cdnb.artstation.com/p/assets/images/images/040/824/417/large/elena-benitez-gutierrez-p1010785.jpg
+    name: gideon2.jpg
+    sha256: 0g23wa9d3v831l8y701ml5710y5k39bm6qph9fz88pm6agp0y7p6
+  tags:
+    - weaboo
+  square: true
+  resolution: 200x200

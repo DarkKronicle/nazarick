@@ -178,13 +178,13 @@ $env.config = {
             let nix_commands = (
                 nix-locate --db $database --no-group --type x --type s $cmd 
                 | detect columns --no-headers 
-                | rename package size type path 
             )
 
             let nix_commands = if ($nix_commands | is-empty) {
                 $nix_commands
             } else {
-                $nix_commands | update package { str trim | str replace --regex '.out\b' "" } 
+                $nix_commands | | rename package size type path 
+                | update package { str trim | str replace --regex '.out\b' "" } 
                 | update size { into int | into filesize } 
                 | update path { split row '/' | last } 
                 | upsert dist {|x| $x.path | str distance $cmd } 
@@ -412,3 +412,12 @@ def "se" [input?: string] {
 }
 
 alias y = yy
+
+# https://discord.com/channels/601130461678272522/615253963645911060/1344380366017794120
+def "download here" [dest: string = "."] {
+  watch ~/downloads {|op, path, new_path|
+    if ($op == "Rename" and ($path | path parse).extension == "part" and ($new_path | path parse) != "part") {
+      mv --verbose $new_path $dest
+    } 
+  }
+}
