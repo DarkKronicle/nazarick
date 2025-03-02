@@ -93,7 +93,7 @@ in
             desc = "Broot fuzzy find";
           }
           {
-            on = [ "m" ];
+            on = [ "M" ];
             run = "plugin bookmarks --args=save";
             desc = "Save current position as a bookmark";
           }

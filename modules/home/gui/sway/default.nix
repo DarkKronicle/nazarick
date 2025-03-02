@@ -110,7 +110,7 @@ in
         nwg-displays # ~/.config/sway/outputs
         swayidle
         swaysome
-        xwaylandvideobridge
+        kdePackages.xwaylandvideobridge
 
         # Screenies
         grim

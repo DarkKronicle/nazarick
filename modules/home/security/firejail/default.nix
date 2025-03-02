@@ -64,16 +64,6 @@ in
           executable = "${pkgs.brave}/bin/brave";
           profile = "${pkgs.firejail}/etc/firejail/brave.profile";
         };
-        vesktop = {
-          executable = "${pkgs.vesktop}/bin/vesktop";
-          profile = "${pkgs.firejail}/etc/firejail/discord.profile";
-          extraArgs = [
-            ''--whitelist=''${HOME}/.config/vesktop''
-            # Open files and urls
-            "--dbus-user.talk=org.freedesktop.portal.OpenURI.*"
-            "--dbus-user.talk=org.freedesktop.portal.Desktop"
-          ];
-        };
         # nheko = {
         # executable = "${pkgs.nheko}/bin/nheko";
         # profile = "${pkgs.firejail}/etc/firejail/nheko.profile";

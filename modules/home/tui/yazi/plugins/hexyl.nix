@@ -13,21 +13,19 @@ in
 
   package = stdenv.mkDerivation {
     pname = name;
-    version = "2025-01-03";
+    version = "2025-03-02";
     src = fetchFromGitHub {
       owner = "Reledia";
       repo = "hexyl.yazi";
-      rev = "39d3d4e23ad7cec8888f648ddf55af4386950ce7";
-      hash = "sha256-nsnnL3GluKk/p1dQZTZ/RwQPlAmTBu9mQzHz1g7K0Ww=";
-    };
-    # Patch with the actual binary
+      rev = "228a9ef2c509f43d8da1847463535adc5fd88794";
+      hash = "sha256-Xv1rfrwMNNDTgAuFLzpVrxytA2yX/CCexFt5QngaYDg=";
+    }; # Patch with the actual binary
     installPhase = ''
       runHook preInstall
 
       mkdir -p $out/share/yazi/plugins/${name}.yazi
       cp -a $src/* $out/share/yazi/plugins/${name}.yazi
-      sed -i -e 's,Command("hexyl"),Command("${pkgs.hexyl}/bin/hexyl"),g' $out/share/yazi/plugins/${name}.yazi/init.lua
-      sed -i -e 's,self.file.cha.len,job.file.cha.len,g' $out/share/yazi/plugins/${name}.yazi/init.lua
+      sed -i -e 's,Command("hexyl"),Command("${pkgs.hexyl}/bin/hexyl"),g' $out/share/yazi/plugins/${name}.yazi/main.lua
 
       runHook postInstall
     '';

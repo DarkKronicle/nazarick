@@ -23,7 +23,7 @@ in
       mkdir -p $out/share/yazi/plugins/${name}.yazi
       cp -a $src/* $out/share/yazi/plugins/${name}.yazi
       # TODO: cursed chooser.hjson file, should centralize somehow
-      sed -i -e 's,@BROOT_CHOOSER_CONFIG@,${../../broot/chooser.hjson},g' $out/share/yazi/plugins/${name}.yazi/init.lua
+      sed -i -e 's,@BROOT_CHOOSER_CONFIG@,${../../broot/chooser.hjson},g' $out/share/yazi/plugins/${name}.yazi/main.lua
 
       runHook postInstall
     '';

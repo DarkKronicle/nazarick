@@ -29,7 +29,6 @@ in
     })
     (lib.mkIf cfg.messaging {
       nazarick.app = {
-        vesktop.enable = lib.mkOverride 500 true;
         nheko.enable = lib.mkOverride 500 true;
       };
 

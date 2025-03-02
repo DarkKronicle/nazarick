@@ -171,7 +171,6 @@ in
         ".config/nordvpn"
         ".config/borg"
         ".config/kdeconnect"
-        ".config/vesktop"
         ".config/unity3d"
         ".config/Mumble"
         ".config/nixpkgs"

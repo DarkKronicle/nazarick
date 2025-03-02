@@ -14,20 +14,19 @@ in
 
   package = stdenv.mkDerivation {
     pname = name;
-    version = "2025-01-03";
+    version = "2025-03-02";
     src = fetchFromGitHub {
       owner = "Rolv-Apneseth";
       repo = "starship.yazi";
-      rev = "9c37d37099455a44343f4b491d56debf97435a0e";
-      hash = "sha256-wESy7lFWan/jTYgtKGQ3lfK69SnDZ+kDx4K1NfY4xf4=";
-    };
-    # Patch with the actual binary
+      rev = "6c639b474aabb17f5fecce18a4c97bf90b016512";
+      hash = "sha256-bhLUziCDnF4QDCyysRn7Az35RAy8ibZIVUzoPgyEO1A=";
+    }; # Patch with the actual binary
     installPhase = ''
       runHook preInstall
 
       mkdir -p $out/share/yazi/plugins/${name}.yazi
       cp -a $src/* $out/share/yazi/plugins/${name}.yazi
-      sed -i -e 's,Command("starship"),Command("${pkgs.starship}/bin/starship"),g' $out/share/yazi/plugins/${name}.yazi/init.lua
+      sed -i -e 's,Command("starship"),Command("${pkgs.starship}/bin/starship"),g' $out/share/yazi/plugins/${name}.yazi/main.lua
 
       runHook postInstall
     '';
