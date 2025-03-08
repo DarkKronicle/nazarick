@@ -415,7 +415,7 @@ alias y = yy
 
 # https://discord.com/channels/601130461678272522/615253963645911060/1344380366017794120
 def "download here" [dest: string = "."] {
-  watch ~/downloads {|op, path, new_path|
+  watch ~/Downloads {|op, path, new_path|
     if ($op == "Rename" and ($path | path parse).extension == "part" and ($new_path | path parse) != "part") {
       mv --verbose $new_path $dest
     } 

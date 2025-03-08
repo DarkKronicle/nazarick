@@ -56,6 +56,8 @@ in
         nurl
         nixos-option-wrapped
         nix-tree
+        man-pages
+        man-pages-posix
       ])
       ++ [ mypkgs.naz ];
 
@@ -65,7 +67,7 @@ in
       enable = true;
       doc.enable = false;
       man.enable = true;
-      dev.enable = false;
+      dev.enable = true;
     };
 
     # https://github.com/nix-community/srvos/blob/main/nixos/common/nix.nix

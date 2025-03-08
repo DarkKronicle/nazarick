@@ -41,7 +41,7 @@ def "listen-for" [filter: list, condition: closure, --duration(-d): duration = 3
 }
 
 export def "kitty-start-scratch" [] {
-    start-in-scratchpad "swaymsg 'exec sleep 0.2 && kitty'" "kitty" "[con_id=|CON|] blur enable"
+    start-in-scratchpad "swaymsg 'exec sleep 0.2 && kitty zellij" "kitty" "[con_id=|CON|] blur enable"
 }
 
 export def "keepass-start-scratch" [] {

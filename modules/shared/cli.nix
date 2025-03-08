@@ -39,4 +39,7 @@
   minisign
   resvg
 ])
-++ [ mypkgs.tlock ]
+++ [
+  mypkgs.tlock
+  mypkgs.shamir
+]

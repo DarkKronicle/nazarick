@@ -21,8 +21,8 @@ let
     domain = "codeberg.org";
     owner = "awwpotato";
     repo = "potatofox";
-    rev = "6526baf7fa088893dc9290c057b5a7d3563e0213";
-    hash = "sha256-vYt5GaX2f5Bpql+ZfNdY43rXRCQEriPcn10rXDMIK0o=";
+    rev = "6df7c2d4375520f2738eb1b4381a657b66d22da2";
+    hash = "sha256-Y+WRgb6raPZTMF35obMUP9iPdLk55Ur70QQ0zHfOuDE=";
   };
 
   catppuccinTridactyl = pkgs.fetchFromGitHub {
