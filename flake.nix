@@ -82,9 +82,8 @@
       flake = false;
     };
 
-    # TODO: probably move this off feature eventually
     darkly = {
-      url = "github:Bali10050/Darkly/feature";
+      url = "github:Bali10050/Darkly";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

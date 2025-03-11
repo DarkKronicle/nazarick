@@ -27,7 +27,7 @@ in
           groups = [ "wheel" ];
           commands = [
             {
-              command = "${pkgs.tomb}/bin/tomb close";
+              command = "${pkgs.tomb}/bin/tomb close all";
               options = [
                 "NOPASSWD"
                 "SETENV"

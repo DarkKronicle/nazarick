@@ -44,10 +44,6 @@ export def "kitty-start-scratch" [] {
     start-in-scratchpad "swaymsg 'exec sleep 2 && kitty zellij'" "kitty" "[con_id=|CON|] blur enable"
 }
 
-export def "keepass-start-scratch" [] {
-    start-in-scratchpad "swaymsg 'exec sleep 0.2 && keepassxc'" "org.keepassxc.KeePassXC"
-}
-
 # TODO: this is ultra ugly
 export def "start-in-scratchpad" [cmd: string, app_id: string, extra?: string] {
     let marks = swaymsg -t get_marks

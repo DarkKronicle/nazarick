@@ -44,6 +44,7 @@ in
         pkgs.taskwarrior3
         inputs.timr.packages.${system}.timr
         inputs.faerber.packages.${system}.faerber
+        pkgs.pinentry-qt
       ]));
 
     nazarick.cli = {

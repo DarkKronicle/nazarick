@@ -61,7 +61,7 @@ in
       enable = true;
       enableNushellIntegration = true;
       enableSshSupport = true;
-      pinentryPackage = pkgs.pinentry-curses;
+      pinentryPackage = pkgs.pinentry-qt;
     };
 
     services.pueue.enable = true;
