@@ -106,10 +106,6 @@ in
           mode = "0700";
         }
         {
-          directory = ".gnupg";
-          mode = "0700";
-        }
-        {
           directory = ".config/sops/age";
           mode = "0700";
         }

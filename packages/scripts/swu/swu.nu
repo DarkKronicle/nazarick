@@ -141,6 +141,7 @@ export def "init" [] {
     mut i = 0;
     for $display in $outputs {
         swaymsg $"workspace ($i)1 output ($display); workspace ($i)1"
+        swaymsg $"workspace ($i)C output ($display);"
 
         $i = ($i + 1)
     }

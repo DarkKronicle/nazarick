@@ -8,7 +8,6 @@
       age
       wormhole-rs
       diceware
-      tomb
       openssl
       curl
     ])

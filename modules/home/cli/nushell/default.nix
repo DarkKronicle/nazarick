@@ -55,15 +55,6 @@ in
       "grasp-heart" = "systemctl poweroff";
     };
 
-    programs.ssh.addKeysToAgent = "yes";
-
-    services.gpg-agent = {
-      enable = true;
-      enableNushellIntegration = true;
-      enableSshSupport = true;
-      pinentryPackage = pkgs.pinentry-qt;
-    };
-
     services.pueue.enable = true;
     programs = {
 

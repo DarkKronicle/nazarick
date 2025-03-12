@@ -5,6 +5,8 @@ final: prev:
 {
   tomb =
     let
+      tomb = pkgs-unstable.tomb.override { pinentry = prev.pinentry-gnome3; };
+
       extras-kdf = pkgs-unstable.stdenv.mkDerivation {
         pname = "tomb-extras-kdf-keys";
         version = pkgs-unstable.tomb.version;
@@ -23,8 +25,8 @@ final: prev:
       };
     in
     pkgs-unstable.symlinkJoin {
-      inherit (pkgs-unstable.tomb) name version;
-      paths = [ pkgs-unstable.tomb ];
+      inherit (tomb) name version;
+      paths = [ tomb ];
       buildInputs = [ pkgs-unstable.makeWrapper ];
       postBuild = ''
         wrapProgram $out/bin/tomb --prefix PATH : ${pkgs-unstable.lib.makeBinPath [ extras-kdf ]}

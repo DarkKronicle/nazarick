@@ -84,11 +84,6 @@ in
           };
         }
       ];
-      signing = {
-        key = "D07B541F73FBBA18D11B2F63D7592266239CD59C";
-        signByDefault = true;
-      };
-
       # A syntax-highlighting pager in Rust(2019 ~ Now)
       delta = {
         enable = true;
