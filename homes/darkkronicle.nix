@@ -25,19 +25,6 @@ let
   };
 in
 {
-  programs.ssh = {
-    enable = true;
-    # matchBlocks = {
-    # "gitlab.com" = {
-    # host = "gitlab.com";
-    # hostname = "gitlab.com";
-    # identityFile = [ "/home/darkkronicle/.ssh/id_nazarick" ];
-    # extraOptions = {
-    # PreferredAuthentications = "publickey";
-    # };
-    # };
-    # };
-  };
 
   nazarick = {
     core.xdg = enablePersonalComputer;

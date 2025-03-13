@@ -38,6 +38,7 @@
   brightnessctl
   minisign
   resvg
+  phraze
 ])
 ++ [
   mypkgs.tlock

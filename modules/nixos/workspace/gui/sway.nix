@@ -75,6 +75,8 @@ in
       warpd
     ];
 
+    programs.ssh.startAgent = true;
+
     # Majority of stuff is configured in home manager land
     programs.sway = {
       inherit package;

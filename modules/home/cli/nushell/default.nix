@@ -47,12 +47,20 @@ in
     programs.nushell.extraConfig = ''
       use ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/nuenv/hook.nu [ "nuenv allow", "nuenv disallow" ]
       $env.config.hooks.env_change = $env.config.hooks.env_change | upsert PWD ([(use ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/nuenv/hook.nu; hook setup)] | append ($env.config.hooks | get PWD?))
+
+      def group-config [--restart(-r)] {
+        sudo -E ${pkgs.tomb}/bin/tomb close all
+        if ($restart) {
+          systemctl reboot
+        } else {
+          systemctl poweroff
+        }
+      }
     '';
 
     nazarick.cli.nushell.alias = {
       "icat" = "kitten icat";
       "zz" = "systemd-inhibit sleep infinity";
-      "grasp-heart" = "systemctl poweroff";
     };
 
     services.pueue.enable = true;
