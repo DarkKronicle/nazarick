@@ -48,8 +48,14 @@ in
       use ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/nuenv/hook.nu [ "nuenv allow", "nuenv disallow" ]
       $env.config.hooks.env_change = $env.config.hooks.env_change | upsert PWD ([(use ${pkgs.nu_scripts}/share/nu_scripts/nu-hooks/nu-hooks/nuenv/hook.nu; hook setup)] | append ($env.config.hooks | get PWD?))
 
-      def group-config [--restart(-r)] {
-        sudo -E ${pkgs.tomb}/bin/tomb close all
+      def grasp-heart [--restart(-r)] {
+        let value = do { sudo -E ${pkgs.tomb}/bin/tomb close all | tee { print } } | complete
+        if ($value.exit_code != 0) {
+          if ("There is no open tomb to be closed" not-in $value.stderr) {
+            print $value.stderr
+            return;
+          }
+        }
         if ($restart) {
           systemctl reboot
         } else {

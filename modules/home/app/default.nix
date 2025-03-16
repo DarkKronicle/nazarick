@@ -55,6 +55,7 @@ in
           pkgs.brave
           pkgs.qbittorrent
           pkgs.tor-browser
+          pkgs.goldendict-ng
         ])
         ++ (lib.optionals cfg.school [
           pkgs.matlab

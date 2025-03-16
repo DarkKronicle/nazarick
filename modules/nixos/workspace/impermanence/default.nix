@@ -100,6 +100,8 @@ in
         ".local/share/love" # Tetris
         ".vim"
 
+        ".config/goldendict"
+
         # Keys
         {
           directory = ".ssh";
@@ -269,6 +271,7 @@ in
         ".applications/matlab"
         ".MathWorks"
         ".ollama"
+        ".cache/goldendict"
       ];
     };
   };

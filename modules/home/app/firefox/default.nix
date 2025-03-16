@@ -64,7 +64,6 @@ let
       ublock-origin # extremely good. Don't need noscript or other blocking extensions because of this
       localcdn # discouraged on arkenfox github. I just don't think it'll hurt here
       smart-referer # certain websites need this, so get ready to blacklist them. (similar about:config setting)
-      foxyproxy-standard # proxy through VPN for most things
 
       # creates a new container for each new website. arkenfox somewhat discourages this because they're "unnecessary" with their settings.
       # I am not clearing cookies on close, so I really like this middle ground. I could whitelist a bunch of stuff, but in
@@ -73,6 +72,8 @@ let
 
       terms-of-service-didnt-read
       yomitan
+
+      private-relay
     ])
     ++ (with custom-addons; [
       better-canvas
@@ -241,20 +242,20 @@ in
               # dnscrypt-proxy2
               "0712"."network.trr.uri" = {
                 enable = true;
-                value = "https://127.0.0.1:3000/dns-query";
+                value = "https://10.200.0.1:3000/dns-query";
               };
               "0712"."network.trr.custom_uri" = {
                 enable = true;
-                value = "https://127.0.0.1:3000/dns-query";
+                value = "https://10.200.0.1:3000/dns-query";
               };
             };
             # LOCATION BAR / SEARCH BAR / SUGGESTIONS / HISTORY / FORMS
             "0800" = {
               enable = true;
               # TODO: do I want this?
-              "0802"."browser.urlbar.quicksuggest.enabled".value = true;
+              # "0802"."browser.urlbar.quicksuggest.enabled".value = true;
               "0807"."browser.urlbar.clipboard.featureGate".enable = true; # value = false
-              # I like keeping my history, so that's why I disable this
+              # Disables highlighting links
               "0820"."layout.css.visited_links_enabled".enable = true; # value = false
             };
             # PASSWORDS
@@ -288,9 +289,6 @@ in
             # MISCELLANEOUS
             "2600" = {
               enable = true;
-              # TODO: I don't think these affect me
-              # "2603"."browser.download.start_downloads_in_tmp_dir".value = false;
-              # "2603"."browser.helperApps.deleteTempFileOnExit".value = false;
 
               "2654"."browser.download.always_ask_before_handling_new_types".value = false;
 

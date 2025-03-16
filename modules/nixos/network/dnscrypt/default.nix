@@ -22,7 +22,7 @@ let
     generate-domains-blocklist = "${generate-domains-blocklist}/generate-domains-blocklist.py";
   }) { };
 
-  cert = mylib.mkLocalCert pkgs "localhost 127.0.0.1 ::1" "localhost";
+  cert = mylib.mkLocalCert pkgs "localhost 127.0.0.1 ::1 10.200.0.1" "localhost";
 in
 {
   options.nazarick.network.dnscrypt = {
@@ -49,6 +49,11 @@ in
     services.dnscrypt-proxy2 = {
       enable = true;
       settings = {
+        listen_addresses = [
+          "127.0.0.1:53"
+          "10.200.0.1:53"
+        ];
+
         ipv4_servers = true;
         ipv6_servers = true;
         block_ipv6 = false;
@@ -75,7 +80,10 @@ in
         };
 
         local_doh = {
-          listen_addresses = [ "127.0.0.1:3000" ];
+          listen_addresses = [
+            "127.0.0.1:3000"
+            "10.200.0.1:3000"
+          ];
           path = "/dns-query";
           cert_file = "${cert}/localhost.pem";
           cert_key_file = "${cert}/localhost-key.pem";
