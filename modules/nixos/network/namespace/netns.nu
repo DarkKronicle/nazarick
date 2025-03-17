@@ -105,31 +105,33 @@ def "all up" [private_key_file: path] {
     ip link set host0 up
     ip netns exec shared ip link set shared0 up
 
-    ip link add host2 type veth peer name vpn2
-    ip link set vpn2 netns $WG_NAME
-    ip addr add 10.224.0.1/24 dev host2
-    ip netns exec $WG_NAME ip addr add 10.224.0.2/24 dev vpn2 
-
-    ip link set host2 up
-    ip netns exec $WG_NAME ip link set vpn2 up
-
     ip -n shared link add shared1 type veth peer name vpn1
     ip -n shared link set vpn1 netns $WG_NAME
+
     ip netns exec shared ip addr add 10.222.0.1/24 dev shared1 
     ip netns exec $WG_NAME ip addr add 10.222.0.2/24 dev vpn1 
 
     ip netns exec shared ip link set shared1 up
     ip netns exec $WG_NAME ip link set vpn1 up
 
-    ip netns exec $WG_NAME iptables -P FORWARD DROP
+    ip netns exec shared iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+    # Do not want the vpn to talk to us
+    ip netns exec shared iptables -A INPUT -i shared1 -j REJECT
+
+    ip netns exec $WG_NAME iptables -P INPUT DROP
     ip netns exec $WG_NAME iptables -A INPUT -m state --state INVALID -j DROP
     ip netns exec $WG_NAME iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+    ip netns exec $WG_NAME iptables -P FORWARD DROP
     ip netns exec $WG_NAME iptables -A FORWARD -i vpn1 -o nordvpn -j ACCEPT
     ip netns exec $WG_NAME iptables -A FORWARD -i nordvpn -o vpn1 -j ACCEPT
-    ip netns exec $WG_NAME iptables -A FORWARD -i vpn2 -o nordvpn -j ACCEPT
-    ip netns exec $WG_NAME iptables -A FORWARD -i nordvpn -o vpn2 -j ACCEPT
+
     ip netns exec $WG_NAME iptables -t nat -A POSTROUTING -s 10.222.0.0/24 -o nordvpn -j MASQUERADE
-    ip netns exec $WG_NAME iptables -t nat -A POSTROUTING -s 10.224.0.0/24 -o nordvpn -j MASQUERADE
+
+    # Block all IPV6
+    ip netns exec $WG_NAME ip6tables -P OUTPUT DROP
+    ip netns exec $WG_NAME ip6tables -P INPUT DROP
+    ip netns exec $WG_NAME ip6tables -P FORWARD DROP
 
     # Wifi through VPN
     ip netns exec shared ip route add default via 10.222.0.2

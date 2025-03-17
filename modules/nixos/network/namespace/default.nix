@@ -5,6 +5,7 @@
       "net.ipv4.conf.all.forwarding" = 1;
     };
 
+    # TODO: IPv6?
     networking.firewall.extraCommands = ''
       iptables -P FORWARD DROP
       iptables -A INPUT -m state --state INVALID -j DROP
@@ -36,16 +37,6 @@
       # default.target here because we have to wait for internet
       # (which is typically under a secrets which is under pam which is under login)
       wantedBy = [ "default.target" ];
-
-      wants = [
-        "network-online.target"
-        "nss-lookup.target"
-      ];
-
-      after = [
-        "network-online.target"
-        "nss-lookup.target"
-      ];
 
       serviceConfig = {
         Type = "oneshot";

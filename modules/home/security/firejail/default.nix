@@ -64,6 +64,14 @@ in
           executable = "${pkgs.brave}/bin/brave";
           profile = "${pkgs.firejail}/etc/firejail/brave.profile";
         };
+        qbittorrent = {
+          executable = "${pkgs.qbittorrent}/bin/qbittorrent";
+          profile = "${pkgs.firejail}/etc/firejail/qbittorrent.profile";
+          extraArgs = [
+            "--netns=nordvpn"
+            "--dns=9.9.9.9"
+          ];
+        };
         # nheko = {
         # executable = "${pkgs.nheko}/bin/nheko";
         # profile = "${pkgs.firejail}/etc/firejail/nheko.profile";
