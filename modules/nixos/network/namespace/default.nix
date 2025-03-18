@@ -40,6 +40,7 @@
 
       serviceConfig = {
         Type = "oneshot";
+        RemainAfterExit = true;
       };
     };
   };

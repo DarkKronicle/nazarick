@@ -73,7 +73,7 @@
     };
 
     firefox-arkenfox = {
-      url = "github:dwarfmaster/arkenfox-nixos";
+      url = "github:DarkKronicle/arkenfox-nixos";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

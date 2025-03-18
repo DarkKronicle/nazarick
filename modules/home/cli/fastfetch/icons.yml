@@ -353,11 +353,10 @@
     - weaboo
   square: true
   resolution: 200x200
-
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/081/420/536/large/sebijy-daily-painting-1871-ps.jpg
     name: falin.jpg
-    sha256: 021hjjr0hp6k1kdv8gzc1nv5sfgs7l39jxfvc2bhb5nfk77cx1s9
+    sha256: 0jlphisa0hpl9znck2pccb95yf4ncrpvvjii369jvmfh02vdvjmj
   tags:
     - weaboo
   square: true
@@ -365,7 +364,7 @@
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/084/697/335/large/paul-kwon-zeronis-vi.jpg
     name: vi.jpg
-    sha256: 1fyvsnipb7hciyyhd58l7czawdxhlwi76nrqmrhl604i4fqynzg9
+    sha256: 0l7461zgf1mz4svmzmhiv8mdm58cyb3b71x978kdyjaz3p0mfllv
   tags:
     - weaboo
   square: true
@@ -381,7 +380,7 @@
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/043/745/317/large/lucy-rose-e8s5c1juyauhbba.jpg
     name: harrow.jpg
-    sha256: 1xw57kvpg4c91cj2hqlik3vnc0f4avz86lbglwjyvz6nijidjlxp
+    sha256: 182irdi1hn047v49kv0i7i3dri2a89ansafwb836l827lz1ih80w
   tags:
     - weaboo
   square: true
