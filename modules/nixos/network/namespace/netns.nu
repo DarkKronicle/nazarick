@@ -55,6 +55,24 @@ def "all up" [private_key_file: path] {
     nordvpn down
     shared down
 
+    # Get the base stuff up
+    ip netns add shared
+    ip -n shared link set lo up
+
+    ip netns add $WG_NAME
+
+    # Loopback interface up
+    ip -n $WG_NAME link set lo up
+
+    while (true) {
+        print "Testing dns server"
+        try {
+            host google.com
+            break
+        }
+        sleep 3sec
+    }
+
     let server = get-servers | shuffle | get 0
     let public_key = (
         $server.technologies 
@@ -64,11 +82,6 @@ def "all up" [private_key_file: path] {
             | get 0.value
     )
     let hostname = $server | get hostname
-
-    ip netns add $WG_NAME
-
-    # Loopback interface up
-    ip -n $WG_NAME link set lo up
 
     ip link add $WG_NAME type wireguard
 
@@ -92,10 +105,6 @@ def "all up" [private_key_file: path] {
     ip -j -n $WG_NAME route add default dev $WG_NAME
 
     print $"Namespace ($WG_NAME) is up, creating shared"
-
-    ip netns add shared
-
-    ip -n shared link set lo up
 
     ip link add host0 type veth peer name shared0
     ip link set shared0 netns shared

@@ -64,14 +64,10 @@ let
 
   # TODO: make this config option, also make sure to have de-duplication
   plugins = [
-    # "${mypkgs.nushell_plugin_explore}/bin/nu_plugin_explore"
-    # "${mypkgs.nushell_plugin_regex}/bin/nu_plugin_regex"
-    "${pkgs-unstable.nushellPlugins.skim}/bin/nu_plugin_skim"
-    # "${pkgs-unstable.nushellPlugins.dbus}/bin/nu_plugin_dbus"
-    "${mypkgs.nushell_plugin_hashes}/bin/nu_plugin_hashes"
-    # "${mypkgs.nushell_plugin_json_path}/bin/nu_plugin_json_path"
+    "${pkgs.nushellPlugins.skim}/bin/nu_plugin_skim"
+    # "${mypkgs.nushell_plugin_hashes}/bin/nu_plugin_hashes"
     # "${mypkgs.nushell_plugin_plotters}/bin/nu_plugin_plotters"
-    "${pkgs-unstable.nushellPlugins.polars}/bin/nu_plugin_polars"
+    "${pkgs.nushellPlugins.polars}/bin/nu_plugin_polars"
   ];
 in
 {

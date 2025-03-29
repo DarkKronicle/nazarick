@@ -32,8 +32,6 @@
 
       script = "nu ${./netns.nu} up ${config.sops.secrets."nordvpn/privatekey".path}";
 
-      preStart = "until host google.com; do sleep 1; done";
-
       # default.target here because we have to wait for internet
       # (which is typically under a secrets which is under pam which is under login)
       wantedBy = [ "default.target" ];
