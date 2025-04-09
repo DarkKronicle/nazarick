@@ -1070,11 +1070,11 @@
         "plugins-yazi-nvim": "plugins-yazi-nvim"
       },
       "locked": {
-        "lastModified": 1743212049,
-        "narHash": "sha256-I908ho7YvGK87gzSjvG56Ml6eQAj0xwyuu13lOHvfBk=",
+        "lastModified": 1744212762,
+        "narHash": "sha256-tZFYRBumjLzN56nbJz3bBn3TEvjwdh4i/YyDFblj8yw=",
         "owner": "DarkKronicle",
         "repo": "nvim-dotfiles",
-        "rev": "f8849ddc006478cecd2817faa7f42fbe1502cf9e",
+        "rev": "0c6b10e2ceec7b46dc4be6cd56fa9fd8e356d68b",
         "type": "github"
       },
       "original": {
@@ -1371,6 +1371,20 @@
         "type": "github"
       }
     },
+    "potatofox": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1743709562,
+        "narHash": "sha256-Kx/NLIVQBD5qmZjCbaXwyVsLcSOflOaXW9UIl3T2gHI=",
+        "rev": "201bf4db8f042fc6c2fc26116cb77b96d11d5300",
+        "type": "tarball",
+        "url": "https://codeberg.org/api/v1/repos/awwpotato/potatofox/archive/201bf4db8f042fc6c2fc26116cb77b96d11d5300.tar.gz?rev=201bf4db8f042fc6c2fc26116cb77b96d11d5300"
+      },
+      "original": {
+        "type": "tarball",
+        "url": "https://codeberg.org/awwpotato/potatofox/archive/main.tar.gz"
+      }
+    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat_3",
@@ -1440,6 +1454,7 @@
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nixpkgs-unstable-small": "nixpkgs-unstable-small",
         "nvim-cats": "nvim-cats",
+        "potatofox": "potatofox",
         "sops-nix": "sops-nix",
         "timr": "timr",
         "treefmt-nix": "treefmt-nix",

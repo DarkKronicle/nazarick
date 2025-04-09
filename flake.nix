@@ -122,6 +122,11 @@
       url = "github:sectore/timr-tui";
     };
 
+    potatofox = {
+      url = "https://codeberg.org/awwpotato/potatofox/archive/main.tar.gz";
+      flake = false;
+    };
+
   };
 
   outputs = inputs: import ./outputs inputs;

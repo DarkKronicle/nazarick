@@ -17,14 +17,6 @@ let
     inherit (inputs.firefox-addons.lib.${pkgs.system}) buildFirefoxXpiAddon;
   };
 
-  firefox-potatofox = pkgs.fetchFromGitea {
-    domain = "codeberg.org";
-    owner = "awwpotato";
-    repo = "potatofox";
-    rev = "6df7c2d4375520f2738eb1b4381a657b66d22da2";
-    hash = "sha256-Y+WRgb6raPZTMF35obMUP9iPdLk55Ur70QQ0zHfOuDE=";
-  };
-
   catppuccinTridactyl = pkgs.fetchFromGitHub {
     owner = "lonepie";
     repo = "catppuccin-tridactyl";
@@ -159,7 +151,7 @@ in
           name = "main";
           isDefault = true;
           userChrome = mkIf cfg.userCss ''
-            @import "${firefox-potatofox}/chrome/userChrome.css";
+            @import "${inputs.potatofox}/chrome/userChrome.css";
           '';
 
           search = {

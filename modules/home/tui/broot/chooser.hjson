@@ -8,5 +8,5 @@ verbs: [
     }
 ]
 imports: [
-    ~/.config/broot/conf.toml
+    ~/.config/broot/conf.hjson
 ]
