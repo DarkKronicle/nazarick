@@ -38,6 +38,10 @@ in
     services.udev.extraRules = ''
       SUBSYSTEM=="usb", ATTRS{idVendor}=="0483", MODE="0666"
       SUBSYSTEM=="usb_device", ATTRS{idVendor}=="0483", MODE="0666"
+      # Generated from avrdude -c "usbasp/u"
+      # usbasp
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="03eb", ATTRS{idProduct}=="c7b4", MODE="0660", TAG+="uaccess"
+      SUBSYSTEM=="usb", ATTRS{idVendor}=="16c0", ATTRS{idProduct}=="05dc", MODE="0660", TAG+="uaccess"
     '';
 
     nazarick.users = {

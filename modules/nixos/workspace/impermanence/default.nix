@@ -272,6 +272,7 @@ in
         ".MathWorks"
         ".ollama"
         ".cache/goldendict"
+        ".tor project"
       ];
     };
   };
