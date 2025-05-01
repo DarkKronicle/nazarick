@@ -97,6 +97,8 @@ in
 
           max-jobs = 2;
 
+          keep-going = true;
+
           experimental-features = [
             "nix-command"
             "flakes"

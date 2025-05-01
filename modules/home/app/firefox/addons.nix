@@ -12,14 +12,14 @@
       platforms = lib.platforms.all;
     };
   };
-  better-history-ng = buildFirefoxXpiAddon rec {
-    pname = "better-history-ng";
-    version = "2.1.0";
-    addonId = "{058af685-fc17-47a4-991a-bab91a89533d}";
-    url = "https://addons.mozilla.org/firefox/downloads/file/4344210/better_history_ng-${version}.xpi";
-    sha256 = "sha256-1Yn3fM27Ox3kxq6a9lcluqVOSnAtAMDqyYebw1UMZf8=";
+  zotero = buildFirefoxXpiAddon rec {
+    pname = "zotero";
+    version = "5.0.159";
+    addonId = "zotero@chnm.gmu.edu";
+    url = "https://www.zotero.org/download/connector/dl?browser=firefox&version=${version}";
+    sha256 = "sha256-CDedY6eYbwB99D7FPim1QsrD5B2nnahVGA5dmHTBgiQ=";
     meta = {
-      homepage = "https://github.com/Christoph-Wagner/firefox-better-history-ng";
+      homepage = "https://www.zotero.org/";
       license = lib.licenses.unlicense;
       platforms = lib.platforms.all;
     };

@@ -50,6 +50,8 @@ in
           pkgs.hunspell # spell check for libreoffice
           pkgs.pdfarranger
           pkgs.rnote
+          pkgs.zotero
+          pkgs.poppler-utils
         ])
         ++ (lib.optionals cfg.web [
           pkgs.brave

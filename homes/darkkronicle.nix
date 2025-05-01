@@ -92,7 +92,7 @@ in
         enable = lib.mkDefault true;
         other-pkgs = lib.mkDefault true;
       };
-      spotify.spotify-qt = enabled;
+      # spotify.spotify-qt = enabled;
       game = {
         protonup = enabled;
         # TODO: mint is not installed because of issues

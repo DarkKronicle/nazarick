@@ -40,7 +40,7 @@ let
       # Github
       lovely-forks # Shows forks on github projects
       refined-github
-      catppuccin-gh-file-explorer
+      catppuccin-web-file-icons
 
       keepassxc-browser
 
@@ -69,7 +69,7 @@ let
     ])
     ++ (with custom-addons; [
       better-canvas
-      better-history-ng
+      zotero # can't get it to install nicely
     ]);
 in
 {

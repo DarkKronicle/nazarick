@@ -101,6 +101,7 @@ in
         ".vim"
 
         ".config/goldendict"
+        "Zotero"
 
         # Keys
         {
@@ -154,6 +155,7 @@ in
         ".local/state/syncthing"
 
         ".mozilla"
+        ".zotero"
         ".local/share/vulkan"
 
         ".local/share/Trash"
