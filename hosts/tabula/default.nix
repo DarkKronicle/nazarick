@@ -113,6 +113,7 @@ in
       workspace = {
         common = enabled;
         impermanence = enabled;
+        distrobox = enabled;
         gui = {
           common = enabled;
           steam = enabled;

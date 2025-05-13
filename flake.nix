@@ -109,7 +109,7 @@
     };
 
     nix-matlab = {
-      url = "gitlab:doronbehar/nix-matlab";
+      url = "gitlab:doronbehar/nix-matlab?rev=00b318461a61c767463dd0c2c1a56909185c5e47";
     };
 
     fenix = {

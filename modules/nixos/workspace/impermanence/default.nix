@@ -275,6 +275,7 @@ in
         ".ollama"
         ".cache/goldendict"
         ".tor project"
+        ".local/share/containers"
       ];
     };
   };
