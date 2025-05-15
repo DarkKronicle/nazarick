@@ -26,6 +26,7 @@ in
     home.packages = [
       mypkgs.script-nux
       mypkgs.script-f
+      mypkgs.script-ai
       mypkgs.script-swu
       mypkgs.script-cache
       mypkgs.script-util

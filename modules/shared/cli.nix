@@ -23,7 +23,6 @@
   dust
   neovim
   nushell
-  eza
   dysk
   magic-wormhole-rs
   mosh

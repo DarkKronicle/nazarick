@@ -6,6 +6,7 @@ def f-env [code: closure] {
     }
 }
 
+# Utility function to remove a string only if the input starts with it
 def "str starts-with-remove" [compare: string]: string -> string {
     let val = $in
     if ($val | str starts-with $compare) {
@@ -14,10 +15,13 @@ def "str starts-with-remove" [compare: string]: string -> string {
     return $val
 }
 
+# A fancy wrapper for the `fd` utility for ease of use and fancy displaying
+# 
+# It provides frequently used options and integrates well with nushell. 
+# If no arguments are provided, it pretty prints contents of the current directory.
 export def main [
     search?: string,
-    --hide(-H),    # Hide .hidden files
-    --ignore(-I),  # Obey .gitnore and other vsc
+    --hide(-H),    # Hide .hidden files and git ignored
     --case-sensitive(-C),  # Obey .gitnore and other vsc
     --max-depth: int (-x) = -1,  # Maximum depth
     --min-depth: int (-n) = -1,  # Minimum depth
@@ -30,7 +34,7 @@ export def main [
     --action(-a): closure, # perform action on result list. Useful for pretty printing.
 ] {
     f-env {
-
+        # Set these to mutable since they can change based on empty query
         mut search = $search
         mut max_depth = $max_depth
         mut pretty = $pretty
@@ -41,12 +45,11 @@ export def main [
             }
             $pretty = true
         }
+
+        # Build flags list
         mut flags = []
         if (not $hide) {
-            $flags = $flags | append "--hidden"
-        }
-        if (not $ignore) {
-            $flags = $flags | append "-I"
+            $flags = $flags | append ["--hidden" "-I"]
         }
         if ($case_sensitive) {
             $flags = $flags | append "--case-sensitive"
@@ -63,7 +66,8 @@ export def main [
         for $ex in $extra_condtions {
             $flags = $flags | append ["--and" $ex]
         }
-        # Directory is the second argument for fd
+
+        # Run zoxide on the directory if the directory doesn't exist
         mut real_dir = $directory
         if ($real_dir | is-not-empty) {
             if (not ($real_dir | path expand | path exists)) {
@@ -78,14 +82,18 @@ export def main [
             $real_dir = pwd
         }
         $flags = [$real_dir] | append $flags 
+
+        # Default to glob for simplicity
         if (not $regex) {
             $flags = $flags | append "--glob"
         }
-        # Make immutable
+
+        # Make immutable for closure
         let $real_dir = $real_dir
 
         let action = $action | default { $in }
 
+        # Build results
         let results = fd $search ...$flags | lines | par-each { ls -D $in | get 0 } | sort-by "name" | do $action
         if ($pretty and not ($no_pretty)) {
             if ($real_dir != (pwd)) {

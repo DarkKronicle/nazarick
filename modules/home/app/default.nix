@@ -52,6 +52,7 @@ in
           pkgs.rnote
           pkgs.zotero
           pkgs.poppler-utils
+          pkgs.calibre
         ])
         ++ (lib.optionals cfg.web [
           pkgs.brave
