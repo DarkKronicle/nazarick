@@ -64,7 +64,6 @@ in
           pkgs.matlab
           pkgs.waveforms
           mypkgs.ltspice
-          pkgs.ollama-cuda
           pkgs.aichat
         ]);
     }

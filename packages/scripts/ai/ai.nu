@@ -1,3 +1,29 @@
+# A wrapper for aichat with easy switching for models, rags, and roles
+#
+# I'm still working on the ethics of AI use and thought this was a good middle ground.
+# I'll probably write a blog post, but to keep me straight:
+# - I think it can be a really useful tool
+# - there are big ethical concerns with copyright, power, climate change
+# - issues of creative works going out
+# - issues of bias
+# - issues of privacy
+# - there's political concerns with what using AI supports. Big startups with little regard for certain
+#   things. You have long-termism beliefs that want "AI to advance regardless of consequences"
+#
+# For me, I don't want to use AI (LLMs+) to replace human creativity. I'm going to treat it as a tool
+# that is powerful at natural language processing.
+#
+# For some select complex problems, AI can be really useful. I want AI to mainly synthesize and not create.
+#
+# For power concerns, I have put a bunch of lower-cost models that I can easily select from aichat.
+# I will use these when it makes sense, and will then use together.ai for hosting of larger models.
+# The goal is to make it easy to change what I use and have to think *if* what I am doing should
+# use a 100B parameter model.
+#
+# More reading: 
+# - https://hidde.blog/ethical-ai/
+# - https://www.youtube.com/watch?v=F4KQ8wBt1Qg
+
 # credit: flovilmart https://discord.com/channels/601130461678272522/988303282931912704/1353796832408502314
 
 def spinner [] {
@@ -33,6 +59,12 @@ def models [] {
     }
 }
 
+def rags [] { 
+    ai-env {
+        return (aichat --list-rags | lines)
+    }
+}
+
 export def "main" [] {
 
 }
@@ -46,6 +78,7 @@ def "ask-inner" [
     query: string,
     --role(-r): string@roles,
     --model(-m): string@models,
+    --rag(-g): string@rags,
     --files(-f): list<path>,
     --urls(-u): list<path>,
     --width(-w): int = 100, # word-wrap at width (set to 0 to disable)
@@ -63,6 +96,10 @@ def "ask-inner" [
 
         if ($role != null) {
             $flags = $flags | append ["--role" $role]
+        }
+
+        if ($rag != null) {
+            $flags = $flags | append ["--rag" $rag]
         }
 
         for $file in $files {
@@ -112,6 +149,7 @@ export def --env "ask" [
     query: string,
     --role(-r): string@roles,
     --model(-m): string@models,
+    --rag(-g): string@rags,
     --files(-f): list<path>,
     --urls(-u): list<path>,
     --width(-w): int = 100, # word-wrap at width (set to 0 to disable)
@@ -126,7 +164,7 @@ export def --env "ask" [
             $val | ask-inner $query --role=$role --model=$model 
             --files=$files --urls=$urls --width=$width
             --no-format=$no_format --show-reasoning=$show_reasoning
-            --code=$code
+            --code=$code --rag=$rag
         )
 
         $env.__AI_LAST_ANSWER = ($answers | get 0)

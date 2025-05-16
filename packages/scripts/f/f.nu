@@ -39,7 +39,7 @@ export def main [
         mut max_depth = $max_depth
         mut pretty = $pretty
         if ($search == null) {
-            $search = "*"
+            $search = "**"
             if ($max_depth == -1) {
                 $max_depth = 1
             }
@@ -47,7 +47,7 @@ export def main [
         }
 
         # Build flags list
-        mut flags = []
+        mut flags = ["--full-path"]
         if (not $hide) {
             $flags = $flags | append ["--hidden" "-I"]
         }
