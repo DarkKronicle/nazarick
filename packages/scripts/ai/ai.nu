@@ -75,7 +75,8 @@ export def "last" [] {
 
 
 def "ask-inner" [
-    query: string,
+    spinner: int,
+    query?: string,
     --role(-r): string@roles,
     --model(-m): string@models,
     --rag(-g): string@rags,
@@ -85,6 +86,7 @@ def "ask-inner" [
     --no-format(-F), # don't use an app to format the output
     --show-reasoning(-S), # show <think> block
     --code(-c), # try to parse code blocks
+    --no-stream(-s), # never stream
 ] : any -> list<string> {
     let val = $in
     ai-env {
@@ -96,6 +98,10 @@ def "ask-inner" [
 
         if ($role != null) {
             $flags = $flags | append ["--role" $role]
+        }
+
+        if ($no_stream or ($query == null)) {
+            $flags = $flags | append ("--no-stream")
         }
 
         if ($rag != null) {
@@ -111,6 +117,22 @@ def "ask-inner" [
             $flags = $flags | append ["--file" $url]
         }
 
+        if ($query == null) {
+            job kill $spinner
+            $flags = $flags | append ["--session" (random chars --length 5)]
+            if ($val | is-empty) {
+                aichat ...$flags
+            } else {
+                let inner_val = if (($val | describe) == string) {
+                    $val
+                } else {
+                    $val | to json --raw
+                }
+                $inner_val | aichat ...$flags
+            }
+            return ["" ""]
+        }
+
         let full_answer = (
             if ($val | is-empty) {
                 aichat ...$flags $query
@@ -119,7 +141,7 @@ def "ask-inner" [
                     $val
                 } else {
                     $val | to json --raw
-                }
+               }
                 $inner_val | aichat ...$flags $query
             }
         )
@@ -129,11 +151,11 @@ def "ask-inner" [
         # https://stackoverflow.com/questions/76269934/issues-creating-a-regex-to-extract-code-from-markdown
 
         if ($code) {
-            return [$full_answer ($answer | str replace -r '(?s)<think>.*?</think>\s+' '' | parse -r '(?sm)^```(?:\w+)?\s*\n(.*?)(?=^```)```' | get capture0.0 | str trim)]
+            return [$full_answer ($answer | str replace -r '^(?s).*?<think>.*?</think>\s+' '' | parse -r '(?sm)^```(?:\w+)?\s*\n(.*?)(?=^```)```' | get capture0.0 | str trim)]
         }
 
         if (not $show_reasoning) {
-            $answer = $answer | str replace -r '(?s)<think>.*?</think>\s+' ''
+            $answer = $answer | str replace -r '^(?s).*?<think>.*?</think>\s+' ''
         }
 
         if ($no_format) {
@@ -146,7 +168,7 @@ def "ask-inner" [
 }
 
 export def --env "ask" [
-    query: string,
+    query?: string,
     --role(-r): string@roles,
     --model(-m): string@models,
     --rag(-g): string@rags,
@@ -156,12 +178,13 @@ export def --env "ask" [
     --no-format(-F), # don't use an application to format the output (no text will be returned if you don't use this or code)
     --show-reasoning(-S), # show <think> block
     --code(-c), # try to parse code blocks
+    --no-stream(-s), # never stream
 ] : any -> string {
     let val = $in
     let spinner = (start spinner)
     try {
         let answers = (
-            $val | ask-inner $query --role=$role --model=$model 
+            $val | ask-inner $spinner $query --role=$role --model=$model 
             --files=$files --urls=$urls --width=$width
             --no-format=$no_format --show-reasoning=$show_reasoning
             --code=$code --rag=$rag

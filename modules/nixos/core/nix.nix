@@ -66,7 +66,10 @@ in
     documentation = {
       enable = true;
       doc.enable = false;
-      man.enable = true;
+      man = {
+        enable = true;
+        generateCaches = true;
+      };
       dev.enable = true;
     };
 
