@@ -86,7 +86,6 @@ def "ask-inner" [
     --no-format(-F), # don't use an app to format the output
     --show-reasoning(-S), # show <think> block
     --code(-c), # try to parse code blocks
-    --no-stream(-s), # never stream
 ] : any -> list<string> {
     let val = $in
     ai-env {
@@ -98,10 +97,6 @@ def "ask-inner" [
 
         if ($role != null) {
             $flags = $flags | append ["--role" $role]
-        }
-
-        if ($no_stream or ($query == null)) {
-            $flags = $flags | append ("--no-stream")
         }
 
         if ($rag != null) {
@@ -178,7 +173,6 @@ export def --env "ask" [
     --no-format(-F), # don't use an application to format the output (no text will be returned if you don't use this or code)
     --show-reasoning(-S), # show <think> block
     --code(-c), # try to parse code blocks
-    --no-stream(-s), # never stream
 ] : any -> string {
     let val = $in
     let spinner = (start spinner)
