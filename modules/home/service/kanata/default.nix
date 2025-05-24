@@ -22,7 +22,6 @@ let
     pkgs.swayfx
     mypkgs.script-swu
     tofiApp
-    pkgs.warpd
     pkgs.keepassxc
     pkgs.sway-overfocus
   ];

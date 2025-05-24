@@ -5,6 +5,7 @@
   config,
   inputs,
   mysecrets,
+  osConfig,
   myvars,
   ...
 }:
@@ -35,7 +36,6 @@ in
       ags = enabled;
       sway = enabled;
       fcitx = enabled;
-      school = enabled;
     };
 
     cli = {
@@ -56,7 +56,6 @@ in
         useKittyProtocol = lib.mkDefault isPersonalComputer;
       };
       pager = enabled;
-      tex = enablePersonalComputer;
       rust = enablePersonalComputer;
     };
 
@@ -79,10 +78,8 @@ in
     app = lib.mkIf isPersonalComputer {
       common = {
         document = lib.mkDefault true;
-        messaging = lib.mkDefault true;
-        web = lib.mkDefault true;
-        school = lib.mkDefault true;
-        design = lib.mkDefault true;
+        useful = lib.mkDefault true;
+        tabula = osConfig.networking.hostName == "tabula";
       };
       firefox = enabled;
       kitty = enabled;
@@ -97,9 +94,6 @@ in
       # spotify.spotify-qt = enabled;
       game = {
         protonup = enabled;
-        # TODO: mint is not installed because of issues
-        # mint = enabled;
-        minecraft = enabled;
       };
     };
 

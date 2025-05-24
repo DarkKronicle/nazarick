@@ -4,21 +4,68 @@
   mylib,
   pkgs,
   mypkgs,
+  inputs,
   ...
 }:
 let
   cfg = config.nazarick.app.common;
+
+  document = with pkgs; [
+    typst
+    libreoffice-qt
+    hunspell
+    pdfarranger
+    rnote
+    zotero
+    poppler-utils
+    calibre
+    goldendict-ng
+  ];
+
+  useful = with pkgs; [
+    (brave.override {
+      commandLineArgs = "--password-store=basic";
+    })
+    qbittorrent
+    tor-browser
+    keepassxc
+  ];
+
+  tabula =
+    with pkgs;
+    [
+      nheko
+      signal-desktop
+      mumble
+      waveforms
+      matlab
+      aichat
+      prismlauncher
+
+      # Fun apps
+      pipes-rs
+      thokr
+      typespeed
+      sssnake
+
+      taskwarrior3
+
+      inputs.timr.packages.${system}.timr
+      inputs.faerber.packages.${system}.faerber
+      pkgs.pinentry-gnome3
+    ]
+    ++ [
+      mypkgs.ltspice
+    ];
 in
 {
 
   imports = mylib.scanPaths ./.;
 
   options.nazarick.app.common = {
-    document = lib.mkEnableOption "Document editing applications";
-    messaging = lib.mkEnableOption "Messaging applications";
-    web = lib.mkEnableOption "Web applications";
-    school = lib.mkEnableOption "School applications";
-    design = lib.mkEnableOption "Design applications";
+    document = lib.mkEnableOption "Document applications";
+    useful = lib.mkEnableOption "Useful applications";
+    tabula = lib.mkEnableOption "Tabula specific applications";
   };
 
   config = lib.mkMerge [
@@ -27,16 +74,7 @@ in
         pager.enable = lib.mkOverride 500 true;
       };
     })
-    (lib.mkIf cfg.messaging {
-      nazarick.app = {
-        nheko.enable = lib.mkOverride 500 true;
-      };
-
-      home.packages = [
-        pkgs.signal-desktop
-      ];
-    })
-    (lib.mkIf cfg.design {
+    (lib.mkIf cfg.document {
       nazarick.app = {
         krita.enable = lib.mkOverride 500 true;
         gimp.enable = lib.mkOverride 500 true;
@@ -44,29 +82,9 @@ in
     })
     {
       home.packages =
-        (lib.optionals cfg.messaging [ pkgs.mumble ])
-        ++ (lib.optionals cfg.document [
-          pkgs.libreoffice-qt
-          pkgs.hunspell # spell check for libreoffice
-          pkgs.pdfarranger
-          pkgs.rnote
-          pkgs.zotero
-          pkgs.poppler-utils
-          pkgs.calibre
-          pkgs.typst
-        ])
-        ++ (lib.optionals cfg.web [
-          pkgs.brave
-          pkgs.qbittorrent
-          pkgs.tor-browser
-          pkgs.goldendict-ng
-        ])
-        ++ (lib.optionals cfg.school [
-          pkgs.matlab
-          pkgs.waveforms
-          mypkgs.ltspice
-          pkgs.aichat
-        ]);
+        (lib.optionals cfg.document document)
+        ++ (lib.optionals cfg.useful useful)
+        ++ (lib.optionals cfg.tabula tabula);
     }
   ];
 }

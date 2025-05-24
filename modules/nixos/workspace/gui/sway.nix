@@ -72,7 +72,6 @@ in
       kdePackages.qtwayland
       qt5.qtwayland
       networkmanagerapplet
-      warpd
     ];
 
     programs.ssh.startAgent = true;

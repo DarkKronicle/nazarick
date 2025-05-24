@@ -34,18 +34,6 @@ in
   };
 
   nazarick = {
-    cli = {
-      zk = {
-        enable = true;
-        notebookDir = "/home/darkkronicle/Documents/writing/notes/";
-      };
-    };
-
-    tui = {
-      newsboat = enabled;
-      w3m = enabled;
-    };
-
     service = {
       kanata.enable = true;
       logrotate.enable = true;

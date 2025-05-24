@@ -394,14 +394,14 @@ danger-enable-cmd yes
 (deflayer sway
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
 	_    XX  @dw  XX  XX  XX  XX  @w1  @w2  @w3  @w4  XX  XX  XX
-	_    XX  XX XX (layer-while-held sway-dw) XX @sw-lft @sw-down @sw-up @sw-rght @sw-meta  (cmd-log none error swaymsg "exec pkill warpd; exec sleep 0.01 && warpd --oneshot --hint") (cmd-log none error swaymsg exec kitty)
+	_    XX  XX XX (layer-while-held sway-dw) XX @sw-lft @sw-down @sw-up @sw-rght @sw-meta XX (cmd-log none error swaymsg exec kitty)
 	@sw-meta     XX  XX  (layer-while-held sway-c)  (layer-while-held sway-mouse)  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX
 	_    _   _      _    _      _    _
 )
 
 (deflayer handsdown-sway
 	_    XX  @dw  XX  XX  XX  XX  @w1  @w2  @w3  @w4  XX  XX  XX
-	_    XX  XX XX (layer-while-held handsdown-sway-dw) XX @sw-lft @sw-down @sw-up @sw-rght @sw-meta  (cmd-log none error swaymsg "exec pkill warpd; exec sleep 0.01 && warpd --oneshot --hint") (cmd-log none error swaymsg exec kitty) XX
+	_    XX  XX XX (layer-while-held handsdown-sway-dw) XX @sw-lft @sw-down @sw-up @sw-rght @sw-meta  XX (cmd-log none error swaymsg exec kitty) XX
 	@sw-meta     XX  XX  (layer-while-held handsdown-sway-c)  (layer-while-held handsdown-sway-mouse)  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX XX
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX 
 	_    _   _      _    _      _    _

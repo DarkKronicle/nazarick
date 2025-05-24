@@ -41,7 +41,6 @@ in
         wallpaperPath = wallpaperPath;
         schoolWallpaperPath = schoolWallpaperPath;
       };
-      warpd.enable = true;
     };
 
     wayland.windowManager.sway = {

@@ -18,7 +18,6 @@ in
     services.syncthing.enable = true;
 
     home.packages = with pkgs; [
-      keepassxc
       syncthing
     ];
   };

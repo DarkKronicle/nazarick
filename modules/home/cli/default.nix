@@ -23,29 +23,7 @@ in
 
   config = lib.mkIf cfg.enable {
 
-    nazarick.cli.nushell.alias = {
-      "wrm" = "wormhole-rs";
-      "xt" = "broot -c :pt --height ((term size).rows - 1) -H";
-    };
-
-    home.packages =
-      import (mylib.relativeToRoot "modules/shared/cli.nix") { inherit pkgs mypkgs; }
-      ++ (lib.optionals cfg.fun (
-        with pkgs;
-        [
-          pipes-rs
-          thokr
-          typespeed
-          sssnake
-        ]
-      ))
-      ++ (lib.optionals cfg.misc ([
-        pkgs.yt-dlp
-        pkgs.taskwarrior3
-        inputs.timr.packages.${system}.timr
-        inputs.faerber.packages.${system}.faerber
-        pkgs.pinentry-gnome3
-      ]));
+    home.packages = import (mylib.relativeToRoot "modules/shared/cli.nix") { inherit pkgs mypkgs; };
 
     nazarick.cli = {
       pager.enable = lib.mkOverride 500 true;

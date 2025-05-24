@@ -38,6 +38,7 @@
   minisign
   resvg
   phraze
+  yt-dlp
 ])
 ++ [
   mypkgs.tlock
