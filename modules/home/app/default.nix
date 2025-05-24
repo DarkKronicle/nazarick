@@ -53,6 +53,7 @@ in
           pkgs.zotero
           pkgs.poppler-utils
           pkgs.calibre
+          pkgs.typst
         ])
         ++ (lib.optionals cfg.web [
           pkgs.brave

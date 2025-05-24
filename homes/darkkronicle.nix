@@ -88,6 +88,7 @@ in
       kitty = enabled;
       thunderbird = enabled;
       ollama = enabled;
+      obs = enabled;
       mpv = enabled;
       anki = {
         enable = lib.mkDefault true;

@@ -1082,11 +1082,11 @@
         "plugins-yazi-nvim": "plugins-yazi-nvim"
       },
       "locked": {
-        "lastModified": 1746476393,
-        "narHash": "sha256-t+WlyCmSgQIhiwYApRkJeNufNAiV2ciLDV3d3msfoY0=",
+        "lastModified": 1748015725,
+        "narHash": "sha256-vb7bT4J2osnuRqbRnRWrWjgrAsLzSYpq+wFF1VHFSYE=",
         "owner": "DarkKronicle",
         "repo": "nvim-dotfiles",
-        "rev": "c544a34e8be58dcd15726aa58762a6772704835a",
+        "rev": "33ce252d5ebc7d6b748ee5a8374521f2b0ea5a57",
         "type": "github"
       },
       "original": {
