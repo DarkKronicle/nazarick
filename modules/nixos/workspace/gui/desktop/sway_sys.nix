@@ -7,7 +7,7 @@
 }:
 let
   inherit (lib) mkIf mkEnableOption;
-  cfg = config.nazarick.workspace.gui.sway;
+  cfg = config.nazarick.workspace.gui.desktop.sway;
 
   package = pkgs.swayfx;
 
@@ -37,44 +37,15 @@ let
   };
 in
 {
-  options.nazarick.workspace.gui.sway = {
+  options.nazarick.workspace.gui.desktop.sway = {
     enable = mkEnableOption "sway";
   };
 
   config = mkIf cfg.enable {
-    # Brightness/volume
-    nazarick.users.extraGroups = [ "video" ];
-    programs.light.enable = true;
-
-    # Don't love gnome stuff, but works well enough here. Another option is keepassxs,
-    # that won't autostart
-
-    # Doesn't work well with sddm I think
-    # https://github.com/NixOS/nixpkgs/issues/86884
-    services.gnome.gnome-keyring.enable = lib.mkDefault true;
-    programs.seahorse.enable = true;
-
-    # Autostart won't happen here bc not gnome, and too much work modifying autostart files
-    systemd.user.services."gnome-keyring-secret" = {
-      wantedBy = [ "graphical-session-pre.target" ];
-      description = "Gnome Keyring Daemon";
-      script = "/run/wrappers/bin/gnome-keyring-daemon --start --components=secrets";
-    };
-
-    # Maybe change this? But sddm with my theme is pretty cool
-    services.displayManager.sddm.wayland.enable = true;
 
     environment.etc."sway/config.d/session.conf".source = pkgs.writeText "session.conf" ''
       exec dbus-update-activation-environment --systemd SESSION_CONTEXT
     '';
-
-    environment.systemPackages = with pkgs; [
-      kdePackages.qtwayland
-      qt5.qtwayland
-      networkmanagerapplet
-    ];
-
-    programs.ssh.startAgent = true;
 
     # Majority of stuff is configured in home manager land
     programs.sway = {
@@ -89,19 +60,12 @@ in
         export QT_QPA_PLATFORM=wayland
         export QT_QPA_PLATFORMTHEME=qt5ct
         export _JAVA_AWT_WM_NONREPARENTING=1
-      ''; # QT_WAYLAND_DISABLE_WINDOWDECORATION="1"
+      '';
       wrapperFeatures.gtk = true;
     };
 
-    services.blueman.enable = true;
-
     services.displayManager.sessionPackages = [ sessionPkg ];
 
-    environment.pathsToLink = [
-      "/share/nushell"
-    ];
-
-    services.flatpak.enable = true;
-
+    nazarick.workspace.gui.sddm.defaultSession = "sway";
   };
 }

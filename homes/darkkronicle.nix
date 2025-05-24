@@ -34,7 +34,10 @@ in
     gui = lib.mkIf isPersonalComputer {
       qt = enabled;
       ags = enabled;
-      sway = enabled;
+      desktop = {
+        enable = true;
+        sway = enabled;
+      };
       fcitx = enabled;
     };
 

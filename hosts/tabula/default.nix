@@ -119,10 +119,12 @@ in
           steam = enabled;
           wine = enabled;
           fcitx = enabled;
-          sway = enabled;
+          desktop = {
+            enable = true;
+            sway = enabled;
+          };
           sddm = {
             enable = true;
-            defaultSession = "sway";
           };
         };
         service = {
