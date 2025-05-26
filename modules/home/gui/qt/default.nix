@@ -47,6 +47,18 @@ in
       enable = true;
       theme.name = "Breeze";
       gtk2.configLocation = "${config.home.homeDirectory}/.config/gtk-trash/gtkrc";
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
+      gtk4.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
+    };
+
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
     };
 
     home.sessionVariables.GTK2_RC_FILES = lib.mkForce "${config.home.homeDirectory}/.gtkrc-2.0";

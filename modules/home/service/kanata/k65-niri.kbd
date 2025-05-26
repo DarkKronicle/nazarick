@@ -68,19 +68,19 @@ danger-enable-cmd yes
 
 ;; Main layer with the added features:
 ;; - extend layer -=- gives really nice shortcuts
-;; - sway keybinds
+;; - niri keybinds
 (deflayer qwerty
 	grv  1  2  3  4  5  6  7  8  9  0  -  =  bspc
 	tab  q  w  e  r  t  y  u  i  o  p  [  ]  \
 	@ead  a  s d f g  h  j  k l  ;  '  ret
-	lsft (chord sway-act z) (chord sway-act x)  c  v  b  n  m  ,  .  /  rsft
+	lsft (chord niri-act z) (chord niri-act x)  c  v  b  n  m  ,  .  /  rsft
 	lctl met lalt   spc  ralt   menu rctrl
 )
 
-(defchords sway-act $combo-timeout
+(defchords niri-act $combo-timeout
   (z) z
   (x) x
-  (z x) (layer-while-held sway)
+  (z x) (layer-while-held niri)
 )
 
 ;; No weird timings or anything, all it has is the caps-lock extend layer
@@ -95,8 +95,8 @@ danger-enable-cmd yes
 (deflayer extend
 	esc    f1  f2  f3  f4  f5  f6  f7  f8  f9  f10  f11 f12 _
 	_    @ch1 @ch2 @ch3  _  _  _  @md1  @md2 @md3  _  _  _  _
-	_    @ch4 @ch5 @ch6  (layer-while-held sway)  _  lft  down  up  rght  _  _  _
-	_    (chord sway-act z) (chord sway-act x) @cpy @pst  _ _  _ _ _  _  _
+	_    @ch4 @ch5 @ch6  (layer-while-held niri)  _  lft  down  up  rght  _  _  _
+	_    (chord niri-act z) (chord niri-act x) @cpy @pst  _ _  _ _ _  _  _
 	_    _   @aly      _    _      _    (on-press press-virtualkey dummy-switch)
 )
 
@@ -189,57 +189,54 @@ danger-enable-cmd yes
 )
 
 ;; -----
-;; SWAY SECTION
+;; NIRI SECTION
 ;; -----
 
-;; main sway aliases
+;; main niri aliases
 (defalias
-    dw (layer-while-held sway-dw)
+    dw (layer-while-held niri-dw)
 
-    sw-lft (t! meta1-fork (cmd-log none error sway-overfocus group-lw group-uw) (cmd-log none error sway-overfocus split-lt float-lt output-ls))
-    sw-rght (t! meta1-fork (cmd-log none error sway-overfocus group-rw group-dw) (cmd-log none error sway-overfocus split-rt float-rt output-rs))
-    sw-up (t! meta1-fork (cmd-log none error swaymsg focus parent) (cmd-log none error sway-overfocus split-ut float-ut output-us))
-    sw-down (t! meta1-fork (cmd-log none error swaymsg focus child) (cmd-log none error sway-overfocus split-dt float-dt output-ds))
-    
-    ;; sw-up (t! meta1-fork (cmd-log none error sway-overfocus group-uw) (cmd-log none error sway-overfocus split-ut float-ut output-us))
-    ;; sw-down (t! meta1-fork (cmd-log none error sway-overfocus group-dw) (cmd-log none error sway-overfocus split-dt float-dt output-ds))
+    ni-lft (t! meta1-fork (cmd-log none error niri msg action focus-monitor-left) (cmd-log none error niri msg action focus-column-left))
+    ni-rght (t! meta1-fork (cmd-log none error niri msg action focus-monitor-right) (cmd-log none error niri msg action focus-column-right))
+    ni-up (t! meta1-fork (cmd-log none error niri msg action focus-workspace-up) (cmd-log none error niri msg action focus-window-or-workspace-up))
+    ni-down (t! meta1-fork (cmd-log none error niri msg action focus-workspace-down) (cmd-log none error niri msg action focus-window-or-workspace-down))
 
-    sw-meta (multi
-        (on-press press-virtualkey sw-meta1)
-        (on-release release-virtualkey sw-meta1)
+    ni-meta (multi
+        (on-press press-virtualkey ni-meta1)
+        (on-release release-virtualkey ni-meta1)
     )
 )
 
 (deftemplate meta1-fork (action1 action2)
     (switch
-        ((input virtual sw-meta1)) $action1 break
+        ((input virtual ni-meta1)) $action1 break
         () $action2 break
     )
 )
 
 (defvirtualkeys
-    sw-meta1 $nop-reserved
+    ni-meta1 $nop-reserved
 )
 
 ;; Workspace and display management
 
 (deftemplate ws-goto (o1 w1 o2 w2) 
     (switch 
-        ((input virtual sw-meta1)) (cmd-log none error swu goto $o1 $w1) break
+        ((input virtual ni-meta1)) (cmd-log none error swu goto $o1 $w1) break
         () (cmd-log none error swu goto $o2 $w2) break
     )
 )
 
 (deftemplate ws-move (o1 w1 o2 w2) 
     (switch 
-        ((input virtual sw-meta1)) (cmd-log none error swu move-container $o1 $w1) break
+        ((input virtual ni-meta1)) (cmd-log none error swu move-container $o1 $w1) break
         () (cmd-log none error swu move-container $o2 $w2) break
     )
 )
 
 (deftemplate ws-swap (o1 w1 o2 w2) 
     (switch 
-        ((input virtual sw-meta1)) (cmd-log none error swu swap $o1 $w1) break
+        ((input virtual ni-meta1)) (cmd-log none error swu swap $o1 $w1) break
         () (cmd-log none error swu swap $o2 $w2) break
     )
 )
@@ -308,22 +305,25 @@ danger-enable-cmd yes
     (    1 2 3 4) (t! ws-swap 1 1F 0 0F)
 )
 
-(defchords sway-quick 100
+(defchords niri-quick 100
     ;; 0 1 2 3 4
-    (0        ) (cmd-log none error swaymsg exec tofi_app)
-    (      3  ) (cmd-log none error swaymsg workspace back_and_forth)
-    (  1 2    ) (cmd-log none error swaymsg kill)
-    (  1   3  ) (t! meta1-fork (cmd-log none error swaymsg exec "swaylock && keepassxc --lock") (cmd-log none error swaymsg exec wlogout))
-    (    2    ) (t! meta1-fork (cmd-log none error swaymsg splith) (cmd-log none error swaymsg splitv))
-    (    2 3  ) (cmd-log none error swaymsg split none)
-    (        4) (cmd-log none error swaymsg layout toggle split)
+    (0        ) (cmd-log none error niri msg action spawn -- tofi_app)
+    (      3  ) (cmd-log none error niri msg action focus-workspace-previous)
+    (  1 2    ) (cmd-log none error niri msg action close-window)
+    (  1   3  ) (t! meta1-fork (cmd-log info error niri msg action spawn -- swaylock) (cmd-log none error niri msg action spawn -- wlogout))
+    (    2    ) (switch
+      ((input virtual ni-meta1)) (cmd-log none error niri msg action toggle-column-tabbed-display) break
+      () (cmd-log none error niri msg action maximize-column) break
+    )
+    (    2 3  ) (cmd-log none error niri msg action toggle-overview)
+    (        4) (cmd-log none error niri msg action center-window)
     (      3 4) (cmd-log none error swaymsg layout tabbed)
     (    2 3 4) (cmd-log none error swaymsg layout stacking)
     (    2   4) (cmd-log none error swaymsg fullscreen toggle)
     (0   2    ) (t! meta1-fork (cmd-log none error swaymsg floating toggle) (cmd-log none error swaymsg focus mode_toggle))
     (  1      ) (switch
-      ((input virtual sw-meta1)) (cmd-log none error swu move-to-scratchpad) break
-      () (cmd-log none error swaymsg scratchpad show) break
+      ((input virtual ni-meta1)) (cmd-log none error niri msg action switch-preset-window-height) break
+      () (cmd-log none error niri msg action switch-preset-column-width) break
     )
 )
 
@@ -338,11 +338,11 @@ danger-enable-cmd yes
     ws3 (chord workspace-swap 3)
     ws4 (chord workspace-swap 4)
 
-    qs0 (chord sway-quick 0)
-    qs1 (chord sway-quick 1)
-    qs2 (chord sway-quick 2)
-    qs3 (chord sway-quick 3)
-    qs4 (chord sway-quick 4)
+    qs0 (chord niri-quick 0)
+    qs1 (chord niri-quick 1)
+    qs2 (chord niri-quick 2)
+    qs3 (chord niri-quick 3)
+    qs4 (chord niri-quick 4)
 
     wm1 (chord workspace-move 1)
     wm2 (chord workspace-move 2)
@@ -351,35 +351,35 @@ danger-enable-cmd yes
 )
 
 ;; This is main sway layer. Manual work needs to be done to add keys to activation phase
-(deflayer sway
+(deflayer niri
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
 	_    XX  @dw  XX  XX  XX  XX  @w1  @w2  @w3  @w4  XX  XX  XX
-	_    XX  XX XX (layer-while-held sway-dw) XX @sw-lft @sw-down @sw-up @sw-rght @sw-meta XX (cmd-log none error swaymsg exec kitty)
-	@sw-meta     XX  XX  (layer-while-held sway-c)  (layer-while-held sway-mouse)  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX
+	_    XX  XX XX @dw XX @ni-lft @ni-down @ni-up @ni-rght @ni-meta XX (cmd-log none error niri msg action spawn -- kitty)
+	@ni-meta     XX  XX  (layer-while-held niri-c)  (layer-while-held niri-mouse)  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX
 	_    _   _      _    _      _    _
 )
 
-(deflayer handsdown-sway
+(deflayer handsdown-niri
 	_    XX  @dw  XX  XX  XX  XX  @w1  @w2  @w3  @w4  XX  XX  XX
-	_    XX  XX XX (layer-while-held handsdown-sway-dw) XX @sw-lft @sw-down @sw-up @sw-rght @sw-meta  XX (cmd-log none error swaymsg exec kitty) XX
-	@sw-meta     XX  XX  (layer-while-held handsdown-sway-c)  (layer-while-held handsdown-sway-mouse)  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX XX
+	_    XX  XX XX @dw XX @ni-lft @ni-down @ni-up @ni-rght @ni-meta  XX (cmd-log none error niri msg action spawn -- kitty) XX
+	@ni-meta     XX  XX  (layer-while-held handsdown-niri-c)  (layer-while-held handsdown-niri-mouse)  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX XX
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX 
 	_    _   _      _    _      _    _
 )
 
 
 
-(deflayer sway-c
+(deflayer niri-c
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
 	_    _  _  _  _  _  _  @ws1  @ws2  @ws3  @ws4  _  _  _
-	_    _  _  _  _  _  @swap-left @swap-down @swap-up @swap-right _  _  _
+	_    _  _  _  _  _  @move-left @move-down @move-up @move-right _  _  _
 	_    _  _  _  _  _  _  _  _  _  _  _
 	_    _   _      _    _      _    _
 )
 
-(deflayer handsdown-sway-c
+(deflayer handsdown-niri-c
 	_    _  _  _  _  _  _  @ws1  @ws2  @ws3  @ws4  _  _  _
-	_    _  _  _  _  _  @swap-left @swap-down @swap-up @swap-right _  _  _ _
+	_    _  _  _  _  _  @move-left @move-down @move-up @move-right _  _  _ _
 	_    _  _  _  _  _  _  _  _  _  _  _ _
 	_    _  _  _  _  _  _  _  _  _  _  _
 	_    _   _      _    _      _    _
@@ -392,12 +392,12 @@ danger-enable-cmd yes
 
 (deftemplate resize (type direction normal big)
     (switch
-        ((input virtual sw-meta1)) (cmd-log none error swaymsg resize $type $direction $big px) break
+        ((input virtual ni-meta1)) (cmd-log none error swaymsg resize $type $direction $big px) break
         () (cmd-log none error swaymsg resize $type $direction $normal px) break
     )
 )
 
-(deflayer sway-dw
+(deflayer niri-dw
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
 	_    _  _  _  _  _  _  @wm1  @wm2  @wm3  @wm4  _  _  _
 	_    _  _  _  _  _  (t! resize shrink width $nsize $bsize) (t! resize shrink height $nsize $bsize) (t! resize grow height $nsize $bsize) (t! resize grow width $nsize $bsize)  _  _  _
@@ -405,7 +405,7 @@ danger-enable-cmd yes
 	_    _   _      _    _      _    _
 )
 
-(deflayer handsdown-sway-dw
+(deflayer handsdown-niri-dw
 	_    _  _  _  _  _  _  @wm1  @wm2  @wm3  @wm4  _  _  _
 	_    _  _  _  _  _  (t! resize shrink width $nsize $bsize) (t! resize shrink height $nsize $bsize) (t! resize grow height $nsize $bsize) (t! resize grow width $nsize $bsize)  _  _  _ _
 	_    _  _  _  _  _  _  _  _  _  _  _ _
@@ -414,21 +414,21 @@ danger-enable-cmd yes
 )
 
 (defalias
-    swap-left (switch 
-        ((input virtual sw-meta1)) (cmd-log none error swaymsg "move left") break
-        () (cmd-log none error swaymsg "mark swap; focus left; swap container with mark swap; [con_mark="swap"] focus") break
+    move-left (switch 
+        ((input virtual ni-meta1)) (cmd-log none error niri msg action consume-or-expel-window-left) break
+        () (cmd-log none error niri msg action move-column-left) break
     )
-    swap-right (switch 
-        ((input virtual sw-meta1)) (cmd-log none error swaymsg "move right") break
-        () (cmd-log none error swaymsg "mark swap; focus right; swap container with mark swap; [con_mark="swap"] focus") break
+    move-right (switch 
+        ((input virtual ni-meta1)) (cmd-log none error niri msg action consume-or-expel-window-right) break
+        () (cmd-log none error niri msg action move-column-right) break
     )
-    swap-up (switch 
-        ((input virtual sw-meta1)) (cmd-log none error swaymsg "move up") break
-        () (cmd-log none error swaymsg "mark swap; focus up; swap container with mark swap; [con_mark="swap"] focus") break
+    move-up (switch 
+        ((input virtual ni-meta1)) (cmd-log none error niri msg action move-column-to-workspace-up) break
+        () (cmd-log none error niri msg action move-window-up) break
     )
-    swap-down (switch 
-        ((input virtual sw-meta1)) (cmd-log none error swaymsg "move down") break
-        () (cmd-log none error swaymsg "mark swap; focus down; swap container with mark swap; [con_mark="swap"] focus") break
+    move-down (switch 
+        ((input virtual ni-meta1)) (cmd-log none error niri msg action move-column-to-workspace-down) break
+        () (cmd-log none error niri msg action move-window-down) break
     )
 )
 
@@ -444,7 +444,7 @@ danger-enable-cmd yes
     scroll-rght (mwheel-right 100 120)
 )
 
-(deflayer sway-mouse
+(deflayer niri-mouse
 	_    _  _  _  _  _  _  _  _  _  _  _  _  _
 	_    _  _  _  _  _  _  @scroll-down  @scroll-up  @scroll-lft  @scroll-rght  _  _  _
 	_    _  _ mrgt  mlft  _  @ms-lft @ms-dwn @ms-up @ms-rght _  _  _
@@ -452,7 +452,7 @@ danger-enable-cmd yes
 	_    _   _      _    _      _    _
 )
 
-(deflayer handsdown-sway-mouse
+(deflayer handsdown-niri-mouse
 	_    _  _  _  _  _  @scroll-down  @scroll-up  @scroll-lft  @scroll-rght  _  _  _
 	_    _  _ mrgt  mlft  _ _  @ms-lft @ms-dwn @ms-up @ms-rght _  _  _
 	_    _  _  _  _  _  _  mlft  mmid  mrgt  XX  _ _
@@ -765,7 +765,7 @@ danger-enable-cmd yes
 (defchords hd_b $combo-timeout
   (c)           c 
   (l)           l 
-  (c l)         (layer-while-held handsdown-sway)
+  (c l)         (layer-while-held handsdown-niri)
   (d)           @hd_magic_d
   (g)           @hd_magic_g
   (d g)         (macro g h)

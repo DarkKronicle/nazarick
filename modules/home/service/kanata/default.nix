@@ -14,9 +14,19 @@ let
 
   cfg = config.nazarick.service.kanata;
 
-  tofiApp = pkgs.writeScriptBin "tofi_app" ''
-    pkill tofi || nu -c "tofi-drun | swaymsg exec -- ...(\$in | str trim | split row ' ')"
-  '';
+  tofiApp =
+    mylib.writeScript pkgs "tofi_app" # nu
+      ''
+        #!/usr/bin/env nu
+          if ((do { pkill tofi } | complete).exit_code == 0) {
+            return;
+          }
+          if ($env.DESKTOP_SESSION == "niri") {
+            tofi-drun | niri msg action spawn -- ...($in | str trim | split row ' ')
+          } else {
+            tofi-drun | swaymsg exec -- ...($in | str trim | split row ' ')
+          }
+      '';
 
   packages = [
     pkgs.swayfx
@@ -24,6 +34,8 @@ let
     tofiApp
     pkgs.keepassxc
     pkgs.sway-overfocus
+    pkgs.nushell
+    pkgs.niri
   ];
 
   mkKanataService =
@@ -36,6 +48,8 @@ let
       Unit = {
         Description = "Kanata remapper for ${name}";
         Documentation = "https://github.com/jtroo/kanata";
+        # TODO: needed?, dunno
+        After = [ "graphical-sesion.target" ];
       };
 
       Service = {
@@ -62,10 +76,39 @@ in
     ];
 
     systemd.user.services = {
-      "kanata-k65" = mkKanataService {
-        name = "k65";
-        file = ./k65.kbd;
-      };
+      "kanata-k65" =
+        let
+          nuScript = # nu
+            ''
+              let is_niri = ($env.DESKTOP_SESSION == "niri");
+              let file = if ($is_niri) {
+                  r####'${./k65-niri.kbd}'####
+              } else {
+                  r####'${./k65.kbd}'####
+              }
+              ${lib.getExe cfg.package} --cfg $file
+            '';
+
+          nuFile = pkgs.writeTextFile {
+            name = "kanata-k65-start.nu";
+            text = nuScript;
+          };
+        in
+        {
+          Install = {
+            WantedBy = [ "graphical-session.target" ];
+          };
+          Unit = {
+            Description = "Kanata remapper for k65 keyboard";
+            Documentation = "https://github.com/jtroo/kanata";
+          };
+
+          Service = {
+            Environment = [ "PATH=${lib.makeBinPath packages}" ];
+            Type = "simple";
+            ExecStart = "${lib.getExe pkgs.nushell} ${nuFile}";
+          };
+        };
       "kanata-kone" = mkKanataService {
         name = "kone";
         file = ./kone.kbd;

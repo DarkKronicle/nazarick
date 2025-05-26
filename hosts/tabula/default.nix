@@ -122,6 +122,7 @@ in
           desktop = {
             enable = true;
             sway = enabled;
+            niri = enabled;
           };
           sddm = {
             enable = true;

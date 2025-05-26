@@ -55,6 +55,11 @@ in
     ];
 
     systemd.user.services.swww-daemon = {
+      Unit = {
+        After = [ "graphical-session.target" ];
+        Requires = [ "graphical-session.target" ];
+      };
+
       Install = {
         WantedBy = [ "graphical-session.target" ];
       };
@@ -63,7 +68,6 @@ in
         Type = "exec";
         ExecStart = "${pkgs.swww}/bin/swww-daemon";
       };
-
     };
 
     systemd.user.timers."swww-switch" = {

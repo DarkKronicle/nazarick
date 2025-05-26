@@ -37,6 +37,7 @@ in
       desktop = {
         enable = true;
         sway = enabled;
+        niri = enabled;
       };
       fcitx = enabled;
     };
