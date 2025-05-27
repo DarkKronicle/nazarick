@@ -252,6 +252,8 @@ spawn-at-startup "xwayland-satellite"
 spawn-at-startup "ags"
 spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock && keepassxc --lock" "timeout" "900" "systemctl suspend" "before-sleep" "swaylock && keepassxc --lock"
 
+spawn-at-startup "nu" "-c" "systemctl --user import-environment SESSION_CONTEXT; swww-switch"
+
 // Uncomment this line to ask the clients to omit their client-side decorations if possible.
 // If the client will specifically ask for CSD, the request will be honored.
 // Additionally, clients will be informed that they are tiled, removing some client-side rounded corners.

@@ -82,11 +82,13 @@ in
             ''
               let is_niri = ($env.DESKTOP_SESSION == "niri");
               let file = if ($is_niri) {
+                  print "Running in niri"
                   r####'${./k65-niri.kbd}'####
               } else {
+                  print "Running not niri"
                   r####'${./k65.kbd}'####
               }
-              ${lib.getExe cfg.package} --cfg $file
+              exec ${lib.getExe cfg.package} --cfg $file
             '';
 
           nuFile = pkgs.writeTextFile {
@@ -101,6 +103,7 @@ in
           Unit = {
             Description = "Kanata remapper for k65 keyboard";
             Documentation = "https://github.com/jtroo/kanata";
+            After = [ "graphical-session.target" ];
           };
 
           Service = {
