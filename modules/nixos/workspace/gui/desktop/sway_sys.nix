@@ -66,6 +66,6 @@ in
 
     services.displayManager.sessionPackages = [ sessionPkg ];
 
-    nazarick.workspace.gui.sddm.defaultSession = "sway";
+    # nazarick.workspace.gui.sddm.defaultSession = "sway";
   };
 }

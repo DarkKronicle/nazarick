@@ -21,7 +21,7 @@ let
           if ((do { pkill tofi } | complete).exit_code == 0) {
             return;
           }
-          if ($env.DESKTOP_SESSION == "niri") {
+          if ($env.DESKTOP_SESSION | str starts-with "niri") {
             tofi-drun | niri msg action spawn -- ...($in | str trim | split row ' ')
           } else {
             tofi-drun | swaymsg exec -- ...($in | str trim | split row ' ')
@@ -80,7 +80,7 @@ in
         let
           nuScript = # nu
             ''
-              let is_niri = ($env.DESKTOP_SESSION == "niri");
+              let is_niri = ($env.DESKTOP_SESSION | str starts-with "niri");
               let file = if ($is_niri) {
                   print "Running in niri"
                   r####'${./k65-niri.kbd}'####

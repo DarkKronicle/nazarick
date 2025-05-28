@@ -283,7 +283,7 @@ danger-enable-cmd yes
     (        4) (cmd-log none error niri msg action center-window)
     (      3 4) (cmd-log none error swaymsg layout tabbed)
     (    2 3 4) (cmd-log none error swaymsg layout stacking)
-    (    2   4) (cmd-log none error swaymsg fullscreen toggle)
+    (    2   4) (cmd-log none error niri msg action window-fullscreen)
     (0   2    ) (t! meta1-fork (cmd-log none error swaymsg floating toggle) (cmd-log none error swaymsg focus mode_toggle))
     (  1      ) (switch
       ((input virtual ni-meta1)) (cmd-log none error niri msg action switch-preset-window-height) break
@@ -312,20 +312,22 @@ danger-enable-cmd yes
     wm2 (chord workspace-move 2)
     wm3 (chord workspace-move 3)
     wm4 (chord workspace-move 4)
+
+    term (t! meta1-fork (cmd-log none error niri msg action spawn -- kitty -o confirm_os_window_close=0 -- zellij attach -c scratch) (cmd-log none error niri msg action spawn -- kitty))
 )
 
 ;; This is main sway layer. Manual work needs to be done to add keys to activation phase
 (deflayer niri
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX
 	_    XX  @dw  XX  XX  XX  XX  @w1  @w2  @w3  @w4  XX  XX  XX
-	_    XX  XX XX @dw XX @ni-lft @ni-down @ni-up @ni-rght @ni-meta XX (cmd-log none error niri msg action spawn -- kitty)
+	_    XX  XX XX @dw XX @ni-lft @ni-down @ni-up @ni-rght @ni-meta XX @term
 	@ni-meta     XX  XX  (layer-while-held niri-c)  (layer-while-held niri-mouse)  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX
 	_    _   _      _    _      _    _
 )
 
 (deflayer handsdown-niri
 	_    XX  @dw  XX  XX  XX  XX  @w1  @w2  @w3  @w4  XX  XX  XX
-	_    XX  XX XX @dw XX @ni-lft @ni-down @ni-up @ni-rght @ni-meta  XX (cmd-log none error niri msg action spawn -- kitty) XX
+	_    XX  XX XX @dw XX @ni-lft @ni-down @ni-up @ni-rght @ni-meta  XX @term XX
 	@ni-meta     XX  XX  (layer-while-held handsdown-niri-c)  (layer-while-held handsdown-niri-mouse)  XX  @qs0  @qs1  @qs2  @qs3 @qs4  XX XX
 	_    XX  XX  XX  XX  XX  XX  XX  XX  XX  XX  XX 
 	_    _   _      _    _      _    _
