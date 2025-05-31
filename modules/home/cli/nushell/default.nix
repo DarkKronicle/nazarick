@@ -28,6 +28,7 @@ in
       mypkgs.script-f
       mypkgs.script-ai
       mypkgs.script-swu
+      mypkgs.script-nuru
       mypkgs.script-cache
       mypkgs.script-util
       mypkgs.script-xpress

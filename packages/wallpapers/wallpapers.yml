@@ -902,6 +902,30 @@
     sha256: 0vgj64ah3kjya4ivmk32mp941yy7j8z345d4d4rbpfljqd1r35gz
   tags:
     - weaboo
+- src:
+    url: https://github.com/arfan-on-clouds/hyprclouds/blob/5cd829f905241f2245308229ff5e4e774fcf0a25/walls/a_black_and_white_image_of_a_room.jpeg
+    name: tokyoghoulre.jpg
+    sha256: 14asg87i28xvgyvyssrmav9x3cjzab6zfqja8ax4zq2kzarrh4sa
+- src:
+    url: https://github.com/arfan-on-clouds/hyprclouds/blob/5cd829f905241f2245308229ff5e4e774fcf0a25/walls/a_group_of_red_flowers_01.jpg?raw=true
+    name: redflowers.jpg
+    sha256: 0wrkfv653jrbhag1a7v3xqc3h5yvs89ylyz4zhn7ch7zbwvipvij
+- src:
+    url: https://github.com/arfan-on-clouds/hyprclouds/blob/5cd829f905241f2245308229ff5e4e774fcf0a25/walls/wallhaven-r78q1m.jpg?raw=true
+    name: moreflowers.jpg
+    sha256: 1kdvvlffynnc73wj1j4y3v7d9qbk7faqp5h2q2awn0nfawsv3vd8
+- src:
+    url: https://github.com/arfan-on-clouds/hyprclouds/blob/5cd829f905241f2245308229ff5e4e774fcf0a25/walls/wallhaven-8o3o7k.jpg?raw=true
+    name: mostflowers.jpg
+    sha256: 0q8qmncsixyvsif73bvxws1ka87zzyaa5fniaxh9i40k33rfswi8
+- src:
+    url: https://cdn.cara.app/production/posts/0d27c5aa-3e39-4312-835b-e98ebf9f08bb/jimmusilpainter-ZmaY0TvH0NGMSdgChVxqK-IMG_6215.jpeg
+    name: sky.jpg
+    sha256: 10nd7dv3lmxg0y11i8b74cxmb3wldspw6hwy2h2vj7yjsykzwqpk
+- src:
+    url: https://cdn.cara.app/production/posts/4da12d78-8bdc-4687-ae8d-049f348b31a0/jimmusilpainter-zh5mOAITLm2eq0cLKN3tr-IMG_4853.jpeg
+    name: lake2.jpg
+    sha256: 09ji52am98kzq4irjc6kfgqskmg715k91g381mkkkj3jahm5n4mj
 # - src:
 # url: http://thejadednetwork.com/graphics/wallpapers/downloads/Full-Metal-Alchemist/Toxic-City/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/fma2-1920x1200.jpg
 # name: fullmetal-toxic.jpg

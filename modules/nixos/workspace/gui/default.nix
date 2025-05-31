@@ -22,5 +22,30 @@ in
       sddm.enable = lib.mkOverride 500 true;
       fonts.enable = lib.mkOverride 500 true;
     };
+
+    xdg.portal = {
+      enable = true;
+      xdgOpenUsePortal = true;
+      extraPortals = with pkgs; [
+        kdePackages.xdg-desktop-portal-kde
+        xdg-desktop-portal-gtk
+        xdg-desktop-portal-wlr
+        xdg-desktop-portal-gnome
+      ];
+      configPackages = with pkgs; [ gnome-keyring ];
+      config = {
+        common = {
+          default = [
+            "gtk"
+            "wlr"
+            "kde"
+          ];
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+          "org.freedesktop.impl.portal.FileChooser" = [ "kde" ];
+          "org.freedesktop.portal.FileChooser" = [ "kde" ];
+        };
+      };
+    };
+
   };
 }

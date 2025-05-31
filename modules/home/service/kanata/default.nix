@@ -31,6 +31,8 @@ let
   packages = [
     pkgs.swayfx
     mypkgs.script-swu
+    mypkgs.script-nuru
+    mypkgs.script-sel
     tofiApp
     pkgs.keepassxc
     pkgs.sway-overfocus

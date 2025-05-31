@@ -45,6 +45,7 @@ in
         kdePackages.xdg-desktop-portal-kde
         xdg-desktop-portal-gtk
         xdg-desktop-portal-wlr
+        xdg-desktop-portal-gnome
       ];
       configPackages = with pkgs; [ gnome-keyring ];
       config = {

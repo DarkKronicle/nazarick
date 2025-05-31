@@ -236,7 +236,8 @@ danger-enable-cmd yes
 
 (defchords workspace 100
     ;; 1 2 3 4
-    (    1 2    ) nop1
+    (    1      )  (cmd-log none error niri msg action spawn -- tofi_app)
+    (      2    )  (cmd-log none error sel focus-window)
     (        3 4) nop1
 )
 
@@ -262,8 +263,8 @@ danger-enable-cmd yes
 (defchords workspace-change 100
     ;; 1 2 3 4
     (    1      ) (cmd-log none error niri msg action move-workspace-to-monitor-left)
-    (      2    ) (cmd-log none error niri msg action move-workspace-down)
-    (        3  ) (cmd-log none error niri msg action move-workspace-up)
+    (      2    ) (t! meta1-fork (cmd-log none error nuru move-column-new-below-workspace) (cmd-log none error niri msg action move-workspace-down))
+    (        3  ) (t! meta1-fork (cmd-log none error nuru move-column-new-above-workspace) (cmd-log none error niri msg action move-workspace-up))
     (          4) (cmd-log none error niri msg action move-workspace-to-monitor-right)
     (    1 2    ) (cmd-log none error niri msg action move-column-to-monitor-left)
     (        3 4) (cmd-log none error niri msg action move-column-to-monitor-right)
@@ -271,7 +272,6 @@ danger-enable-cmd yes
 
 (defchords niri-quick 100
     ;; 0 1 2 3 4
-    (0        ) (cmd-log none error niri msg action spawn -- tofi_app)
     (      3  ) (cmd-log none error niri msg action focus-workspace-previous)
     (  1 2    ) (cmd-log none error niri msg action close-window)
     (  1   3  ) (t! meta1-fork (cmd-log info error niri msg action spawn -- nu -c "swaylock; keepassxc --lock") (cmd-log none error niri msg action spawn -- wlogout))
@@ -283,7 +283,7 @@ danger-enable-cmd yes
     (        4) (cmd-log none error niri msg action center-window)
     (      3 4) (cmd-log none error swaymsg layout tabbed)
     (    2 3 4) (cmd-log none error swaymsg layout stacking)
-    (    2   4) (cmd-log none error niri msg action window-fullscreen)
+    (    2   4) (cmd-log none error niri msg action fullscreen-window)
     (0   2    ) (t! meta1-fork (cmd-log none error swaymsg floating toggle) (cmd-log none error swaymsg focus mode_toggle))
     (  1      ) (switch
       ((input virtual ni-meta1)) (cmd-log none error niri msg action switch-preset-window-height) break

@@ -347,3 +347,21 @@
     - weaboo
   square: true
   resolution: 200x200
+- src:
+    url: https://cdn.cara.app/production/posts/348886b5-5e17-43b4-b5bf-e72284447a9c/sylviacomics-Th447FYlTY_UQ3-iZJjIF-F1EB072E-EF6E-4D61-A58B-7DBDF28234DD.jpg
+    name: jinxmore.jpg
+    sha256: 0b23zn4si55rfmydx1h6vzql91f2pc8lj6gpsxpapl1dwhichfwp
+  square: true
+  resolution: 200x200
+- src:
+    url: https://cdn.cara.app/production/posts/e33909e3-12b1-485c-83a5-e58d226cfea7/sylviacomics-H_6kBJlcWIJIg76KSxe-j-BBB1F302-67C8-454F-A6DB-A787CD538161.jpg
+    name: jinxmore2.jpg
+    sha256: 0rhy84bp1zg1djrpm5p8q225x7r3296q2gry5mdsb0gwwx55nq18
+  square: true
+  resolution: 200x200
+- src:
+    url: https://cdn.cara.app/production/posts/f0c5d1ba-3ab9-4e0a-9ba7-45a6d9891b28/sylviacomics-DdCp0Uiw0FWLOGMa7i4Tw-19A78E19-DF38-44DD-A1A9-8928756F38DC.jpg
+    name: jinxmore3.jpg
+    sha256: 0cgmq3b0r09yqh1zhhhhw8d3z0fx0xi63mb2m7yrbfp8x5fb5fwz
+  square: true
+  resolution: 200x200
