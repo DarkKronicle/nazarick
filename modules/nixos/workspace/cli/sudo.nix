@@ -47,6 +47,24 @@ in
                 "SETENV"
               ];
             }
+            {
+              command = "${pkgs.tlp}/bin/tlp start";
+              options = [
+                "NOPASSWD"
+              ];
+            }
+            {
+              command = "${pkgs.tlp}/bin/tlp ac";
+              options = [
+                "NOPASSWD"
+              ];
+            }
+            {
+              command = "${pkgs.tlp}/bin/tlp bat";
+              options = [
+                "NOPASSWD"
+              ];
+            }
           ];
         }
       ];

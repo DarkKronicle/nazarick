@@ -24,6 +24,12 @@ in
       {
         services.xserver.videoDrivers = [ "nvidia" ];
 
+        systemd.services.nvidia-suspend.before = [ "systemd-suspend-then-hibernate.service" ];
+        systemd.services.nvidia-suspend.requiredBy = [ "systemd-suspend-then-hibernate.service" ];
+
+        systemd.services.nvidia-resume.after = [ "systemd-suspend-then-hibernate.service" ];
+        systemd.services.nvidia-resume.requiredBy = [ "systemd-suspend-then-hibernate.service" ];
+
         hardware.graphics = {
           enable = true;
           extraPackages = with pkgs; [

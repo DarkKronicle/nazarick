@@ -13,15 +13,7 @@ in
 
   config = {
 
-    boot.kernelPackages = pkgs.linuxPackages_zen;
     boot.initrd.systemd.enable = true;
-
-    # https://wiki.archlinux.org/title/Power_management/Suspend_and_hibernate#Manually_specify_hibernate_location
-    boot.kernelParams = [
-      "resume_offset=50235652"
-    ];
-
-    boot.resumeDevice = "/dev/disk/by-uuid/58daacfb-70e3-4d98-841c-452e78bb4ef0";
 
     systemd.sleep.extraConfig = "HibernateDelaySec=1h";
 
