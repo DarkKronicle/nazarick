@@ -97,7 +97,7 @@ in
         }
         {
           "label" = "suspend";
-          "action" = "systemctl suspend";
+          "action" = "systemctl suspend-then-hibernate";
           "text" = "Suspend";
           "keybind" = "u";
         }

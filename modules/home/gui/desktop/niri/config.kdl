@@ -250,7 +250,7 @@ layout {
 
 spawn-at-startup "xwayland-satellite"
 spawn-at-startup "ags"
-spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock && keepassxc --lock" "timeout" "900" "systemctl suspend" "before-sleep" "swaylock && keepassxc --lock"
+spawn-at-startup "swayidle" "-w" "timeout" "300" "swaylock && keepassxc --lock" "timeout" "900" "systemctl suspend-then-hibernate" "before-sleep" "swaylock && keepassxc --lock"
 
 spawn-at-startup "nu" "-c" "systemctl --user import-environment SESSION_CONTEXT; swww-switch"
 
