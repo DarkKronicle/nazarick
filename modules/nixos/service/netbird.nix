@@ -12,8 +12,14 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    services.netbird = {
-      enable = true;
+    services.netbird.clients.default = {
+      port = 51820;
+      interface = "wt0";
+      name = "netbird";
+      hardened = false;
+      environment = {
+        NB_ENABLE_EXPERIMENTAL_LAZY_CONN = "true";
+      };
     };
 
     systemd.services.netbird-wt0-restart = {

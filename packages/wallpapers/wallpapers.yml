@@ -491,7 +491,7 @@
     - simple
 - src:
     url: https://preview.redd.it/y8ecf7lv1zn51.png?width=2048&format=png&auto=webp&s=3573b68ba76f66410caf2ea7ecc10e9150146edb
-    sha256: sha256-yMRBMSXAYekTiteY82dYn1hzFmncasro/k2Oh+6Epc4=
+    sha256: 1i7krrp3wi2r7y4iks0xvwv08m8idx8qwf1x4wma5ipv040h9rcm
     name: 9gHUEv7sawGyHnJIwVNsruwme.png
   themes:
     - mocha
