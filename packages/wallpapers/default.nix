@@ -47,7 +47,14 @@ let
   wallpapers-parsed = ((mylib.importYAML pkgs) wallpapers);
   wallpaperWrapper = import ./wallpaper.nix;
   packageWallpaper =
-    wallpaper: (pkgs.callPackage (wallpaperWrapper wallpaper) { inherit inputs system squareScript; });
+    wallpaper:
+    (pkgs.callPackage (wallpaperWrapper wallpaper) {
+      inherit
+        inputs
+        system
+        squareScript
+        ;
+    });
   finalWallpapers = lib.forEach (builtins.filter filterFunc wallpapers-parsed) (
     w: packageWallpaper w
   );
@@ -65,9 +72,11 @@ stdenv.mkDerivation {
     runHook preInstall
 
     mkdir -p $out/share/wallpapers/${name}
+    mkdir -p $out/gc
     ${lib.concatStringsSep "\n" (
       lib.forEach finalWallpapers (wpPkg: ''
         ln -s ${wpPkg}/share/wallpapers/* $out/share/wallpapers/${name}
+        ln -s ${wpPkg}/gc/* $out/gc
       '')
     )}
 

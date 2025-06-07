@@ -842,7 +842,7 @@
     - mocha
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/043/504/725/large/bo-chen-arcane-jinx-final-2k.jpg
-    name: jinx6.jpg
+    name: jinx6_2.jpg
     sha256: 1nz3g0k9njngdb7l3pad6yj16zqb933p4glkwxs39kbdp9kl1lmz
   tags:
     - weaboo
@@ -886,7 +886,7 @@
     sha256: 15bg081w8a24m3qhnj67rivih4vw585yl22x8gd4g2m7savb3s2d
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/082/345/269/large/r-s-jinx-1-1.jpg
-    name: jinx6.jpg
+    name: jinx6_1.jpg
     sha256: 13ikjjcm07pam3db6mlzgfacvsmvq910m5z0f9h77clja9h1wg7k
   tags:
     - weaboo
@@ -903,12 +903,12 @@
   tags:
     - weaboo
 - src:
-    url: https://github.com/arfan-on-clouds/hyprclouds/blob/5cd829f905241f2245308229ff5e4e774fcf0a25/walls/a_black_and_white_image_of_a_room.jpeg
-    name: tokyoghoulre.jpg
-    sha256: 14asg87i28xvgyvyssrmav9x3cjzab6zfqja8ax4zq2kzarrh4sa
+    url: https://raw.githubusercontent.com/arfan-on-clouds/hyprclouds/5cd829f905241f2245308229ff5e4e774fcf0a25/walls/a_black_and_white_image_of_a_room.jpeg
+    name: tokyoghoulre2.jpg
+    sha256: sha256-/rFlNq12YkESwXXLn08JEn6SE3yiUVFYmEliU/9zDrs=
 - src:
-    url: https://github.com/arfan-on-clouds/hyprclouds/blob/5cd829f905241f2245308229ff5e4e774fcf0a25/walls/a_group_of_red_flowers_01.jpg?raw=true
-    name: redflowers.jpg
+    url: https://raw.githubusercontent.com/arfan-on-clouds/hyprclouds/5cd829f905241f2245308229ff5e4e774fcf0a25/walls/a_group_of_red_flowers_01.jpg
+    name: redflowers2.jpg
     sha256: 0wrkfv653jrbhag1a7v3xqc3h5yvs89ylyz4zhn7ch7zbwvipvij
 - src:
     url: https://github.com/arfan-on-clouds/hyprclouds/blob/5cd829f905241f2245308229ff5e4e774fcf0a25/walls/wallhaven-r78q1m.jpg?raw=true
@@ -926,35 +926,107 @@
     url: https://cdn.cara.app/production/posts/4da12d78-8bdc-4687-ae8d-049f348b31a0/jimmusilpainter-zh5mOAITLm2eq0cLKN3tr-IMG_4853.jpeg
     name: lake2.jpg
     sha256: 09ji52am98kzq4irjc6kfgqskmg715k91g381mkkkj3jahm5n4mj
-# - src:
-# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Full-Metal-Alchemist/Toxic-City/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/fma2-1920x1200.jpg
-# name: fullmetal-toxic.jpg
-# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
-# themes:
-# - mocha
-# - src:
-# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Princess-Mononoke/Midnight-Spirits/1920x1080/8feedfd25c9532909790bb6b1e2ecf0f/mononoke2-1920x1080.jpg
-# name: mononoke-spirts.jpg
-# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
-# - src:
-# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Takeshi-Okazaki-Artworks/Face-Paint/1920x1080/8feedfd25c9532909790bb6b1e2ecf0f/takeshiOkazaki2-1920x1080.jpg
-# name: face-paint.jpg
-# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
-# - src:
-# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Princess-Mononoke/Forest-Spirit/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/mononoke1-1920x1200.jpg
-# name: mononoke-forest-spirit.jpg
-# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
-# - src:
-# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Cowboy-Bebop/Vincent-Volaju/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/bebop6-1920x1200.jpg
-# name: bebop-jaded.png
-# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
-# themes:
-# - mocha
-# - src:
-# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Ponyo-on-the-Cliff-by-the-Sea/Brothers-and-Sisters-of-the-Ocean/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/ponyo1-1920x1200.jpg
-# name: ponyo-jaded.jpg
-# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
-# - src:
-# url: http://thejadednetwork.com/graphics/wallpapers/downloads/Cowboy-Bebop/Red-Session-Blues/1920x1200/8feedfd25c9532909790bb6b1e2ecf0f/bebop5-1920x1200.jpg
-# name: bebop-wall.jpg
-# sha256: 1ijw5q3rhaq7y0ic34xhn02sdgb4rhp3jg1n043kj6ay06wlsf63
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2024/05/11/01/22/09/118615376_p0.jpg
+    name: falin_wall.jpg
+    sha256: 126g65n81hb4igd01gdwlh6yw8122kkxf1iy9bzqqpqxzlph8kqy
+  tags:
+    - weaboo
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2023/12/20/18/55/36/114387964_p0.jpg
+    name: fern_stark.jpg
+    sha256: 114x75y62bnpsc9hpjsc65k97ax7v302iryvrj1nzs42gm1yxljg
+  tags:
+    - weaboo
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2016/07/27/00/06/26/58103086_p1_master1200.jpg
+    name: rem_grass_dont_cry.jpg
+    sha256: 0g1bj3v4ppyz9pgwgwd9jv4lys67xqjq4gs2mzbdagqdhz342xx5
+  tags:
+    - weaboo
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/02/09/01/49/13/115882364_p0_master1200.jpg
+    name: violet_evergarden_yes.jpg
+    sha256: 1bsacljkrc1sdilwj0gfzwd6sf7iln32jj5wy7gz94gv5gnn9pik
+  tags:
+    - weaboo
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2020/08/02/09/33/40/83388632_p0.jpg
+    name: howl_underwater.jpg
+    sha256: 0x5ivy8pj2q5gwzf2qrax9i2y1vqkq8k02cz62l5ab66ag8cvmcg
+  tags:
+    - weaboo
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/03/20/21/28/19/128421435_p0_master1200.jpg
+    name: certified_robit.jpg
+    sha256: 13c7r8r87msznlci2xnf20vrysifxvsvbbg8ca3ylgs8400pb3jn
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/06/18/20/40/59/82406970_p0_master1200.jpg
+    name: hell_yeah_roy.jpg
+    sha256: 187374xr5xh3sr0iiwxbv1zvay79r87sbmwahrywyf8wv1qynz76
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2020/08/23/21/17/36/83887578_p0.jpg
+    name: nausicaa_flying.jpg
+    sha256: 0aygm3k5k5211ln46wxba9km4j4zcd4bi17bjzx8z8l1kd48pl3s
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/04/20/16/51/23/129511077_p0_master1200.jpg
+    name: clouds.jpg
+    sha256: 03vfc3wvirgrqsrxjlcz5sfcqiva717adwj5a6wpm3r2syw8fkg0
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/05/11/01/00/29/70875675_p0_master1200.jpg
+    name: clouds_night.jpg
+    sha256: 1jwmffi9475lzvnrskpidc4xy9c03v106p0fx55vz6mwp9hlx9a5
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/01/04/22/31/36/125903671_p0_master1200.jpg
+    name: fuji_night.jpg
+    sha256: 0d23wzbx2kgp4dgrxfig5lmka0mzsnva28ypwh6a5cdd3snsjh9r
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/09/29/08/20/03/122866150_p0_master1200.jpg
+    name: slow_life.jpg
+    sha256: 1k5bvpfsw0sgvp00dpyc83gl8z3yq8i9x96ysws8ram3xqa4v05g
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/09/08/12/46/04/122244716_p0_master1200.jpg
+    name: morning.jpg
+    sha256: 1rvdlq9vkmpcc8aq7im7dzsr7rs2hxszlzl1gbh5jfjd0sj2k93p
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2023/03/09/10/50/32/106047489_p0.png
+    name: climbing.jpg
+    sha256: 1fvmh53n7cm9nyh5m8lvfyqxaghi5aj2hiafr33qx5dnmmxkdm75
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/12/31/18/32/58/125736617_p0_master1200.jpg
+    name: chatting_phone.jpg
+    sha256: 07j1a9q9l1vpf07pprbdkn77qiknrgicip2jrhvz3r2j7c8wgvgw
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/02/03/20/18/08/126862018_p0_master1200.jpg
+    name: cocytus.jpg
+    sha256: 09gy83hdk9lpcw5g20rsf5n79s5q1yazqa7p29ajy0rc22bdbvd8
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/10/24/20/01/42/123634748_p0_master1200.jpg
+    name: ainz_fight.jpg
+    sha256: 0jq9l9m8bw3fr7kzad5lwjc4lsv9ldh96j4b9qsba6vr8bhy5vjk
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2018/03/25/21/31/36/67913339_p2_master1200.jpg
+    name: ulbert.jpg
+    sha256: 1kn2cw02lr8yxh675w30xna1krn30sqc82cpwzmiix69jd8f66np
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2018/03/25/21/31/36/67913339_p1_master1200.jpg
+    name: touchme_sebas.jpg
+    sha256: 1nfm4a6lrk46a2pq703wl1ciald7qvnnk9fq9q76qxvr24r4bbn0
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2019/08/01/18/32/50/76020263_p0_master1200.jpg
+    name: pleiades.jpg
+    sha256: 0qwn87p4wghwsqvv71pz3n1zldx83lqdb65zi1s10k34vq04j7h5
+  tags:
+    - weaboo
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2018/10/18/20/45/11/71240465_p0_master1200.jpg
+    name: pleiades2.jpg
+    sha256: 0srnv0b93myzi4xwmi0gdxmqiak1w8g1dnflgbspvfkg25fscljz
+  tags:
+    - weaboo
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2018/09/29/01/18/38/70921387_p0_master1200.jpg
+    name: pleiades3.jpg
+    sha256: 0qw7v97yafd0x6jcraw774jpf2g57hqwp1x63zphmmarsm5nva35
+  tags:
+    - weaboo

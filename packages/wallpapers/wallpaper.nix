@@ -19,15 +19,27 @@
 let
   plain = builtins.any (theme: theme == "none") themes;
   extra_themes = builtins.filter (theme: theme != "none") themes;
+
+  sourceDer =
+    src:
+    stdenv.mkDerivation {
+      name = "wallpaper-src-" + src.name;
+      src = fetchurl src;
+      dontUnpack = true;
+
+      buildPhase = ''
+        runHook preBuild
+        cp $src $out
+      '';
+    };
 in
 stdenv.mkDerivation {
   pname = "wallpaper-" + src.name;
   version = "1"; # TODO: wth do I put here
-  src = fetchurl src;
+  src = "${sourceDer src}";
   dontUnpack = true;
-  phases = "buildPhase";
 
-  buildInputs = [
+  nativeBuildInputs = [
     pkgs.nushell
     pkgs.imagemagick
   ];
@@ -35,9 +47,12 @@ stdenv.mkDerivation {
   buildPhase = ''
     runHook preBuild
     mkdir -p $out/share/wallpapers
+    mkdir -p $out/gc
     local name=$(stripHash $src) 
     local oldsrc=$src
     local filesrc=$src
+
+    ln -s $src $out/gc/$(basename $name)
 
     ${
       if svg != null then

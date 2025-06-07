@@ -68,6 +68,7 @@ let
     # "${mypkgs.nushell_plugin_hashes}/bin/nu_plugin_hashes"
     # "${mypkgs.nushell_plugin_plotters}/bin/nu_plugin_plotters"
     "${pkgs.nushellPlugins.polars}/bin/nu_plugin_polars"
+    "${pkgs.nushellPlugins.query}/bin/nu_plugin_query"
   ];
 in
 {

@@ -21,5 +21,8 @@ in
     };
 
     environment.systemPackages = [ pkgs.distrobox ];
+
+    # Certified bruh moment
+    security.lsm = lib.mkForce [ ];
   };
 }
