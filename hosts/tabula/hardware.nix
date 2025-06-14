@@ -167,6 +167,7 @@
       "subvol=@swap"
       "noatime"
     ];
+    neededForBoot = true;
   };
 
   fileSystems."/mnt/aelius" = {

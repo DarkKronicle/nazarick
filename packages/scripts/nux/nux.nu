@@ -50,7 +50,6 @@ export def "locate" [
         }
         if ($small) {
             $args = ($args | append ["--db" "@NIX_SMALL_DB@"])
-
         }
         ^nix-locate ...$args $path 
             | detect columns --no-headers

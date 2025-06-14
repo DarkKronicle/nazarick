@@ -1,5 +1,4 @@
 use @THEME@
-use @TASK@
 
 def _yazi_select [] {
     let tmp = (mktemp -t "yazi-select.XXXXX")
@@ -175,10 +174,12 @@ $env.config = {
                 | first 7
             )
 
-            let nix_commands = (
+            let nix_commands = if (($cmd | str length) < 2) {
+                []
+            } else {
                 nix-locate --db $database --no-group --type x --type s $cmd 
                 | detect columns --no-headers 
-            )
+            }
 
             let nix_commands = if ($nix_commands | is-empty) {
                 $nix_commands

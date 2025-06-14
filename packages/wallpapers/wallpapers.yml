@@ -1030,3 +1030,11 @@
     sha256: 0qw7v97yafd0x6jcraw774jpf2g57hqwp1x63zphmmarsm5nva35
   tags:
     - weaboo
+- src:
+    url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/01/22/00/30/06/79028211_p0_master1200.jpg
+    name: anime_red.jpg
+    sha256: 0z9wz3xvj96f4dnmmbvv0s9nw8jfvik9f1x54qzm52csb55m72y9
+  themes:
+    - mocha
+  tags:
+    - weaboo

@@ -49,6 +49,7 @@ let
       sssnake
 
       taskwarrior3
+      khal
 
       inputs.timr.packages.${system}.timr
       inputs.faerber.packages.${system}.faerber
@@ -86,5 +87,11 @@ in
         ++ (lib.optionals cfg.useful useful)
         ++ (lib.optionals cfg.tabula tabula);
     }
+    (lib.mkIf cfg.tabula {
+      services.vdirsyncer = {
+        enable = true;
+        frequency = "*:00/30:00";
+      };
+    })
   ];
 }

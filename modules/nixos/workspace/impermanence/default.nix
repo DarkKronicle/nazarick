@@ -99,6 +99,9 @@ in
         ".local/share/krita"
         ".local/share/love" # Tetris
         ".vim"
+        ".config/vdirsyncer"
+        ".config/khal"
+        ".cal"
 
         ".config/goldendict"
         "Zotero"
