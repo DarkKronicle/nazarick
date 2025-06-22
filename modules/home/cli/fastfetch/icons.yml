@@ -7,7 +7,7 @@
 # sha256: 11ipqd3d327rjgzcc2i5pvlm72kyrbm9rsbsx9jik8m1h41gagjn
 # tags:
 # - weaboo
-# square: true
+# square: center
 # resolution: 200x200
 # - src:
 # url: https://s1.zerochan.net/Shalltear.Bloodfallen.600.2670092.jpg
@@ -15,7 +15,7 @@
 # sha256: 0ll86cacd2awgmmvsl6vd1dcf9pdxwqkjvg5snjppmxhsldgh145
 # tags:
 # - weaboo
-# square: true
+# square: center
 # resolution: 200x200
 # - src:
 # url: https://s1.zerochan.net/Shalltear.Bloodfallen.600.2670092.jpg
@@ -23,7 +23,7 @@
 # sha256: 0ll86cacd2awgmmvsl6vd1dcf9pdxwqkjvg5snjppmxhsldgh145
 # tags:
 # - weaboo
-# square: true
+# square: center
 # resolution: 200x200
 - src:
     url: https://i.redd.it/30zzwgt7zro81.png
@@ -31,7 +31,7 @@
     sha256: 0lx062wnwvxk8iw8nnwp8994clx71ddfb6gjbycyhqxv6brbkw3f
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/48d4d968-2139-4e2d-9727-adf476d01ce3/dfx9mjm-569b7962-70ac-4341-8c65-b337daaaa5d8.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzQ4ZDRkOTY4LTIxMzktNGUyZC05NzI3LWFkZjQ3NmQwMWNlM1wvZGZ4OW1qbS01NjliNzk2Mi03MGFjLTQzNDEtOGM2NS1iMzM3ZGFhYWE1ZDgucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.y4bw_kSsdTTohhkRqm_N5vM3SPssZWy-T9rPzRTpzPE
@@ -39,7 +39,7 @@
     sha256: 14jpii0k285ma4hk97brblly3c0586r6fjymnij5lmgddr7nfvr2
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://tiermaker.com/images/chart/chart/overlords-waifu-tier-list-260097/shalltearbloodfallenprofilepng.png
@@ -47,7 +47,7 @@
     sha256: 1d478d6dxzhfwsgcj6wfkw8scjfag6g82ribprcnvd9r645arbp7
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://tiermaker.com/images/chart/chart/overlords-waifu-tier-list-260097/lupusreginabetapng.png
@@ -55,7 +55,7 @@
     sha256: 1hyf568v3jdsl7abrkj38jmvja65jfkmxj8wmcr237ky2aqc87j2
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/3c8b03b6-013a-43d7-8b1e-e1c18852a527/dck8opo-b028d84e-376c-45a8-9c58-a43cfc0d77d5.png
@@ -63,7 +63,7 @@
     sha256: 0w2y2jzqrizy5m9bndbbbgbcgxkgjdlx919hc3231acfdb0ik11q
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://i.imgur.com/SUF6wH3h.jpg
@@ -71,7 +71,7 @@
     sha256: 1ijqzmkc1lvr5i1fh3nzmhb5km38ynsq1pk8y1b7swxnrim5982d
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://i.pinimg.com/736x/42/6d/4e/426d4e5c56be0c512416f32eaad415d5.jpg
@@ -79,7 +79,7 @@
     sha256: 16avpd6j8n0qyn26hr5i268ic272l42ljx4mjl3xwnac8clpy7rz
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://safebooru.org//samples/4520/sample_8343e50d7a4cd138dd6ee40e4c3ff224198492fd.jpg?4714303
@@ -87,7 +87,7 @@
     sha256: 17nv8jk9x3bim4dlasc4r1xlg43h9zw8wz6ddbwpkc52xbm6043p
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://safebooru.org//images/3810/e3f8ceab1057032e725cad49e57450e072361259.jpg?3981016
@@ -95,43 +95,43 @@
     sha256: 0l44378gkl7rpjwqy1axcs1zf5dig5hav24ibb9m6ibdhy5a5nij
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://safebooru.org//images/2393/5e57d0059b63084f74fae4d9bc4493b0c34b3aa3.jpg?2492902
     name: demiurge_cool.jpg
     sha256: 1kjdml6jpm78kaz3vc384iinxk121iav0v4ldvqgvvj8q001kb0m
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://safebooru.org//images/3262/3be39fa30165fe208694c127fc37caa34c574d7d.jpg?3392359
     name: ains.jpg
     sha256: 0lzz7sqzxq4g0mbac8mh1fdgydbvyqbdwnwc9mamkrvwvcbk28ky
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://safebooru.org//images/2365/9776155be416ad86a1668864243ce2a550196b5d.png?2463644
     name: touch_and_sebas.jpg
     sha256: 0mdmic26ndd0vxqsfbfjzc2ld4z6m3gd34532wrysnpff0f4fxf5
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://safebooru.org//samples/3440/sample_55bd01cca36a7003ab4ab08d60b6683fa367e3f8.jpg?3578718
     name: slime_diablo.jpg
     sha256: 1vns37xynwf4bcf2cr4yi0sh84hdnj0c444w9i23428al31i8d5c
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://safebooru.org//samples/4619/sample_661a6f6ce0de2c9b5a2128c9fc7cd49f87ecb2b6.jpg?4843073
     name: diablo.jpg
     sha256: 13hi89qwc3n8r9xf8gli2pnkgi711nq50pfiwd7yzms05n71cy8p
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://safebooru.org//images/3089/dcfadde495702003150893bf7a3b1b3f53676cbe.png?3215742
     name: slime_portrait.jpg
     sha256: 0qm55xwb8933khapw43574c59v8j23l53bkdwv9y28hn34z67pyw
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://safebooru.org//samples/4619/sample_1f4d5d18319d1441839b33bebd176db3f274bb8f.jpg?5098093
@@ -139,7 +139,7 @@
     sha256: 0wfmzp4lczymy3fpx06695v4pfa3bppaagbwrprwlwddbg5y8l3q
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://images8.alphacoders.com/105/1059694.jpg
@@ -147,7 +147,7 @@
     sha256: 0q8sgd44pl4b91lqyyk7hga3961fg78969ki828715z9yal6qkyn
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://images2.alphacoders.com/739/739723.png
@@ -155,7 +155,7 @@
     sha256: 03hwyangzjvcnxhllkw457qpgb4pbgz2gz0sawb5n1p1kzy90pn8
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/_emilia_and_subaru___render__by_prettyxhell_dgi39xn.png
@@ -163,7 +163,7 @@
     sha256: 1zbiqh8qy88zbirnmj00mvi5wk2bxvxz86y2sa8snqhr8hfs5pbq
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/_lucy___render__by_prettyxhell_dgglls2.png
@@ -171,7 +171,7 @@
     sha256: 09p2ljhkr9anva8g9yz4nhfzhqfmf87mdf2bbf8rj4ja8hvvhlsm
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/_power___render__by_prettyxhell_dfgdd8e-414w-2x.png
@@ -179,7 +179,7 @@
     sha256: 041qar91fpq01v610xffkadnr674rd410dsggjnppwm01f0ixkqs
   tags:
     - weaboo
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/_power___render__by_prettyxhell_dggljt0.png
@@ -187,7 +187,7 @@
     sha256: 0vx0fmd387fvhnk9ry1z4gazlwb9k368s80p116limhzcszj51f9
   tags:
     - weaboo
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/_Qimang_jinx.jpg
@@ -195,7 +195,7 @@
     sha256: 15c7igkjhbk4pfz6q4x66wgmii1k70v5qysw9bn6f0dcv0v4i0dd
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/_Qimang_jinx2.jpg
@@ -203,13 +203,13 @@
     sha256: 12gpdp9aq7qi2kr77m5hg6m5vz14sfcs2kvqk1i4brax4k5l18sg
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/_satoru_gojo___render__by_prettyxhell_dfgier5.png
     name: gojo1.png
     sha256: 077q0g4shkj6xiww8d4m9c1hg3vf21ly2fg5sqsl171mfv4r9b9i
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/_power___render__by_prettyxhell_dggljt0.png
@@ -217,7 +217,7 @@
     sha256: 0vx0fmd387fvhnk9ry1z4gazlwb9k368s80p116limhzcszj51f9
   tags:
     - weaboo
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/_subaru_and_emilia___render__by_prettyxhell_dgh0yeh.png
@@ -225,7 +225,7 @@
     sha256: 0w7nzd7ac0c6iyg9kz5wagp85g003hsak6n0b6giz5dw73hdghhs
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/_subaru_and_emilia___render__by_prettyxhell_dgh0yw7.png
@@ -233,7 +233,7 @@
     sha256: 02fzr7vchdmbs827hsg4xhy4laajfqcqkashz7pp726ma8nn23b0
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/dandadan_by_datcravat_die3e0c.jpg
@@ -241,7 +241,7 @@
     sha256: 1s6c22cy4dja78sfw0p1grq9mdifnkprz1s1l0sznzc9kjqzhas9
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/okarun_by_ggabrielbf_dinlj2j.png
@@ -249,7 +249,7 @@
     sha256: 0kwbvk091yi2jvq7ajbn01kjy6wsgvd1abrbigrrb7czhnlpjkh5
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/power___chainsaw_man_by_razon_neko_dhu1ucf.png
@@ -257,7 +257,7 @@
     sha256: 1q4iyn4i864bnc62q64v7xj998lgnh56fzfkqw5s2w3pnrcpmdkc
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: http://100.114.199.203:23231/pfp/qi-mang-ktl.jpg
@@ -265,7 +265,7 @@
     sha256: 0vx7p1jkb23can5f75g9929mh6h3wakhmqvpyx8l4s94zsbbimxr
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/050/968/618/large/yueko-spyfamily-yor-small.jpg
@@ -273,7 +273,7 @@
     sha256: sha256-vPIqwMJ3ck6nU5VG5yfUg6IxCk+25kAofpVkWw1hpcQ=
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/081/796/275/large/aleksandra-alekseeva-25-jinx3.jpg
@@ -281,7 +281,7 @@
     sha256: 1i9af9gn3wb0c3cbgms442yr8jl7b7ds50q2ipqq9w8r1gn7hzb0
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/070/697/506/large/zumi-draws-meimei9.jpg
@@ -289,7 +289,7 @@
     sha256: 15gfp26ccsyj7hq3r4xq1why9njr8ks0hanw99a1zp6ch2gmdndw
   tags:
     - weaboo
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/054/595/390/large/jack-wang-qq-20221005005056.jpg
@@ -297,7 +297,7 @@
     sha256: 12i06x23dyzawb2ifwh7jrkc9j2lb84gyx69jhx7qvfvd39anfxk
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/081/420/536/large/sebijy-daily-painting-1871-ps.jpg
@@ -305,7 +305,7 @@
     sha256: 021hjjr0hp6k1kdv8gzc1nv5sfgs7l39jxfvc2bhb5nfk77cx1s9
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/084/697/335/large/paul-kwon-zeronis-vi.jpg
@@ -313,7 +313,7 @@
     sha256: 1fyvsnipb7hciyyhd58l7czawdxhlwi76nrqmrhl604i4fqynzg9
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/080/456/107/large/nixri-vi-web.jpg
@@ -321,7 +321,7 @@
     sha256: 1gvnbvffjv705xi3b0pimg8zbfbddnyh3wckh4x22kcm45mzm2kf
   tags:
     - weaboo
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/043/745/317/large/lucy-rose-e8s5c1juyauhbba.jpg
@@ -329,7 +329,7 @@
     sha256: 182irdi1hn047v49kv0i7i3dri2a89ansafwb836l827lz1ih80w
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/043/745/315/large/lucy-rose-e8aa0uqviaa4jnq.jpg
@@ -337,7 +337,7 @@
     sha256: 0hmyw7nbsacypr3glvmk4bq4p12bqsn9kn73nxqilfa78s45dzmh
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/040/824/417/large/elena-benitez-gutierrez-p1010785.jpg
@@ -345,845 +345,839 @@
     sha256: 19b0p3sqsl0cmss1vja4i01j76m64spsm6nqix2b59lc0zj5f1i0
   tags:
     - weaboo
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://cdn.cara.app/production/posts/348886b5-5e17-43b4-b5bf-e72284447a9c/sylviacomics-Th447FYlTY_UQ3-iZJjIF-F1EB072E-EF6E-4D61-A58B-7DBDF28234DD.jpg
     name: jinxmore.jpg
     sha256: 0b23zn4si55rfmydx1h6vzql91f2pc8lj6gpsxpapl1dwhichfwp
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://cdn.cara.app/production/posts/e33909e3-12b1-485c-83a5-e58d226cfea7/sylviacomics-H_6kBJlcWIJIg76KSxe-j-BBB1F302-67C8-454F-A6DB-A787CD538161.jpg
     name: jinxmore2.jpg
     sha256: 0rhy84bp1zg1djrpm5p8q225x7r3296q2gry5mdsb0gwwx55nq18
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://cdn.cara.app/production/posts/f0c5d1ba-3ab9-4e0a-9ba7-45a6d9891b28/sylviacomics-DdCp0Uiw0FWLOGMa7i4Tw-19A78E19-DF38-44DD-A1A9-8928756F38DC.jpg
     name: jinxmore3.jpg
     sha256: 0cgmq3b0r09yqh1zhhhhw8d3z0fx0xi63mb2m7yrbfp8x5fb5fwz
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2024/04/29/18/13/40/118268616_p0.jpg
     name: falin_turned.jpg
     sha256: 1skc1ay61vcypsfqsyrjg0cjrijkv7q78r5spzjmzxwssdg29rkv
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2025/04/07/00/00/04/129038125_p0.jpg
     name: blush_fern.jpg
     sha256: 0ifb5m8sp0wddkfrbcvd092w3cc2xbsh5xdkdh485day1ijb9iw1
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2024/08/13/02/41/13/121438589_p0.jpg
     name: makima_crazy.jpg
     sha256: 08x7isqm6kpf89h2fy3xxg94g7nnrqdlbxqqipsqqg4b6s9zdgqg
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2020/12/23/02/23/03/86467376_p0.jpg
     name: makimore.jpg
     sha256: 0rybmc2xk1if3b52hssjgd5680qv1h9ds2gixz1qr0062qfljjwn
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2021/04/01/22/02/31/88861621_p0.png
     name: power_simple.jpg
     sha256: 1diz3xh9gikazgg084khnayk2qs6wjph14y2hd8axyz9lr994hq1
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2020/07/09/12/34/12/82855499_p0.png
     name: power_background.jpg
     sha256: 0w4dqh9k8as52hb1ybc19xnma6y37aa44jv23vmkb0bf731rxkq3
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2023/12/17/22/48/30/114316638_p0.png
     name: maomao.jpg
     sha256: 1f1rrx6fklymp49phbxrr8j8ijvasyvnz1z28zmiljnrvdyzm47i
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2025/04/15/23/27/23/129347515_p0.png
     name: falin_background.jpg
     sha256: 1653567hgv197picr86rgjbgxzvxj34bvz1q8hgn1naraw9s7lgb
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2024/04/03/11/12/17/117505125_p0.png
     name: marcilecry.jpg
     sha256: 08gclary99jahswcwdg0831b04xvlqc4xg9ni3hx0d1955i9qkzg
-  square: true
-  resolution: 200x200
-- src:
-    url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2024/03/25/23/25/04/117252037_p0.png
-    name: falin_background_2.jpg
-    sha256: 114lraa0k0fhszwyg1k31bw50r2ifqjprsyynhjfdpzx2afdvryc
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/03/10/00/00/33/116774296_p0_master1200.jpg
     name: good_soup.jpg
     sha256: 0g0vxjfaa19yhlrqw1rqhr10qr8rjgxrqsidfaj32xlfif654xrq
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2019/09/27/02/37/21/76983830_p0.png
     name: shalltear_blood.jpg
     sha256: 12a2aaszh2k7j2a793qybckiw7pin7larcmpd1nhyyfl7cjal29i
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2025/05/31/19/23/03/131018746_p0.jpg
     name: ram_pink.jpg
     sha256: sha256-KzK+ywYN0YQOl03iMfhSM02lAvQcKZ7qD6OTWqIhfqM=
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2019/11/01/00/39/38/77584945_p0.png
     name: overlord_solution.jpg
     sha256: 0zplh958xkic8c1g3hvqd4k0jv6ri3fy39y09h27bkflpp29brzb
-  square: true
+  square: right
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2025/02/03/00/25/20/126840576_p0.png
     name: ram_pink_more.jpg
     sha256: 1j13ppzkcg7zsmwhx6lgf281aydlxzid6xk2v5a8rrpvxl4pjrrv
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2025/02/03/00/26/09/126840611_p0.png
     name: rem_blue.jpg
     sha256: 03qss52a705j9lsrl37284qgmc7mzlkmxiqn9y4i99s8ar1nzxdg
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2025/03/30/07/24/27/128754249_p0.jpg
     name: rem_literally_blue.jpg
     sha256: 03iy7nhly6120aw7zviz7am9fy45chlfyb6nc4cbz55nz5dkvr55
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2025/04/01/08/47/02/128831391_p0.jpg
     name: ram_literally_red.jpg
     sha256: 12rhrqb558y7f9gd1v5q8kgx8qzvs9qvx0b4adn3x8ac33rrb37l
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2025/05/02/21/28/26/129954035_p0.jpg
     name: emelia_cute.jpg
     sha256: 04qpajnhxm03aggqp6bpi9lkcawli3p0xbxki4y3fck5fbv5d1aa
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2025/05/02/21/28/26/129954035_p1.jpg
     name: rem_cute.jpg
     sha256: 1ylp6a3mplb9jrr8lr8iif5i4alhpc66rzs8v1d4lvnf42xy88gf
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/05/02/21/28/26/129954035_p2_master1200.jpg
     name: ram_cute.jpg
     sha256: 03vn80s8inl0fvvs08qinhd4xjdlxks5kdsjzidms1khimy2xl0p
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/05/02/21/28/26/129954035_p3_master1200.jpg
     name: beatrice_cute.jpg
     sha256: 19xdiz7w580xligvdgh929rglsjzsf2bclr5a0qkdv3zdlhddmic
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2016/07/02/10/02/06/57693708_p0_master1200.jpg
     name: gentleman_sebas.jpg
     sha256: 0h7991vfngr2zi21vq75c2vk3q7v1xx20s3g7a3a5nill0cpypa6
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/08/20/01/44/45/100615483_p0_master1200.jpg
     name: albedo_full_armor.jpg
     sha256: 1i784sk9chfl8vqpbfzlh0bcicsdkyw5548ci109ss16s8zxhc3h
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/03/28/00/26/24/117310428_p0_master1200.jpg
     name: fern_10_10.jpg
     sha256: 0336fchi5hllpay34zwa19qww18wm3iaipflp74q360g8hn4ljwc
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/03/28/00/22/09/117310307_p0_master1200.jpg
     name: frieren_10_10.jpg
     sha256: 1lscm6d9jn5r2cszcinpafxr8l73j6x23y0vi5r4n3ikxgyiv5lv
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/04/30/00/00/33/118280650_p0_master1200.jpg
     name: fern_magic.jpg
     sha256: 1kpp6hjgz28qs5mhc2rln9vq8r4kw7q808295ggl9pjm06c2qqis
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/04/10/18/01/18/129157356_p0_master1200.jpg
     name: fern_flower.jpg
     sha256: 0xdvzl3ay0p3xd0v1y8imfv5nl9alvsmv6rkbbbwy18r75hf3byj
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/04/30/22/28/31/118306735_p0_master1200.jpg
     name: fern_art.jpg
     sha256: 0c4094r8w6l4vaijvly6q25jkmnqmcs0a66m0hh5qklhpb8xhhn5
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2025/02/04/20/13/57/126895154_p0.png
     name: maomao_good.jpg
     sha256: 088kvb3ll245v6wa1q9sd0w196hvs39yg1q3fb60bibgji5xdxiy
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/09/21/11/10/28/122629209_p0_master1200.jpg
     name: miku_miku_miku_miku.jpg
     sha256: 1h1bzvf4mx5mhv91cl6zhrm23hkc1syxx48wl61g79llfrdyqisn
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/03/28/00/22/09/117310307_p0_master1200.jpg
     name: frieren_think.jpg
     sha256: 1lscm6d9jn5r2cszcinpafxr8l73j6x23y0vi5r4n3ikxgyiv5lv
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/01/27/20/00/58/126630216_p0_master1200.jpg
     name: maomao_pokemon.jpg
     sha256: 0wlzbm684ls99jdqficjy8z4k770i8ay9kg6i5f1z5s2v93fa88i
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2015/08/26/00/27/39/52190225_p0_master1200.jpg
     name: shalltear_pastel.jpg
     sha256: 1zhkvxng043vr8wn0jnvsqc2r5jw7qg284r58lqjz17h29qmf6a6
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2016/07/27/00/06/26/58103086_p0_master1200.jpg
     name: rem_grass_dont_make_me_cry.jpg
     sha256: 1ppm1ax2yg6aphjvmix21c887wzbpsr9bly6yzrf5xp09xlw334h
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2024/03/03/16/33/06/116586172_p0.jpg
     name: frieren_art.jpg
     sha256: 1ihhsa4irkf6aqkzg3ny5ys658wglfmz3q9crg9vghdk5vj4wai4
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/02/11/18/30/46/115959359_p0_master1200.jpg
     name: frieren_wokeup.jpg
     sha256: 1m4hg6ph5s1hf2kr173pqvfjnk5ilrfbj94cpgv94y6lqpkq7fvv
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/10/22/00/00/06/102122158_p0_master1200.jpg
     name: lucy_more.jpg
     sha256: 003yfnrz45znjya273ln34xkn77gwa3c92fls52w16mygn6rxasq
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/02/23/23/43/33/127563534_p0_master1200.jpg
     name: my_boy_reigen.jpg
     sha256: 04kpa4n13h2gbms1yg2njg3sxv7790bbi6lyqqjsisl8438dnvmd
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2016/07/08/19/28/43/57803216_p0_master1200.jpg
     name: rem_blood.jpg
     sha256: 0134hwh87x40gfbfg9gbhn2qwa9949gj91np2m11592psdn4102l
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2021/03/14/21/03/59/88450378_p0.png
     name: ram_blood.jpg
     sha256: 0mbd786sj9x1qjv2r5dy96jfgj4z7vfpz86z60d8nqgq6fi2n5az
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/03/19/04/08/55/80212153_p0_master1200.jpg
     name: rem_ram.jpg
     sha256: 0862l1ynj997ilh7fk7hz8wsjxiqx2ahcabmxnkcx1cjcwv83800
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2019/04/27/00/00/07/74393535_p0_master1200.jpg
     name: emelia_sit.jpg
     sha256: 1ym120ha5fb16cafaxqzr67qaz6ygz6s98bv32g6jb96byarfvw7
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/10/09/22/44/48/123183877_p0_master1200.jpg
     name: more_emelia_i_keep_clicking_links_on_pixiv.jpg
     sha256: 0v5pih86q1gifjk2vpn29w90zxdjsa6fdz7phicgnxl6hxhd9g37
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/11/04/22/12/52/124000515_p0_master1200.jpg
     name: emelia_pout.jpg
     sha256: 0r8fzm82vbnpm56r2gi5k1sqb3wk8s9d7nm51h92r311ykj1yayr
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2023/05/23/09/27/08/108367667_p0_master1200.jpg
     name: echidna.jpg
     sha256: 116wz3yqsq4r289ycbzp3bxclbg7bxrrkw8bnz2yi1ldcbr2shcs
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2025/05/29/10/12/00/130931037_p0.png
     name: emelia_flowers.jpg
     sha256: 1sncmzylvp47rklqxkc9szhlh0r34xm7iab34pp3j2yawwcpbzyw
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2018/07/04/11/54/57/69531356_p0_master1200.jpg
     name: emelia_maid.jpg
     sha256: 018k55krykwlgpa8h1nplypkb03qa0jf3d1dimbs6122fssy2isi
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2023/02/17/11/12/37/105456749_p0_master1200.jpg
     name: kobeni_looks_cool.jpg
     sha256: 0rn416ppckkx6mnsd1wsqh29b3dz3wx9xmlgcgkgxdlnaa7zy6ji
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/11/05/23/35/18/85484647_p0_master1200.jpg
     name: power_red.jpg
     sha256: 0hdf985pf7pdnwkmx3apsnr51bk9gszynlvwv57k1p6cwpvx59vz
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/11/19/23/56/44/85774657_p0_master1200.jpg
     name: hayasaka.jpg
     sha256: 021cfjygy02qzf48ik583hlcxyfcmkck3k4qgp2mdmkx66hyy0q8
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/06/22/23/42/11/90743032_p0_master1200.jpg
     name: kaguya_love_war.jpg
     sha256: 19zpyijscffkn2grz72yi62jmhmj71zn59d2ldpisvrdlq97ihf5
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/05/25/23/48/25/90096677_p0_master1200.jpg
     name: cool_nezuko.jpg
     sha256: 068bjgd45x26cnmb6mk10gzs70lk3l1mv0j87pyy2d6cab0w7gzf
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/10/21/23/53/10/93595633_p0_master1200.jpg
     name: violet_evergarden.jpg
     sha256: 1x1bvkm5b5qlp71sybihia4zqc6501bwcicq3nswkyp5d8f82jlk
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/01/15/21/35/58/87069771_p0_master1200.jpg
     name: violet_evergarden2.jpg
     sha256: 1w1am8szmhwc97zlayykxrwp8n4wak85nhz24yhjy9y62rxhd3pi
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/10/13/02/22/12/93410315_p0_master1200.jpg
     name: violet_literally_crying.jpg
     sha256: 1g4hfd1n6yjih8w281a3hgyc9294c0a9sajqjf5xpbrk5akbmwm8
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/05/29/21/20/52/130947403_p0_master1200.jpg
     name: maomao_but_im_trapped_in_pixiv.jpg
     sha256: 0l6ylwaljhwrk6kdvrw4m006c0cnaqk4hbfh93307m5ai9a9m6rd
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/04/25/19/42/34/129686810_p0_master1200.jpg
     name: enter_bocchi_detour.jpg
     sha256: 1gjpc8lwrdf2rh84s1whb8x3pqxw3nims2yk1n2i5dgqm53g76av
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/04/17/22/10/24/129410283_p0_master1200.jpg
     name: bocchi_detour_ryo.jpg
     sha256: 12wwmfiwm1x5mw029qf86a4v9xlara79064mzydz8hi8bksz9dxm
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/01/27/00/12/44/95797143_p0_master1200.jpg
     name: more_makima.jpg
     sha256: 00r41qfw3bhvk8sls0r3skqj1x34nc9nzsqj0viqawydnqmw1p4v
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/06/11/00/18/01/98963168_p0_master1200.jpg
     name: kaguya_evil.jpg
     sha256: 0v5hvxqa4fpj0hswm5igj7zg0jfs0cd7wmr8vbyaj165z0xmwfs3
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/05/26/23/46/26/98623421_p0_master1200.jpg
     name: hayasaka_evil.jpg
     sha256: 0wfd6l968lkqpcw8fj0s7w3lzxxsa8im4qg7d57g0f7cy584z7f3
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/09/05/23/08/34/101025179_p0_master1200.jpg
     name: yor_cool_flowers.jpg
     sha256: 1cp692bg8s0426m27nf5sp87xjrs1phiqsk27j3czwd5qkw3l117
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/10/04/00/15/27/101670858_p0_master1200.jpg
     name: cool_lucy.jpg
     sha256: 0vlm3y9pnq8hlcfpss9w42z9f5yy96yqqmqbakqkyxwzlp3h58dx
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2023/06/07/00/45/14/108791927_p0_master1200.jpg
     name: purah_cool.jpg
     sha256: 0c9nyly6y01djyxfjwfa1p0m2g5jqs1b30y6l1ypnmqa4hlrmjqr
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/01/20/23/31/44/115338274_p0_master1200.jpg
     name: fern_cool.jpg
     sha256: 1w3yv51rhbx6n41h1jxwjay3plkpa37jmyiahx883qpg8m9lh1bj
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/03/25/23/25/04/117252037_p0_master1200.jpg
     name: falin_cool.jpg
     sha256: 19cgjf1hf3bl1rd165q0k4cyyxbl5x342f9xh7vy1xj16zzav76x
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/03/19/00/06/42/117045695_p0_master1200.jpg
     name: frieren_cool.jpg
     sha256: 1gd4sr0flprvvc9avr3ihv86gsrc1c4k3p8r6spl4pqyj4gcyp2a
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/04/09/23/40/15/117701460_p0_master1200.jpg
     name: ubel_cool.jpg
     sha256: 0lyp860p6cv3fdwqj59813mlyxmqr7jqkf09b5imgvzsnn2iwd69
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/04/25/01/18/36/118134394_p0_master1200.jpg
     name: marcille_cool.jpg
     sha256: 0hnpaj3i5rms7qn3z1nvkfprmg25p033c6s036axb1j0b5y083xw
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/05/17/23/37/40/118814634_p0_master1200.jpg
     name: izutsumi_cool.jpg
     sha256: 1nilbicixpyjdqca797w6wf4ddh0f4hwvrji7cc5d5q6gjg6w8iw
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/11/16/23/27/24/124364079_p0_master1200.jpg
     name: seiko_cool.jpg
     sha256: 1yxbqcaialsphywavsx53dil39g19hwp4sm8j5hbhnplfhkdw9rz
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/11/22/23/52/41/124539497_p0_master1200.jpg
     name: momo_cool.jpg
     sha256: 1xmcw4j6l4jzzix207aq451kfc5xbp0wvpryrzq4yw8j7lp8sfsl
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/12/24/23/26/59/125501463_p0_master1200.jpg
     name: momo_cool2.jpg
     sha256: 0br654b6a3rprylbbdy73km70ilhydmvv09c6l20kh24csrgzhpk
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/07/13/22/44/10/120500675_p0_master1200.jpg
     name: shalltear_moreblood.jpg
     sha256: 130pssd55wsmf6wy16vfs628f5vc39bkdp6wsngrzxxxwp72q0w4
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/06/25/00/00/20/99276580_p0_master1200.jpg
     name: elric_brothers.jpg
     sha256: 1lvh9yqvqlka7gdvadrv8csf9h1nhdxi6wmypia8dgk2vwk666qq
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/12/07/00/10/52/94615542_p0_master1200.jpg
     name: alfonse.jpg
     sha256: 09z3sga9n8rydnsqrlckmhdn0hw6086x5gqn7zh81x94p1mgdxkj
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/05/10/00/00/16/130225974_p0_master1200.jpg
     name: porco_super_cool.jpg
     sha256: 1vvqjhlggxzxpbkf2fynyrflhr48r61g9gh4ri1adj7m18chk549
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2018/11/02/23/26/50/71475142_p0_master1200.jpg
     name: gina.jpg
     sha256: 0wd3mjn4x4h40q6b7hanr3ssjv0gqxf8k878z5k9nl297yh827gx
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2023/08/16/12/40/15/110879553_p0_master1200.jpg
     name: howl_aaaaa.jpg
     sha256: 00hxs5j4r906gxs1wrq2z3jsdrsx892vbbh9y7zxwg7shh0vbaxs
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2018/08/11/17/21/16/70142050_p0_master1200.jpg
     name: howl_flying_yes.jpg
     sha256: 1561c0ywaqlk9v0nfidg910gxi9r948nkmp5pksmh542xxdnhp10
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-original/img/2021/08/30/20/31/39/92382189_p0.jpg
     name: howl_overload_help.jpg
     sha256: 1w09yabmwmq0yi6r70xai5f89wfc5n3vvbdqr25qz0b33d44anz6
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2013/12/21/17/31/02/40402443_p0_master1200.jpg
     name: howl_star.jpg
     sha256: 1ziqjq44addrq2r5b63l3cf6qvvjpaaqb5wj896qzk3g3fwy0jki
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/11/05/18/09/52/102535682_p0_master1200.jpg
     name: howl_but_i_hear_the_sound_effect.jpg
     sha256: 08d7gw62272alkvqhdhjznmpv42gzsw0982ii3g0lfp872fw2r60
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2010/01/14/16/44/26/8182279_p0_master1200.jpg
     name: help_help_ghibli_crossovers.jpg
     sha256: 0gv8nngrpdigbafzh8r0avblxcivnzh17n99k6g4ffish6zvhcd6
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/05/17/20/12/28/81640816_p0_master1200.jpg
     name: me_but_its_the_soot.jpg
     sha256: 1rpj7srxya1a4gikc2y78x3vjk4apmimypgvpd7ph0qq2mks3bgk
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2014/07/12/01/03/31/44647524_p0_master1200.jpg
     name: ghibli_ponyo_crossover.jpg
     sha256: 0p1mc4mzh7gpid16c0l89yysdgk8nyrixn7m9cag3d8j8p0j3csy
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2013/01/30/18/31/08/33200719_p0_master1200.jpg
     name: ghibli_i_got_down_to_50_tabs_but_were_back_up.jpg
     sha256: 0mlmfanzc2vdvmgbbgcsj8jdmw2qch4vcx1a6xxjr86mbxc054mr
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2010/02/06/07/23/26/8604567_p0_master1200.jpg
     name: dont_make_me_cry_ponyo.jpg
     sha256: 1pq0qzm66gjd38rwh6rbq266ph3idkp76wll1d4z3hg0xagx55k9
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/04/18/18/03/53/89234773_p4_master1200.jpg
     name: not_gay_if_its_howl1.jpg
     sha256: 16p64sjmrwkivkhalq6rdmkjqjbsn274lxzsiah8k25kh870n5rv
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/04/18/18/03/53/89234773_p1_master1200.jpg
     name: not_gay_if_its_howl2.jpg
     sha256: 0fw11w2qkw8rjki4fw2ppq75qryg6x6gazxcah7s39g0vznrpfhv
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2015/02/05/01/23/17/48563019_p0_master1200.jpg
     name: nightwalker.jpg
     sha256: 1w2zy15vqc7ai9f13pik7sr041l66r4k5pd0hp19h3jpkar9jx95
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/10/10/20/26/17/101831169_p1_master1200.jpg
     name: ashitaka_yes_please.jpg
     sha256: 13k0l5aasinq0l1kncrj0w9wl815h4sssg1xk1pzg6y0jm8gqnbl
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/08/22/12/08/52/92172684_p0_master1200.jpg
     name: cue_mononoke_piano.jpg
     sha256: 059yi7syj23fsqqwfndxq7a5x7aq66g7r6r9njjhc3dh563m778g
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/09/21/17/48/21/84517809_p0_master1200.jpg
     name: ashitaka_fire.jpg
     sha256: 1aqg1957pph2djvb03pdjyiqqn3wcjrkm25fqf4v5f2l5jzymxv2
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/09/21/17/48/21/84517809_p12_master1200.jpg
     name: aaaaaaaaaa.jpg
     sha256: 05069j024lsa45pwz921nn8q8mkf6p24yzzfx1qwvnh9znkbzik9
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/03/23/22/41/38/88659186_p0_master1200.jpg
     name: mononoke_sketch.jpg
     sha256: 1a0jcda1bgxhzyawc75l9m0qk7c94qqb8dp1lka3pbh45dcyh161
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/03/23/22/41/38/88659186_p1_master1200.jpg
     name: nausicaa_sketch.jpg
     sha256: 1by5wisc9pshg6zfzrgbl5bggmgcv0qymigq7n428wja304293ms
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/03/23/22/41/38/88659186_p2_master1200.jpg
     name: kiki_sketch.jpg
     sha256: 05mzrlz8ykr23kl6ff3ipdq998f48d2nfb0qsfa1c0f5zpnqgi02
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/03/23/22/41/38/88659186_p3_master1200.jpg
     name: shita_sketch.jpg
     sha256: 162i3727blcr42x1n0yyb24pvslhrzjj56ghn15n13734plcwav2
-  square: true
+  square: down
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2019/07/17/22/01/16/75775303_p0_master1200.jpg
     name: mononoke_hime.jpg
     sha256: 05nsv513rv043b7v6paw3qkxc11n2kfpmk6py71fagpvsk2v2h9i
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/05/06/19/31/43/81354151_p0_master1200.jpg
     name: i_think_made_it_to_nausicaa.jpg
     sha256: 1a4722w3fq47jrljblq0hjqrpj397r5i06hra7y1pwz9sxs6vngp
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2012/05/12/13/05/11/27193981_p0_master1200.jpg
     name: nausicaa_made_it_but_im_crying_now.jpg
     sha256: 1bsyqbwzj3jah7jsb8dgwggfpw8ik15nn7q3bzz71aai5nyfh90j
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/06/10/23/44/56/90465346_p0_master1200.jpg
     name: nausicaa_on_top.jpg
     sha256: 1xq8ic3cyjqb0kn7z9zdwfpix07bnd2pbg7l0m4p1xav3q1lsxhp
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/06/27/17/18/33/82595116_p0_master1200.jpg
     name: forever_on_top_nausicaa.jpg
     sha256: 0vgl7ld25qdxsh1w30z0acv0ljy8ldbmp07am5b29vf6ha9f3zwm
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2010/06/12/00/13/00/11218359_p0_master1200.jpg
     name: nausicaa_forever_on_top.jpg
     sha256: 1fm6q8s11i9wynjbs6ncxvz28zx1yldrz85fhf7f9rxn3cy0aw1k
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2017/10/28/12/25/06/65626522_p0_master1200.jpg
     name: mononoke_suprise_attack.jpg
     sha256: 1js7nlz2vl18q1dq4pyag2vgw7gq547p2518lqaw5p0w01wcxyzq
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/05/23/15/09/28/90037404_p0_master1200.jpg
     name: oop_back_to_elric.jpg
     sha256: 1xznig8fsx74k5y8w2xf7bswps1xi1iz1whgsdfjag7mxwll8ch9
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/06/18/20/40/59/82406970_p0_master1200.jpg
     name: rooooooooy______muuuusssstttaaaannnnggg.jpg
     sha256: 187374xr5xh3sr0iiwxbv1zvay79r87sbmwahrywyf8wv1qynz76
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2019/06/21/21/44/05/75335346_p0_master1200.jpg
     name: roy.jpg
     sha256: 0fmkmawh9jq0my08yci5d45w31867jcz6v54x8xkgvx9akf5v45w
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/04/18/21/43/16/80884536_p0_master1200.jpg
     name: dont_make_me_cry_please_roy.jpg
     sha256: 1nckvmakn2qvzhlxw4sndh43xbxj90zam2407c1vy753q9y0x4wa
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2022/04/30/00/16/17/97973751_p0_master1200.jpg
     name: alfons_cool.jpg
     sha256: 1vkmbxswag84q1d8hcdapg51f00vlqjri6mvqhb7znl66rlxp9vj
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/11/23/14/15/46/85853975_p0_master1200.jpg
     name: where_did_ed_come_from.jpg
     sha256: 06issy8bcf588jmm75911mrnbhl19ddhwpmh7sxvca4rslw33gxl
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/10/10/14/40/45/84919067_p0_master1200.jpg
     name: witch_check.jpg
     sha256: 0yxp39alwz6lr832z43w2xp46lb1998l260hg8h93c2z2iiq3kq9
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/02/23/07/21/30/87984192_p0_master1200.jpg
     name: kiki_check.jpg
     sha256: 1l5ggc3bcksijah1k5dkzm6scns2k3igbq3c8gr53ivgji310qk2
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2016/08/17/08/49/44/58490817_p0_master1200.jpg
     name: its_not_gay_if_its_howl3.jpg
     sha256: 1awg1c244rn0265ij1j7pm3kfh3w63hws1vlyhgiqhpcchi34anz
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2021/01/01/22/47/12/86739245_p0_master1200.jpg
     name: so_much_good_power_art.jpg
     sha256: 1gwxmd2v9yy64z5iizb9gmkcmpjl6dbz5kv8dn1gvinbbkb1dd8z
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2019/01/06/00/00/02/72514281_p0_master1200.jpg
     name: nausicaa_is_back.jpg
     sha256: 1i10piqyq9ab21hscw4b10j3l290nwhn5r0bw12a2cqh85y31wy7
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/04/12/20/00/26/129230002_p0_master1200.jpg
     name: howl_jump_scare.jpg
     sha256: 0cxyl98746i29x49zf1ikpnks5qwkkrzg6hf7v2rp9jsx9dz5rlf
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2008/10/18/17/02/09/1895573_p0_master1200.jpg
     name: yes_thank_you_robit.jpg
     sha256: 126sadhbil21y3k75sil40g50r7mk4lzk3cnyv9k4v01z45h3rqh
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2012/07/06/01/41/06/28424633_p0_master1200.jpg
     name: more_spirited_away_finally.jpg
     sha256: 0bxsa59gk0r8zif09qn91kr2bryxkd9sfzsn0gj38zb7wklczaac
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2010/01/11/00/09/58/8122706_p0_master1200.jpg
     name: ashitaka_nausicaa.jpg
     sha256: 1mfdi9naas8r1v9f38mgzybq2na8f2zxf3xqpivnjkj94xv7f68w
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/09/21/00/00/13/122617831_p0_master1200.jpg
     name: ainz_ooal_gown_sketch.jpg
     sha256: 0ggcfwd0jp0lpchwbljaca47n2g6pjf53wwgdp9mqfklz7p32f7a
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/03/04/00/00/39/127839395_p0_master1200.jpg
     name: albedo_sketch.jpg
     sha256: 19ynx15mf4l6m5dpagz1yzz5jrslhi3iyq1jkqpll5xv95892aa1
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2023/12/10/00/00/09/114090734_p0_master1200.jpg
     name: fern_desk.jpg
     sha256: 0f4dvwwzymbh32wsa01ln52xwxhvbyq4a79ir74msa0rap2g6sap
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/11/19/00/00/27/124429981_p0_master1200.jpg
     name: overlord_armor.jpg
     sha256: 1qphqnsra8jrwmw1m2isackgpc2lxa374ysw0j431cjy5ngqa6qg
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/04/30/20/04/37/129875877_p0_master1200.jpg
     name: albedo_ainz.jpg
     sha256: 13cmmy9gv6y7q10bnph1m157kriq3d3d48fk14zyw46678g6ag9l
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/09/26/06/00/02/122777207_p0_master1200.jpg
     name: number_one_ainz_fan.jpg
     sha256: 0zbaj8q3d7bza58zjbjhc7w587avjljzzid73axwi5r4zzv2zp0f
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/04/16/18/35/10/129369633_p0_master1200.jpg
     name: albedo_again.jpg
     sha256: 1qgrb2ga9895k683jj8y1fd926l64b02by8v7iz84sfi9hyrc8pm
-  square: true
+  square: top
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2025/02/13/19/08/44/127196977_p0_master1200.jpg
     name: sebas_so_cute.jpg
     sha256: 0gwl1mr8y54fi8rva1kj5y5darp5qzi7mbskbnlc7z883sghqqgl
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2016/11/19/14/33/36/60012527_p0_master1200.jpg
     name: lupus.jpg
     sha256: 0chwdp87nsa8sbgmlhvjzbhpqw2mw8ggp1biij2jbdpm7fnybl7p
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2024/11/03/00/00/30/123937938_p0_master1200.jpg
     name: cocytus_again.jpg
     sha256: 03nvyzkbdig7v07pydqkl3vimr9pqq9qmb712v5j8wzzdb2c2ik7
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2023/03/15/00/42/14/106223365_p0_master1200.jpg
     name: nausicaa_riding_glider.jpg
     sha256: 11jq0kgg6bl0qycq00zrvv7qa9h36z37966mxh4i8v67g6pfw2qb
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2023/08/16/12/40/15/110879553_p0_master1200.jpg
     name: howl_ftw.jpg
     sha256: 00hxs5j4r906gxs1wrq2z3jsdrsx892vbbh9y7zxwg7shh0vbaxs
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2020/09/23/08/09/44/84557357_p0_master1200.jpg
     name: howl_yet_again.jpg
     sha256: 1icbf4vjcslcb2hycva5rhbmx63z3pfw65y3cajsfp649jh3x1zp
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2010/01/13/02/51/20/8163066_p0_master1200.jpg
     name: totoro_many.jpg
     sha256: 0wy3gxvg74l3pjhvll2x946ci7z6g41jfa8fi7mr80qlgwrv5hxw
-  square: true
+  square: center
   resolution: 200x200
 - src:
     url: https://vx.maid.zone/proxy/i.pximg.net/img-master/img/2018/10/27/17/35/14/71370340_p0_master1200.jpg
     name: spirited_away_food.jpg
     sha256: 1pj3d4yzxafqj37xw438q9fpqafyrgkkp041qg0v72blw8mrdxq2
-  square: true
+  square: center
   resolution: 200x200

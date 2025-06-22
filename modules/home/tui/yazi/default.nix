@@ -58,7 +58,7 @@ in
       );
 
       keymap = {
-        manager.prepend_keymap = [
+        mgr.prepend_keymap = [
           {
             on = "!";
             run = ''shell "$SHELL" --block'';
@@ -122,7 +122,7 @@ in
         ];
       };
       theme = {
-        manager = {
+        mgr = {
           border_style = {
             fg = "darkgray";
           };
@@ -150,7 +150,7 @@ in
         log = {
           enabled = true;
         };
-        manager = {
+        mgr = {
           linemode = "size";
           show_hidden = true;
           sort_by = "natural";

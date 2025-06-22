@@ -2,7 +2,7 @@
   src,
   themes ? [ "none" ],
   svg ? null,
-  square ? false,
+  square ? null,
   resolution ? null,
   ...
 }:
@@ -67,11 +67,11 @@ stdenv.mkDerivation {
     }
 
     ${
-      if square then
+      if square != null then
         (''
           mkdir -p converted-square
           local filesrc=converted-square/$(basename $name).png
-          nu ${squareScript}/bin/magick-square $oldsrc $filesrc
+          nu ${squareScript}/bin/magick-square $oldsrc $filesrc ${square}
           local oldsrc=$filesrc
         '')
       else

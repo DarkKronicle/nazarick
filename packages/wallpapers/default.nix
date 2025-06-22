@@ -17,7 +17,7 @@ let
       ''
           #!/usr/bin/env nu
           
-          def main [input: path, output: path] {
+          def main [input: path, output: path, type: string] {
             let dimensions = magick identify $input | split row " " | get 2 | split row "x" | into int
             let smallest = $dimensions | math min
             let largest = $dimensions | math max
@@ -32,10 +32,22 @@ let
             let hoffset = if $width_wise {
                 0
             } else {
-                $offset
+                if ($type == "left") {
+                  0
+                } else if ($type == "right") {
+                  ($dimensions | get 0) - $smallest
+                } else {
+                  $offset
+                }
             }
             let voffset = if $width_wise {
-                $offset
+                if ($type == "top") {
+                  0
+                } else if ($type == "down") {
+                  ($dimensions | get 1) - $smallest
+                } else {
+                  $offset
+                }
             } else {
                 0
             }
