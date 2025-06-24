@@ -843,7 +843,7 @@
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/043/504/725/large/bo-chen-arcane-jinx-final-2k.jpg
     name: jinx6_2.jpg
-    sha256: 1nz3g0k9njngdb7l3pad6yj16zqb933p4glkwxs39kbdp9kl1lmz
+    sha256: sha256-eYThSplyGLMN1j/TB0eXnaH/mBDiSGG8dREnH5aDxOc=
   tags:
     - weaboo
 - src:
@@ -887,13 +887,13 @@
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/082/345/269/large/r-s-jinx-1-1.jpg
     name: jinx6_1.jpg
-    sha256: 13ikjjcm07pam3db6mlzgfacvsmvq910m5z0f9h77clja9h1wg7k
+    sha256: 10nd1s07qgy87hbaqlbngibhlgvfcglk98dgr6lrjjpkvs1jpdnh
   tags:
     - weaboo
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/078/247/320/large/gui-yuan-87560809gy1hrgpqidw1ij21fi0nmnpd.jpg
     name: kiki_even.jpg
-    sha256: 136mdfx18wlal778f2xgw10gxqj7s6ha3wddyikq6mfagvzrm4al
+    sha256: 02x2d1343av6038vjvaw2ngbxzs41fqb8xqcmrjyln3nczy8db43
   themes:
     - mocha
 - src:

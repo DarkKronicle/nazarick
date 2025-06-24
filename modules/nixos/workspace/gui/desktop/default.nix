@@ -44,6 +44,7 @@ in
     ];
 
     programs.ssh.startAgent = true;
+    services.gnome.gcr-ssh-agent.enable = false;
     services.blueman.enable = true;
 
     environment.pathsToLink = [
