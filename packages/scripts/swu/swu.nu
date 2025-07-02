@@ -154,7 +154,7 @@ export def "move-container" [output: int, workspace: string] {
         return
     }
     let workspaces = swaymsg -t get_workspaces | from json
-    let target = $workspaces | filter {|w| ($w | get name) == $workspace } | get 0?
+    let target = $workspaces | where {|w| ($w | get name) == $workspace } | get 0?
     if $target == null {
         # Need to create it
         swaymsg $"workspace ($workspace) output ($display); move container to workspace ($workspace)"
@@ -171,12 +171,12 @@ export def "move-container" [output: int, workspace: string] {
 export def "swap" [output: int, workspace: string] {
     let reserved = "-";
     let workspaces = swaymsg -t get_workspaces | from json
-    let current = $workspaces | filter {|w| $w | get focused } | get 0
+    let current = $workspaces | where {|w| $w | get focused } | get 0
     if ($current | get name) == $workspace {
         # Same workspace dingus
         return
     }
-    let target = $workspaces | filter {|w| ($w | get name) == $workspace } | get 0?
+    let target = $workspaces | where {|w| ($w | get name) == $workspace } | get 0?
     let display = display $output
     let target_display = if ($target != null) { 
         $target | get output
@@ -204,7 +204,7 @@ export def "swap" [output: int, workspace: string] {
     # We move it and then check if the other one exists still (if it was one on a monitor, it won't)
     swaymsg $"move workspace to ($target_display) current; rename workspace to ($reserved)"
     let workspaces = swaymsg -t get_workspaces | from json
-    let target_exists = $workspaces | filter {|w| ($w | get name) == $workspace } | get 0? | is-not-empty
+    let target_exists = $workspaces | where {|w| ($w | get name) == $workspace } | get 0? | is-not-empty
     if $target_exists {
         swaymsg $"rename workspace ($workspace) to ($current | get name)"
     }

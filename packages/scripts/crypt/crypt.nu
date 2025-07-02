@@ -373,7 +373,7 @@ def mountpoint [] {
             sudo --preserve-env tomb list 
         } | complete | get stderr | split row (char newline) | each {
                 |x| $x | parse -r `^tomb\s+\.\s+\[(?P<tomb>\w+)\]` 
-            } | filter {|x| ($x | length) != 0} | each { 
+            } | where {|x| ($x | length) != 0} | each { 
                 |x| $x | get tomb.0 
             } | uniq)
         return ([ 'all' ] | append $uniq_mounts)

@@ -293,7 +293,7 @@ export def "undo" [] {
 
 export def "in" [...statement: string] {
     if ($statement | is-empty) {
-        return (show "status:pending type:in" | upsert-val tags { filter { $in not-in [ "in" ] } } | display)
+        return (show "status:pending type:in" | upsert-val tags { where { $in not-in [ "in" ] } } | display)
     }
 }
 
