@@ -39,6 +39,11 @@
   resvg
   phraze
   yt-dlp
+  ffmpeg-full
+  sendme
+  uni
+
+  lsof
 ])
 ++ [
   mypkgs.tlock

@@ -15,7 +15,7 @@ in
 {
   options.nazarick.system.bluetooth = {
     enable = mkBoolOpt false "Enable bluetooth support.";
-    disable_hfp = mkBoolOpt true "Disable handsfree support";
+    disable_hfp = mkBoolOpt false "Disable handsfree support";
   };
 
   config = mkIf cfg.enable {

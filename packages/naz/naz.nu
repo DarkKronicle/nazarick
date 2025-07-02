@@ -17,14 +17,16 @@ def do_safely [code: closure] {
 
 def "main commit" [message: string, --noversion] {
     do_safely {
-        nix fmt
-        git add .
-        if (not $noversion)  {
-            # Set pager here to less so that there is no confusion
-            let generation = PAGER="less" (nixos-rebuild list-generations --flake . | rg "current" | split row " " | filter {|x| not ($x | is-empty)} | get 0)
-            git commit -m ("Gen " + $generation + ": " + $message)
-        } else {
-            git commit -m $message
+        with-env { PAGER: "less" } {
+            nix fmt
+            git add .
+            if (not $noversion)  {
+                # Set pager here to less so that there is no confusion
+                let generation =  (nixos-rebuild list-generations --flake . | rg "True" | split row " " | where ($it | is-not-empty) | get 0)
+                git commit -m ("Gen " + $generation + ": " + $message)
+            } else {
+                git commit -m $message
+            }
         }
         git push
     }
