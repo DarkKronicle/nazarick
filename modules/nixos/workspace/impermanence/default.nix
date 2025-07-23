@@ -101,6 +101,8 @@ in
         ".vim"
         ".config/vdirsyncer"
         ".config/khal"
+        ".config/calibre"
+        ".config/supersonic"
         ".cal"
 
         ".config/goldendict"

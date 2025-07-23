@@ -64,6 +64,12 @@ in
       };
     };
 
+    networking.firewall = {
+      # Calibre
+      allowedTCPPorts = [ 9090 ];
+      allowedUDPPorts = [ 9090 ];
+    };
+
     programs.adb.enable = true;
 
     nazarick = {

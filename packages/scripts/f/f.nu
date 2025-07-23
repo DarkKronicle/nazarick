@@ -91,7 +91,8 @@ export def main [
         # Make immutable for closure
         let $real_dir = $real_dir
 
-        let action = $action | default { $in }
+        # Default accepts a closure to run, so it's just a double closure now
+        let action = $action | default { { $in } }
 
         # Build results
         let results = fd $search ...$flags | lines | par-each { ls -D $in | get 0 } | sort-by "name" | do $action

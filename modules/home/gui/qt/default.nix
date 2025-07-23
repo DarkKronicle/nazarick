@@ -151,17 +151,16 @@ in
 
     xdg.configFile."kdeglobals" = {
       enable = true;
-      text =
-        ''
-          [UiSettings]
-          ColorScheme=*
-        ''
-        + (builtins.readFile "${
-          pkgs.catppuccin-kde.override {
-            flavour = [ "mocha" ];
-            accents = [ "mauve" ];
-          }
-        }/share/color-schemes/CatppuccinMochaMauve.colors");
+      text = ''
+        [UiSettings]
+        ColorScheme=*
+      ''
+      + (builtins.readFile "${
+        pkgs.catppuccin-kde.override {
+          flavour = [ "mocha" ];
+          accents = [ "mauve" ];
+        }
+      }/share/color-schemes/CatppuccinMochaMauve.colors");
     };
 
     xdg.configFile."qt5ct/colors/Catppuccin-Mocha.conf" = {

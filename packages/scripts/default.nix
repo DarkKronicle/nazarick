@@ -39,7 +39,8 @@ let
           "--replace-quiet"
           "@NIX_PATH_PREPEND@"
           prepend
-        ] ++ (script.substitutions or [ ]);
+        ]
+        ++ (script.substitutions or [ ]);
       };
 
     in
@@ -111,7 +112,8 @@ let
         useAll = false;
         createBin = true;
         dependencies = [ ];
-      } // (import packageFile extra-inputs);
+      }
+      // (import packageFile extra-inputs);
     in
     {
       name = "script-" + scriptLoaded.name;

@@ -843,7 +843,7 @@
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/043/504/725/large/bo-chen-arcane-jinx-final-2k.jpg
     name: jinx6_2.jpg
-    sha256: sha256-eYThSplyGLMN1j/TB0eXnaH/mBDiSGG8dREnH5aDxOc=
+    sha256: 1ry4hfb1y9qifny62j7222cgz8cxjx3hglrzsq6v663jk55f313r
   tags:
     - weaboo
 - src:
@@ -859,7 +859,7 @@
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/048/041/655/large/daniel-oxford-howl-01.jpg
     name: howls.jpg
-    sha256: 0xll1qa3ykyknm569qpnhy8xmq66njl63yrid27zd8xi55gjfp1n
+    sha256: sha256-H5fz62y1v/qT1kkv3HTrXSpRGcUAac4mV/0PmHXskMM=
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/048/698/984/large/daniel-oxford-daniel-oxford-botw-1.jpg
     name: zelda8.jpg

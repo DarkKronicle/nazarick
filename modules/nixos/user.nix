@@ -88,7 +88,8 @@ in
           home = "/home/${name}";
           group = "users";
           shell = conf.shell;
-        } // conf.extraOptions;
+        }
+        // conf.extraOptions;
       }) cfg.user
     );
 

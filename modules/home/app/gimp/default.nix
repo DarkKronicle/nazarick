@@ -35,53 +35,28 @@ let
           pkgs.gimp
           pkgs.gimp.gtk
           pkgs.glib
-        ] ++ (attrs.buildInputs or [ ]);
+        ]
+        ++ (attrs.buildInputs or [ ]);
 
         nativeBuildInputs = [
           pkgs.pkg-config
           pkgs.intltool
-        ] ++ (attrs.nativeBuildInputs or [ ]);
+        ]
+        ++ (attrs.nativeBuildInputs or [ ]);
 
         # Override installation paths.
         env = {
           PKG_CONFIG_GIMP_2_0_GIMPLIBDIR = "${placeholder "out"}/${pkgs.gimp.targetLibDir}";
           PKG_CONFIG_GIMP_2_0_GIMPDATADIR = "${placeholder "out"}/${pkgs.gimp.targetDataDir}";
-        } // attrs.env or { };
+        }
+        // attrs.env or { };
       }
     );
-
-  # Modified from:
-  # https://github.com/NixOS/nixpkgs/blob/9f4128e00b0ae8ec65918efeba59db998750ead6/pkgs/applications/graphics/gimp/plugins/default.nix#L218C3-L244C1
-  # Resynthesizer is broken right now bc python 2.7 is EOL, this doesn't use python
-  resynthesizer-scm = pluginDerivation {
-    /*
-      menu:
-      Edit/Fill with pattern seamless...
-      Filters/Enhance/Heal selection...
-      Filters/Enhance/Heal transparency...
-      Filters/Enhance/Sharpen by synthesis...
-      Filters/Enhance/Uncrop...
-      Filters/Map/Style...
-      Filters/Render/Texture...
-    */
-    pname = "resynthesizer-scm";
-    version = "latest";
-    buildInputs = with pkgs; [ fftw ];
-    nativeBuildInputs = with pkgs; [ autoreconfHook ];
-    makeFlags = [ "GIMP_LIBDIR=${placeholder "out"}/${pkgs.gimp.targetLibDir}" ];
-    src = pkgs.fetchFromGitHub {
-      owner = "itr-tert";
-      repo = "gimp-resynthesizer-scm";
-      rev = "c44500b86e298433c32b0a4b05caf63b8811f959";
-      hash = "sha256-Zc1wJaT7a9GCa6EaoyAwXaHk59lYYwrEHY1KGbPu6ic=";
-    };
-  };
 
   cfg = config.nazarick.app.gimp;
   gimp-plugins = pkgs.gimp-with-plugins.override {
     plugins = [
       pkgs.gimpPlugins.gmic # Tons of filters, features, more photoshop-like stuff
-      resynthesizer-scm # Content aware fill + more
     ];
   };
 

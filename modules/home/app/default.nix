@@ -50,6 +50,7 @@ let
 
       taskwarrior3
       khal
+      supersonic-wayland
 
       inputs.timr.packages.${system}.timr
       inputs.faerber.packages.${system}.faerber
