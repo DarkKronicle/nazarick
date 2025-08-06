@@ -42,28 +42,7 @@ in
     sops.secrets."spotifyd/username" = { };
     sops.secrets."spotifyd/password" = { };
 
-    systemd.user.services.spotifyd-restart = {
-      Install = {
-        # This requires the custom per-user sleep target
-        WantedBy = [ "sleep.target" ];
-        After = [ "sleep.target" ];
-      };
-
-      Unit = {
-        Description = "Restart spotifyd after suspend";
-      };
-
-      Service = {
-        Type = "oneshot";
-        ExecStart = "systemctl --user restart spotifyd";
-      };
-    };
-
     systemd.user.services.spotifyd = {
-
-      Install = {
-        WantedBy = [ "default.target" ];
-      };
 
       Unit = {
         Description = "spotify daemon";

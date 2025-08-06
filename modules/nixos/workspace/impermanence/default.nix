@@ -74,6 +74,7 @@ in
         ".config/matlab"
         ".config/qalculate" # TODO: the qt file stores history, so don't delete that, but can set up setting some defaults
         ".borg"
+        ".config/jellyfin-tui"
 
         ".factorio"
 
@@ -167,6 +168,8 @@ in
         ".local/share/zoxide"
         ".local/share/direnv"
         ".local/state/yazi"
+
+        ".local/share/jellyfin-tui"
 
         ".local/share/flatpak"
         ".var"
@@ -265,6 +268,9 @@ in
 
         ".local/share/Eagle"
         ".config/aichat"
+
+        ".config/RSS Guard 4"
+        ".local/share/RSS Guard"
       ];
     };
 

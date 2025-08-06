@@ -66,6 +66,7 @@ let
       yomitan
 
       private-relay
+      wallabagger
     ])
     ++ (with custom-addons; [
       better-canvas

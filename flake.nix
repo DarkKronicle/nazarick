@@ -28,15 +28,12 @@
     # System functionality and utilities
     # --------------------
 
+    # impermanence.url = "github:nix-community/impermanence";
     impermanence.url = "github:nix-community/impermanence";
 
     lix-module = {
-      url = "git+https://git.lix.systems/lix-project/nixos-module";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
-      inputs.lix = {
-        url = "git+https://git.lix.systems/lix-project/lix?ref=release-2.93";
-        inputs.nixpkgs.follows = "nixpkgs";
-      };
     };
 
     haumea = {

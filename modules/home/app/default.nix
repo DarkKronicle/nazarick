@@ -51,6 +51,9 @@ let
       taskwarrior3
       khal
       supersonic-wayland
+      jellyfin-tui
+
+      rssguard
 
       inputs.timr.packages.${system}.timr
       inputs.faerber.packages.${system}.faerber
