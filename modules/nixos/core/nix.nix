@@ -68,7 +68,8 @@ in
       doc.enable = false;
       man = {
         enable = true;
-        generateCaches = true;
+        # generateCaches = true;
+        generateCaches = false;
       };
       dev.enable = true;
     };

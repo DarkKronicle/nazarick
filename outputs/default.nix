@@ -38,7 +38,20 @@ let
       )) variables;
 
       # use unstable branch for some packages to get the latest updates
-      pkgs-unstable = import inputs.nixpkgs-unstable pkgs-args;
+
+      pkgs-unstable' = (import inputs.nixpkgs-unstable pkgs-args).applyPatches {
+        name = "nixpkgs-unstable-patched";
+        src = inputs.nixpkgs-unstable;
+
+        patches = [
+          (builtins.fetchurl {
+            url = "https://patch-diff.githubusercontent.com/raw/NixOS/nixpkgs/pull/431098.patch";
+            sha256 = "sha256-Mz/onCGdLv/bFfMR+Y7nRElrE7Na87jRpWcX9bIqxcU=";
+          })
+        ];
+      };
+
+      pkgs-unstable = import pkgs-unstable' pkgs-args;
       pkgs-unstable-small = import inputs.nixpkgs-unstable-small pkgs-args;
 
       pkgs-stable = import inputs.nixpkgs-stable pkgs-args;
