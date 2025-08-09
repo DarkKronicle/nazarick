@@ -663,8 +663,8 @@
     sha256: 0qhwgk4g6n1l2s7wlws4hspzayhawkqxlllwmph65b1g388kmlpw
 - src:
     url: https://images.squarespace-cdn.com/content/v1/55c2f43ce4b03bd87a1006e9/1677647034632-WUCNK33JO1RR1A3BWFI6/JINX.jpg
-    name: high-contrast-jinx.jpg
-    sha256: 0zf2xzb8k30nfplfj2g6cvnz6dr2mkv0gypmxzk09c3dbi3fc8jc
+    name: high-contrast-jinx.webp
+    sha256: 1xj3pddary7xbqmw8ayy86v11sgmk5gqagac5bxsp7fpmfg6iv3g
   themes:
     - mocha
   tags:
@@ -821,7 +821,7 @@
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/047/283/214/large/dannylailai-.jpg
     name: cat.jpg
-    sha256: 1ygr48xkm6s8y9y2r8m91r84vhd8cjwawr58hlhlas4dz6lzdcgx
+    sha256: 0wpwsshwyflvyn98yaz4drxk77b7ykag16i124ng97wyzdmqxrl3
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/040/381/182/large/dannylailai-.jpg
     name: kiki-dannylailai.jpg
@@ -837,33 +837,33 @@
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/010/965/155/4k/elijah-mcneal-station.jpg
     name: station.jpg
-    sha256: 06w5d26h5n45cycl5845jr7wng6lxy4y7y3llfwp3589jv4wknih
+    sha256: 1is965diwh333gws5rjw2r29gm2ra243s5a8fgp5z30w57ikkkz0
   theme:
     - mocha
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/043/504/725/large/bo-chen-arcane-jinx-final-2k.jpg
     name: jinx6_2.jpg
-    sha256: 1ry4hfb1y9qifny62j7222cgz8cxjx3hglrzsq6v663jk55f313r
+    sha256: 1nz3g0k9njngdb7l3pad6yj16zqb933p4glkwxs39kbdp9kl1lmz
   tags:
     - weaboo
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/046/005/317/4k/anato-finnstark-anato-finnstark-anato-finnstark-web-petit-4.jpg
     name: dragon.jpg
-    sha256: 1xkaz3g6lbk3gax93v2c7nrfgwjvql0ncs11asgv62n9zzc197fx
+    sha256: 1371rn6r2sxp9mx1c64mv4iy3bf5i8b731grwav4wjj6ys6wn5fc
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/082/273/482/large/anato-finnstark-wzeb.jpg
     name: vi5.jpg
-    sha256: 116k0z1ax4xq9mgrh8bj7hargxl3wlrslb81mkcdqlavi7z8h20h
+    sha256: 1c1v12sfnw3mr3gm94gaz1chynrg6gyrrjd81qmqr6k6zn80xbxk
   tags:
     - weaboo
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/048/041/655/large/daniel-oxford-howl-01.jpg
     name: howls.jpg
-    sha256: sha256-H5fz62y1v/qT1kkv3HTrXSpRGcUAac4mV/0PmHXskMM=
+    sha256: 0xll1qa3ykyknm569qpnhy8xmq66njl63yrid27zd8xi55gjfp1n
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/048/698/984/large/daniel-oxford-daniel-oxford-botw-1.jpg
     name: zelda8.jpg
-    sha256: 0f01vp8cbnk5f4gflmdadywn4j3jgasyijhbnlvzb4xkki1pcg5m
+    sha256: 1nbb4qszb3mqk03bgmm7wiagjzmqs77h25kadnyr9ypdv9l00h19
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/059/431/918/large/daniel-oxford-longboat-01.jpg
     name: longboat.jpg
@@ -875,15 +875,15 @@
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/024/750/664/large/daniel-oxford-snow-kodama-01.jpg
     name: snow-kodama.jpg
-    sha256: 0n69z7pkm48zkd1h131hxzcv5vr10lh3bv08qpf6mlcgxq57cqdl
+    sha256: 1dxh7c7g47s06qiaizcpyrn451ms97vzc2s329f9i09i7h1m3hri
 - src:
     url: https://cdna.artstation.com/p/assets/images/images/030/655/250/large/jiangyuan-2020-9-9.jpg
     name: kiki150.jpg
-    sha256: 014gvqlxnwzr1xbzicfp3qpg3bij6rv5imzmkpiq3lf0vdv3va13
+    sha256: 0cb39y313g5pzvzbh2a82vsxph6hiapbrmgdcmdladq9w5h8axdl
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/025/563/925/large/stephen-zavala-rebel-camp-1-sz.jpg
     name: starwars.jpg
-    sha256: 15bg081w8a24m3qhnj67rivih4vw585yl22x8gd4g2m7savb3s2d
+    sha256: 1kb5wvkc69w42czxjqvdw33j8c7866fi1bpiipsrqs77r2x6fr73
 - src:
     url: https://cdnb.artstation.com/p/assets/images/images/082/345/269/large/r-s-jinx-1-1.jpg
     name: jinx6_1.jpg

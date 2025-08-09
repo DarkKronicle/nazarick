@@ -25,7 +25,7 @@ let
       impermanence.nixosModules.impermanence
       home-manager.nixosModules.home-manager
       sops-nix.nixosModules.sops
-      waveforms.nixosModule
+      # waveforms.nixosModule
       lix-module.nixosModules.default
     ])
     ++ (map mylib.relativeToRoot [

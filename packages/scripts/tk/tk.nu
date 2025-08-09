@@ -52,7 +52,7 @@ def tk-env [code: closure] {
 
 def upsert-val [field, block: closure] {
     $in | upsert $field { |it|
-        let value = ($it | get -i $field)
+        let value = ($it | get --optional $field)
         if ($value == null or ($value | is-empty)) { null } else { $value | do $block $value }
     }
 }
@@ -133,10 +133,10 @@ def "fix-due" [] {
 
 # Needs a full task object in
 def "get-dir" [] {
-    let dir = if (($in | get -i dir) != null) {
+    let dir = if (($in | get -o dir) != null) {
         $in | get dir
     } else {
-        if (($in | get -i project) | is-empty) {
+        if (($in | get -o project) | is-empty) {
             error make { msg: "Can't get directory for empty project and empty dir " }
         }
         $in | get project | str replace -a "." "/"
@@ -169,7 +169,7 @@ export def "group" [--depth(-d): int = 1, --key: string = "project", --split: cl
     let $split = $split | or-val { split row "." }
     let $join = $join | or-val { str join "." }
     $in | group-by {|x| 
-        let inter = $x | get -i $key
+        let inter = $x | get -o $key
         if ($inter != null) {
             $inter | do $split $in | first $depth | do $join $in
         } else {
@@ -187,7 +187,7 @@ export def "group-recursive" [--key: string = "project", --split: closure, --joi
 }
 
 export def "display" [] {
-    $in | upsert ref {|x| $x | get project? | default ($x | get area?) } | select -i id due description ref urgency status tags | upsert-val tags { str join "," } | update due { date to-timezone (date now | into record | get timezone) }
+    $in | upsert ref {|x| $x | get project? | default ($x | get area?) } | select -o id due description ref urgency status tags | upsert-val tags { str join "," } | update due { date to-timezone (date now | into record | get timezone) }
 }
 
 export def "detailed" [] {

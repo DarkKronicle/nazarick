@@ -348,7 +348,7 @@ export def "status" [
         if ($unit_name | is-empty) {
             error make { msg: "Unit not found" }
         }
-        inner-show [ $unit_name ] $is_user | select --ignore-errors ...[
+        inner-show [ $unit_name ] $is_user | select --optional ...[
             ActiveState SubState LoadState Names Description Type Restart MainPID NRestarts 
             ExecMainStartTimestamp StateChangeTimestamp MemoryCurrent MemoryPeak MemorySwapCurrent MemorySwapPeak 
             CPUUsageNSec LoadState IOReadBytes IOWriteBytes

@@ -37,7 +37,7 @@ let
       nheko
       signal-desktop
       mumble
-      waveforms
+      # waveforms
       matlab
       aichat
       prismlauncher

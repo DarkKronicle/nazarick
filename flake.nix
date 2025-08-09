@@ -31,9 +31,15 @@
     # impermanence.url = "github:nix-community/impermanence";
     impermanence.url = "github:nix-community/impermanence";
 
+    lix = {
+      url = "https://git.lix.systems/lix-project/lix/archive/main.tar.gz";
+      flake = false;
+    };
+
     lix-module = {
-      url = "https://git.lix.systems/lix-project/nixos-module/archive/2.93.3-1.tar.gz";
+      url = "https://git.lix.systems/lix-project/nixos-module/archive/main.tar.gz";
       inputs.nixpkgs.follows = "nixpkgs";
+      inputs.lix.follows = "lix";
     };
 
     haumea = {
@@ -93,10 +99,14 @@
 
     faerber.url = "github:nekowinston/faerber";
 
+    nixpkgs-ags = {
+      url = "github:NixOS/nixpkgs?rev=c87b95e25065c028d31a94f06a62927d18763fdf";
+    };
+
     # NOTE: locked because AGS 2.0 is a major overhaul
     ags = {
       url = "github:Aylur/ags?rev=60180a184cfb32b61a1d871c058b31a3b9b0743d";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.nixpkgs.follows = "nixpkgs-ags";
     };
 
     mint = {
