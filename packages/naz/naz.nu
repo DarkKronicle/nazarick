@@ -27,7 +27,6 @@ def "main stage" [] {
 
 def "main build" [--update, --pull, --flake: string = ".", --plain, --hostname: string, --specialisation: string] {
     do_safely {
-        git pull
         nix fmt
         git add .
         mut flags = [
