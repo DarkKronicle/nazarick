@@ -66,7 +66,7 @@ in
 
       Service = {
         Type = "exec";
-        ExecStart = "${pkgs.swww}/bin/swww-daemon";
+        ExecStart = "${pkgs.swww}/bin/swww-daemon --no-cache";
       };
     };
 
