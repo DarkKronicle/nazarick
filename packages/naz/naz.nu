@@ -15,18 +15,13 @@ def do_safely [code: closure] {
     }
 }
 
-def "main commit" [message: string, --noversion] {
+def "main stage" [] {
     do_safely {
         nix fmt
         git add .
-        if (not $noversion)  {
-            # Set pager here to less so that there is no confusion
-            let generation =  (nixos-rebuild list-generations --flake . --json | from json | where current == true | first | get generation)
-            git commit -m $"Gen ($generation): ($message)"
-        } else {
-            git commit -m $message
-        }
-        git push
+        let generation =  (nixos-rebuild list-generations --flake . --json | from json | where current == true | first | get generation)
+        print $"Generation: ($generation)"
+        return $generation
     }
 }
 
